@@ -1,5 +1,6 @@
 {
   "hosting": {
+    "site": "onit-main",
     "public": "build",
     "ignore": [
       "firebase.json",
