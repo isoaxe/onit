@@ -3,7 +3,7 @@ import firebase from "firebase/app";
 import "firebase/auth";
 import * as firebaseui from 'firebaseui';
 
-function Auth() {
+function Authentication() {
   const firebaseConfig = {
     apiKey: 'AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0',
     authDomain: 'onit-aaa6e.firebaseapp.com',
@@ -32,4 +32,4 @@ function Auth() {
   console.log('auth script executed...');
 }
 
-export default Auth;
+export default Authentication;
