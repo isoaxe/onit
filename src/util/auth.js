@@ -34,6 +34,7 @@ function Authentication() {
 
     console.log('auth script executed...');
   });
+  return null;
 }
 
 export default Authentication;
