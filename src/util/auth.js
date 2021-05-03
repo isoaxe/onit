@@ -30,8 +30,6 @@ function Authentication() {
       signInSuccessUrl: 'https://onit-main.web.app/',
       // Future config options...
     });
-
-    console.log('auth script executed...');
   });
   return null;
 }
