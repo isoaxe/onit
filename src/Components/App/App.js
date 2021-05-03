@@ -1,5 +1,7 @@
-import logo from './logo.svg';
+import Authentication from './../../util/auth';
+import logo from './../../logo.svg';
 import './App.css';
+
 
 function App() {
   return (
@@ -17,6 +19,8 @@ function App() {
         >
           Learn React
         </a>
+        <div id="firebaseui-auth-container"></div>
+        <Authentication />
       </header>
     </div>
   );
