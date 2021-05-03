@@ -19,6 +19,7 @@ function App() {
         >
           Learn React
         </a>
+        <div id="firebaseui-auth-container"></div>
         <Authentication />
       </header>
     </div>
