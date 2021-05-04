@@ -16,20 +16,22 @@ function Authentication() {
       measurementId: 'G-CB3S63219R'
     };
 
-    // Initialize Firebase
-    firebase.initializeApp(firebaseConfig);
-
-    // Initialize the FirebaseUI Widget using Firebase.
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
-
-    ui.start('#firebaseui-auth-container', {
+    const uiConfig = {
       signInOptions: [
         firebase.auth.EmailAuthProvider.PROVIDER_ID,
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
       ],
       signInSuccessUrl: 'https://onit-main.web.app/',
       // Future config options...
-    });
+    }
+
+    // Initialize Firebase
+    firebase.initializeApp(firebaseConfig);
+
+    // Initialize the FirebaseUI Widget using Firebase.
+    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+
+    ui.start('#firebaseui-auth-container', uiConfig);
   });
   return null;
 }
