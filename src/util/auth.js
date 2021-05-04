@@ -2,6 +2,7 @@ import { useEffect } from "react";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
 import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
 
 
 function Authentication() {
