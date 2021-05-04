@@ -2,6 +2,7 @@ import { useEffect } from "react";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
 import * as firebaseui from 'firebaseui';
+import 'firebaseui/dist/firebaseui.css';
 
 
 function Authentication() {
@@ -16,21 +17,26 @@ function Authentication() {
       measurementId: 'G-CB3S63219R'
     };
 
+    const uiConfig = {
+      signInOptions: [
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          buttonColor: '#4353FF'
+        },
+        firebase.auth.GoogleAuthProvider.PROVIDER_ID
+      ],
+      signInSuccessUrl: 'https://onit-main.web.app/',
+      // Future config options...
+    }
+
     // Initialize Firebase
     firebase.initializeApp(firebaseConfig);
 
     // Initialize the FirebaseUI Widget using Firebase.
     const ui = new firebaseui.auth.AuthUI(firebase.auth());
 
-    ui.start('#firebaseui-auth-container', {
-      signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
-        firebase.auth.GoogleAuthProvider.PROVIDER_ID
-      ],
-      signInSuccessUrl: 'https://onit-main.web.app/',
-      // Future config options...
-    });
-  });
+    ui.start('#firebaseui-auth-container', uiConfig);
+  }, []);
   return null;
 }
 
