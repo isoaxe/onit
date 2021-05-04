@@ -19,7 +19,10 @@ function Authentication() {
 
     const uiConfig = {
       signInOptions: [
-        firebase.auth.EmailAuthProvider.PROVIDER_ID,
+        {
+          provider: firebase.auth.EmailAuthProvider.PROVIDER_ID,
+          buttonColor: '#4353FF'
+        },
         firebase.auth.GoogleAuthProvider.PROVIDER_ID
       ],
       signInSuccessUrl: 'https://onit-main.web.app/',
