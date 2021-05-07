@@ -12,3 +12,6 @@
 # misc
 .DS_Store
 .firebase
+
+# TypeScript:
+react-app-env.d.ts
