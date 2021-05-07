@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 // Firebase App (the core Firebase SDK) is always required and must be listed first
 import firebase from "firebase/app";
-import * as firebaseui from 'firebaseui';
+import { auth } from 'firebaseui';
 import 'firebaseui/dist/firebaseui.css';
 
 
@@ -33,7 +33,7 @@ function Authentication() {
     firebase.initializeApp(firebaseConfig);
 
     // Initialize the FirebaseUI Widget using Firebase.
-    const ui = new firebaseui.auth.AuthUI(firebase.auth());
+    const ui = new auth.AuthUI(firebase.auth());
 
     ui.start('#firebaseui-auth-container', uiConfig);
   }, []);
