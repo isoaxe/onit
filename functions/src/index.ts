@@ -4,7 +4,7 @@ import * as express from 'express';
 import * as cors from 'cors';
 import * as bodyParser from 'body-parser';
 
-import { routesConfig } from './users/routes-config';
+import { routesConfig } from './users/routesConfig';
 
 
 // Initialise the firebase-admin SDK in order to access its services.
