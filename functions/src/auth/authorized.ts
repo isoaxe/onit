@@ -12,11 +12,11 @@ export function isAuthorized(opts: { hasRole: Array<'admin' | 'manager' | 'user'
        if (opts.allowSameUser && id && uid === id)
            return next();
 
-       if (!role)
-           return res.status(403).send();
-
        if (opts.hasRole.includes(role))
            return next();
+
+       if (!role)
+           return res.status(403).send();
 
        return res.status(403).send();
    }
