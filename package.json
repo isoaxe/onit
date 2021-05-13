@@ -21,7 +21,7 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "serve": "firebase emulators:start",
+    "serve": "npm run build && firebase emulators:start",
     "get-keys": "export GOOGLE_APPLICATION_CREDENTIALS='/Users/lucas/Downloads/onit-keys.json'",
     "deploy": "firebase deploy --only hosting:onit-main",
     "deploy-all": "firebase deploy",
