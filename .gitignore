@@ -1,13 +1,20 @@
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
 
 # Dependencies:
-/node_modules
+node_modules/
 
 # Testing:
-/coverage
+coverage/
 
 # Production:
-/build
+build/
+
+# Compiled JavaScript files:
+functions/lib/**/*.js
+functions/lib/**/*.js.map
+
+# TypeScript:
+typings/
 
 # Miscellaneous:
 .DS_Store
@@ -16,3 +23,4 @@
 .env.test.local
 .env.production.local
 .firebase
+*.log
