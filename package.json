@@ -35,7 +35,8 @@
       "react-app/jest"
     ],
     "ignorePatterns": [
-      "/build/**/*"
+      "/build/**/*",
+      "/functions/lib/**/*"
     ]
   },
   "browserslist": {
