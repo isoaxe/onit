@@ -42,7 +42,11 @@
     "ignorePatterns": [
       "/build/**/*",
       "/functions/lib/**/*"
-    ]
+    ],
+    "rules": {
+      "quotes": ["warn", "double"],
+      "object-curly-spacing": ["warn", "always"]
+    }
   },
   "browserslist": {
     "production": [
