@@ -1,9 +1,9 @@
-import Authentication from './../../util/auth';
-import logo from './../../logo.svg';
-import './App.css';
+import Authentication from "./../../util/auth";
+import logo from "./../../logo.svg";
+import "./App.css";
 
 
-function App() {
+function App (): void {
   return (
     <div className="App">
       <header className="App-header">
