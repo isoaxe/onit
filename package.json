@@ -44,8 +44,11 @@
       "/functions/lib/**/*"
     ],
     "rules": {
+      "semi": ["warn", "always"],
       "quotes": ["warn", "double"],
-      "object-curly-spacing": ["warn", "always"]
+      "object-curly-spacing": ["warn", "always"],
+      "space-before-function-paren": ["warn", "always"],
+      "no-multiple-empty-lines": ["warn", { "max": 2, "maxBOF": 0, "maxEOF": 0 }]
     }
   },
   "browserslist": {
