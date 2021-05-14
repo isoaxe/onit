@@ -1,14 +1,14 @@
 import { Request, Response } from "express";
-import * as admin from 'firebase-admin';
+import * as admin from "firebase-admin";
 
 
 // Create a new user.
-export async function create(req: Request, res: Response) {
+export async function create (req: Request, res: Response): void {
    try {
        const { displayName, password, email, role } = req.body;
 
        if (!displayName || !password || !email || !role) {
-           return res.status(400).send({ message: 'Missing fields' });
+           return res.status(400).send({ message: "Missing fields" });
        }
 
        const { uid } = await admin.auth().createUser({
@@ -25,7 +25,7 @@ export async function create(req: Request, res: Response) {
 }
 
 // Returns a list of all users.
-export async function all(req: Request, res: Response) {
+export async function all (req: Request, res: Response): void {
     try {
         const listUsers = await admin.auth().listUsers();
         const users = listUsers.users.map(mapUser);
@@ -36,7 +36,7 @@ export async function all(req: Request, res: Response) {
 }
 
 // Returns a user of a given id.
-export async function get(req: Request, res: Response) {
+export async function get (req: Request, res: Response): void {
    try {
        const { id } = req.params;
        const user = await admin.auth().getUser(id);
@@ -47,13 +47,13 @@ export async function get(req: Request, res: Response) {
 }
 
 // Change user data given a user id.
-export async function patch(req: Request, res: Response) {
+export async function patch (req: Request, res: Response): void {
    try {
        const { id } = req.params;
        const { displayName, password, email, role } = req.body;
 
        if (!id || !displayName || !password || !email || !role) {
-           return res.status(400).send({ message: 'Missing fields' });
+           return res.status(400).send({ message: "Missing fields" });
        }
 
        await admin.auth().updateUser(id, { displayName, password, email });
@@ -67,7 +67,7 @@ export async function patch(req: Request, res: Response) {
 }
 
 // Delete a user of a given id.
-export async function remove(req: Request, res: Response) {
+export async function remove (req: Request, res: Response): void {
    try {
        const { id } = req.params;
        await admin.auth().deleteUser(id);
@@ -78,20 +78,20 @@ export async function remove(req: Request, res: Response) {
 }
 
 // Helper function to create object containing user data.
-function mapUser(user: admin.auth.UserRecord) {
-    const customClaims = (user.customClaims || { role: '' }) as { role?: string };
-    const role = customClaims.role ? customClaims.role : '';
+function mapUser (user: admin.auth.UserRecord) {
+    const customClaims = (user.customClaims || { role: "" }) as { role?: string };
+    const role = customClaims.role ? customClaims.role : "";
     return {
         uid: user.uid,
-        email: user.email || '',
-        displayName: user.displayName || '',
+        email: user.email || "",
+        displayName: user.displayName || "",
         role,
         lastSignInTime: user.metadata.lastSignInTime,
         creationTime: user.metadata.creationTime
-    }
+    };
 }
 
 // Standard error helper function used in controller fuctions.
-function handleError(res: Response, err: any) {
+function handleError (res: Response, err: Error) {
    return res.status(500).send({ message: `${err.code} - ${err.message}` });
 }
