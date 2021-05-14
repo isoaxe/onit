@@ -1,12 +1,12 @@
-import { Request, Response } from "express";
+import { Request, Response, NextFunction } from "express";
 
 
-export function isAuthorized(opts: { hasRole: Array<'admin' | 'manager' | 'user'>, allowSameUser?: boolean }) {
-   return (req: Request, res: Response, next: Function) => {
+export function isAuthorized (opts: { hasRole: Array<"admin" | "manager" | "user">, allowSameUser?: boolean }) {
+   return (req: Request, res: Response, next: NextFunction): void | NextFunction => {
        const { role, email, uid } = res.locals;
        const { id } = req.params;
 
-       if (email === 'lucasoconnell4@gmail.com')
+       if (email === "lucasoconnell4@gmail.com")
            return next();
 
        if (opts.allowSameUser && id && uid === id)
@@ -19,5 +19,5 @@ export function isAuthorized(opts: { hasRole: Array<'admin' | 'manager' | 'user'
            return res.status(403).send();
 
        return res.status(403).send();
-   }
+   };
 }
