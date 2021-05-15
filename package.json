@@ -45,6 +45,7 @@
     ],
     "rules": {
       "semi": ["warn", "always"],
+      "indent": ["warn", "tab"],
       "quotes": ["warn", "double"],
       "object-curly-spacing": ["warn", "always"],
       "space-before-function-paren": ["warn", "always"],
