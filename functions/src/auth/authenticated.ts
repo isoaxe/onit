@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 import * as admin from "firebase-admin";
 
 
-export async function isAuthenticated (req: Request, res: Response, next: NextFunction): void | NextFunction {
+export async function isAuthenticated (req: Request, res: Response, next: NextFunction): Promise<Response<void> | void> {
    const { authorization } = req.headers;
 
    if (!authorization)
