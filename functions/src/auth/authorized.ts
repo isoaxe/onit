@@ -2,7 +2,7 @@ import { Request, Response, NextFunction } from "express";
 
 
 export function isAuthorized (opts: { hasRole: Array<"admin" | "manager" | "user">, allowSameUser?: boolean }) {
-   return (req: Request, res: Response, next: NextFunction): void | NextFunction => {
+   return (req: Request, res: Response, next: NextFunction): Response<void> | void => {
        const { role, email, uid } = res.locals;
        const { id } = req.params;
 
