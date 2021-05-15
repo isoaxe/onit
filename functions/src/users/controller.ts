@@ -3,7 +3,7 @@ import * as admin from "firebase-admin";
 
 
 // Create a new user.
-export async function create (req: Request, res: Response): void {
+export async function create (req: Request, res: Response): Promise<Response<void>> {
    try {
        const { displayName, password, email, role } = req.body;
 
@@ -25,7 +25,7 @@ export async function create (req: Request, res: Response): void {
 }
 
 // Returns a list of all users.
-export async function all (req: Request, res: Response): void {
+export async function all (req: Request, res: Response): Promise<Response<void>> {
     try {
         const listUsers = await admin.auth().listUsers();
         const users = listUsers.users.map(mapUser);
@@ -36,7 +36,7 @@ export async function all (req: Request, res: Response): void {
 }
 
 // Returns a user of a given id.
-export async function get (req: Request, res: Response): void {
+export async function get (req: Request, res: Response): Promise<Response<void>> {
    try {
        const { id } = req.params;
        const user = await admin.auth().getUser(id);
@@ -47,7 +47,7 @@ export async function get (req: Request, res: Response): void {
 }
 
 // Change user data given a user id.
-export async function patch (req: Request, res: Response): void {
+export async function patch (req: Request, res: Response): Promise<Response<void>> {
    try {
        const { id } = req.params;
        const { displayName, password, email, role } = req.body;
@@ -67,7 +67,7 @@ export async function patch (req: Request, res: Response): void {
 }
 
 // Delete a user of a given id.
-export async function remove (req: Request, res: Response): void {
+export async function remove (req: Request, res: Response): Promise<Response<void>> {
    try {
        const { id } = req.params;
        await admin.auth().deleteUser(id);
@@ -92,6 +92,9 @@ function mapUser (user: admin.auth.UserRecord) {
 }
 
 // Standard error helper function used in controller fuctions.
-function handleError (res: Response, err: Error) {
-   return res.status(500).send({ message: `${err.code} - ${err.message}` });
+function handleError (res: Response, err: Error): Response<void> {
+   // Temporarily log error when testing with Postman so structure can be assessed.
+   // Does not recognise err.code - check if that is not a field of the error?
+   console.log(err);
+   return res.status(500).send({ message: `${err.message}` });
 }
