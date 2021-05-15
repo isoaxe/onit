@@ -15,13 +15,14 @@
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-scripts": "4.0.2",
-    "typescript": "^4.2.4",
+    "typescript": "4.1",
     "web-vitals": "^1.1.0"
   },
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "serve": "firebase emulators:start",
+    "lint": "eslint --ext .js,.ts,.tsx .",
+    "serve": "npm run build && firebase emulators:start",
     "get-keys": "export GOOGLE_APPLICATION_CREDENTIALS='/Users/lucas/Downloads/onit-keys.json'",
     "deploy": "firebase deploy --only hosting:onit-main",
     "deploy-all": "firebase deploy",
@@ -31,8 +32,25 @@
   "eslintConfig": {
     "extends": [
       "react-app",
-      "react-app/jest"
-    ]
+      "react-app/jest",
+      "eslint:recommended",
+      "plugin:import/errors",
+      "plugin:import/warnings",
+      "plugin:import/typescript",
+      "plugin:@typescript-eslint/recommended"
+    ],
+    "ignorePatterns": [
+      "/build/**/*",
+      "/functions/lib/**/*"
+    ],
+    "rules": {
+      "semi": ["warn", "always"],
+      "indent": ["warn", "tab"],
+      "quotes": ["warn", "double"],
+      "object-curly-spacing": ["warn", "always"],
+      "space-before-function-paren": ["warn", "always"],
+      "no-multiple-empty-lines": ["warn", { "max": 2, "maxBOF": 0, "maxEOF": 0 }]
+    }
   },
   "browserslist": {
     "production": [
