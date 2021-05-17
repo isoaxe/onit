@@ -1,18 +1,18 @@
 import Authentication from "./../../util/auth";
 import logo from "./../../logo.svg";
-import "./App.css";
+import "./Login.css";
 
 
-function App (): JSX.Element {
+function Login (): JSX.Element {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<img src={logo} className="App-logo" alt="logo" />
+		<div className="Login">
+			<header className="Login-header">
+				<img src={logo} className="Login-logo" alt="logo" />
 				<p>
-          Edit <code>src/App.js</code> and save to reload.
+          Edit <code>src/Login.tsx</code> and save to reload.
 				</p>
 				<a
-					className="App-link"
+					className="Login-link"
 					href="https://reactjs.org"
 					target="_blank"
 					rel="noopener noreferrer"
@@ -26,4 +26,4 @@ function App (): JSX.Element {
 	);
 }
 
-export default App;
+export default Login;
