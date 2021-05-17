@@ -25,7 +25,7 @@ function Authentication (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: window.location.href,
+			signInSuccessUrl: `${window.location.href}loggedin/`,
 			// Future config options...
 		};
 
