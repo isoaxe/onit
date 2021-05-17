@@ -25,7 +25,7 @@ function Authentication (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: "https://onit-main.web.app/",
+			signInSuccessUrl: window.location.href,
 			// Future config options...
 		};
 
