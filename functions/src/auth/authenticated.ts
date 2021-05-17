@@ -9,11 +9,11 @@ export async function isAuthenticated (req: Request, res: Response, next: NextFu
 		return res.status(401).send({ message: "Unauthorized" });
 
 	if (!authorization.startsWith("Bearer"))
-		return res.status(401).send({ message: "Unauthorized" });
+		return res.status(401).send({ message: "Unauthorized due to token missing the 'Bearer' prefix" });
 
 	const split = authorization.split("Bearer ");
 	if (split.length !== 2)
-		return res.status(401).send({ message: "Unauthorized" });
+		return res.status(401).send({ message: "Unauthorized due to multiple tokens" });
 
 	const token = split[1];
 
@@ -25,6 +25,6 @@ export async function isAuthenticated (req: Request, res: Response, next: NextFu
 	}
 	catch (err) {
 		console.error(`${err.code} -  ${err.message}`);
-		return res.status(401).send({ message: "Unauthorized" });
+		return res.status(401).send({ message: "Unauthorized due to error" });
 	}
 }
