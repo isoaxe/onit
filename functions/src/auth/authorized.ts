@@ -16,8 +16,8 @@ export function isAuthorized (opts: { hasRole: Array<"admin" | "manager" | "user
 			return next();
 
 		if (!role)
-			return res.status(403).send();
+			return res.status(403).send({ message: "Forbidden due to lack of role" });
 
-		return res.status(403).send();
+		return res.status(403).send({ message: "Forbidden" });
 	};
 }
