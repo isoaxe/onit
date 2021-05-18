@@ -8,16 +8,8 @@ function LoginSuccess (): JSX.Element {
 			<header className="LoginSuccess-header">
 				<img src={logo} className="LoginSuccess-logo" alt="logo" />
 				<p>
-          Edit <code>src/LoginSuccess.tsx</code> and save to reload.
+          Login successful!
 				</p>
-				<a
-					className="LoginSuccess-link"
-					href="https://reactjs.org"
-					target="_blank"
-					rel="noopener noreferrer"
-				>
-          Learn React
-				</a>
 			</header>
 		</div>
 	);
