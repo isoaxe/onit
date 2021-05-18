@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "build-all": "cd functions && npm run build && cd .. && npm run build",
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "serve": "npm run build && firebase emulators:start",
+    "serve": "npm run build-all && firebase emulators:start",
     "get-keys": "export GOOGLE_APPLICATION_CREDENTIALS='/Users/lucas/Downloads/onit-keys.json'",
     "deploy": "firebase deploy --only hosting:onit-main",
     "deploy-all": "firebase deploy",
