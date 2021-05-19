@@ -6,6 +6,8 @@ import "firebaseui/dist/firebaseui.css";
 
 
 function Authentication (): null {
+	const url = "http://localhost:5000/";
+
 	useEffect(() => {
 		const firebaseConfig = {
 			apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
@@ -25,7 +27,7 @@ function Authentication (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: `${window.location.href}loggedin/`,
+			signInSuccessUrl: url + "loggedin",
 			// Future config options...
 		};
 
