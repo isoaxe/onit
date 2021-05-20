@@ -1,22 +1,20 @@
-import { Route } from "react-router-dom";
-import Authentication from "./../../util/auth";
+import { Route, Switch } from "react-router-dom";
+
 import LoginSuccess from "./../LoginSuccess/LoginSuccess";
-import "./App.css";
+import Login from "./../Login/Login";
 
 
 function App (): JSX.Element {
 	return (
-		<div className="App">
-			<header className="App-header">
-				<p>
-          Choose your preferred login method.
-				</p>
-				<div id="firebaseui-auth-container"></div>
-				<Authentication />
-			</header>
-			<div>
-				<Route path="/loggedin" component={LoginSuccess} />
-			</div>
+		<div>
+			<Switch>
+				<Route path="/loggedin">
+					<LoginSuccess />
+				</Route>
+				<Route path="/">
+					<Login />
+				</Route>
+			</Switch>
 		</div>
 	);
 }
