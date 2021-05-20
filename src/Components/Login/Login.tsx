@@ -1,4 +1,6 @@
+import { Route } from "react-router-dom";
 import Authentication from "./../../util/auth";
+import LoginSuccess from "./../LoginSuccess/LoginSuccess";
 import "./Login.css";
 
 
@@ -12,6 +14,9 @@ function Login (): JSX.Element {
 				<div id="firebaseui-auth-container"></div>
 				<Authentication />
 			</header>
+			<div>
+				<Route path="/loggedin" component={LoginSuccess} />
+			</div>
 		</div>
 	);
 }
