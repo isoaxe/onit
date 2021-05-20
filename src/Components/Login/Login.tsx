@@ -1,13 +1,13 @@
 import { Route } from "react-router-dom";
 import Authentication from "./../../util/auth";
 import LoginSuccess from "./../LoginSuccess/LoginSuccess";
-import "./Login.css";
+import "./App.css";
 
 
-function Login (): JSX.Element {
+function App (): JSX.Element {
 	return (
-		<div className="Login">
-			<header className="Login-header">
+		<div className="App">
+			<header className="App-header">
 				<p>
           Choose your preferred login method.
 				</p>
@@ -21,4 +21,4 @@ function Login (): JSX.Element {
 	);
 }
 
-export default Login;
+export default App;
