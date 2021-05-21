@@ -6,7 +6,7 @@ export async function isAuthenticated (req: Request, res: Response, next: NextFu
 	const { authorization } = req.headers;
 
 	if (!authorization)
-		return res.status(401).send({ message: "Unauthorized" });
+		return res.status(401).send({ message: "No authorization field in header." });
 
 	if (!authorization.startsWith("Bearer"))
 		return res.status(401).send({ message: "Unauthorized due to token missing the 'Bearer' prefix" });
