@@ -4,9 +4,10 @@ import firebase from "firebase/app";
 import { auth } from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 
+const baseUrl = "http://localhost:5000/";
+
 
 function Authentication (): null {
-	const url = "http://localhost:5000/";
 
 	useEffect(() => {
 		const firebaseConfig = {
@@ -27,7 +28,7 @@ function Authentication (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: url + "loggedin",
+			signInSuccessUrl: baseUrl + "loggedin",
 			// Future config options...
 		};
 
