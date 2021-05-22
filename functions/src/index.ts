@@ -5,6 +5,7 @@ import * as cors from "cors";
 import * as bodyParser from "body-parser";
 
 import { routesConfig } from "./users/routesConfig";
+import loggedInRoute from "./auth/loggedIn";
 
 
 // Initialise the firebase-admin SDK in order to access its services.
@@ -17,6 +18,8 @@ app.use(cors({ origin: true }));
 
 app.use(bodyParser.json());
 
+// Set handler for when user logs in successfully.
+app.use("/loggedin", loggedInRoute);
 // Set the handlers for each http verb.
 routesConfig(app);
 

@@ -4,8 +4,11 @@ import firebase from "firebase/app";
 import { auth } from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 
+const baseUrl = "http://localhost:5000/";
+
 
 function Authentication (): null {
+
 	useEffect(() => {
 		const firebaseConfig = {
 			apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
@@ -25,7 +28,7 @@ function Authentication (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: "https://onit-main.web.app/",
+			signInSuccessUrl: baseUrl + "loggedin",
 			// Future config options...
 		};
 

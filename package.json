@@ -10,10 +10,12 @@
     "@types/node": "^15.0.2",
     "@types/react": "^17.0.5",
     "@types/react-dom": "^17.0.3",
+    "@types/react-router-dom": "^5.1.7",
     "firebase": "^8.4.3",
     "firebaseui": "^4.8.0",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
     "typescript": "4.1",
     "web-vitals": "^1.1.0"
@@ -21,8 +23,9 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "build-all": "cd functions && npm run build && cd .. && npm run build",
     "lint": "eslint --ext .js,.ts,.tsx .",
-    "serve": "npm run build && firebase emulators:start",
+    "serve": "npm run build-all && firebase emulators:start",
     "get-keys": "export GOOGLE_APPLICATION_CREDENTIALS='/Users/lucas/Downloads/onit-keys.json'",
     "deploy": "firebase deploy --only hosting:onit-main",
     "deploy-all": "firebase deploy",
