@@ -4,8 +4,13 @@ import firebase from "firebase/app";
 import { auth } from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 
-const baseUrl = "http://localhost:5000/";
 
+let baseUrl: string;
+if (process.env.NODE_ENV === "development") {
+	baseUrl = "http://localhost:3000/";
+} else if (process.env.NODE_ENV === "production") {
+	baseUrl = "http://localhost:5000/";
+}
 
 function Authentication (): null {
 
