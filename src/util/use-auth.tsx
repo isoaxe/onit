@@ -5,10 +5,10 @@ import "firebase/auth";
 
 // Add your Firebase credentials
 firebase.initializeApp({
-	apiKey: "",
-	authDomain: "",
-	projectId: "",
-	appID: "",
+	apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
+	authDomain: "onit-aaa6e.firebaseapp.com",
+	projectId: "onit-aaa6e",
+	appID: "1:451988465101:web:335beb05b535b1257d9084",
 });
 
 const authContext = createContext();
