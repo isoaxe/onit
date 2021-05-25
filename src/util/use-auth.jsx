@@ -1,9 +1,8 @@
-// Hook (use-auth.js)
 import { useState, useEffect, useContext, createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 
-// Add your Firebase credentials
+// Add Firebase credentials.
 firebase.initializeApp({
 	apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
 	authDomain: "onit-aaa6e.firebaseapp.com",
@@ -13,25 +12,23 @@ firebase.initializeApp({
 
 const authContext = createContext(undefined); //or null?
 
-// Provider component that wraps your app and makes auth object ...
-// ... available to any child component that calls useAuth().
+// Provider component that wraps your app and makes auth object available to any
+// child component that calls useAuth().
 export function ProvideAuth ({ children }) {
 	const auth = useProvideAuth();
 	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
 
-// Hook for child components to get the auth object ...
-// ... and re-render when it changes.
+// Hook for child components to get the auth object and re-render when it changes.
 export const useAuth = () => {
 	return useContext(authContext);
 };
 
-// Provider hook that creates auth object and handles state
+// Provider hook that creates auth object and handles state.
 function useProvideAuth () {
 	const [user, setUser] = useState(null);
 
-	// Wrap any Firebase methods we want to use making sure ...
-	// ... to save the user to state.
+	// Wrap any Firebase methods we want to use making sure to save the user to state.
 	const signin = (email, password) => {
 		return firebase
 			.auth()
@@ -79,10 +76,9 @@ function useProvideAuth () {
 			});
 	};
 
-	// Subscribe to user on mount
-	// Because this sets state in the callback it will cause any ...
-	// ... component that utilizes this hook to re-render with the ...
-	// ... latest auth object.
+	// Subscribe to user on mount.
+	// Because this sets state in the callback it will cause any component that
+	// utilizes this hook to re-render with the latest auth object.
 	useEffect(() => {
 		const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
 			if (user) {
@@ -92,11 +88,11 @@ function useProvideAuth () {
 			}
 		});
 
-		// Cleanup subscription on unmount
+		// Cleanup subscription on unmount.
 		return () => unsubscribe();
 	}, []);
 
-	// Return the user object and auth methods
+	// Return the user object and auth methods.
 	return {
 		user,
 		signin,
