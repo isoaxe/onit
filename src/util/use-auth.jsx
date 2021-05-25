@@ -1,6 +1,6 @@
 // Hook (use-auth.js)
-import React, { useState, useEffect, useContext, createContext } from "react";
-import * as firebase from "firebase/app";
+import { useState, useEffect, useContext, createContext } from "react";
+import firebase from "firebase/app";
 import "firebase/auth";
 
 // Add your Firebase credentials
@@ -11,11 +11,11 @@ firebase.initializeApp({
 	appID: "1:451988465101:web:335beb05b535b1257d9084",
 });
 
-const authContext = createContext();
+const authContext = createContext(undefined); //or null?
 
 // Provider component that wraps your app and makes auth object ...
 // ... available to any child component that calls useAuth().
-export function ProvideAuth({ children }) {
+export function ProvideAuth ({ children }) {
 	const auth = useProvideAuth();
 	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
@@ -27,7 +27,7 @@ export const useAuth = () => {
 };
 
 // Provider hook that creates auth object and handles state
-function useProvideAuth() {
+function useProvideAuth () {
 	const [user, setUser] = useState(null);
 
 	// Wrap any Firebase methods we want to use making sure ...
