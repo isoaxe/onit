@@ -15,15 +15,6 @@ if (process.env.NODE_ENV === "development") {
 function Authentication (): null {
 
 	useEffect(() => {
-		const firebaseConfig = {
-			apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
-			authDomain: "onit-aaa6e.firebaseapp.com",
-			projectId: "onit-aaa6e",
-			storageBucket: "onit-aaa6e.appspot.com",
-			messagingSenderId: "451988465101",
-			appId: "1:451988465101:web:335beb05b535b1257d9084",
-			measurementId: "G-CB3S63219R"
-		};
 
 		const uiConfig = {
 			signInOptions: [
@@ -36,9 +27,6 @@ function Authentication (): null {
 			signInSuccessUrl: baseUrl + "loggedin",
 			// Future config options...
 		};
-
-		// Initialize Firebase
-		firebase.initializeApp(firebaseConfig);
 
 		// Initialize the FirebaseUI Widget using Firebase.
 		const ui = new auth.AuthUI(firebase.auth());
