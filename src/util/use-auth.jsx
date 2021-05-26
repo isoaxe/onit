@@ -2,8 +2,8 @@ import { useState, useEffect, useContext, createContext } from "react";
 import firebase from "firebase/app";
 import "firebase/auth";
 
-// Add Firebase credentials.
-firebase.initializeApp({
+
+const firebaseConfig = {
 	apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
 	authDomain: "onit-aaa6e.firebaseapp.com",
 	projectId: "onit-aaa6e",
@@ -11,7 +11,10 @@ firebase.initializeApp({
 	messagingSenderId: "451988465101",
 	appId: "1:451988465101:web:335beb05b535b1257d9084",
 	measurementId: "G-CB3S63219R"
-});
+};
+
+// Add Firebase credentials.
+firebase.initializeApp(firebaseConfig);
 
 const authContext = createContext(undefined); //or null?
 
