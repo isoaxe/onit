@@ -7,7 +7,10 @@ firebase.initializeApp({
 	apiKey: "AIzaSyD7OtnYqeu-9sEiEJKl1bkGpaRBEzTFfy0",
 	authDomain: "onit-aaa6e.firebaseapp.com",
 	projectId: "onit-aaa6e",
-	appID: "1:451988465101:web:335beb05b535b1257d9084",
+	storageBucket: "onit-aaa6e.appspot.com",
+	messagingSenderId: "451988465101",
+	appId: "1:451988465101:web:335beb05b535b1257d9084",
+	measurementId: "G-CB3S63219R"
 });
 
 const authContext = createContext(undefined); //or null?
