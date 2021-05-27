@@ -1,9 +1,9 @@
-import { Request, Response, NextFunction, Router } from "express";
+import { Router } from "express";
 
 const router = Router();
 
 
-router.get("/", (req: Request, res: Response, next: NextFunction) => {
+router.get("/", (req, res) => {
 	res.status(200).send({ message: "success" });
 });
 
