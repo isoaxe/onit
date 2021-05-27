@@ -19,6 +19,8 @@ function GetUsersButton () {
 			fetch("http://localhost:5001/onit-aaa6e/us-central1/api/users", requestOptions)
 				.then(res => res.json())
 				.then(data => console.log(data));
+		}).catch(function (error) {
+			console.log(`Uh oh. An error occured: ${error}`);
 		});
 	}
 
