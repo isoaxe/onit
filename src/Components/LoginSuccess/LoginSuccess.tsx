@@ -1,5 +1,6 @@
 import React, { useEffect } from "react";
 
+import GetUsersButton from "./../GetUsersButton/GetUsersButton";
 import logo from "./../../logo.svg";
 import "./LoginSuccess.css";
 
@@ -21,6 +22,7 @@ function LoginSuccess (): JSX.Element {
 				<p>
           Login successful!
 				</p>
+				<GetUsersButton />
 			</header>
 		</div>
 	);
