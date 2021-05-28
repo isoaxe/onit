@@ -5,9 +5,8 @@ function SetRoleButton () {
 
 	function setRole () {
 		firebase.auth().currentUser.getIdToken(true).then(function (token) {
-			console.log("processing client request...");
 			const requestOptions = {
-				method: "GET",
+				method: "POST",
 				headers: { authorization: `Bearer ${token}` }
 			};
 			// This works in the local environment only.
