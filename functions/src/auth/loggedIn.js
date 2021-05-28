@@ -8,8 +8,8 @@ router.get("/", (req, res) => {
 	res.status(200).send({ message: "Login successful" });
 });
 
-// Simple GET request to /loggedin/setrole to test API.
-router.get("/setrole", (req, res) => {
+// Simple POST request to /loggedin/setrole to test API.
+router.post("/setrole", (req, res) => {
 	res.status(200).send({ message: "/setrole endpoint reached" });
 });
 
