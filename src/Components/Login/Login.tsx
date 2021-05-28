@@ -1,11 +1,11 @@
-import Authentication from "./../AuthUI/AuthUI";
+import AuthUI from "./../AuthUI/AuthUI";
 import "./Login.css";
 
 
 function Login (): JSX.Element {
 	return (
 		<div>
-			<Authentication />
+			<AuthUI />
 			<header className="Login-header">
 				<p>
 					Choose your preferred login method.
