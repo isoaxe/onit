@@ -1,4 +1,4 @@
-import Authentication from "./../../util/auth";
+import Authentication from "./../AuthUI/AuthUI";
 import "./Login.css";
 
 
