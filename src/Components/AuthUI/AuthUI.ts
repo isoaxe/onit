@@ -12,7 +12,7 @@ if (process.env.NODE_ENV === "development") {
 	baseUrl = "http://localhost:5000/";
 }
 
-function Authentication (): null {
+function AuthUI (): null {
 
 	useEffect(() => {
 
@@ -36,4 +36,4 @@ function Authentication (): null {
 	return null;
 }
 
-export default Authentication;
+export default AuthUI;
