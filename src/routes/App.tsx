@@ -1,8 +1,8 @@
 import { Route, Switch } from "react-router-dom";
 
-import { ProvideAuth } from "./../../util/useAuth";
-import LoginSuccess from "./../LoginSuccess/LoginSuccess";
-import Login from "./../Login/Login";
+import { ProvideAuth } from "./../util/useAuth";
+import LoginSuccess from "./../pages/LoginSuccess/LoginSuccess";
+import Login from "./../pages/Login/Login";
 
 
 function App (): JSX.Element {

@@ -1,4 +1,4 @@
-import AuthUI from "./../AuthUI/AuthUI";
+import AuthUI from "./../../components/AuthUI/AuthUI";
 import "./Login.css";
 
 

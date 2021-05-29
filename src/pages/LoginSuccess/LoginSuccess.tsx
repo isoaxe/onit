@@ -1,7 +1,7 @@
 import React, { useEffect } from "react";
 
-import GetUsersButton from "./../GetUsersButton/GetUsersButton";
-import SetRoleButton from "./../SetRoleButton/SetRoleButton";
+import GetUsersButton from "./../../components/GetUsersButton/GetUsersButton";
+import SetRoleButton from "./../../components/SetRoleButton/SetRoleButton";
 import logo from "./../../logo.svg";
 import "./LoginSuccess.css";
 
