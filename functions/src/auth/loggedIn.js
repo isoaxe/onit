@@ -1,3 +1,4 @@
+import * as admin from "firebase-admin";
 import { Router } from "express";
 
 const router = Router();
@@ -8,9 +9,17 @@ router.get("/", (req, res) => {
 	res.status(200).send({ message: "Login successful" });
 });
 
-// Simple POST request to /loggedin/setrole to test API.
+// POST request to /loggedin/setrole in order to assign user role.
 router.post("/setrole", (req, res) => {
-	res.status(200).send({ message: "/setrole endpoint reached" });
+	const { authorization } = req.headers;
+	const token = authorization.split("Bearer ")[1];
+
+	admin.auth().verifyIdToken(token)
+		.then((decodedToken) => {
+			const uid = decodedToken.uid;
+			admin.auth().setCustomUserClaims(uid, { role: "admin" });
+		})
+		.then(res.status(200).send({ message: "Admin role assigned" }));
 });
 
 export default router;
