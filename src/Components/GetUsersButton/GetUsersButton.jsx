@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 
-import { useAuth } from "./../../util/use-auth";
+import { useAuth } from "./../../util/useAuth";
 
 
 function GetUsersButton () {
