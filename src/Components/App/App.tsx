@@ -1,6 +1,6 @@
 import { Route, Switch } from "react-router-dom";
 
-import { ProvideAuth } from "./../../util/use-auth";
+import { ProvideAuth } from "./../../util/useAuth";
 import LoginSuccess from "./../LoginSuccess/LoginSuccess";
 import Login from "./../Login/Login";
 
