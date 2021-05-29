@@ -1,6 +1,7 @@
 import firebase from "firebase/app";
 
 import { useAuth } from "./../../util/useAuth";
+import { API_URL } from "./../../util/constants";
 
 
 function GetUsersButton () {
@@ -13,10 +14,7 @@ function GetUsersButton () {
 				method: "GET",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			// This works in the local environment only.
-			// Need to detect if port is currently in use. If it is, fetch remote address:
-			// https://us-central1-onit-aaa6e.cloudfunctions.net/api/loggedin
-			fetch("http://localhost:5001/onit-aaa6e/us-central1/api/users", requestOptions)
+			fetch(`${API_URL}/users`, requestOptions)
 				.then(res => res.json())
 				.then(data => console.log(data));
 		}).catch(function (error) {
