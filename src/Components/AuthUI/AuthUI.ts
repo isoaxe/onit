@@ -4,13 +4,8 @@ import firebase from "firebase/app";
 import { auth } from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 
+import { BASE_URL } from "./../../util/constants";
 
-let baseUrl: string;
-if (process.env.NODE_ENV === "development") {
-	baseUrl = "http://localhost:3000/";
-} else if (process.env.NODE_ENV === "production") {
-	baseUrl = "http://localhost:5000/";
-}
 
 function AuthUI (): null {
 
@@ -24,7 +19,7 @@ function AuthUI (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: baseUrl + "loggedin",
+			signInSuccessUrl: BASE_URL + "loggedin",
 			// Future config options...
 		};
 
