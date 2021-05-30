@@ -1,15 +1,15 @@
 import React, { useEffect } from "react";
 
+import GetUsersButton from "./../../components/GetUsersButton/GetUsersButton";
+import SetRoleButton from "./../../components/SetRoleButton/SetRoleButton";
+import { API_URL } from "./../../util/constants";
 import logo from "./../../logo.svg";
 import "./LoginSuccess.css";
 
 
 function LoginSuccess (): JSX.Element {
 	useEffect(() => {
-		// This works in the local environment only.
-		// Need to detect if port is currently in use. If it is, fetch remote address:
-		// https://us-central1-onit-aaa6e.cloudfunctions.net/api/loggedin
-		fetch("http://localhost:5001/onit-aaa6e/us-central1/api/loggedin")
+		fetch(`${API_URL}/loggedin`)
 			.then(res => res.json())
 			.then(data => console.log(data));
 	}, []);
@@ -21,6 +21,8 @@ function LoginSuccess (): JSX.Element {
 				<p>
           Login successful!
 				</p>
+				<GetUsersButton />
+				<SetRoleButton />
 			</header>
 		</div>
 	);

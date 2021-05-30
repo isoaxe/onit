@@ -3,7 +3,9 @@
     "module": "commonjs",
     "noImplicitReturns": true,
     "noUnusedLocals": true,
+    "noImplicitAny": false,
     "outDir": "lib",
+    "allowJs": true,
     "sourceMap": true,
     "strict": true,
     "target": "es2017"
