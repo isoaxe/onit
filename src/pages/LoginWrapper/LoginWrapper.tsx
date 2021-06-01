@@ -1,9 +1,12 @@
 import Login from "./../../components/Login/Login";
+import "./LoginWrapper.css";
 
 
 function LoginWrapper (): JSX.Element {
 	return (
-		<Login />
+		<div className="Root">
+			<Login />
+		</div>
 	);
 }
 
