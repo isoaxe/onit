@@ -10,7 +10,7 @@ function Login (): JSX.Element {
 			<header className="Login-header">
 				<p>Login</p>
 				<div id="firebaseui-auth-container"></div>
-				<p>New user? Signup</p>
+				<p>Sign Up</p>
 				<SignUpButton />
 			</header>
 		</div>
