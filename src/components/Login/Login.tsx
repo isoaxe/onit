@@ -7,10 +7,9 @@ function Login (): JSX.Element {
 		<div>
 			<AuthUI />
 			<header className="Login-header">
-				<p>
-					Choose your preferred login method.
-				</p>
+				<p>Login</p>
 				<div id="firebaseui-auth-container"></div>
+				<p>New user? Signup</p>
 			</header>
 		</div>
 	);
