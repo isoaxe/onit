@@ -10,3 +10,8 @@
   font-size: 20px;
   color: white;
 }
+
+#firebaseui-auth-container {
+  padding-bottom: 10px;
+  border-bottom: 3px solid #3f524c;
+}
