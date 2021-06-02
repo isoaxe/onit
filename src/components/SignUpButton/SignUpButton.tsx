@@ -1,10 +1,10 @@
 import "./SignUpButton.css";
 
 
-function SignUpButton (): JSX.Element {
+function SignUpButton (props): JSX.Element {
 	return (
 		<div className="SignUp">
-			Create Account
+			{props.label}
 		</div>
 	);
 }
