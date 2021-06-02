@@ -12,7 +12,7 @@ function Login (): JSX.Element {
 	return (
 		<div>
 			<AuthUI />
-			<header className="Login-header">
+			<header className="login-header">
 				<p>Login</p>
 				<div id="firebaseui-auth-container"></div>
 				<p>Sign Up</p>
