@@ -1,6 +1,7 @@
 import { useState } from "react";
 import AuthUI from "./../AuthUI/AuthUI";
 import SignUpButton from "./../SignUpButton/SignUpButton";
+import CreateBusiness from "./../CreateBusiness/CreateBusiness";
 import "./Login.css";
 
 
@@ -18,6 +19,7 @@ function Login (): JSX.Element {
 				<SignUpButton label="Create User Account" onClick={() => setUserFormActive(true)} />
 				<SignUpButton label="Create Business Account" onClick={() => setBusinessFormActive(true)} />
 			</header>
+			{businessFormActive && (<CreateBusiness />)}
 		</div>
 	);
 }
