@@ -1,4 +1,4 @@
-.SignUp {
+.sign-up {
   background-color: #3F524C;
   box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
   border-radius: 4px;
@@ -9,7 +9,7 @@
   margin-bottom: 12px;
 }
 
-.SignUp:hover {
+.sign-up:hover {
   background-color: #4A615A;
   cursor: pointer;
 }
