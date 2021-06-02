@@ -11,7 +11,7 @@ function Login (): JSX.Element {
 				<p>Login</p>
 				<div id="firebaseui-auth-container"></div>
 				<p>Sign Up</p>
-				<SignUpButton />
+				<SignUpButton label="Create User Account"/>
 			</header>
 		</div>
 	);
