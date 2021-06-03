@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useAuth } from "./../../util/useAuth";
 
 import "./CreateBusiness.css";
 
@@ -12,6 +13,8 @@ function CreateBusiness () {
 	const [phone, setPhone] = useState(0);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+
+	const auth = useAuth();
 
 	function handleBusiness (event) {
 		setBusinessName(event.target.value);
@@ -49,8 +52,13 @@ function CreateBusiness () {
 		console.log("temp validation placeholder");
 	}
 
+	function createBusiness () {
+		validateForm();
+		auth.signUpBusiness(email, password);
+	}
+
 	return (
-		<form action="/createbusiness" method="POST" onSubmit={validateForm} className="form" name="business-form">
+		<form action="/createbusiness" method="POST" onSubmit={createBusiness} className="form" name="business-form">
 			<header className="header">Create Account</header>
 			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" />
 			<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1"/>
