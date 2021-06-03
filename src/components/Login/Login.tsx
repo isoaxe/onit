@@ -10,6 +10,16 @@ function Login (): JSX.Element {
 	const [userFormActive, setUserFormActive] = useState(false);
 	const [businessFormActive, setBusinessFormActive] = useState(false);
 
+	function userForm () {
+		setUserFormActive(true);
+		setBusinessFormActive(false);
+	}
+
+	function businessForm () {
+		setBusinessFormActive(true);
+		setUserFormActive(false);
+	}
+
 	return (
 		<div>
 			<AuthUI />
@@ -17,8 +27,8 @@ function Login (): JSX.Element {
 				<p>Login</p>
 				<div id="firebaseui-auth-container"></div>
 				<p>Sign Up</p>
-				<SignUpButton label="Create User Account" onClick={() => setUserFormActive(true)} />
-				<SignUpButton label="Create Business Account" onClick={() => setBusinessFormActive(true)} />
+				<SignUpButton label="Create User Account" onClick={userForm} />
+				<SignUpButton label="Create Business Account" onClick={businessForm} />
 			</header>
 			{userFormActive && (<CreateUser />)}
 			{businessFormActive && (<CreateBusiness />)}
