@@ -45,6 +45,18 @@ function useProvideAuth () {
 			});
 	};
 
+	const signUpBusiness = (email, password) => {
+		return firebase
+			.auth()
+			.createUserWithEmailAndPassword(email, password)
+			.then((userCredential) => {
+				const user = userCredential.user;
+				setUser(user);
+				console.log(user);
+				return user;
+			});
+	};
+
 	const signup = (email, password) => {
 		return firebase
 			.auth()
@@ -103,6 +115,7 @@ function useProvideAuth () {
 		user,
 		signin,
 		signup,
+		signUpBusiness,
 		signout,
 		sendPasswordResetEmail,
 		confirmPasswordReset,
