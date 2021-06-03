@@ -10,7 +10,7 @@ function CreateBusiness () {
 	const [address2, setAddress2] = useState("");
 	const [city, setCity] = useState("");
 	const [postcode, setPostcode] = useState("");
-	const [phone, setPhone] = useState(0);
+	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 
