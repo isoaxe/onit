@@ -7,10 +7,10 @@ import "./CreateUser.css";
 function CreateBusiness () {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
-	const [phone, setPhone] = useState(0);
+	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [businessId, setBusinessId] = useState(0);
+	const [businessId, setBusinessId] = useState("");
 
 	const auth = useAuth();
 
@@ -51,7 +51,7 @@ function CreateBusiness () {
 		<form action="/createuser" method="POST" onSubmit={createUser} className="form" name="user-form">
 			<header className="header">Create Account</header>
 			<input id="first-name" value={firstName} onChange={handleFirstName} className="input-field" type="text" placeholder="First name" />
-			<input id="last-name" value={lastName} onChange={handleLastName} className="input-field" type="text" placeholder="Address line 1"/>
+			<input id="last-name" value={lastName} onChange={handleLastName} className="input-field" type="text" placeholder="Last name"/>
 			<input id="phone" value={phone} onChange={handlePhone} className="input-field" type="number" placeholder="Phone number"/>
 			<input id="email" value={email} onChange={handleEmail} className="input-field" type="text" placeholder="Email address"/>
 			<input id="password" value={password} onChange={handlePassword} className="input-field" type="text" placeholder="Password"/>
