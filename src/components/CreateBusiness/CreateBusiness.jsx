@@ -19,6 +19,7 @@ function CreateBusiness () {
 
 	return (
 		<form action="/createbusiness" method="POST" onSubmit={validateForm} className="form" name="business-form">
+			<header className="header">Create Account</header>
 			<input id="business-name" value={businessName} onChange={setBusinessName} className="input-field" type="text" placeholder="Business name" />
 			<input id="address1" value={address1} onChange={setAddress1} className="input-field" type="text" placeholder="Address line 1"/>
 			<input id="address2" value={address2} onChange={setAddress2} className="input-field" type="text" placeholder="Address line 2"/>
