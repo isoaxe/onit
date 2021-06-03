@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./../../util/useAuth";
 
-import "./CreateUser.css";
-
 
 function CreateBusiness () {
 	const [firstName, setFirstName] = useState("");
