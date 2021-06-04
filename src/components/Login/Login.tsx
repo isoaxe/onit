@@ -30,8 +30,8 @@ function Login (): JSX.Element {
 				<SignUpButton label="Create User Account" onClick={userForm} />
 				<SignUpButton label="Create Business Account" onClick={businessForm} />
 			</header>
-			{userFormActive && (<CreateUser />)}
-			{businessFormActive && (<CreateBusiness />)}
+			{userFormActive && <CreateUser />}
+			{businessFormActive && <CreateBusiness />}
 		</div>
 	);
 }
