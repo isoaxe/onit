@@ -59,7 +59,7 @@ function CreateBusiness () {
 	}
 
 	return (
-		<form action={`${API_URL}/createbusiness`} method="POST" onSubmit={createBusiness} className="form" name="business-form">
+		<form action={`${API_URL}/business`} method="POST" onSubmit={createBusiness} className="form" name="business-form">
 			<header className="header">Create Account</header>
 			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name"/>
 			<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1"/>
