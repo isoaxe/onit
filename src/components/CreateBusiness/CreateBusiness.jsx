@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useAuth } from "./../../util/useAuth";
+import { API_URL } from "./../../util/constants";
 
 import "./CreateBusiness.css";
 
@@ -58,9 +59,9 @@ function CreateBusiness () {
 	}
 
 	return (
-		<form action="/createbusiness" method="POST" onSubmit={createBusiness} className="form" name="business-form">
+		<form action={`${API_URL}/createbusiness`} method="POST" onSubmit={createBusiness} className="form" name="business-form">
 			<header className="header">Create Account</header>
-			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" />
+			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name"/>
 			<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1"/>
 			<input id="address2" value={address2} onChange={handleAddress2} className="input-field" type="text" placeholder="Address line 2"/>
 			<input id="city" value={city} onChange={handleCity} className="input-field" type="text" placeholder="City"/>
