@@ -2,7 +2,7 @@ import { useState } from "react";
 import { useAuth } from "./../../util/useAuth";
 
 
-function CreateBusiness () {
+function CreateUser () {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
@@ -59,4 +59,4 @@ function CreateBusiness () {
 	);
 }
 
-export default CreateBusiness;
+export default CreateUser;
