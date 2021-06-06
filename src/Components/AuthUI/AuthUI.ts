@@ -19,7 +19,7 @@ function AuthUI (): null {
 				},
 				firebase.auth.GoogleAuthProvider.PROVIDER_ID
 			],
-			signInSuccessUrl: BASE_URL + "loggedin",
+			signInSuccessUrl: BASE_URL + "loginsuccess",
 			// Future config options...
 		};
 
