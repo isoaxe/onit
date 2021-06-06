@@ -5,7 +5,7 @@ import * as cors from "cors";
 import * as bodyParser from "body-parser";
 
 import { routesConfig } from "./users/routesConfig";
-import loggedInRoute from "./auth/loggedIn";
+import loginSuccessRoute from "./loginSuccess/loginSuccess";
 import businessRoute from "./business/businessRoute";
 
 
@@ -20,7 +20,7 @@ app.use(cors({ origin: true }));
 app.use(bodyParser.json());
 
 // Set handler for when user logs in successfully.
-app.use("/loggedin", loggedInRoute);
+app.use(loginSuccessRoute);
 // Set handler for business accounts.
 app.use(businessRoute);
 
