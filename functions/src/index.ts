@@ -6,6 +6,7 @@ import * as bodyParser from "body-parser";
 
 import { routesConfig } from "./users/routesConfig";
 import loggedInRoute from "./auth/loggedIn";
+import businessRoute from "./business/businessRoute";
 
 
 // Initialise the firebase-admin SDK in order to access its services.
@@ -20,6 +21,9 @@ app.use(bodyParser.json());
 
 // Set handler for when user logs in successfully.
 app.use("/loggedin", loggedInRoute);
+// Set handler for business accounts.
+app.use(businessRoute);
+
 // Set the handlers for each http verb.
 routesConfig(app);
 
