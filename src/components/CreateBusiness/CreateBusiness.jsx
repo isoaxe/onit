@@ -53,13 +53,8 @@ function CreateBusiness () {
 		console.log("temp validation placeholder");
 	}
 
-	function createBusiness () {
-		validateForm();
-		auth.signUpBusiness(email, password);
-	}
-
 	return (
-		<form action={`${API_URL}/business`} method="POST" onSubmit={createBusiness} className="form" name="business-form">
+		<form action={`${API_URL}/business`} method="POST" onSubmit={validateForm} className="form" name="business-form">
 			<header className="header">Create Account</header>
 			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" name="businessName"/>
 			<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1" name="address1"/>
