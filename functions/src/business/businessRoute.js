@@ -27,4 +27,9 @@ router.post("/business", (req, res) => {
 		.then(res.status(200).send({ message: "Company user created" }));
 });
 
+// Standard error helper function.
+function handleError (res, err) {
+	return res.status(500).send({ error: `${err}` });
+}
+
 export default router;
