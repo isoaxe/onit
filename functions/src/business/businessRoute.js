@@ -13,7 +13,6 @@ router.post("/business", (req, res) => {
 	admin.auth().createUser({
 		/* Not everything gets saved, need to use Firestore. */
 		businessName: req.body.businessName,
-		businessId: businessId,
 		address1: req.body.address1,
 		address2: req.body.address2,
 		city: req.body.city,
