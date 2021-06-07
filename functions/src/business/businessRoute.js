@@ -22,7 +22,7 @@ router.post("/business", (req, res) => {
 		password: req.body.password
 	})
 		.then((response) => {
-			admin.auth().setCustomUserClaims(response.uid, { role: "company" });
+			admin.auth().setCustomUserClaims(response.uid, { role: "company", id: businessId });
 		})
 		.then(res.status(200).send({ message: "Company user created" }));
 });
