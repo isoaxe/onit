@@ -11,7 +11,7 @@ function SetRoleButton () {
 				method: "POST",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			fetch(`${API_URL}/loggedin/setrole`, requestOptions)
+			fetch(`${API_URL}/loginsuccess/setrole`, requestOptions)
 				.then(res => res.json())
 				.then(data => console.log(data));
 		}).catch(function (error) {
