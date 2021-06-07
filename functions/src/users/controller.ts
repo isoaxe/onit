@@ -93,8 +93,5 @@ function mapUser (user: admin.auth.UserRecord) {
 
 // Standard error helper function used in controller fuctions.
 function handleError (res: Response, err: Error): Response<void> {
-	// Temporarily log error when testing with Postman so structure can be assessed.
-	// Does not recognise err.code - check if that is not a field of the error?
-	console.log(err);
-	return res.status(500).send({ message: `${err.message}` });
+	return res.status(500).send({ error: `${err}` });
 }
