@@ -10,6 +10,7 @@ router.post("/business", (req, res) => {
 	const businessId = Math.random()*1000000;
 
 	admin.auth().createUser({
+		/* Not everything gets saved, need to use Firestore. */
 		businessName: req.body.businessName,
 		businessId: businessId,
 		address1: req.body.address1,
@@ -21,7 +22,7 @@ router.post("/business", (req, res) => {
 		password: req.body.password
 	})
 		.then((response) => {
-			// Need to also assign role and businessId to the business.
+			admin.auth().setCustomUserClaims(response.uid, { role: "company" });
 		})
 		.then(res.status(200).send({ message: "Company user created" }));
 });
