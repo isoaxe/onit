@@ -11,18 +11,26 @@ router.post("/business", (req, res) => {
 	/* Add logic here to ensure that the businessId is unique */
 
 	admin.auth().createUser({
-		/* Not everything gets saved, need to use Firestore. */
-		businessName: req.body.businessName,
-		address1: req.body.address1,
-		address2: req.body.address2,
-		city: req.body.city,
-		postcode: req.body.postcode,
+		displayName: req.body.businessName,
 		phoneNumber: req.body.phone,
 		email: req.body.email,
 		password: req.body.password
 	})
-		.then((response) => {
-			admin.auth().setCustomUserClaims(response.uid, { role: "company", id: businessId });
+		.then((res) => {
+			admin.auth().setCustomUserClaims(res.uid, { role: "company", id: businessId });
+		})
+		.then(() => {
+			// Not all required user data can be stored by auth. Use Firestore instead.
+			const db = admin.firestore();
+			const doc = db.collection("users").doc(`${businessId}`);
+			doc.set({
+				//uid: res.uid, /* uid cannot be accessed here and cannot be passed down the promise chain */
+				role: "company",
+				address1: req.body.address1,
+				address2: req.body.address2,
+				city: req.body.city,
+				postcode: req.body.postcode,
+			});
 		})
 		.then(res.status(200).send({ message: "Company account created" }));
 });
