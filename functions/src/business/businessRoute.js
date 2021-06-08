@@ -22,7 +22,7 @@ router.post("/business", (req, res) => {
 		.then(() => {
 			// Not all required user data can be stored by auth. Use Firestore instead.
 			const db = admin.firestore();
-			const doc = db.collection("users").doc(`${businessId}`);
+			const doc = db.collection("users").doc(`businessId-${businessId}`);
 			doc.set({
 				//uid: res.uid, /* uid cannot be accessed here and cannot be passed down the promise chain */
 				role: "company",
