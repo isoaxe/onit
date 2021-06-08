@@ -7,7 +7,7 @@ const router = Router();
 // Create business user with POST request to /business.
 router.post("/business", (req, res) => {
 	// Generate a 6-digit businessId:
-	const businessId = Math.random()*1000000;
+	const businessId = Math.round(Math.random()*1000000);
 	/* Add logic here to ensure that the businessId is unique */
 
 	admin.auth().createUser({
