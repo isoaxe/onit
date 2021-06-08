@@ -24,9 +24,9 @@ function Login (): JSX.Element {
 		<div>
 			<AuthUI />
 			<header className="login-header">
-				<p>Login</p>
+				<p className="title">Login</p>
 				<div id="firebaseui-auth-container"></div>
-				<p>Sign Up</p>
+				<p className="title">Sign Up</p>
 				<SignUpButton label="Create User Account" onClick={userForm} />
 				<SignUpButton label="Create Business Account" onClick={businessForm} />
 			</header>

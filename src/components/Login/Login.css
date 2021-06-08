@@ -12,6 +12,10 @@
   color: white;
 }
 
+.title {
+  font-family: 'Lato-Black';
+}
+
 #firebaseui-auth-container {
   padding-bottom: 10px;
   border-bottom: 3px solid #3f524c;
