@@ -9,8 +9,7 @@ router.post("/business", async (req, res) => {
 	const role = "company";
 	const { displayName, phoneNumber, email, password, address1, address2, city, postcode } = req.body;
 
-	// Generate a 6-digit businessId:
-	const businessId = Math.round(Math.random()*1000000);
+	const businessId = getBusinessId();
 	/* Add logic here to ensure that the businessId is unique */
 
 	const { uid } = await admin.auth().createUser({
@@ -40,6 +39,11 @@ router.post("/business", async (req, res) => {
 // Standard error helper function.
 function handleError (res, err) {
 	return res.status(500).send({ error: `${err}` });
+}
+
+function getBusinessId () {
+	// Generate a 6-digit businessId integer:
+	return Math.round(Math.random()*1000000);
 }
 
 export default router;
