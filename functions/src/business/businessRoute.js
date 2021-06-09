@@ -55,8 +55,8 @@ function handleError (res, err) {
 	return res.status(500).send({ error: `${err}` });
 }
 
+// Generate a 6-digit businessId integer:
 function getBusinessId () {
-	// Generate a 6-digit businessId integer:
 	return Math.round(Math.random()*1000000);
 }
 
