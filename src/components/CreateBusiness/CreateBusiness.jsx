@@ -54,6 +54,7 @@ function CreateBusiness () {
 	}
 
 	function createBusiness () {
+		validateForm();
 		fetch(`${API_URL}/business`, { method: "POST" });
 	}
 
