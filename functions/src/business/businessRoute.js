@@ -33,8 +33,8 @@ router.post("/business", async (req, res) => {
 	admin.auth().setCustomUserClaims(uid, { role: role, id: businessId });
 
 	// Not all required user data can be stored by auth. Use Firestore instead.
-	const doc = db.collection("users").doc(`businessId-${businessId}`);
-	doc.set({
+	const user = db.collection("users").doc(`businessId-${businessId}`);
+	user.set({
 		uid,
 		role,
 		address1,
