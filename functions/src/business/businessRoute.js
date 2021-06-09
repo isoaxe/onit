@@ -9,8 +9,19 @@ router.post("/business", async (req, res) => {
 	const role = "company";
 	const { displayName, phoneNumber, email, password, address1, address2, city, postcode } = req.body;
 
-	const businessId = getBusinessId();
-	/* Add logic here to ensure that the businessId is unique */
+	// Check that businessId is unique by querying the Firestore for current ids.
+	const ids = [];
+	const db = admin.firestore();
+	const users = db.collection("users");
+	const businessIds = await users.get();
+	businessIds.forEach(doc => {
+		const id = doc.id.split("businessId-")[1];
+		ids.push(id);
+	});
+	let businessId = getBusinessId();
+	while (ids.includes(businessId)) {
+		businessId = getBusinessId;
+	}
 
 	const { uid } = await admin.auth().createUser({
 		displayName,
@@ -22,7 +33,6 @@ router.post("/business", async (req, res) => {
 	admin.auth().setCustomUserClaims(uid, { role: role, id: businessId });
 
 	// Not all required user data can be stored by auth. Use Firestore instead.
-	const db = admin.firestore();
 	const doc = db.collection("users").doc(`businessId-${businessId}`);
 	doc.set({
 		uid,
