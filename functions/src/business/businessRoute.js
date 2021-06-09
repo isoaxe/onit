@@ -21,7 +21,7 @@ router.post("/business", async (req, res) => {
 		});
 		let businessId = getBusinessId();
 		while (ids.includes(businessId)) {
-			businessId = getBusinessId;
+			businessId = getBusinessId();
 		}
 
 		const { uid } = await admin.auth().createUser({
@@ -57,7 +57,14 @@ function handleError (res, err) {
 
 // Generate a 6-digit businessId integer:
 function getBusinessId () {
-	return Math.round(Math.random()*1000000);
+	const id =  Math.round(Math.random()*1000000);
+	const idString = id.toString();
+	const leadingZeros = 6 - idString.length;
+	let leadingZerosAsStr = "";
+	for (let i = 0; i < leadingZeros; i++) {
+		leadingZerosAsStr += "0";
+	}
+	return leadingZerosAsStr + idString;
 }
 
 export default router;
