@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAuth } from "./../../util/useAuth";
 import { API_URL } from "./../../util/constants";
 
 import "./CreateBusiness.css";
@@ -14,8 +13,6 @@ function CreateBusiness () {
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const auth = useAuth();
 
 	function handleBusiness (event) {
 		setBusinessName(event.target.value);
