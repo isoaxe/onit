@@ -1,4 +1,5 @@
 import { useState } from "react";
+import firebase from "firebase/app";
 import { postFormDataAsJson } from "./../../util/helpers";
 import { API_URL } from "./../../util/constants";
 
@@ -62,6 +63,12 @@ function CreateBusiness () {
 			const formData = new FormData(form);
 			const response = await postFormDataAsJson({ url, formData });
 			console.log({ response });
+
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then((userCredential) => {
+					const user = userCredential.user;
+					console.log(user);
+				});
 		} catch (err) {
 			console.log(err);
 		}
