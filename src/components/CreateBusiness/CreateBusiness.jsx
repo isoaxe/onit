@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { postFormDataAsJson } from "./../../util/helpers";
 import { API_URL } from "./../../util/constants";
 
 import "./CreateBusiness.css";
@@ -50,9 +51,20 @@ function CreateBusiness () {
 		console.log("temp validation placeholder");
 	}
 
-	function createBusiness () {
+	async function createBusiness (event) {
 		validateForm();
-		fetch(`${API_URL}/business`, { method: "POST" });
+
+		event.preventDefault();
+		const form = event.currentTarget;
+		const url = `${API_URL}/business`;
+
+		try {
+			const formData = new FormData(form);
+			const response = await postFormDataAsJson({ url, formData });
+			console.log({ response });
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	return (
