@@ -45,28 +45,6 @@ function useProvideAuth () {
 			});
 	};
 
-	const signUpBusiness = (email, password) => {
-		return firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then((userCredential) => {
-				const user = userCredential.user;
-				setUser(user);
-				console.log(user);
-				return user;
-			});
-	};
-
-	const signup = (email, password) => {
-		return firebase
-			.auth()
-			.createUserWithEmailAndPassword(email, password)
-			.then((response) => {
-				setUser(response.user);
-				return response.user;
-			});
-	};
-
 	const signout = () => {
 		return firebase
 			.auth()
@@ -114,8 +92,6 @@ function useProvideAuth () {
 	return {
 		user,
 		signin,
-		signup,
-		signUpBusiness,
 		signout,
 		sendPasswordResetEmail,
 		confirmPasswordReset,
