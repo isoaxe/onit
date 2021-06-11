@@ -68,9 +68,7 @@ function CreateBusiness () {
 
 			firebase.auth().signInWithEmailAndPassword(email, password)
 				.then((userCredential) => {
-					const user = userCredential.user;
-					setUser(user);
-					console.log(user);
+					setUser(userCredential.user);
 				});
 		} catch (err) {
 			console.log(err);
