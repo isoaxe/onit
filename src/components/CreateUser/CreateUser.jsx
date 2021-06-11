@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { useAuth } from "./../../util/useAuth";
 
 
 function CreateUser () {
@@ -9,8 +8,6 @@ function CreateUser () {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [businessId, setBusinessId] = useState("");
-
-	const auth = useAuth();
 
 	function handleFirstName (event) {
 		setFirstName(event.target.value);
@@ -42,7 +39,6 @@ function CreateUser () {
 
 	function createUser () {
 		validateForm();
-		auth.signUpUser(email, password);
 	}
 
 	return (
