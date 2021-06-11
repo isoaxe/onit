@@ -12,6 +12,7 @@ function CreateUser () {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [businessId, setBusinessId] = useState("");
+	const [user, setUser] = useState(null);
 
 	function handleFirstName (event) {
 		setFirstName(event.target.value);
@@ -41,8 +42,25 @@ function CreateUser () {
 		console.log("temp validation placeholder");
 	}
 
-	function createUser () {
+	async function createUser (event) {
 		validateForm();
+
+		event.preventDefault();
+		const form = event.currentTarget;
+		const url = `${API_URL}/user`;
+
+		try {
+			const formData = new FormData(form);
+			const response = await postFormDataAsJson({ url, formData });
+			console.log({ response });
+
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then((userCredential) => {
+					setUser(userCredential.user);
+				});
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	return (
