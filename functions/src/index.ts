@@ -7,6 +7,7 @@ import * as bodyParser from "body-parser";
 import { routesConfig } from "./users/routesConfig";
 import loginSuccessRoute from "./loginSuccess/loginSuccess";
 import businessRoute from "./business/businessRoute";
+import userRoute from "./user/userRoute";
 
 
 // Initialise the firebase-admin SDK in order to access its services.
@@ -23,6 +24,8 @@ app.use(bodyParser.json());
 app.use(loginSuccessRoute);
 // Set handler for business accounts.
 app.use(businessRoute);
+// Set handler for individual user accounts.
+app.use(userRoute);
 
 // Set the handlers for each http verb.
 routesConfig(app);
