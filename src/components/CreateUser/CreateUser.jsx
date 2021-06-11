@@ -66,12 +66,12 @@ function CreateUser () {
 	return (
 		<form onSubmit={createUser} className="form">
 			<header className="header">Create Account</header>
-			<input id="first-name" value={firstName} onChange={handleFirstName} className="input-field" type="text" placeholder="First name" />
-			<input id="last-name" value={lastName} onChange={handleLastName} className="input-field" type="text" placeholder="Last name"/>
-			<input id="phone" value={phone} onChange={handlePhone} className="input-field" type="number" placeholder="Phone number"/>
-			<input id="email" value={email} onChange={handleEmail} className="input-field" type="text" placeholder="Email address"/>
-			<input id="password" value={password} onChange={handlePassword} className="input-field" type="text" placeholder="Password"/>
-			<input id="postcode" value={businessId} onChange={handleBusinessId} className="input-field" type="number" placeholder="Business ID"/>
+			<input id="first-name" value={firstName} onChange={handleFirstName} className="input-field" type="text" placeholder="First name" name="displayName"/>
+			<input id="last-name" value={lastName} onChange={handleLastName} className="input-field" type="text" placeholder="Last name" name="lastName"/>
+			<input id="phone" value={phone} onChange={handlePhone} className="input-field" type="number" placeholder="Phone number"name="phoneNumber"/>
+			<input id="email" value={email} onChange={handleEmail} className="input-field" type="text" placeholder="Email address" name="email"/>
+			<input id="password" value={password} onChange={handlePassword} className="input-field" type="text" placeholder="Password" name="password"/>
+			<input id="postcode" value={businessId} onChange={handleBusinessId} className="input-field" type="number" placeholder="Business ID" name="businessId"/>
 			<button type="submit" className="submit">Submit</button>
 		</form>
 	);
