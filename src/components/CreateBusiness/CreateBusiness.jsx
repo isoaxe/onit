@@ -77,7 +77,7 @@ function CreateBusiness () {
 
 	return (
 		<div>
-			<form onSubmit={createBusiness} className="form" name="business-form">
+			<form onSubmit={createBusiness} className="form">
 				<header className="header">Create Account</header>
 				<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" name="displayName"/>
 				<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1" name="address1"/>
