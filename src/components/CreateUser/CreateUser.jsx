@@ -46,7 +46,7 @@ function CreateUser () {
 	}
 
 	return (
-		<form action="/createuser" method="POST" onSubmit={createUser} className="form" name="user-form">
+		<form onSubmit={createUser} className="form">
 			<header className="header">Create Account</header>
 			<input id="first-name" value={firstName} onChange={handleFirstName} className="input-field" type="text" placeholder="First name" />
 			<input id="last-name" value={lastName} onChange={handleLastName} className="input-field" type="text" placeholder="Last name"/>
