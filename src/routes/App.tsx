@@ -10,7 +10,7 @@ function App (): JSX.Element {
 		<div>
 			<ProvideAuth>
 				<Switch>
-					<Route path="/loggedin">
+					<Route path="/loginsuccess">
 						<LoginSuccess />
 					</Route>
 					<Route path="/">

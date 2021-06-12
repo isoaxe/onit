@@ -4,13 +4,13 @@ import { Router } from "express";
 const router = Router();
 
 
-// Simple GET request to /loggedin in order to test API.
-router.get("/", (req, res) => {
+// Simple GET request to /loginsuccess in order to test API.
+router.get("/loginsuccess", (req, res) => {
 	res.status(200).send({ message: "Login successful" });
 });
 
-// POST request to /loggedin/setrole in order to assign user role.
-router.post("/setrole", (req, res) => {
+// POST request to /loginsuccess/setrole in order to assign user role.
+router.post("/loginsuccess/setrole", (req, res) => {
 	const { authorization } = req.headers;
 	const token = authorization.split("Bearer ")[1];
 

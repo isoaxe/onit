@@ -8,11 +8,17 @@
   border-radius: 10px;
   padding-bottom: 25px;
   margin-bottom: 30px;
+  margin-top: 10px;
   font-size: 20px;
   color: white;
 }
 
+.title {
+  font-family: 'Lato-Black';
+}
+
 #firebaseui-auth-container {
+  margin-top: -15px;
   padding-bottom: 10px;
   border-bottom: 3px solid #3f524c;
 }

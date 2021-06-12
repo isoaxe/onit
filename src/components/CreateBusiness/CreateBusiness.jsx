@@ -1,5 +1,8 @@
 import { useState } from "react";
-import { useAuth } from "./../../util/useAuth";
+import { Redirect } from "react-router-dom";
+import firebase from "firebase/app";
+import { postFormDataAsJson } from "./../../util/helpers";
+import { API_URL } from "./../../util/constants";
 
 import "./CreateBusiness.css";
 
@@ -13,8 +16,7 @@ function CreateBusiness () {
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-
-	const auth = useAuth();
+	const [user, setUser] = useState(null);
 
 	function handleBusiness (event) {
 		setBusinessName(event.target.value);
@@ -52,24 +54,43 @@ function CreateBusiness () {
 		console.log("temp validation placeholder");
 	}
 
-	function createBusiness () {
+	async function createBusiness (event) {
 		validateForm();
-		auth.signUpBusiness(email, password);
+
+		event.preventDefault();
+		const form = event.currentTarget;
+		const url = `${API_URL}/business`;
+
+		try {
+			const formData = new FormData(form);
+			const response = await postFormDataAsJson({ url, formData });
+			console.log({ response });
+
+			firebase.auth().signInWithEmailAndPassword(email, password)
+				.then((userCredential) => {
+					setUser(userCredential.user);
+				});
+		} catch (err) {
+			console.log(err);
+		}
 	}
 
 	return (
-		<form action="/createbusiness" method="POST" onSubmit={createBusiness} className="form" name="business-form">
-			<header className="header">Create Account</header>
-			<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" />
-			<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1"/>
-			<input id="address2" value={address2} onChange={handleAddress2} className="input-field" type="text" placeholder="Address line 2"/>
-			<input id="city" value={city} onChange={handleCity} className="input-field" type="text" placeholder="City"/>
-			<input id="postcode" value={postcode} onChange={handlePostcode} className="input-field" type="text" placeholder="Postcode"/>
-			<input id="phone" value={phone} onChange={handlePhone} className="input-field" type="number" placeholder="Phone number"/>
-			<input id="email" value={email} onChange={handleEmail} className="input-field" type="text" placeholder="Email address"/>
-			<input id="password" value={password} onChange={handlePassword} className="input-field" type="text" placeholder="Password"/>
-			<button type="submit" className="submit">Submit</button>
-		</form>
+		<div>
+			<form onSubmit={createBusiness} className="form">
+				<header className="header">Create Account</header>
+				<input id="business-name" value={businessName} onChange={handleBusiness} className="input-field" type="text" placeholder="Business name" name="displayName"/>
+				<input id="address1" value={address1} onChange={handleAddress1} className="input-field" type="text" placeholder="Address line 1" name="address1"/>
+				<input id="address2" value={address2} onChange={handleAddress2} className="input-field" type="text" placeholder="Address line 2" name="address2"/>
+				<input id="city" value={city} onChange={handleCity} className="input-field" type="text" placeholder="City" name="city"/>
+				<input id="postcode" value={postcode} onChange={handlePostcode} className="input-field" type="text" placeholder="Postcode" name="postcode"/>
+				<input id="phone" value={phone} onChange={handlePhone} className="input-field" type="number" placeholder="Phone number" name="phoneNumber"/>
+				<input id="email" value={email} onChange={handleEmail} className="input-field" type="text" placeholder="Email address" name="email"/>
+				<input id="password" value={password} onChange={handlePassword} className="input-field" type="text" placeholder="Password" name="password"/>
+				<button type="submit" className="submit">Submit</button>
+			</form>
+			{user && <Redirect to="loginsuccess" />}
+		</div>
 	);
 }
 

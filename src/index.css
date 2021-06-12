@@ -12,5 +12,10 @@ code {
 
 @font-face {
   font-family: 'Lato';
-  src: local('Lato'), url(./fonts/Lato/Lato-Regular.ttf) format('truetype');
+  src: local('Lato-Regular'), url(./fonts/Lato/Lato-Regular.ttf) format('truetype');
+}
+
+@font-face {
+  font-family: 'Lato-Black';
+  src: local('Lato-Black'), url(./fonts/Lato/Lato-Black.ttf) format('truetype');
 }
