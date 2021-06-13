@@ -2,7 +2,7 @@ import { Route, Switch } from "react-router-dom";
 
 import { ProvideAuth } from "./../util/useAuth";
 import LoginSuccess from "./../pages/LoginSuccess/LoginSuccess";
-import LoginWrapper from "./../pages/LoginWrapper/LoginWrapper";
+import Login from "./../pages/Login/Login";
 
 
 function App (): JSX.Element {
@@ -14,7 +14,7 @@ function App (): JSX.Element {
 						<LoginSuccess />
 					</Route>
 					<Route path="/">
-						<LoginWrapper />
+						<Login />
 					</Route>
 				</Switch>
 			</ProvideAuth>
