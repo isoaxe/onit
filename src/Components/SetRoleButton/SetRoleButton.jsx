@@ -1,6 +1,6 @@
 import firebase from "firebase/app";
 
-import { API_URL } from "./../../util/constants";
+import { API_URL } from "./../../util/urls";
 
 
 function SetRoleButton () {

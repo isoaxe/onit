@@ -1,7 +1,7 @@
 import firebase from "firebase/app";
 
 import { useAuth } from "./../../util/useAuth";
-import { API_URL } from "./../../util/constants";
+import { API_URL } from "./../../util/urls";
 
 
 function GetUsersButton () {

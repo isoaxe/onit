@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import { postFormDataAsJson } from "./../../util/helpers";
-import { API_URL } from "./../../util/constants";
+import { API_URL } from "./../../util/urls";
 
 
 function CreateUser () {
