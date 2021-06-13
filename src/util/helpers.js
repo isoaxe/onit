@@ -1,3 +1,7 @@
+/*
+ * Various helper functions used throughout the project.
+ */
+
 // Used to POST account creation data without using form attributes.
 export async function postFormDataAsJson ({ url, formData }) {
 	const plainFormData = Object.fromEntries(formData.entries());
