@@ -1,8 +1,8 @@
 import { useState } from "react";
-import AuthUI from "./../AuthUI/AuthUI";
-import SignUpButton from "./../SignUpButton/SignUpButton";
-import CreateUser from "./../CreateUser/CreateUser";
-import CreateBusiness from "./../CreateBusiness/CreateBusiness";
+import AuthUI from "./../../components/AuthUI/AuthUI";
+import SignUpButton from "./../../components/SignUpButton/SignUpButton";
+import CreateUser from "./../../components/CreateUser/CreateUser";
+import CreateBusiness from "./../../components/CreateBusiness/CreateBusiness";
 import "./Login.css";
 
 
@@ -21,7 +21,7 @@ function Login (): JSX.Element {
 	}
 
 	return (
-		<div>
+		<div className="root">
 			<AuthUI />
 			<header className="login-header">
 				<p className="title">Login</p>

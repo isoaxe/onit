@@ -1,3 +1,12 @@
+.root {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  background-color: #282C34;
+}
+
 .login-header {
   display: flex;
   flex-direction: column;
