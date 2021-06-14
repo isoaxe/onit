@@ -1,8 +1,8 @@
+import styled, { keyframes } from "styled-components";
 import GetUsersButton from "./../../components/GetUsersButton/GetUsersButton";
 import SetRoleButton from "./../../components/SetRoleButton/SetRoleButton";
 import { StyleSheet } from "./../../util/types";
 import logo from "./../../logo.svg";
-import "./LoginSuccess.css";
 
 
 function LoginSuccess (): JSX.Element {
@@ -10,7 +10,7 @@ function LoginSuccess (): JSX.Element {
 	return (
 		<div style={styles.root}>
 			<header style={styles.header}>
-				<img src={logo} style={styles.logo} className="logo" alt="logo" />
+				<Logo src={logo} alt="logo"/>
 				<p>
           Login successful!
 				</p>
@@ -38,9 +38,24 @@ const styles: StyleSheet = {
 	logo: {
 		height: "40vmin",
 		pointerEvents: "none",
-		animation: "logo-spin infinite 20s linear"
+		animation: "rotate infinite 20s linear"
 	}
 };
+
+const rotate = keyframes`
+	from {
+		transform: rotate(0deg);
+	}
+	to {
+		transform: rotate(360deg);
+	}
+`;
+
+const Logo = styled.img`
+	height: 40vmin;
+	pointerEvents: none;
+	animation: ${rotate} infinite 20s linear;
+`;
 
 
 export default LoginSuccess;
