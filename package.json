@@ -17,6 +17,7 @@
     "react-dom": "^17.0.1",
     "react-router-dom": "^5.2.0",
     "react-scripts": "4.0.2",
+    "styled-components": "^5.3.0",
     "typescript": "4.1",
     "web-vitals": "^1.1.0"
   },
@@ -51,13 +52,40 @@
       "/functions/lib/**/*"
     ],
     "rules": {
-      "semi": ["warn", "always"],
-      "indent": ["warn", "tab"],
-      "quotes": ["warn", "double"],
-      "object-curly-spacing": ["warn", "always"],
-      "space-before-function-paren": ["warn", "always"],
-      "no-multiple-empty-lines": ["warn", { "max": 2, "maxBOF": 0, "maxEOF": 0 }],
-      "@typescript-eslint/explicit-module-boundary-types": ["off", {"allowArgumentsExplicitlyTypedAsAny": true}]
+      "semi": [
+        "warn",
+        "always"
+      ],
+      "indent": [
+        "warn",
+        "tab"
+      ],
+      "quotes": [
+        "warn",
+        "double"
+      ],
+      "object-curly-spacing": [
+        "warn",
+        "always"
+      ],
+      "space-before-function-paren": [
+        "warn",
+        "always"
+      ],
+      "no-multiple-empty-lines": [
+        "warn",
+        {
+          "max": 2,
+          "maxBOF": 0,
+          "maxEOF": 0
+        }
+      ],
+      "@typescript-eslint/explicit-module-boundary-types": [
+        "off",
+        {
+          "allowArgumentsExplicitlyTypedAsAny": true
+        }
+      ]
     }
   },
   "browserslist": {
