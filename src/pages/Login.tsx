@@ -1,9 +1,9 @@
 import { useState } from "react";
-import AuthUI from "./../../components/AuthUI/AuthUI";
-import SignUpButton from "./../../components/SignUpButton/SignUpButton";
-import CreateUser from "./../../components/CreateUser/CreateUser";
-import CreateBusiness from "./../../components/CreateBusiness/CreateBusiness";
-import { StyleSheet } from "./../../util/types";
+import AuthUI from "./../components/AuthUI";
+import SignUpButton from "./../components/SignUpButton";
+import CreateUser from "./../components/CreateUser";
+import CreateBusiness from "./../components/CreateBusiness";
+import { StyleSheet } from "./../util/types";
 
 
 function Login (): JSX.Element {

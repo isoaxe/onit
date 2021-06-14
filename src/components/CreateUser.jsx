@@ -2,39 +2,25 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
-import { postFormDataAsJson } from "./../../util/helpers";
-import { API_URL } from "./../../util/urls";
+import { postFormDataAsJson } from "./../util/helpers";
+import { API_URL } from "./../util/urls";
 
 
-function CreateBusiness () {
-	const [businessName, setBusinessName] = useState("");
-	const [address1, setAddress1] = useState("");
-	const [address2, setAddress2] = useState("");
-	const [city, setCity] = useState("");
-	const [postcode, setPostcode] = useState("");
+function CreateUser () {
+	const [firstName, setFirstName] = useState("");
+	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const [businessId, setBusinessId] = useState("");
 	const [user, setUser] = useState(null);
 
-	function handleBusiness (event) {
-		setBusinessName(event.target.value);
+	function handleFirstName (event) {
+		setFirstName(event.target.value);
 	}
 
-	function handleAddress1 (event) {
-		setAddress1(event.target.value);
-	}
-
-	function handleAddress2 (event) {
-		setAddress2(event.target.value);
-	}
-
-	function handleCity (event) {
-		setCity(event.target.value);
-	}
-
-	function handlePostcode (event) {
-		setPostcode(event.target.value);
+	function handleLastName (event) {
+		setLastName(event.target.value);
 	}
 
 	function handlePhone (event) {
@@ -49,16 +35,20 @@ function CreateBusiness () {
 		setPassword(event.target.value);
 	}
 
+	function handleBusinessId (event) {
+		setBusinessId(event.target.value);
+	}
+
 	function validateForm () {
 		console.log("temp validation placeholder");
 	}
 
-	async function createBusiness (event) {
+	async function createUser (event) {
 		validateForm();
 
 		event.preventDefault();
 		const form = event.currentTarget;
-		const url = `${API_URL}/business`;
+		const url = `${API_URL}/user`;
 
 		try {
 			const formData = new FormData(form);
@@ -76,16 +66,14 @@ function CreateBusiness () {
 
 	return (
 		<div>
-			<form onSubmit={createBusiness} style={styles.form}>
+			<form onSubmit={createUser} style={styles.form}>
 				<header style={styles.header}>Create Account</header>
-				<input id="business-name" value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
-				<input id="address1" value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
-				<input id="address2" value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
-				<input id="city" value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
-				<input id="postcode" value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
-				<input id="phone" value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number" name="phoneNumber"/>
+				<input id="first-name" value={firstName} onChange={handleFirstName} style={styles.inputField} type="text" placeholder="First name" name="displayName"/>
+				<input id="last-name" value={lastName} onChange={handleLastName} style={styles.inputField} type="text" placeholder="Last name" name="lastName"/>
+				<input id="phone" value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number"name="phoneNumber"/>
 				<input id="email" value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
 				<input id="password" value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
+				<input id="postcode" value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
 				<Button type="submit">Submit</Button>
 			</form>
 			{user && <Redirect to="loginsuccess" />}
@@ -117,14 +105,8 @@ const styles = {
 		width: "80%",
 		border: "0px",
 		borderRadius: "3px"
-	},
-	space: {
-		marginBottom: "10px"
 	}
 };
-
-const deepCopy = JSON.parse(JSON.stringify(styles.inputField));
-const combinedSelectors = Object.assign(deepCopy, styles.space);
 
 const Button = styled.button`
 	background-color: #3F524C;
@@ -142,4 +124,4 @@ const Button = styled.button`
 `;
 
 
-export default CreateBusiness;
+export default CreateUser;

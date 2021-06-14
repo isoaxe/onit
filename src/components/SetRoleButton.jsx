@@ -1,20 +1,17 @@
 import firebase from "firebase/app";
 
-import { useAuth } from "./../../util/useAuth";
-import { API_URL } from "./../../util/urls";
+import { API_URL } from "./../util/urls";
 
 
-function GetUsersButton () {
-	const auth = useAuth();
+function SetRoleButton () {
 
-	function getUsers () {
-		console.log(auth);
+	function setRole () {
 		firebase.auth().currentUser.getIdToken(true).then(function (token) {
 			const requestOptions = {
-				method: "GET",
+				method: "POST",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			fetch(`${API_URL}/users`, requestOptions)
+			fetch(`${API_URL}/loginsuccess/setrole`, requestOptions)
 				.then(res => res.json())
 				.then(data => console.log(data));
 		}).catch(function (error) {
@@ -23,10 +20,10 @@ function GetUsersButton () {
 	}
 
 	return (
-		<button onClick={getUsers}>
-			Get Users
+		<button onClick={setRole}>
+			Set Role
 		</button>
 	);
 }
 
-export default GetUsersButton;
+export default SetRoleButton;

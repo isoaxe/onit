@@ -1,8 +1,8 @@
 import styled, { keyframes } from "styled-components";
-import GetUsersButton from "./../../components/GetUsersButton/GetUsersButton";
-import SetRoleButton from "./../../components/SetRoleButton/SetRoleButton";
-import { StyleSheet } from "./../../util/types";
-import logo from "./../../logo.svg";
+import GetUsersButton from "./../components/GetUsersButton";
+import SetRoleButton from "./../components/SetRoleButton";
+import { StyleSheet } from "./../util/types";
+import logo from "./../logo.svg";
 
 
 function LoginSuccess (): JSX.Element {

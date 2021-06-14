@@ -4,7 +4,7 @@ import firebase from "firebase/app";
 import { auth } from "firebaseui";
 import "firebaseui/dist/firebaseui.css";
 
-import { BASE_URL } from "./../../util/urls";
+import { BASE_URL } from "./../util/urls";
 
 
 function AuthUI (): null {
