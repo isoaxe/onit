@@ -3,11 +3,9 @@ import styled from "styled-components";
 
 function SignUpButton (props): JSX.Element {
 	return (
-		<Wrapper>
-			<Button onClick={props.onClick}>
-				{props.label}
-			</Button>
-		</Wrapper>
+		<Button onClick={props.onClick}>
+			{props.label}
+		</Button>
 	);
 }
 
@@ -19,10 +17,7 @@ const Button = styled.div`
 	font-size: 14px;
 	padding: 10px;
 	margin-bottom: 12px;
-`;
-
-const Wrapper = styled.div`
-	&:hover ${Button} {
+	&:hover {
 		background-color: #4A615A;
 		cursor: pointer;
 	}
