@@ -1,6 +1,7 @@
 import styled, { keyframes } from "styled-components";
 import GetUsersButton from "./../components/GetUsersButton";
 import SetRoleButton from "./../components/SetRoleButton";
+import { primaryMain, textMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
 import logo from "./../logo.svg";
 
@@ -26,14 +27,14 @@ const styles: StyleSheet = {
 		textAlign: "center"
 	},
 	header: {
-		backgroundColor: "#282c34",
+		backgroundColor: primaryMain,
 		minHeight: "100vh",
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
 		fontSize: "calc(10px + 2vmin)",
-		color: "white"
+		color: textMain
 	},
 	logo: {
 		height: "40vmin",

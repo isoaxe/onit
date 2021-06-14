@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
 
 
 function SignUpButton (props): JSX.Element {
@@ -10,15 +11,15 @@ function SignUpButton (props): JSX.Element {
 }
 
 const Button = styled.div`
-	background-color: #3F524C;
-	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+	background-color: ${secondaryMain};
+	box-shadow: ${buttonShadow};
 	border-radius: 4px;
 	text-align: center;
 	font-size: 14px;
 	padding: 10px;
 	margin-bottom: 12px;
 	&:hover {
-		background-color: #4A615A;
+		background-color: ${secondaryLight};
 		cursor: pointer;
 	}
 `;
