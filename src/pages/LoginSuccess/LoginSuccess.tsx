@@ -37,7 +37,8 @@ const styles: StyleSheet = {
 	},
 	logo: {
 		height: "40vmin",
-		pointerEvents: "none"
+		pointerEvents: "none",
+		animation: "logo-spin infinite 20s linear"
 	}
 };
 
