@@ -20,10 +20,17 @@ function SetRoleButton () {
 	}
 
 	return (
-		<button onClick={setRole}>
+		<button onClick={setRole} style={styles.button}>
 			Set Role
 		</button>
 	);
 }
+
+const styles = {
+	button: {
+		marginTop: "15px"
+	}
+};
+
 
 export default SetRoleButton;
