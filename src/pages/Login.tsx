@@ -3,6 +3,7 @@ import AuthUI from "./../components/AuthUI";
 import SignUpButton from "./../components/SignUpButton";
 import CreateUser from "./../components/CreateUser";
 import CreateBusiness from "./../components/CreateBusiness";
+import { primaryMain, primaryLight, secondaryMain, textMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
 
 
@@ -43,21 +44,21 @@ const styles: StyleSheet = {
 		alignItems: "center",
 		justifyContent: "center",
 		minHeight: "100vh",
-		backgroundColor: "#282C34",
+		backgroundColor: primaryMain,
 	},
 	loginHeader: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#3F4552",
-		border: "2px solid #3f524c",
+		backgroundColor: primaryLight,
+		border: `2px solid ${secondaryMain}`,
 		borderRadius: "10px",
 		paddingBottom: "25px",
 		marginBottom: "30px",
 		marginTop: "10px",
 		fontSize: "20px",
-		color: "white"
+		color: textMain
 	},
 	title: {
 		fontFamily: "Lato-Black"
@@ -65,7 +66,7 @@ const styles: StyleSheet = {
 	auth: {
 		marginTop: "-15px",
 		paddingBottom: "10px",
-		borderBottom: "3px solid #3f524c"
+		borderBottom: `3px solid ${secondaryMain}`
 	}
 };
 

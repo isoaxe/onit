@@ -2,6 +2,7 @@ import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
+import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { postFormDataAsJson } from "./../util/helpers";
 import { API_URL } from "./../util/urls";
 
@@ -87,13 +88,13 @@ const styles = {
 		flexDirection: "column",
 		alignItems: "center",
 		justifyContent: "center",
-		backgroundColor: "#3F4552",
-		border: "2px solid #3f524c",
+		backgroundColor: primaryLight,
+		border: `2px solid ${secondaryMain}`,
 		borderRadius: "10px",
 		paddingBottom: "25px",
 		marginBottom: "30px",
 		fontSize: "20px",
-		color: "white"
+		color: textMain
 	},
 	header: {
 		fontSize: "15px",
@@ -109,16 +110,16 @@ const styles = {
 };
 
 const Button = styled.button`
-	background-color: #3F524C;
-	box-shadow: 0px 3px 5px rgba(0, 0, 0, 0.2);
+	background-color: ${secondaryMain};
+	box-shadow: ${buttonShadow};
 	border: 0px;
 	border-radius: 3px;
-	color: white;
+	color: ${textMain};
 	font-size: 14px;
 	padding: 4px 13px 4px;
 	margin-top: 10px;
 	&:hover {
-		background-color: #4A615A;
+		background-color: ${secondaryLight};
 	  cursor: pointer;
 	}
 `;
