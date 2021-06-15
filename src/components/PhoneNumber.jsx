@@ -7,6 +7,8 @@ function PhoneNumber (props) {
 	return (
 		<PhoneInput
 			placeholder="Phone number"
+			international
+			defaultCountry="TH"
 			name={props.name}
 			value={props.value}
 			onChange={props.onChange} />
