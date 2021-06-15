@@ -4,6 +4,7 @@ import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { postFormDataAsJson } from "./../util/helpers";
+import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
 
@@ -13,7 +14,7 @@ function CreateBusiness () {
 	const [address2, setAddress2] = useState("");
 	const [city, setCity] = useState("");
 	const [postcode, setPostcode] = useState("");
-	const [phone, setPhone] = useState("");
+	const [phone, setPhone] = useState(null);
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
@@ -36,10 +37,6 @@ function CreateBusiness () {
 
 	function handlePostcode (event) {
 		setPostcode(event.target.value);
-	}
-
-	function handlePhone (event) {
-		setPhone(event.target.value);
 	}
 
 	function handleEmail (event) {
@@ -84,7 +81,7 @@ function CreateBusiness () {
 				<input id="address2" value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
 				<input id="city" value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
 				<input id="postcode" value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
-				<input id="phone" value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number" name="phoneNumber"/>
+				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
 				<input id="email" value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
 				<input id="password" value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<Button type="submit">Submit</Button>
