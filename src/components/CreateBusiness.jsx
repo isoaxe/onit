@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useRef } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
@@ -18,6 +18,9 @@ function CreateBusiness () {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
+
+	const domContainer = useRef(null);
+
 
 	function handleBusiness (event) {
 		setBusinessName(event.target.value);
@@ -48,7 +51,7 @@ function CreateBusiness () {
 	}
 
 	async function createBusiness (event) {
-		validateSharedSignup(phone, email, password);
+		validateSharedSignup(phone, email, password, domContainer.current);
 
 		event.preventDefault();
 		const form = event.currentTarget;
@@ -77,9 +80,9 @@ function CreateBusiness () {
 				<input id="address2" value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
 				<input id="city" value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
 				<input id="postcode" value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
-				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
-				<input id="email" value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
-				<input id="password" value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
+				<PhoneNumber ref={domContainer} value={phone} onChange={setPhone} name="phoneNumber"/>
+				<input id="email" ref={domContainer} value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
+				<input id="password" ref={domContainer} value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<Button type="submit">Submit</Button>
 			</form>
 			{user && <Redirect to="loginsuccess" />}
