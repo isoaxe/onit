@@ -28,31 +28,31 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // Validate the input that is common to both User and Business account creation.
-export function validateSharedSignup (phone, email, password) {
+export function validateSharedSignup (phone, email, password, element) {
 	// Check field for valid input.
 	if (!validator.isMobilePhone(`${phone}`)) {
-		document.getElementById("phone").style.outline = "medium solid red";
-		document.getElementById("phone").value = "";
-		document.getElementById("phone").placeholder = "Please enter a valid mobile phone number";
+		element.style.outline = "medium solid red";
+		element.value = "";
+		element.placeholder = "Please enter a valid mobile phone number";
 	// Remove red box around fields where valid input has been entered on next submission.
 	} else {
-		document.getElementById("phone").style.outline = 0;
+		element.style.outline = 0;
 	}
 
 	if (!validator.isEmail(email)) {
-		document.getElementById("email").style.outline = "medium solid red";
-		document.getElementById("email").value = "";
-		document.getElementById("email").placeholder = "Please enter a valid email";
+		element.style.outline = "medium solid red";
+		element.value = "";
+		element.placeholder = "Please enter a valid email";
 	} else {
-		document.getElementById("email").style.outline = 0;
+		element.style.outline = 0;
 	}
 
 	if (password.length < 8) {
-		document.getElementById("password").style.outline = "medium solid red";
-		document.getElementById("password").value = "";
-		document.getElementById("password").placeholder = "Passwords should be at least 8 chars long";
+		element.style.outline = "medium solid red";
+		element.value = "";
+		element.placeholder = "Passwords should be at least 8 chars long";
 	} else {
-		document.getElementById("password").style.outline = 0;
+		element.style.outline = 0;
 	}
 
 	// If all fields pass, then return true so message can be sent.
