@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup } from "./../util/helpers";
 import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
@@ -47,12 +47,8 @@ function CreateBusiness () {
 		setPassword(event.target.value);
 	}
 
-	function validateForm () {
-		console.log("temp validation placeholder");
-	}
-
 	async function createBusiness (event) {
-		validateForm();
+		validateSharedSignup(phone, email, password);
 
 		event.preventDefault();
 		const form = event.currentTarget;
