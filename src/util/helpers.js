@@ -33,9 +33,8 @@ export function validateSharedSignup (phone, email, password, element) {
 	if (!validator.isMobilePhone(`${phone}`)) {
 		element.style.outline = "medium solid red";
 		element.value = "";
-		element.placeholder = "Please enter a valid mobile phone number";
-	// Remove red box around fields where valid input has been entered on next submission.
-	} else {
+		element.placeholder = "Enter a valid mobile number";
+	} else { // Remove red box around fields when valid input.
 		element.style.outline = 0;
 	}
 
@@ -50,7 +49,7 @@ export function validateSharedSignup (phone, email, password, element) {
 	if (password.length < 8) {
 		element.style.outline = "medium solid red";
 		element.value = "";
-		element.placeholder = "Passwords should be at least 8 chars long";
+		element.placeholder = "Needs to be > 8 chars";
 	} else {
 		element.style.outline = 0;
 	}
