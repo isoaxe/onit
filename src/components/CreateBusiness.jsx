@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson, validateSharedSignup, phoneTaken, emailTaken } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateBusinessSignup, phoneTaken, emailTaken } from "./../util/helpers";
 import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
@@ -54,6 +54,7 @@ function CreateBusiness () {
 		const form = event.currentTarget;
 
 		validateSharedSignup(phone, email, password, form);
+		validateBusinessSignup(businessName, address1, address2, city, postcode, form);
 
 		try {
 			const formData = new FormData(form);
