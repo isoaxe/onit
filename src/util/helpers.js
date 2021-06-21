@@ -63,3 +63,9 @@ export function emailTaken (element) {
 	element[7].value = "";
 	element[7].placeholder = "Email already in use";
 }
+
+export function phoneTaken (element) {
+	element[6].style.outline = "medium solid red";
+	element[6].value = "";
+	element[6].placeholder = "Number already in use";
+}
