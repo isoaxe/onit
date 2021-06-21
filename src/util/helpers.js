@@ -28,44 +28,44 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // Validate the input that is common to both User and Business account creation.
-export function validateSharedSignup (phone, email, password, element) {
+export function validateSharedSignup (phone, email, password, form) {
 	// Check field for valid input.
 	if (!validator.isMobilePhone(`${phone}`)) {
-		element[6].style.outline = "medium solid red";
-		element[6].value = "";
-		element[6].placeholder = "Enter a valid mobile number";
+		form[6].style.outline = "medium solid red";
+		form[6].value = "";
+		form[6].placeholder = "Enter a valid mobile number";
 	} else { // Remove red box around fields when valid input.
-		element[6].style.outline = 0;
+		form[6].style.outline = 0;
 	}
 
 	if (!validator.isEmail(email)) {
-		element[7].style.outline = "medium solid red";
-		element[7].value = "";
-		element[7].placeholder = "Please enter a valid email";
+		form[7].style.outline = "medium solid red";
+		form[7].value = "";
+		form[7].placeholder = "Please enter a valid email";
 	} else {
-		element[7].style.outline = 0;
+		form[7].style.outline = 0;
 	}
 
 	if (password.length < 8) {
-		element[8].style.outline = "medium solid red";
-		element[8].value = "";
-		element[8].placeholder = "Needs to be > 8 chars";
+		form[8].style.outline = "medium solid red";
+		form[8].value = "";
+		form[8].placeholder = "Needs to be > 8 chars";
 	} else {
-		element[8].style.outline = 0;
+		form[8].style.outline = 0;
 	}
 
 	// If all fields pass, then return true so message can be sent.
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
 
-export function phoneTaken (element) {
-	element[6].style.outline = "medium solid red";
-	element[6].value = "";
-	element[6].placeholder = "Number already in use";
+export function phoneTaken (form) {
+	form[6].style.outline = "medium solid red";
+	form[6].value = "";
+	form[6].placeholder = "Number already in use";
 }
 
-export function emailTaken (element) {
-	element[7].style.outline = "medium solid red";
-	element[7].value = "";
-	element[7].placeholder = "Email already in use";
+export function emailTaken (form) {
+	form[7].style.outline = "medium solid red";
+	form[7].value = "";
+	form[7].placeholder = "Email already in use";
 }
