@@ -57,3 +57,9 @@ export function validateSharedSignup (phone, email, password, element) {
 	// If all fields pass, then return true so message can be sent.
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
+
+export function emailTaken (element) {
+	element[7].style.outline = "medium solid red";
+	element[7].value = "";
+	element[7].placeholder = "Email already in use";
+}
