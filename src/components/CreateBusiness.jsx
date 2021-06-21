@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
@@ -14,12 +14,10 @@ function CreateBusiness () {
 	const [address2, setAddress2] = useState("");
 	const [city, setCity] = useState("");
 	const [postcode, setPostcode] = useState("");
-	const [phone, setPhone] = useState(null);
+	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
-
-	const domContainer = useRef(null);
 
 
 	function handleBusiness (event) {
@@ -51,10 +49,10 @@ function CreateBusiness () {
 	}
 
 	async function createBusiness (event) {
-		validateSharedSignup(phone, email, password, domContainer.current);
-
 		event.preventDefault();
 		const form = event.currentTarget;
+
+		validateSharedSignup(phone, email, password, form);
 		const url = `${API_URL}/business`;
 
 		try {
@@ -69,17 +67,17 @@ function CreateBusiness () {
 		} catch (err) {
 			console.log(err);
 			if (err.message.indexOf("phone number already exists") !== -1) {
-				phoneTaken(domContainer.current);
+				phoneTaken(form);
 			}
 			if (err.message.indexOf("email address is already in use") !== -1) {
-				emailTaken(domContainer.current);
+				emailTaken(form);
 			}
 		}
 	}
 
 	return (
 		<div>
-			<form onSubmit={createBusiness} style={styles.form} ref={domContainer}>
+			<form onSubmit={createBusiness} style={styles.form}>
 				<header style={styles.header}>Create Account</header>
 				<input id="business-name" value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
 				<input id="address1" value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
