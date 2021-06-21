@@ -50,10 +50,10 @@ function CreateBusiness () {
 
 	async function createBusiness (event) {
 		event.preventDefault();
+		const url = `${API_URL}/business`;
 		const form = event.currentTarget;
 
 		validateSharedSignup(phone, email, password, form);
-		const url = `${API_URL}/business`;
 
 		try {
 			const formData = new FormData(form);
@@ -79,11 +79,11 @@ function CreateBusiness () {
 		<div>
 			<form onSubmit={createBusiness} style={styles.form}>
 				<header style={styles.header}>Create Account</header>
-				<input id="business-name" value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
-				<input id="address1" value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
-				<input id="address2" value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
-				<input id="city" value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
-				<input id="postcode" value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
+				<input value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
+				<input value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
+				<input value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
+				<input value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
+				<input value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
 				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
 				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
 				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
