@@ -58,14 +58,14 @@ export function validateSharedSignup (phone, email, password, element) {
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
 
-export function emailTaken (element) {
-	element[7].style.outline = "medium solid red";
-	element[7].value = "";
-	element[7].placeholder = "Email already in use";
-}
-
 export function phoneTaken (element) {
 	element[6].style.outline = "medium solid red";
 	element[6].value = "";
 	element[6].placeholder = "Number already in use";
+}
+
+export function emailTaken (element) {
+	element[7].style.outline = "medium solid red";
+	element[7].value = "";
+	element[7].placeholder = "Email already in use";
 }
