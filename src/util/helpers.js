@@ -34,7 +34,7 @@ export function validateSharedSignup (phone, email, password, form) {
 	if (!validator.isMobilePhone(`${phone}`)) {
 		form[6].style.outline = inputError;
 		form[6].value = "";
-		form[6].placeholder = "Enter a valid mobile number";
+		form[6].placeholder = "Enter a valid number";
 	} else { // Remove red box around fields when valid input.
 		form[6].style.outline = 0;
 	}
