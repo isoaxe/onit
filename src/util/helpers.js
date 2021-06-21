@@ -59,6 +59,45 @@ export function validateSharedSignup (phone, email, password, form) {
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
 
+export function validateBusinessSignup (businessName, address1, address2, city, postcode, form) {
+	if (businessName === "") {
+		form[0].style.outline = inputError;
+		form[0].placeholder = "Enter a business name";
+	} else {
+		form[0].style.outline = 0;
+	}
+
+	if (address1 === "") {
+		form[1].style.outline = inputError;
+		form[1].placeholder = "Enter an address";
+	} else {
+		form[1].style.outline = 0;
+	}
+
+	if (address2 === "") {
+		form[2].style.outline = inputError;
+		form[2].placeholder = "Enter an address";
+	} else {
+		form[2].style.outline = 0;
+	}
+
+	if (city === "") {
+		form[3].style.outline = inputError;
+		form[3].placeholder = "Enter a city";
+	} else {
+		form[3].style.outline = 0;
+	}
+	
+	// Pass locale from phone dropdown menu as second param.
+	if (!validator.isPostalCode(postcode, form[5].value)) {
+		form[4].style.outline = inputError;
+		form[4].value = "";
+		form[4].placeholder = "Invalid postcode";
+	} else {
+		form[4].style.outline = 0;
+	}
+}
+
 export function phoneTaken (form) {
 	form[6].style.outline = inputError;
 	form[6].value = "";
