@@ -2,6 +2,7 @@
  * Various helper functions used throughout the project.
  */
 import validator from "validator";
+import { inputError } from "./../util/colours";
 
 
 // Used to POST account creation data without using form attributes.
@@ -31,7 +32,7 @@ export async function postFormDataAsJson ({ url, formData }) {
 export function validateSharedSignup (phone, email, password, form) {
 	// Check field for valid input.
 	if (!validator.isMobilePhone(`${phone}`)) {
-		form[6].style.outline = "medium solid red";
+		form[6].style.outline = inputError;
 		form[6].value = "";
 		form[6].placeholder = "Enter a valid mobile number";
 	} else { // Remove red box around fields when valid input.
@@ -39,7 +40,7 @@ export function validateSharedSignup (phone, email, password, form) {
 	}
 
 	if (!validator.isEmail(email)) {
-		form[7].style.outline = "medium solid red";
+		form[7].style.outline = inputError;
 		form[7].value = "";
 		form[7].placeholder = "Please enter a valid email";
 	} else {
@@ -47,7 +48,7 @@ export function validateSharedSignup (phone, email, password, form) {
 	}
 
 	if (password.length < 8) {
-		form[8].style.outline = "medium solid red";
+		form[8].style.outline = inputError;
 		form[8].value = "";
 		form[8].placeholder = "Needs to be > 8 chars";
 	} else {
@@ -59,13 +60,13 @@ export function validateSharedSignup (phone, email, password, form) {
 }
 
 export function phoneTaken (form) {
-	form[6].style.outline = "medium solid red";
+	form[6].style.outline = inputError;
 	form[6].value = "";
 	form[6].placeholder = "Number already in use";
 }
 
 export function emailTaken (form) {
-	form[7].style.outline = "medium solid red";
+	form[7].style.outline = inputError;
 	form[7].value = "";
 	form[7].placeholder = "Email already in use";
 }
