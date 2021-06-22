@@ -87,15 +87,19 @@ export function validateBusinessSignup (businessName, address1, address2, city, 
 	} else {
 		form[3].style.outline = 0;
 	}
-	
-	// Pass locale from phone dropdown menu as second param.
-	if (!validator.isPostalCode(postcode, form[5].value)) {
+
+	// Pass locale from phone dropdown menu as second param. Resolves to true if valid.
+	const postcodeValid = validator.isPostalCode(postcode, form[5].value);
+	if (!postcodeValid) {
 		form[4].style.outline = inputError;
 		form[4].value = "";
 		form[4].placeholder = "Invalid postcode";
 	} else {
 		form[4].style.outline = 0;
 	}
+
+	// If all fields pass, then return true so message can be sent.
+	return (!!businessName && address1 && address2 && city && postcodeValid);
 }
 
 export function phoneTaken (form) {
