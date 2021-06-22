@@ -40,13 +40,7 @@ function CreateUser () {
 		setBusinessId(event.target.value);
 	}
 
-	function validateForm () {
-		console.log("temp validation placeholder");
-	}
-
 	async function createUser (event) {
-		validateForm();
-
 		event.preventDefault();
 		const form = event.currentTarget;
 		const url = `${API_URL}/user`;
