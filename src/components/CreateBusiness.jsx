@@ -53,8 +53,11 @@ function CreateBusiness () {
 		const url = `${API_URL}/business`;
 		const form = event.currentTarget;
 
-		validateSharedSignup(phone, email, password, form);
-		validateBusinessSignup(businessName, address1, address2, city, postcode, form);
+		const sharedSignupValidated = validateSharedSignup(phone, email, password, form);
+		const businessSignupValidated = validateBusinessSignup(businessName, address1, address2, city, postcode, form);
+		if (!sharedSignupValidated || !businessSignupValidated) {
+			return false;
+		}
 
 		try {
 			const formData = new FormData(form);
