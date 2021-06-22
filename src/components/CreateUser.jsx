@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateUserSignup } from "./../util/helpers";
 import { API_URL } from "./../util/urls";
 
 
@@ -44,6 +44,12 @@ function CreateUser () {
 		event.preventDefault();
 		const form = event.currentTarget;
 		const url = `${API_URL}/user`;
+
+		const sharedSignupValidated = validateSharedSignup(phone, email, password, form);
+		const userSignupValidated = validateUserSignup(firstName, lastName, businessId, form);
+		if (!sharedSignupValidated || !userSignupValidated) {
+			return false;
+		}
 
 		try {
 			const formData = new FormData(form);
