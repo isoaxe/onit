@@ -30,29 +30,35 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 // Validate the input that is common to both User and Business account creation.
 export function validateSharedSignup (phone, email, password, form) {
+	// Add 3 to index if the user is a business.
+	let n = 0;
+	if (form.length > 9) {
+		n = 3;
+	}
+
 	// Check field for valid input.
 	if (!validator.isMobilePhone(`${phone}`)) {
-		form[6].style.outline = inputError;
-		form[6].value = "";
-		form[6].placeholder = "Enter a valid number";
+		form[3+n].style.outline = inputError;
+		form[3+n].value = "";
+		form[3+n].placeholder = "Enter a valid number";
 	} else { // Remove red box around fields when valid input.
-		form[6].style.outline = 0;
+		form[3+n].style.outline = 0;
 	}
 
 	if (!validator.isEmail(email)) {
-		form[7].style.outline = inputError;
-		form[7].value = "";
-		form[7].placeholder = "Please enter a valid email";
+		form[4+n].style.outline = inputError;
+		form[4+n].value = "";
+		form[4+n].placeholder = "Please enter a valid email";
 	} else {
-		form[7].style.outline = 0;
+		form[4+n].style.outline = 0;
 	}
 
 	if (password.length < 8) {
-		form[8].style.outline = inputError;
-		form[8].value = "";
-		form[8].placeholder = "Needs to be > 8 chars";
+		form[5+n].style.outline = inputError;
+		form[5+n].value = "";
+		form[5+n].placeholder = "Needs to be > 8 chars";
 	} else {
-		form[8].style.outline = 0;
+		form[5+n].style.outline = 0;
 	}
 
 	// If all fields pass, then return true so message can be sent.
