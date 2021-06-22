@@ -4,6 +4,7 @@ import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken } from "./../util/helpers";
+import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
 
@@ -22,10 +23,6 @@ function CreateUser () {
 
 	function handleLastName (event) {
 		setLastName(event.target.value);
-	}
-
-	function handlePhone (event) {
-		setPhone(event.target.value);
 	}
 
 	function handleEmail (event) {
@@ -77,7 +74,7 @@ function CreateUser () {
 				<header style={styles.header}>Create Account</header>
 				<input value={firstName} onChange={handleFirstName} style={styles.inputField} type="text" placeholder="First name" name="displayName"/>
 				<input value={lastName} onChange={handleLastName} style={styles.inputField} type="text" placeholder="Last name" name="lastName"/>
-				<input value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number"name="phoneNumber"/>
+				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
 				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
 				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<input value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
