@@ -44,6 +44,7 @@ router.post("/business", async (req, res) => {
 			address1,
 			address2,
 			city,
+			country,
 			postcode,
 		});
 
