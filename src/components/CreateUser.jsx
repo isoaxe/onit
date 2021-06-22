@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson, validateSharedSignup, validateUserSignup } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken } from "./../util/helpers";
 import { API_URL } from "./../util/urls";
 
 
@@ -62,6 +62,12 @@ function CreateUser () {
 				});
 		} catch (err) {
 			console.log(err);
+			if (err.message.indexOf("phone number already exists") !== -1) {
+				phoneTaken(form);
+			}
+			if (err.message.indexOf("email address is already in use") !== -1) {
+				emailTaken(form);
+			}
 		}
 	}
 
