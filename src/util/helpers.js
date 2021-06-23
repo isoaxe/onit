@@ -104,7 +104,7 @@ export function validateBusinessSignup (businessName, address1, address2, city, 
 		form[4].style.outline = 0;
 	}
 
-	// If all fields pass, then return true so message can be sent.
+	// If all fields pass, then return true.
 	return (!!businessName && address1 && address2 && city && postcodeValid);
 }
 
@@ -123,13 +123,16 @@ export function validateUserSignup (firstName, lastName, businessId, form) {
 		form[1].style.outline = 0;
 	}
 
-	if (businessId.length !== 6 || typeof businessId !== "number") {
+	if (businessId.length !== 6) {
 		form[6].style.outline = inputError;
 		form[6].value = "";
 		form[6].placeholder = "Must be 6 digit number";
 	} else {
 		form[6].style.outline = 0;
 	}
+
+	// If all fields pass, then return true.
+	return (firstName && lastName && businessId.length === 6);
 }
 
 export function phoneTaken (form, n=0) {
