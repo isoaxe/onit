@@ -125,20 +125,21 @@ export function validateUserSignup (firstName, lastName, businessId, form) {
 
 	if (businessId.length !== 6 || typeof businessId !== "number") {
 		form[6].style.outline = inputError;
+		form[6].value = "";
 		form[6].placeholder = "Must be 6 digit number";
 	} else {
 		form[6].style.outline = 0;
 	}
 }
 
-export function phoneTaken (form) {
-	form[6].style.outline = inputError;
-	form[6].value = "";
-	form[6].placeholder = "Number already in use";
+export function phoneTaken (form, n=0) {
+	form[3+n].style.outline = inputError;
+	form[3+n].value = "";
+	form[3+n].placeholder = "Number already in use";
 }
 
-export function emailTaken (form) {
-	form[7].style.outline = inputError;
-	form[7].value = "";
-	form[7].placeholder = "Email already in use";
+export function emailTaken (form, n=0) {
+	form[4+n].style.outline = inputError;
+	form[4+n].value = "";
+	form[4+n].placeholder = "Email already in use";
 }
