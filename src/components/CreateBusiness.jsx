@@ -71,10 +71,10 @@ function CreateBusiness () {
 		} catch (err) {
 			console.log(err);
 			if (err.message.indexOf("phone number already exists") !== -1) {
-				phoneTaken(form);
+				phoneTaken(form, 3);
 			}
 			if (err.message.indexOf("email address is already in use") !== -1) {
-				emailTaken(form);
+				emailTaken(form, 3);
 			}
 		}
 	}
