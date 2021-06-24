@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken, idNotFound } from "./../util/helpers";
 import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
@@ -64,6 +64,9 @@ function CreateUser () {
 			}
 			if (err.message.indexOf("email address is already in use") !== -1) {
 				emailTaken(form);
+			}
+			if (err.message.indexOf("businessId not found") !== -1) {
+				idNotFound(form);
 			}
 		}
 	}
