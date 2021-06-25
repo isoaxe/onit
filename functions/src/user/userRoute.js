@@ -11,15 +11,9 @@ router.post("/user", async (req, res) => {
 		const { displayName, phoneNumber, email, password, lastName, businessId } = req.body;
 
 		// Check that businessId exists by querying the Firestore.
-		const ids = [];
 		const db = admin.firestore();
-		const users = db.collection("users");
-		const businessIds = await users.get();
-		businessIds.forEach(doc => {
-			const id = doc.id.split("businessId-")[1];
-			ids.push(id);
-		});
-		/* Currently always true as businessIds is empty array and does not fetch properly. */
+		const idList = await db.collection("users").listDocuments();
+		const ids = idList.map(doc => doc.id.split("businessId-")[1]);
 		if (!ids.includes(businessId)) {
 			return res.status(400).send({ error: "businessId not found" });
 		}
