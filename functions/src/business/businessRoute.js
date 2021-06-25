@@ -13,14 +13,9 @@ router.post("/business", async (req, res) => {
 		const country = localeMapper.getCountryNameByAlpha2(phoneNumberCountry);
 
 		// Check that businessId is unique by querying the Firestore for current ids.
-		const ids = [];
 		const db = admin.firestore();
-		const users = db.collection("users");
-		const businessIds = await users.get();
-		businessIds.forEach(doc => {
-			const id = doc.id.split("businessId-")[1];
-			ids.push(id);
-		});
+		const idList = await db.collection("users").listDocuments();
+		const ids = idList.map(doc => doc.id.split("businessId-")[1]);
 		let businessId = getBusinessId();
 		while (ids.includes(businessId)) {
 			businessId = getBusinessId();
