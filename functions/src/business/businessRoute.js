@@ -1,4 +1,5 @@
 import * as admin from "firebase-admin";
+import * as localeMapper from "country-locale-map";
 import { Router } from "express";
 
 const router = Router();
@@ -8,17 +9,13 @@ const router = Router();
 router.post("/business", async (req, res) => {
 	try {
 		const role = "company";
-		const { displayName, phoneNumber, email, password, address1, address2, city, postcode } = req.body;
+		const { displayName, phoneNumber, email, password, address1, address2, city, phoneNumberCountry, postcode } = req.body;
+		const country = localeMapper.getCountryNameByAlpha2(phoneNumberCountry);
 
 		// Check that businessId is unique by querying the Firestore for current ids.
-		const ids = [];
 		const db = admin.firestore();
-		const users = db.collection("users");
-		const businessIds = await users.get();
-		businessIds.forEach(doc => {
-			const id = doc.id.split("businessId-")[1];
-			ids.push(id);
-		});
+		const idList = await db.collection("users").listDocuments();
+		const ids = idList.map(doc => doc.id.split("businessId-")[1]);
 		let businessId = getBusinessId();
 		while (ids.includes(businessId)) {
 			businessId = getBusinessId();
@@ -42,6 +39,7 @@ router.post("/business", async (req, res) => {
 			address1,
 			address2,
 			city,
+			country,
 			postcode,
 		});
 

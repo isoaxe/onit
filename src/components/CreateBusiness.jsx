@@ -3,7 +3,8 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateBusinessSignup, phoneTaken, emailTaken } from "./../util/helpers";
+import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
 
@@ -17,6 +18,7 @@ function CreateBusiness () {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [user, setUser] = useState(null);
+
 
 	function handleBusiness (event) {
 		setBusinessName(event.target.value);
@@ -38,10 +40,6 @@ function CreateBusiness () {
 		setPostcode(event.target.value);
 	}
 
-	function handlePhone (event) {
-		setPhone(event.target.value);
-	}
-
 	function handleEmail (event) {
 		setEmail(event.target.value);
 	}
@@ -50,21 +48,21 @@ function CreateBusiness () {
 		setPassword(event.target.value);
 	}
 
-	function validateForm () {
-		console.log("temp validation placeholder");
-	}
-
 	async function createBusiness (event) {
-		validateForm();
-
 		event.preventDefault();
-		const form = event.currentTarget;
 		const url = `${API_URL}/business`;
+		const form = event.currentTarget;
+
+		const sharedSignupValidated = validateSharedSignup(phone, email, password, form);
+		const businessSignupValidated = validateBusinessSignup(businessName, address1, address2, city, postcode, form);
+		if (!sharedSignupValidated || !businessSignupValidated) {
+			return false;
+		}
 
 		try {
 			const formData = new FormData(form);
 			const response = await postFormDataAsJson({ url, formData });
-			console.log({ response });
+			console.log(response);
 
 			firebase.auth().signInWithEmailAndPassword(email, password)
 				.then((userCredential) => {
@@ -72,6 +70,12 @@ function CreateBusiness () {
 				});
 		} catch (err) {
 			console.log(err);
+			if (err.message.indexOf("phone number already exists") !== -1) {
+				phoneTaken(form, 3);
+			}
+			if (err.message.indexOf("email address is already in use") !== -1) {
+				emailTaken(form, 3);
+			}
 		}
 	}
 
@@ -79,14 +83,14 @@ function CreateBusiness () {
 		<div>
 			<form onSubmit={createBusiness} style={styles.form}>
 				<header style={styles.header}>Create Account</header>
-				<input id="business-name" value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
-				<input id="address1" value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
-				<input id="address2" value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
-				<input id="city" value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
-				<input id="postcode" value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
-				<input id="phone" value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number" name="phoneNumber"/>
-				<input id="email" value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
-				<input id="password" value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
+				<input value={businessName} onChange={handleBusiness} style={combinedSelectors} type="text" placeholder="Business name" name="displayName"/>
+				<input value={address1} onChange={handleAddress1} style={styles.inputField} type="text" placeholder="Address line 1" name="address1"/>
+				<input value={address2} onChange={handleAddress2} style={styles.inputField} type="text" placeholder="Address line 2" name="address2"/>
+				<input value={city} onChange={handleCity} style={styles.inputField} type="text" placeholder="City" name="city"/>
+				<input value={postcode} onChange={handlePostcode} style={combinedSelectors} type="text" placeholder="Postcode" name="postcode"/>
+				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
+				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
+				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<Button type="submit">Submit</Button>
 			</form>
 			{user && <Redirect to="loginsuccess" />}

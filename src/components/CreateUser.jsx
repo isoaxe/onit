@@ -3,7 +3,8 @@ import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson } from "./../util/helpers";
+import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken, idNotFound } from "./../util/helpers";
+import PhoneNumber from "./PhoneNumber";
 import { API_URL } from "./../util/urls";
 
 
@@ -24,10 +25,6 @@ function CreateUser () {
 		setLastName(event.target.value);
 	}
 
-	function handlePhone (event) {
-		setPhone(event.target.value);
-	}
-
 	function handleEmail (event) {
 		setEmail(event.target.value);
 	}
@@ -40,16 +37,16 @@ function CreateUser () {
 		setBusinessId(event.target.value);
 	}
 
-	function validateForm () {
-		console.log("temp validation placeholder");
-	}
-
 	async function createUser (event) {
-		validateForm();
-
 		event.preventDefault();
 		const form = event.currentTarget;
 		const url = `${API_URL}/user`;
+
+		const sharedSignupValidated = validateSharedSignup(phone, email, password, form);
+		const userSignupValidated = validateUserSignup(firstName, lastName, businessId, form);
+		if (!sharedSignupValidated || !userSignupValidated) {
+			return false;
+		}
 
 		try {
 			const formData = new FormData(form);
@@ -62,6 +59,15 @@ function CreateUser () {
 				});
 		} catch (err) {
 			console.log(err);
+			if (err.message.indexOf("phone number already exists") !== -1) {
+				phoneTaken(form);
+			}
+			if (err.message.indexOf("email address is already in use") !== -1) {
+				emailTaken(form);
+			}
+			if (err.message.indexOf("businessId not found") !== -1) {
+				idNotFound(form);
+			}
 		}
 	}
 
@@ -69,12 +75,12 @@ function CreateUser () {
 		<div>
 			<form onSubmit={createUser} style={styles.form}>
 				<header style={styles.header}>Create Account</header>
-				<input id="first-name" value={firstName} onChange={handleFirstName} style={styles.inputField} type="text" placeholder="First name" name="displayName"/>
-				<input id="last-name" value={lastName} onChange={handleLastName} style={styles.inputField} type="text" placeholder="Last name" name="lastName"/>
-				<input id="phone" value={phone} onChange={handlePhone} style={styles.inputField} type="number" placeholder="Phone number"name="phoneNumber"/>
-				<input id="email" value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
-				<input id="password" value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
-				<input id="postcode" value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
+				<input value={firstName} onChange={handleFirstName} style={styles.inputField} type="text" placeholder="First name" name="displayName"/>
+				<input value={lastName} onChange={handleLastName} style={styles.inputField} type="text" placeholder="Last name" name="lastName"/>
+				<PhoneNumber value={phone} onChange={setPhone} name="phoneNumber"/>
+				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email address" name="email"/>
+				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
+				<input value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
 				<Button type="submit">Submit</Button>
 			</form>
 			{user && <Redirect to="loginsuccess" />}
