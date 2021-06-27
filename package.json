@@ -24,6 +24,7 @@
     "web-vitals": "^1.1.0"
   },
   "devDependencies": {
+    "@types/styled-components": "^5.1.10",
     "concurrently": "^6.1.0"
   },
   "scripts": {
