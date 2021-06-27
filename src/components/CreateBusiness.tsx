@@ -1,14 +1,15 @@
-import { useState } from "react";
+import React, { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { postFormDataAsJson, validateSharedSignup, validateBusinessSignup, phoneTaken, emailTaken } from "./../util/helpers";
 import PhoneNumber from "./PhoneNumber";
+import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 
 
-function CreateBusiness () {
+function CreateBusiness (): JSX.Element {
 	const [businessName, setBusinessName] = useState("");
 	const [address1, setAddress1] = useState("");
 	const [address2, setAddress2] = useState("");
@@ -17,38 +18,38 @@ function CreateBusiness () {
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<firebase.User | null>(null);
 
 
-	function handleBusiness (event) {
-		setBusinessName(event.target.value);
+	function handleBusiness (event: ChangeEvent<HTMLInputElement>): void {
+		setBusinessName(event.currentTarget.value);
 	}
 
-	function handleAddress1 (event) {
-		setAddress1(event.target.value);
+	function handleAddress1 (event: ChangeEvent<HTMLInputElement>): void {
+		setAddress1(event.currentTarget.value);
 	}
 
-	function handleAddress2 (event) {
-		setAddress2(event.target.value);
+	function handleAddress2 (event: ChangeEvent<HTMLInputElement>): void {
+		setAddress2(event.currentTarget.value);
 	}
 
-	function handleCity (event) {
-		setCity(event.target.value);
+	function handleCity (event: ChangeEvent<HTMLInputElement>): void {
+		setCity(event.currentTarget.value);
 	}
 
-	function handlePostcode (event) {
-		setPostcode(event.target.value);
+	function handlePostcode (event: ChangeEvent<HTMLInputElement>): void {
+		setPostcode(event.currentTarget.value);
 	}
 
-	function handleEmail (event) {
-		setEmail(event.target.value);
+	function handleEmail (event: ChangeEvent<HTMLInputElement>): void {
+		setEmail(event.currentTarget.value);
 	}
 
-	function handlePassword (event) {
-		setPassword(event.target.value);
+	function handlePassword (event: ChangeEvent<HTMLInputElement>): void {
+		setPassword(event.currentTarget.value);
 	}
 
-	async function createBusiness (event) {
+	async function createBusiness (event: SyntheticEvent<HTMLFormElement>): Promise<void | boolean> {
 		event.preventDefault();
 		const url = `${API_URL}/business`;
 		const form = event.currentTarget;
@@ -98,7 +99,7 @@ function CreateBusiness () {
 	);
 }
 
-const styles = {
+const styles: StyleSheet = {
 	form: {
 		display: "flex",
 		flexDirection: "column",
