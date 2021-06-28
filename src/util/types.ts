@@ -1,12 +1,12 @@
 /*
  *  Interfaces to define object shapes for TypeScript.
  */
-import React, { MouseEvent } from "react";
+import { CSSProperties, MouseEvent } from "react";
 
 
 // Declare CSS as object within a TS file.
 export interface StyleSheet {
-  [key: string]: React.CSSProperties;
+  [key: string]: CSSProperties;
 }
 
 // Prop shape for the SignUpButton component.
