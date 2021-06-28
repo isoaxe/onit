@@ -1,4 +1,4 @@
-import React, { useState, ChangeEvent, SyntheticEvent } from "react";
+import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
