@@ -29,7 +29,7 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // Validate the input that is common to both User and Business account creation.
-export function validateSharedSignup (phone, email, password, form) {
+export function validateSharedSignup (phone: string, email: string, password: string, form): boolean {
 	// Add 3 to index if the user is a business.
 	let n = 0;
 	if (form.length > 9) {
@@ -65,7 +65,7 @@ export function validateSharedSignup (phone, email, password, form) {
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
 
-export function validateBusinessSignup (businessName, address1, address2, city, postcode, form) {
+export function validateBusinessSignup (businessName: string, address1: string, address2: string, city: string, postcode: string, form) {
 	if (businessName === "") {
 		form[0].style.outline = inputError;
 		form[0].placeholder = "Enter a business name";
@@ -108,7 +108,7 @@ export function validateBusinessSignup (businessName, address1, address2, city, 
 	return (!!businessName && address1 && address2 && city && postcodeValid);
 }
 
-export function validateUserSignup (firstName, lastName, businessId, form) {
+export function validateUserSignup (firstName: string, lastName: string, businessId: string, form) {
 	if (firstName === "") {
 		form[0].style.outline = inputError;
 		form[0].placeholder = "Enter your first name";

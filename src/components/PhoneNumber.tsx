@@ -1,9 +1,9 @@
-import PhoneInput from "react-phone-number-input";
+import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
 
 
-function PhoneNumber (props) {
+function PhoneNumber (props: PhoneInputProps): JSX.Element {
 
 	return (
 		<PhoneInput

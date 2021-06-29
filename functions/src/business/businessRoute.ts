@@ -1,12 +1,12 @@
 import * as admin from "firebase-admin";
 import * as localeMapper from "country-locale-map";
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
-const router = Router();
+const router: Router = Router();
 
 
 // Create business user with POST request to /business.
-router.post("/business", async (req, res) => {
+router.post("/business", async (req: Request, res: Response) => {
 	try {
 		const role = "company";
 		const { displayName, phoneNumber, email, password, address1, address2, city, phoneNumberCountry, postcode } = req.body;
@@ -50,12 +50,12 @@ router.post("/business", async (req, res) => {
 });
 
 // Standard error helper function.
-function handleError (res, err) {
+function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
 }
 
-// Generate a 6-digit businessId integer:
-function getBusinessId () {
+// Generate a 6-digit businessId integer and convert to string:
+function getBusinessId (): string {
 	const id =  Math.round(Math.random()*1000000);
 	const idString = id.toString();
 	const leadingZeros = 6 - idString.length;

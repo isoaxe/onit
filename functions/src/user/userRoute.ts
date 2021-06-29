@@ -1,11 +1,11 @@
 import * as admin from "firebase-admin";
-import { Router } from "express";
+import { Router, Request, Response } from "express";
 
-const router = Router();
+const router: Router = Router();
 
 
 // Create user with POST request to /user.
-router.post("/user", async (req, res) => {
+router.post("/user", async (req: Request, res: Response) => {
 	try {
 		const role = "user";
 		const { displayName, phoneNumber, email, password, lastName, businessId } = req.body;
@@ -38,15 +38,14 @@ router.post("/user", async (req, res) => {
 			businessId
 		});
 
-		res.status(200).send({ message: "User account created" });
+		return res.status(200).send({ message: "User account created" });
 	} catch (err) {
-		console.log("we have an error");
-		handleError(res, err);
+		return handleError(res, err);
 	}
 });
 
 // Standard error helper function.
-function handleError (res, err) {
+function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
 }
 

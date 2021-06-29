@@ -1,43 +1,44 @@
-import { useState } from "react";
+import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken, idNotFound } from "./../util/helpers";
 import PhoneNumber from "./PhoneNumber";
+import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 
 
-function CreateUser () {
+function CreateUser (): JSX.Element {
 	const [firstName, setFirstName] = useState("");
 	const [lastName, setLastName] = useState("");
 	const [phone, setPhone] = useState("");
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [businessId, setBusinessId] = useState("");
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<firebase.User | null>(null);
 
-	function handleFirstName (event) {
-		setFirstName(event.target.value);
+	function handleFirstName (event: ChangeEvent<HTMLInputElement>): void {
+		setFirstName(event.currentTarget.value);
 	}
 
-	function handleLastName (event) {
-		setLastName(event.target.value);
+	function handleLastName (event: ChangeEvent<HTMLInputElement>): void {
+		setLastName(event.currentTarget.value);
 	}
 
-	function handleEmail (event) {
-		setEmail(event.target.value);
+	function handleEmail (event: ChangeEvent<HTMLInputElement>): void {
+		setEmail(event.currentTarget.value);
 	}
 
-	function handlePassword (event) {
-		setPassword(event.target.value);
+	function handlePassword (event: ChangeEvent<HTMLInputElement>): void {
+		setPassword(event.currentTarget.value);
 	}
 
-	function handleBusinessId (event) {
-		setBusinessId(event.target.value);
+	function handleBusinessId (event: ChangeEvent<HTMLInputElement>): void {
+		setBusinessId(event.currentTarget.value);
 	}
 
-	async function createUser (event) {
+	async function createUser (event: SyntheticEvent<HTMLFormElement>): Promise<void | boolean> {
 		event.preventDefault();
 		const form = event.currentTarget;
 		const url = `${API_URL}/user`;
@@ -88,7 +89,7 @@ function CreateUser () {
 	);
 }
 
-const styles = {
+const styles: StyleSheet = {
 	form: {
 		display: "flex",
 		flexDirection: "column",

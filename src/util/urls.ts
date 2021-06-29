@@ -1,5 +1,5 @@
 /*
- * Set URLS dynamically based on environment and host.
+ * Set URLs dynamically based on environment and host.
  */
 
 // Set API_URL based on whether local hosted emulator is running or not.
@@ -11,7 +11,7 @@ export const API_URL = ((window.location.hostname === "localhost") ? localApiUrl
 
 // Set BASE_URL based on whether local hosted emulator is running or not.
 // If running locally, also detect whether in development or production environment.
-let localBaseUrl;
+let localBaseUrl = "unassigned";
 if (process.env.NODE_ENV === "development") {
 	localBaseUrl = "http://localhost:3000/";
 } else if (process.env.NODE_ENV === "production") {
