@@ -1,6 +1,7 @@
 import { Route, Switch } from "react-router-dom";
 
 import { ProvideAuth } from "./../util/useAuth";
+import LoginRoute from "./../routes/LoginRoute";
 import LoginSuccess from "./../pages/LoginSuccess";
 import Login from "./../pages/Login";
 
@@ -10,9 +11,9 @@ function App (): JSX.Element {
 		<div>
 			<ProvideAuth>
 				<Switch>
-					<Route path="/loginsuccess">
+					<LoginRoute path="/loginsuccess">
 						<LoginSuccess />
-					</Route>
+					</LoginRoute>
 					<Route path="/">
 						<Login />
 					</Route>
