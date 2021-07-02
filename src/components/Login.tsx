@@ -17,7 +17,7 @@ function Login (): JSX.Element {
 	}
 
 	return (
-		<div>
+		<div style={styles.login}>
 			<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email" name="email"/>
 			<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 			<Button>Submit</Button>
@@ -26,10 +26,15 @@ function Login (): JSX.Element {
 }
 
 const styles: StyleSheet = {
+	login: {
+		borderBottom: `3px solid ${secondaryMain}`
+	},
 	inputField: {
-		margin: "3px",
+		margin: "5px 10%",
 		padding: "3px",
+		height: "25px",
 		width: "80%",
+		fontSize: "14px",
 		border: "0px",
 		borderRadius: "3px"
 	}
@@ -42,7 +47,7 @@ const Button = styled.div`
 	text-align: center;
 	font-size: 14px;
 	padding: 10px;
-	margin-bottom: 12px;
+	margin: 20px 80px;
 	&:hover {
 		background-color: ${secondaryLight};
 		cursor: pointer;
