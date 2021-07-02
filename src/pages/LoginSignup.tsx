@@ -7,7 +7,7 @@ import { primaryMain, primaryLight, secondaryMain, textMain } from "./../util/co
 import { StyleSheet } from "./../util/types";
 
 
-function Login (): JSX.Element {
+function LoginSignup (): JSX.Element {
 	const [userFormActive, setUserFormActive] = useState(false);
 	const [businessFormActive, setBusinessFormActive] = useState(false);
 
@@ -71,4 +71,4 @@ const styles: StyleSheet = {
 };
 
 
-export default Login;
+export default LoginSignup;
