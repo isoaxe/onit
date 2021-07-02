@@ -1,12 +1,16 @@
 import { useState, ChangeEvent } from "react";
+import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
+import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 
 
 function Login (): JSX.Element {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
+	const auth = useAuth();
+	const user = auth.user;
 
 	function handleEmail (event: ChangeEvent<HTMLInputElement>): void {
 		setEmail(event.currentTarget.value);
@@ -16,11 +20,17 @@ function Login (): JSX.Element {
 		setPassword(event.currentTarget.value);
 	}
 
+	function login () {
+		console.log(auth);
+		auth.signin(email, password);
+	}
+
 	return (
 		<div style={styles.login}>
 			<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email" name="email"/>
 			<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
-			<Button>Submit</Button>
+			<Button onClick={login}>Login</Button>
+			{user && <Redirect to="loginsuccess" />}
 		</div>
 	);
 }
