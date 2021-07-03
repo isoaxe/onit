@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
-import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
+import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { useAuth } from "./../util/useAuth";
 import { validateLogin } from "./../util/validation";
 import { StyleSheet } from "./../util/types";
@@ -55,14 +55,15 @@ const styles: StyleSheet = {
 	}
 };
 
-const Button = styled.div`
+const Button = styled.button`
 	background-color: ${secondaryMain};
 	box-shadow: ${buttonShadow};
+	border: 0px;
 	border-radius: 4px;
-	text-align: center;
+	color: ${textMain};
 	font-size: 14px;
-	padding: 10px;
-	margin: 20px 80px;
+	padding: 10px 20px;
+	margin: 20px 90px;
 	&:hover {
 		background-color: ${secondaryLight};
 		cursor: pointer;
