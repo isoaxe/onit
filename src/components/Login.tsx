@@ -22,6 +22,7 @@ function Login (): JSX.Element {
 	}
 
 	function login (event: SyntheticEvent<HTMLFormElement>): void | boolean {
+		event.preventDefault();
 		const form = event.currentTarget;
 		const loginValidated = validateLogin(email, password, form);
 		if (!loginValidated) { return false; }
@@ -33,7 +34,7 @@ function Login (): JSX.Element {
 			<form onSubmit={login} style={styles.login}>
 				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email" name="email"/>
 				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
-				<Button>Login</Button>
+				<Button type="submit">Login</Button>
 			</form>
 			{user && <Redirect to="loginsuccess" />}
 		</div>
