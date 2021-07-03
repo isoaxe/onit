@@ -33,7 +33,7 @@ export function validateSharedSignup (phone: string, email: string, password: st
 	if (password.length < 8) {
 		form[5+n].style.outline = inputError;
 		form[5+n].value = "";
-		form[5+n].placeholder = "Needs to be > 8 chars";
+		form[5+n].placeholder = "Needs to be > 7 characters";
 	} else {
 		form[5+n].style.outline = 0;
 	}
@@ -124,7 +124,7 @@ export function validateLogin (email: string, password: string, form): boolean {
 	if (password.length < 8) {
 		form[1].style.outline = inputError;
 		form[1].value = "";
-		form[1].placeholder = "Needs to be > 8 chars";
+		form[1].placeholder = "Needs to be > 7 characters";
 	} else {
 		form[1].style.outline = 0;
 	}
