@@ -21,12 +21,23 @@ function Login (): JSX.Element {
 		setPassword(event.currentTarget.value);
 	}
 
-	function login (event: SyntheticEvent<HTMLFormElement>): void | boolean {
+	async function login (event: SyntheticEvent<HTMLFormElement>): Promise<void | boolean> {
 		event.preventDefault();
 		const form = event.currentTarget;
 		const loginValidated = validateLogin(email, password, form);
 		if (!loginValidated) { return false; }
-		auth.signin(email, password);
+
+		try {
+			await auth.signin(email, password);
+		} catch (err) {
+			console.log(err);
+			if (err.code === "auth/user-not-found") {
+				console.log("User not found");
+			}
+			if (err.code === "auth/wrong-password") {
+				console.log("Wrong password");
+			}
+		}
 	}
 
 	return (
