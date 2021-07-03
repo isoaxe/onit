@@ -38,7 +38,7 @@ export function validateSharedSignup (phone: string, email: string, password: st
 		form[5+n].style.outline = 0;
 	}
 
-	// If all fields pass, then return true so message can be sent.
+	// If all fields pass, then return true.
 	return (validator.isMobilePhone(phone) && validator.isEmail(email) && password.length > 7);
 }
 
@@ -110,6 +110,27 @@ export function validateUserSignup (firstName: string, lastName: string, busines
 
 	// If all fields pass, then return true.
 	return (firstName && lastName && businessId.length === 6);
+}
+
+export function validateLogin (email: string, password: string, form): boolean {
+	if (!validator.isEmail(email)) {
+		form[0].style.outline = inputError;
+		form[0].value = "";
+		form[0].placeholder = "Please enter a valid email";
+	} else {
+		form[0].style.outline = 0;
+	}
+
+	if (password.length < 8) {
+		form[1].style.outline = inputError;
+		form[1].value = "";
+		form[1].placeholder = "Needs to be > 8 chars";
+	} else {
+		form[1].style.outline = 0;
+	}
+
+	// If all fields pass, then return true.
+	return (validator.isEmail(email) && password.length > 7);
 }
 
 export function phoneTaken (form, n=0) {
