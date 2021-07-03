@@ -19,7 +19,7 @@ function RestrictedRoute ({ children, ...rest }) {
 							pathname: "/",
 							state: { from: location }
 						}}
-						{... alert("You must create an account before signing in")}
+						{... alert("You have been logged out.")}
 					/>
 				)
 			}
