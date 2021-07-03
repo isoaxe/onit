@@ -3,7 +3,7 @@ import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 import { useAuth } from "./../util/useAuth";
-import { validateLogin } from "./../util/validation";
+import { validateLogin, emailNotFound, incorrectPassword } from "./../util/validation";
 import { StyleSheet } from "./../util/types";
 
 
@@ -32,10 +32,10 @@ function Login (): JSX.Element {
 		} catch (err) {
 			console.log(err);
 			if (err.code === "auth/user-not-found") {
-				console.log("User not found");
+				emailNotFound(form);
 			}
 			if (err.code === "auth/wrong-password") {
-				console.log("Wrong password");
+				incorrectPassword(form);
 			}
 		}
 	}
