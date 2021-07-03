@@ -1,8 +1,9 @@
-import { useState, ChangeEvent } from "react";
+import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
 import { useAuth } from "./../util/useAuth";
+import { validateLogin } from "./../util/validation";
 import { StyleSheet } from "./../util/types";
 
 
@@ -20,16 +21,20 @@ function Login (): JSX.Element {
 		setPassword(event.currentTarget.value);
 	}
 
-	function login () {
-		console.log(auth);
+	function login (event: SyntheticEvent<HTMLFormElement>): void | boolean {
+		const form = event.currentTarget;
+		const loginValidated = validateLogin(email, password, form);
+		if (!loginValidated) { return false; }
 		auth.signin(email, password);
 	}
 
 	return (
-		<div style={styles.login}>
-			<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email" name="email"/>
-			<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
-			<Button onClick={login}>Login</Button>
+		<div>
+			<form onSubmit={login} style={styles.login}>
+				<input value={email} onChange={handleEmail} style={styles.inputField} type="text" placeholder="Email" name="email"/>
+				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
+				<Button>Login</Button>
+			</form>
 			{user && <Redirect to="loginsuccess" />}
 		</div>
 	);
