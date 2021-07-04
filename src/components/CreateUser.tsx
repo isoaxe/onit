@@ -97,6 +97,7 @@ const styles: StyleSheet = {
 		backgroundColor: primaryLight,
 		border: `2px solid ${secondaryMain}`,
 		borderRadius: "10px",
+		width: "250px",
 		paddingBottom: "25px",
 		marginBottom: "30px",
 		fontSize: "20px",
