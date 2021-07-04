@@ -1,10 +1,11 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
-import firebase from "firebase/app";
 import styled from "styled-components";
 import { primaryLight, secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { postFormDataAsJson, validateSharedSignup, validateUserSignup, phoneTaken, emailTaken, idNotFound } from "./../util/helpers";
+import { postFormDataAsJson } from "./../util/helpers";
+import { validateSharedSignup, validateUserSignup, phoneTaken, emailTaken, idNotFound } from "./../util/validation";
 import PhoneNumber from "./PhoneNumber";
+import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 
@@ -16,7 +17,9 @@ function CreateUser (): JSX.Element {
 	const [email, setEmail] = useState("");
 	const [password, setPassword] = useState("");
 	const [businessId, setBusinessId] = useState("");
-	const [user, setUser] = useState<firebase.User | null>(null);
+	const auth = useAuth();
+	const user = auth.user;
+
 
 	function handleFirstName (event: ChangeEvent<HTMLInputElement>): void {
 		setFirstName(event.currentTarget.value);
@@ -53,11 +56,7 @@ function CreateUser (): JSX.Element {
 			const formData = new FormData(form);
 			const response = await postFormDataAsJson({ url, formData });
 			console.log({ response });
-
-			firebase.auth().signInWithEmailAndPassword(email, password)
-				.then((userCredential) => {
-					setUser(userCredential.user);
-				});
+			auth.signin(email, password);
 		} catch (err) {
 			console.log(err);
 			if (err.message.indexOf("phone number already exists") !== -1) {
@@ -98,6 +97,7 @@ const styles: StyleSheet = {
 		backgroundColor: primaryLight,
 		border: `2px solid ${secondaryMain}`,
 		borderRadius: "10px",
+		width: "250px",
 		paddingBottom: "25px",
 		marginBottom: "30px",
 		fontSize: "20px",

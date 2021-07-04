@@ -1,5 +1,5 @@
 import { useState } from "react";
-import AuthUI from "./../components/AuthUI";
+import Login from "./../components/Login";
 import SignUpButton from "./../components/SignUpButton";
 import CreateUser from "./../components/CreateUser";
 import CreateBusiness from "./../components/CreateBusiness";
@@ -7,7 +7,7 @@ import { primaryMain, primaryLight, secondaryMain, textMain } from "./../util/co
 import { StyleSheet } from "./../util/types";
 
 
-function Login (): JSX.Element {
+function LoginSignup (): JSX.Element {
 	const [userFormActive, setUserFormActive] = useState(false);
 	const [businessFormActive, setBusinessFormActive] = useState(false);
 
@@ -23,10 +23,9 @@ function Login (): JSX.Element {
 
 	return (
 		<div style={styles.root}>
-			<AuthUI />
 			<header style={styles.loginHeader}>
 				<p style={styles.title}>Login</p>
-				<div id="firebaseui-auth-container" style={styles.auth}></div>
+				<Login />
 				<p style={styles.title}>Sign Up</p>
 				<SignUpButton label="Create User Account" onClick={userForm} />
 				<SignUpButton label="Create Business Account" onClick={businessForm} />
@@ -53,6 +52,7 @@ const styles: StyleSheet = {
 		justifyContent: "center",
 		backgroundColor: primaryLight,
 		border: `2px solid ${secondaryMain}`,
+		width: "250px",
 		borderRadius: "10px",
 		paddingBottom: "25px",
 		marginBottom: "30px",
@@ -62,13 +62,8 @@ const styles: StyleSheet = {
 	},
 	title: {
 		fontFamily: "Lato-Black"
-	},
-	auth: {
-		marginTop: "-15px",
-		paddingBottom: "10px",
-		borderBottom: `3px solid ${secondaryMain}`
 	}
 };
 
 
-export default Login;
+export default LoginSignup;

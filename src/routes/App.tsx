@@ -1,8 +1,9 @@
 import { Route, Switch } from "react-router-dom";
 
 import { ProvideAuth } from "./../util/useAuth";
+import RestrictedRoute from "./../routes/RestrictedRoute";
 import LoginSuccess from "./../pages/LoginSuccess";
-import Login from "./../pages/Login";
+import LoginSignup from "./../pages/LoginSignup";
 
 
 function App (): JSX.Element {
@@ -10,11 +11,11 @@ function App (): JSX.Element {
 		<div>
 			<ProvideAuth>
 				<Switch>
-					<Route path="/loginsuccess">
+					<RestrictedRoute path="/loginsuccess">
 						<LoginSuccess />
-					</Route>
+					</RestrictedRoute>
 					<Route path="/">
-						<Login />
+						<LoginSignup />
 					</Route>
 				</Switch>
 			</ProvideAuth>

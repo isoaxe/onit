@@ -2,11 +2,17 @@ import styled, { keyframes } from "styled-components";
 import GetUsersButton from "./../components/GetUsersButton";
 import SetRoleButton from "./../components/SetRoleButton";
 import { primaryMain, textMain } from "./../util/colours";
+import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import logo from "./../logo.svg";
 
 
 function LoginSuccess (): JSX.Element {
+	const auth = useAuth();
+
+	function logout () {
+		auth.signout();
+	}
 
 	return (
 		<div style={styles.root}>
@@ -17,6 +23,7 @@ function LoginSuccess (): JSX.Element {
 				</p>
 				<GetUsersButton />
 				<SetRoleButton />
+				<button style={styles.logoutButton} onClick={logout}>Logout</button>
 			</header>
 		</div>
 	);
@@ -40,6 +47,9 @@ const styles: StyleSheet = {
 		height: "40vmin",
 		pointerEvents: "none",
 		animation: "rotate infinite 20s linear"
+	},
+	logoutButton: {
+		marginTop: "15px"
 	}
 };
 
