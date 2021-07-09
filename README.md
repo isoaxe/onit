@@ -1,70 +1,56 @@
-# Getting Started with Create React App
+# Onit
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Onit is a progressive web application (PWA) that allows the owners of condominiums or apartment complexes to manage tasks for their residents. A common business model is for owners of a block to be responsible for the upkeep and repair, in addition to the provision of other tasks the resident might request. Onit allows the owner to aggregate and manage all tasks on a single platform. They can then be scheduled and assigned to members of staff in an organised and co-ordinated manner.
 
-## Available Scripts
 
-In the project directory, you can run:
+## Technology
 
-### `npm start`
+This PWA was bootstrapped using the Create React App template. It was written primarily in TypeScript, thus ensuring type-safety.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+All backend functions were handled via Firebase. This includes authentication, Firestore (as the NoSQL database) and functions (which handle backend functionality via a serverless architecture). Hosting is also managed by Firebase.
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Within Firebase functions, a role-based API was built using `Express.js`. This restricts user access to various app functions based on the role that they have been assigned.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Initial Setup
 
-### `npm run build`
+Since the whole project lies behind a login screen, even testing requires the setting up of a [Firebase project](https://firebase.google.com/) (hosting, functions and Firestore database), which is not covered here. Do this first.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+Then fork the project from this GitHub repo and run the following shell commands.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+### `npm install -g firebase-tools`
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+After setting up the Firebase project, install the Firebase CLI.
 
-### `npm run eject`
+### `firebase login`
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+You will also need to [login](https://firebase.google.com/docs/cli#sign-in-test-cli) and link this project to the remote, which will be your Google account.
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Project Setup
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+In the **onit directory**, run the following commands:
 
-## Learn More
+### `npm install`
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Install all of the Node dependencies for React and other third party packages used in the frontend.
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### `npm run get-keys` (local only)
 
-### Code Splitting
+First follow the steps in the Firebase [documentation](https://firebase.google.com/docs/functions/local-emulator#set_up_admin_credentials_optional) to download the private keys from the Service Accounts pane of the Google Cloud console. Then change the [get-keys](https://github.com/Isoaxe/onit/blob/master/package.json#L39) script to reflect the local path where the keys are stored and the correct filename of the keys at that location. Finally, run the script.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+### `cd functions`
 
-### Analyzing the Bundle Size
+Navigate to the functions folder in a new shell tab to complete configuration of Firebase functions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+### `npm install`
 
-### Making a Progressive Web App
+Install all of the Node dependencies for Express and other third party packages used by Firebase functions.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+### `cd .. && npm run dev` (local only)
 
-### Advanced Configuration
+Move up to the main directory again and run the `dev` script. This starts the app in development mode. It utilises the `concurrently` package to run three different scripts at the same time. These are the `npm start` command, `npm run watch` from the functions directory which runs the `build` command in watch mode and finally `npm run build` from root. This allows the constant transpiling of TypeScript code to JavaScript as changes are made to the project.
 
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+### `npm run deploy-all` (hosted only)
 
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+Deploy Firebase hosting, Firebase functions and Firestore rules from the root directory. In future, these can be deployed separately as required. Run `npm deploy-rules` from this main directory for Firestore rules, `npm deploy` to deploy hosting or the same script from the `functions` directory to deploy functions. If the `dev` script has not been run before, then run `npm run build-all` prior to deployment.
