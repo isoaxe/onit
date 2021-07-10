@@ -7,30 +7,40 @@ function Homepage (): JSX.Element {
 
 	return (
 		<div style={styles.root}>
-			<header style={styles.header}>
-				<LogoutButton />
-			</header>
+			<div style={styles.wrapper}>
+				<header style={styles.header}>
+					<LogoutButton />
+				</header>
+			</div>
 		</div>
 	);
 }
 
 const styles: StyleSheet = {
 	root: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "center",
+		justifyContent: "flex-start",
 		textAlign: "center",
 		backgroundColor: primaryMain,
 		minHeight: "calc(100vh - 20px)",
+		padding: "10px",
+		color: textMain
+	},
+	wrapper: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-end",
 		justifyContent: "flex-start",
-		padding: "10px",
-		color: textMain
+		width: "1200px",
+		border: "2px cyan solid"
 	},
 	header: {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "center"
 	}
 };
 
