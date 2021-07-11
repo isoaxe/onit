@@ -1,6 +1,7 @@
 import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
+import MenuItem from "./../components/MenuItem";
 import { StyleSheet } from "./../util/types";
 
 
@@ -13,6 +14,9 @@ function Homepage (): JSX.Element {
 					<HeaderText />
 					<LogoutButton />
 				</header>
+				<section style={styles.section}>
+					<MenuItem />
+				</section>
 			</div>
 		</div>
 	);
@@ -33,7 +37,7 @@ const styles: StyleSheet = {
 	wrapper: {
 		display: "flex",
 		flexDirection: "column",
-		alignItems: "center",
+		alignItems: "flex-start",
 		justifyContent: "flex-start",
 		width: "1200px",
 		minHeight: "inherit",
@@ -47,6 +51,12 @@ const styles: StyleSheet = {
 		alignItems: "center",
 		justifyContent: "space-between",
 		width: "100%"
+	},
+	section: {
+		display: "flex",
+		flexDirection: "column",
+		alignItems: "flex-start",
+		justifyContent: "flex-start"
 	}
 };
 
