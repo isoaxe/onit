@@ -12,8 +12,9 @@ function HeaderText (): JSX.Element {
 }
 
 const Text = styled.div`
-	font-size: 14px;
+	font-size: 16px;
 	color: ${textMain};
+	margin-top: -18px;
 `;
 
 
