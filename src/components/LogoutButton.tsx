@@ -24,7 +24,6 @@ const Button = styled.div`
 	text-align: center;
 	font-size: 14px;
 	padding: 10px;
-	margin-bottom: 12px;
 	&:hover {
 		background-color: ${tertiaryLight};
 		cursor: pointer;
