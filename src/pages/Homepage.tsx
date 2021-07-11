@@ -24,7 +24,7 @@ const styles: StyleSheet = {
 		justifyContent: "center",
 		textAlign: "center",
 		backgroundColor: primaryMain,
-		minHeight: "calc(100vh - 24px)",
+		minHeight: "calc(100vh - 44px)",
 		padding: "10px",
 		color: textMain
 	},
@@ -35,6 +35,7 @@ const styles: StyleSheet = {
 		justifyContent: "flex-start",
 		width: "1200px",
 		minHeight: "inherit",
+		padding: "10px",
 		border: "2px cyan solid"
 	},
 	header: {
