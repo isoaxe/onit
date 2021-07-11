@@ -21,7 +21,7 @@ const styles: StyleSheet = {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "center",
-		justifyContent: "flex-start",
+		justifyContent: "center",
 		textAlign: "center",
 		backgroundColor: primaryMain,
 		minHeight: "calc(100vh - 24px)",
@@ -31,7 +31,7 @@ const styles: StyleSheet = {
 	wrapper: {
 		display: "flex",
 		flexDirection: "column",
-		alignItems: "flex-end",
+		alignItems: "center",
 		justifyContent: "flex-start",
 		width: "1200px",
 		minHeight: "inherit",
@@ -41,7 +41,7 @@ const styles: StyleSheet = {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "center",
+		justifyContent: "flex-end",
 		width: "100%"
 	}
 };
