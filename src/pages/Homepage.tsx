@@ -1,4 +1,4 @@
-import { primaryMain, textMain } from "./../util/colours";
+import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import { StyleSheet } from "./../util/types";
 
@@ -36,7 +36,8 @@ const styles: StyleSheet = {
 		width: "1200px",
 		minHeight: "inherit",
 		padding: "10px",
-		border: "2px cyan solid"
+		border: `2px ${secondaryMain} solid`,
+		borderRadius: "10px"
 	},
 	header: {
 		display: "flex",
