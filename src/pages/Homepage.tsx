@@ -45,7 +45,7 @@ const styles: StyleSheet = {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
-		justifyContent: "flex-end",
+		justifyContent: "space-between",
 		width: "100%"
 	}
 };
