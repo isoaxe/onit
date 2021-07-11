@@ -1,5 +1,6 @@
 import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
+import HeaderText from "./../components/HeaderText";
 import { StyleSheet } from "./../util/types";
 
 
@@ -9,6 +10,7 @@ function Homepage (): JSX.Element {
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
 				<header style={styles.header}>
+					<HeaderText />
 					<LogoutButton />
 				</header>
 			</div>
