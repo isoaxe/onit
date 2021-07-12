@@ -92,7 +92,7 @@ function CreateBusiness (): JSX.Element {
 				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<Button type="submit">Submit</Button>
 			</form>
-			{user && <Redirect to="loginsuccess" />}
+			{user && <Redirect to="home" />}
 		</div>
 	);
 }

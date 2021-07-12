@@ -83,7 +83,7 @@ function CreateUser (): JSX.Element {
 				<input value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
 				<Button type="submit">Submit</Button>
 			</form>
-			{user && <Redirect to="loginsuccess" />}
+			{user && <Redirect to="home" />}
 		</div>
 	);
 }
