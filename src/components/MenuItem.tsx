@@ -18,8 +18,9 @@ const Item = styled.div`
 	border-radius: 4px;
 	text-align: left;
 	font-size: 14px;
+	font-weight: bold;
 	color: ${textMain};
-	width: 70px;
+	width: 60px;
 	padding: 10px;
 	margin-bottom: 10px;
 	&:hover {
