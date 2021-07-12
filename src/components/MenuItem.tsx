@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
-import { SignUpButtonProps } from "./../util/types";
+import { GenericButtonProps } from "./../util/types";
 
 
-function MenuItem (props: SignUpButtonProps): JSX.Element {
+function MenuItem (props: GenericButtonProps): JSX.Element {
 
 	return (
 		<Item onClick={props.onClick}>

@@ -10,7 +10,7 @@ export interface StyleSheet {
 }
 
 // Prop shape for the SignUpButton component.
-export interface SignUpButtonProps {
+export interface GenericButtonProps {
   label: string;
   onClick: ((event: MouseEvent) => void) | undefined;
 }

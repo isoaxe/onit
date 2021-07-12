@@ -1,9 +1,9 @@
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
-import { SignUpButtonProps } from "./../util/types";
+import { GenericButtonProps } from "./../util/types";
 
 
-function SignUpButton (props: SignUpButtonProps): JSX.Element {
+function SignUpButton (props: GenericButtonProps): JSX.Element {
 	return (
 		<Button onClick={props.onClick}>
 			{props.label}
