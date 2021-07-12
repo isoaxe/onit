@@ -6,6 +6,10 @@ import { StyleSheet } from "./../util/types";
 
 
 function Homepage (): JSX.Element {
+	
+	function people () {
+		return true;
+	}
 
 	return (
 		<div style={styles.root}>
@@ -15,7 +19,7 @@ function Homepage (): JSX.Element {
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
-					<MenuItem />
+					<MenuItem label="People" onClick={people} />
 				</section>
 			</div>
 		</div>
