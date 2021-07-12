@@ -1,12 +1,14 @@
 import styled from "styled-components";
+import { useAuth } from "./../util/useAuth";
 import { textMain } from "./../util/colours";
 
 
 function HeaderText (): JSX.Element {
+	const auth = useAuth();
 
 	return (
 		<Text>
-			Welcome, Generic User! | Access level: user | Business name here
+			Welcome, {auth.user.displayName} | Access level: user | Business name here
 		</Text>
 	);
 }
