@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { secondaryMain, secondaryLight, buttonShadow } from "./../util/colours";
+import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
 
 
 function MenuItem (): JSX.Element {
@@ -17,6 +17,7 @@ const Item = styled.div`
 	border-radius: 4px;
 	text-align: left;
 	font-size: 14px;
+	color: ${textMain};
 	width: 70px;
 	padding: 10px;
 	margin-bottom: 10px;
