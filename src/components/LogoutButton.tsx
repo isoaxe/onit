@@ -23,6 +23,7 @@ const Button = styled.div`
 	border-radius: 4px;
 	text-align: center;
 	font-size: 14px;
+	font-weight: bold;
 	padding: 10px;
 	&:hover {
 		background-color: ${tertiaryLight};
