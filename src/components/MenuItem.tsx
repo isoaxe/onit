@@ -1,12 +1,13 @@
 import styled from "styled-components";
 import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
+import { SignUpButtonProps } from "./../util/types";
 
 
-function MenuItem (): JSX.Element {
+function MenuItem (props: SignUpButtonProps): JSX.Element {
 
 	return (
-		<Item>
-			Placeholder
+		<Item onClick={props.onClick}>
+			{props.label}
 		</Item>
 	);
 }
