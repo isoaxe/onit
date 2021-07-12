@@ -6,8 +6,16 @@ import { StyleSheet } from "./../util/types";
 
 
 function Homepage (): JSX.Element {
-	
+
 	function people () {
+		return true;
+	}
+
+	function tasks () {
+		return true;
+	}
+
+	function calendar () {
 		return true;
 	}
 
@@ -20,6 +28,8 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.section}>
 					<MenuItem label="People" onClick={people} />
+					<MenuItem label="Tasks" onClick={tasks} />
+					<MenuItem label="Calendar" onClick={calendar} />
 				</section>
 			</div>
 		</div>
