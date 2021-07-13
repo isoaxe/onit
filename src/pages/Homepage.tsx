@@ -26,7 +26,7 @@ function Homepage (): JSX.Element {
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
 				<header style={styles.header}>
-					<HeaderText role={role} roleChange={setRole} />
+					<HeaderText role={role} setRole={setRole} />
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>

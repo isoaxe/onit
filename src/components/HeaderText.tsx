@@ -15,7 +15,7 @@ function HeaderText (props): JSX.Element {
 		};
 		fetch(`${API_URL}/role/${user.uid}`, requestOptions)
 			.then(res => res.json())
-			.then(userRole => props.roleChange(userRole.role));
+			.then(userRole => props.setRole(userRole.role));
 	}).catch(function (error) {
 		console.log(`An error occured whilst fetching user role: ${error}`);
 	});
