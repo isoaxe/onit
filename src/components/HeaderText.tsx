@@ -1,12 +1,10 @@
-import { useState } from "react";
 import styled from "styled-components";
 import { useAuth } from "./../util/useAuth";
 import { textMain } from "./../util/colours";
 import { API_URL } from "./../util/urls";
 
 
-function HeaderText (): JSX.Element {
-	const [role, setRole] = useState(null);
+function HeaderText (props): JSX.Element {
 	const auth = useAuth();
 	const user = auth.user;
 
@@ -17,14 +15,14 @@ function HeaderText (): JSX.Element {
 		};
 		fetch(`${API_URL}/role/${user.uid}`, requestOptions)
 			.then(res => res.json())
-			.then(userRole => setRole(userRole.role));
+			.then(userRole => props.roleChange(userRole.role));
 	}).catch(function (error) {
 		console.log(`An error occured whilst fetching user role: ${error}`);
 	});
 
 	return (
 		<Text>
-			Welcome, {user.displayName} | Access level: {role} | Business name here
+			Welcome, {user.displayName} | Access level: {props.role} | Business name here
 		</Text>
 	);
 }
