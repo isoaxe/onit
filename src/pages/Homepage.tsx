@@ -1,3 +1,4 @@
+import { useState } from "react";
 import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
@@ -6,6 +7,8 @@ import { StyleSheet } from "./../util/types";
 
 
 function Homepage (): JSX.Element {
+	const [role, setRole] = useState(null);
+
 
 	function people () {
 		return true;
@@ -23,7 +26,7 @@ function Homepage (): JSX.Element {
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
 				<header style={styles.header}>
-					<HeaderText />
+					<HeaderText role={role} roleChange={setRole} />
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
