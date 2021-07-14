@@ -28,16 +28,17 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // GET assigned role for user.
-export function getRole (user) {
-	user.getIdToken(true).then(function (token) {
+export async function getRole (user) {
+	try {
+		const token = await user.getIdToken(true);
 		const requestOptions = {
 			method: "GET",
 			headers: { authorization: `Bearer ${token}` }
 		};
-		fetch(`${API_URL}/role/${user.uid}`, requestOptions)
-			.then(res => res.json())
-			.then(userRole => { return userRole.role; });
-	}).catch(function (error) {
+		const response = await fetch(`${API_URL}/role/${user.uid}`, requestOptions);
+		const jsonResponse = await response.json();
+		return jsonResponse.role;
+	} catch (error) {
 		console.log(`An error occured whilst fetching user role: ${error}`);
-	});
+	}
 }
