@@ -44,7 +44,7 @@ function Homepage (): JSX.Element {
 				<header style={styles.header}>
 					<HeaderText text={headerName} />
 					<HeaderText text={headerRole} />
-					<HeaderText text={headerBusiness} />
+					{role !== "company" && <HeaderText text={headerBusiness} />}
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
