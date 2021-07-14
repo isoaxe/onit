@@ -13,6 +13,9 @@ function Homepage (): JSX.Element {
 
 	const auth = useAuth();
 	const user = auth.user;
+	const headerName = `Welcome, ${user.displayName}`;
+	const headerRole = `Access level: ${role}`;
+	const headerBusiness = "Business name here";
 
 	async function fetchRole () {
 		const userRole = await getRole(user);
@@ -39,7 +42,9 @@ function Homepage (): JSX.Element {
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
 				<header style={styles.header}>
-					<HeaderText role={role} name={user.displayName} />
+					<HeaderText text={headerName} />
+					<HeaderText text={headerRole} />
+					<HeaderText text={headerBusiness} />
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
