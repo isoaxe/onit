@@ -2,7 +2,7 @@ import styled from "styled-components";
 import { textMain } from "./../util/colours";
 
 
-function HeaderText (props): JSX.Element {
+function HeaderText (props: {text: string}): JSX.Element {
 
 	return (
 		<Text>
