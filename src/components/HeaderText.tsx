@@ -6,7 +6,7 @@ function HeaderText (props): JSX.Element {
 
 	return (
 		<Text>
-			Welcome, {props.name} | Access level: {props.role} | Business name here
+			{props.text}
 		</Text>
 	);
 }
