@@ -1,14 +1,18 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
+import { useAuth } from "./../util/useAuth";
+import { getRole } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
 
 
 function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
 
+	const auth = useAuth();
+	const user = auth.user;
 
 	function people () {
 		return true;
@@ -22,11 +26,15 @@ function Homepage (): JSX.Element {
 		return true;
 	}
 
+	useEffect(() => {
+		setRole(getRole(user));
+	}, [user]);
+
 	return (
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
 				<header style={styles.header}>
-					<HeaderText role={role} setRole={setRole} />
+					<HeaderText role={role} name={user.displayName} />
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
