@@ -14,6 +14,11 @@ function Homepage (): JSX.Element {
 	const auth = useAuth();
 	const user = auth.user;
 
+	async function fetchRole () {
+		const userRole = await getRole(user);
+		setRole(userRole);
+	}
+
 	function people () {
 		return true;
 	}
@@ -27,8 +32,8 @@ function Homepage (): JSX.Element {
 	}
 
 	useEffect(() => {
-		setRole(getRole(user));
-	}, [user]);
+		fetchRole();
+	});
 
 	return (
 		<div style={styles.root}>
