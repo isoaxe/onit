@@ -1,6 +1,7 @@
 /*
  * Various helper functions used throughout the project.
  */
+import firebase from "firebase/app";
 import { API_URL } from "./../util/urls";
 
 
@@ -28,7 +29,7 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // GET assigned role for user.
-export async function getRole (user) {
+export async function getRole (user: firebase.User) {
 	try {
 		const token = await user.getIdToken(true);
 		const requestOptions = {
