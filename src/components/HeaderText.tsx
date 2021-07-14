@@ -14,7 +14,7 @@ function HeaderText (props): JSX.Element {
 const Text = styled.div`
 	font-size: 16px;
 	color: ${textMain};
-	margin-top: -18px;
+	margin-top: -10px;
 `;
 
 
