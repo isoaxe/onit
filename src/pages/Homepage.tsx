@@ -4,12 +4,13 @@ import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import { useAuth } from "./../util/useAuth";
-import { getRole } from "./../util/helpers";
+import { getRole, getBusinessName } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
 
 
 function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
+	const [businessName, setBusinessName] = useState(null);
 
 	const auth = useAuth();
 	const user = auth.user;
@@ -20,6 +21,11 @@ function Homepage (): JSX.Element {
 	async function fetchRole () {
 		const userRole = await getRole(user);
 		setRole(userRole);
+	}
+
+	async function fetchBusinessName () {
+		const name = await getBusinessName(user);
+		setBusinessName(name);
 	}
 
 	function people () {
