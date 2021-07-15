@@ -43,3 +43,20 @@ export async function getRole (user: firebase.User) {
 		console.log(`An error occured whilst fetching user role: ${error}`);
 	}
 }
+
+
+// Get business name associated with user.
+export async function getBusinessName (user: firebase.User) {
+	try {
+		const token = await user.getIdToken(true);
+		const requestOptions = {
+			method: "GET",
+			headers: { authorization: `Bearer ${token}` }
+		};
+		const response = await fetch(`${API_URL}/businessname/${user.uid}`, requestOptions);
+		const jsonResponse = await response.json();
+		return jsonResponse;
+	} catch (error) {
+		console.log(`An error occured whilst fetching business name: ${error}`);
+	}
+}
