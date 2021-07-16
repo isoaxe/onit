@@ -10,21 +10,24 @@ import { StyleSheet } from "./../util/types";
 
 function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
+	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 
 	const auth = useAuth();
 	const user = auth.user;
 	const headerName = `Welcome, ${user.displayName}`;
 	const headerRole = `Access level: ${role}`;
-	const headerBusiness = "Business name here";
+	const headerBusiness = `Business name here: ${businessName}`;
 
 	async function fetchClaims () {
 		const claims = await getClaims(user);
 		setRole(claims.role);
+		setBusinessId(claims.businessId);
 	}
 
 	async function fetchBusinessData () {
-		const data = await getBusinessData(user);
+		const data = await getBusinessData(user, businessId);
+		setBusinessName(data.address1);
 	}
 
 	function people () {
@@ -41,6 +44,7 @@ function Homepage (): JSX.Element {
 
 	useEffect(() => {
 		fetchClaims();
+		fetchBusinessData();
 	});
 
 	return (
