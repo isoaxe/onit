@@ -8,7 +8,7 @@ import { routesConfig } from "./users/routesConfig";
 import loginSuccessRoute from "./loginSuccess/loginSuccess";
 import businessRoute from "./business/businessRoute";
 import userRoute from "./user/userRoute";
-import roleRoute from "./role/roleRoute";
+import claimsRoute from "./claims/claimsRoute";
 import businessNameRoute from "./businessName/businessNameRoute";
 
 
@@ -28,8 +28,8 @@ app.use(loginSuccessRoute);
 app.use(businessRoute);
 // Set handler for individual user accounts.
 app.use(userRoute);
-// Set handler for user role setting and fetching.
-app.use(roleRoute);
+// Set handler for setting and fetching custom claims.
+app.use(claimsRoute);
 // Set handler for fetching business name.
 app.use(businessNameRoute);
 
