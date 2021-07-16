@@ -4,7 +4,7 @@ import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import { useAuth } from "./../util/useAuth";
-import { getRole, getBusinessName } from "./../util/helpers";
+import { getClaims, getBusinessName } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
 
 
@@ -18,9 +18,9 @@ function Homepage (): JSX.Element {
 	const headerRole = `Access level: ${role}`;
 	const headerBusiness = "Business name here";
 
-	async function fetchRole () {
-		const userRole = await getRole(user);
-		setRole(userRole);
+	async function fetchClaims () {
+		const claims = await getClaims(user);
+		setRole(claims.role);
 	}
 
 	async function fetchBusinessName () {
@@ -41,7 +41,7 @@ function Homepage (): JSX.Element {
 	}
 
 	useEffect(() => {
-		fetchRole();
+		fetchClaims();
 	});
 
 	return (
