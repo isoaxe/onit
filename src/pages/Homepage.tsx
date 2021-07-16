@@ -4,7 +4,7 @@ import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import { useAuth } from "./../util/useAuth";
-import { getClaims, getBusinessName } from "./../util/helpers";
+import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
 
 
@@ -23,9 +23,8 @@ function Homepage (): JSX.Element {
 		setRole(claims.role);
 	}
 
-	async function fetchBusinessName () {
-		const name = await getBusinessName(user);
-		setBusinessName(name);
+	async function fetchBusinessData () {
+		const data = await getBusinessData(user);
 	}
 
 	function people () {
