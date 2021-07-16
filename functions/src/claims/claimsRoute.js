@@ -4,8 +4,8 @@ import { Router } from "express";
 const router = Router();
 
 
-// GET request to find user role.
-router.get("/role/:id", (req, res) => {
+// GET request to find custom claims set for user.
+router.get("/claims/:id", (req, res) => {
 	const { id } = req.params;
 	admin.auth().getUser(id)
 		.then((userRecord) => {
