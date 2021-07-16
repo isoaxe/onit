@@ -49,10 +49,22 @@ router.post("/business", async (req: Request, res: Response) => {
 	}
 });
 
+
+// GET request to fetch business data from Firestore.
+router.get("/business/:businessId", async (req, res) => {
+	const { businessId } = req.params;
+	const db = admin.firestore();
+	const businessRef = db.collection("users").doc("businessId-890506").collection("company").doc("Chatrium Residence");
+	const businessData = await businessRef.get().then(doc => doc.data());
+	res.status(200).send(businessData);
+});
+
+
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
 }
+
 
 // Generate a 6-digit businessId integer and convert to string:
 function getBusinessId (): string {
@@ -65,5 +77,6 @@ function getBusinessId (): string {
 	}
 	return leadingZerosAsStr + idString;
 }
+
 
 export default router;
