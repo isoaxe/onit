@@ -46,14 +46,14 @@ export async function getClaims (user: firebase.User) {
 
 
 // Get business data from the Firestore.
-export async function getBusinessData (user: firebase.User) {
+export async function getBusinessData (user: firebase.User, businessId: string) {
 	try {
 		const token = await user.getIdToken(true);
 		const requestOptions = {
 			method: "GET",
 			headers: { authorization: `Bearer ${token}` }
 		};
-		const response = await fetch(`${API_URL}/business/${user.uid}`, requestOptions);
+		const response = await fetch(`${API_URL}/business/${businessId}`, requestOptions);
 		const jsonResponse = await response.json();
 		return jsonResponse;
 	} catch (error) {
