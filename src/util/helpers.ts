@@ -29,18 +29,18 @@ export async function postFormDataAsJson ({ url, formData }) {
 
 
 // GET assigned role for user.
-export async function getRole (user: firebase.User) {
+export async function getClaims (user: firebase.User) {
 	try {
 		const token = await user.getIdToken(true);
 		const requestOptions = {
 			method: "GET",
 			headers: { authorization: `Bearer ${token}` }
 		};
-		const response = await fetch(`${API_URL}/role/${user.uid}`, requestOptions);
+		const response = await fetch(`${API_URL}/claims/${user.uid}`, requestOptions);
 		const jsonResponse = await response.json();
-		return jsonResponse.role;
+		return jsonResponse;
 	} catch (error) {
-		console.log(`An error occured whilst fetching user role: ${error}`);
+		console.log(`An error occured whilst fetching claims: ${error}`);
 	}
 }
 
