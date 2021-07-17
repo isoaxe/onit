@@ -21,8 +21,10 @@ function Homepage (): JSX.Element {
 
 	async function fetchClaims () {
 		const claims = await getClaims(user);
-		setRole(claims.role);
-		setBusinessId(claims.businessId);
+		if (claims) {
+			setRole(claims.role);
+			setBusinessId(claims.businessId);
+		}
 	}
 
 	async function fetchBusinessData () {
