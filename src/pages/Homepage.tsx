@@ -27,7 +27,9 @@ function Homepage (): JSX.Element {
 
 	async function fetchBusinessData () {
 		const data = await getBusinessData(user, businessId);
-		setBusinessName(data.address1);
+		if (data) {
+			setBusinessName(data.address1);
+		}
 	}
 
 	function people () {
