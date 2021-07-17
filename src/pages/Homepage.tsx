@@ -45,7 +45,9 @@ function Homepage (): JSX.Element {
 	}
 
 	useEffect(() => {
-		fetchClaims();
+		if (user) {
+			fetchClaims();
+		}
 		if (user && businessId) {
 			fetchBusinessData();
 		}
