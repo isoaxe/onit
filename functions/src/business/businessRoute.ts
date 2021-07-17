@@ -55,8 +55,8 @@ router.get("/business/:businessId", async (req, res) => {
 	try {
 		const { businessId } = req.params;
 		const db = admin.firestore();
-		const businessRef = db.collection("users").doc(`businessId-${businessId}`).collection("company").doc("Chatrium Residence");
-		const businessData = await businessRef.get().then(doc => doc.data());
+		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("company").get();
+		const businessData = companyRef.docs[0].data();
 		res.status(200).send(businessData);
 	} catch (err) {
 		handleError(res, err);
