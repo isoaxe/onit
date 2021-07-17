@@ -6,7 +6,6 @@ import { useAuth } from "./../util/useAuth";
 // A wrapper for <Route> that redirects to the login screen if you're not yet authenticated.
 function RestrictedRoute ({ children, ...rest }) {
 	let auth = useAuth();
-	console.log("User:", auth.user);
 	return (
 		<Route
 			{...rest}
