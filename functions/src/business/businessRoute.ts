@@ -52,11 +52,15 @@ router.post("/business", async (req: Request, res: Response) => {
 
 // GET request to fetch business data from Firestore.
 router.get("/business/:businessId", async (req, res) => {
-	const { businessId } = req.params;
-	const db = admin.firestore();
-	const businessRef = db.collection("users").doc(`businessId-${businessId}`).collection("company").doc("Chatrium Residence");
-	const businessData = await businessRef.get().then(doc => doc.data());
-	res.status(200).send(businessData);
+	try {
+		const { businessId } = req.params;
+		const db = admin.firestore();
+		const businessRef = db.collection("users").doc(`businessId-${businessId}`).collection("company").doc("Chatrium Residence");
+		const businessData = await businessRef.get().then(doc => doc.data());
+		res.status(200).send(businessData);
+	} catch (err) {
+		handleError(res, err);
+	}
 });
 
 
