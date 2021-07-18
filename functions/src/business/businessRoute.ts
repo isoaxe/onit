@@ -34,6 +34,7 @@ router.post("/business", async (req: Request, res: Response) => {
 		const user = db.collection("users").doc(`businessId-${businessId}`)
 			.collection("company").doc(displayName);
 		user.set({
+			displayName,
 			uid,
 			role,
 			address1,
