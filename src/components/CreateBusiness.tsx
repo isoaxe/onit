@@ -64,8 +64,7 @@ function CreateBusiness (): JSX.Element {
 
 		try {
 			const formData = new FormData(form);
-			const response = await postFormDataAsJson({ url, formData });
-			console.log(response);
+			await postFormDataAsJson({ url, formData });
 			auth.signin(email, password);
 		} catch (err) {
 			console.log(err);
