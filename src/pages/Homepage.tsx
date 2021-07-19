@@ -18,6 +18,7 @@ function Homepage (): JSX.Element {
 	const headerName = `Welcome, ${user.displayName}`;
 	const headerRole = `Access level: ${role}`;
 	const headerBusiness = `Business name here: ${businessName}`;
+	const headerBusinessId = `Business ID: ${businessId}`;
 
 	async function fetchClaims () {
 		const claims = await getClaims(user);
@@ -62,6 +63,7 @@ function Homepage (): JSX.Element {
 					<HeaderText text={headerName} />
 					<HeaderText text={headerRole} />
 					{role !== "company" && <HeaderText text={headerBusiness} />}
+					{role === "company" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
