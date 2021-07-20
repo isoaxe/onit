@@ -32,7 +32,7 @@ router.post("/business", async (req: Request, res: Response) => {
 
 		// Not all required user data can be stored by auth. Use Firestore instead.
 		const user = db.collection("users").doc(`businessId-${businessId}`)
-			.collection("company").doc(displayName);
+			.collection("users").doc(displayName);
 		user.set({
 			displayName,
 			uid,
@@ -56,7 +56,7 @@ router.get("/business/:businessId", async (req, res) => {
 	try {
 		const { businessId } = req.params;
 		const db = admin.firestore();
-		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("company").get();
+		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("users").where("role", "==", "company").get();
 		const businessData = companyRef.docs[0].data();
 		res.status(200).send(businessData);
 	} catch (err) {
