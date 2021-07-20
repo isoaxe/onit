@@ -29,7 +29,7 @@ router.post("/user", async (req: Request, res: Response) => {
 
 		// Not all required user data can be stored by auth. Use Firestore instead.
 		const user = db.collection("users").doc(`businessId-${businessId}`)
-			.collection("users").doc(`${displayName} ${lastName}`);
+			.collection("users").doc(uid);
 		user.set({
 			firstName: displayName,
 			lastName,
