@@ -54,8 +54,7 @@ function CreateUser (): JSX.Element {
 
 		try {
 			const formData = new FormData(form);
-			const response = await postFormDataAsJson({ url, formData });
-			console.log({ response });
+			await postFormDataAsJson({ url, formData });
 			auth.signin(email, password);
 		} catch (err) {
 			console.log(err);
@@ -83,7 +82,7 @@ function CreateUser (): JSX.Element {
 				<input value={businessId} onChange={handleBusinessId} style={styles.inputField} type="number" placeholder="Business ID" name="businessId"/>
 				<Button type="submit">Submit</Button>
 			</form>
-			{user && <Redirect to="loginsuccess" />}
+			{user && <Redirect to="home" />}
 		</div>
 	);
 }

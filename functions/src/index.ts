@@ -8,6 +8,7 @@ import { routesConfig } from "./users/routesConfig";
 import loginSuccessRoute from "./loginSuccess/loginSuccess";
 import businessRoute from "./business/businessRoute";
 import userRoute from "./user/userRoute";
+import claimsRoute from "./claims/claimsRoute";
 
 
 // Initialise the firebase-admin SDK in order to access its services.
@@ -26,6 +27,8 @@ app.use(loginSuccessRoute);
 app.use(businessRoute);
 // Set handler for individual user accounts.
 app.use(userRoute);
+// Set handler for setting and fetching custom claims.
+app.use(claimsRoute);
 
 // Set the handlers for each http verb.
 routesConfig(app);

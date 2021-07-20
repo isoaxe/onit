@@ -64,8 +64,7 @@ function CreateBusiness (): JSX.Element {
 
 		try {
 			const formData = new FormData(form);
-			const response = await postFormDataAsJson({ url, formData });
-			console.log(response);
+			await postFormDataAsJson({ url, formData });
 			auth.signin(email, password);
 		} catch (err) {
 			console.log(err);
@@ -92,7 +91,7 @@ function CreateBusiness (): JSX.Element {
 				<input value={password} onChange={handlePassword} style={styles.inputField} type="text" placeholder="Password" name="password"/>
 				<Button type="submit">Submit</Button>
 			</form>
-			{user && <Redirect to="loginsuccess" />}
+			{user && <Redirect to="home" />}
 		</div>
 	);
 }

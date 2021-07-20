@@ -34,6 +34,7 @@ router.post("/business", async (req: Request, res: Response) => {
 		const user = db.collection("users").doc(`businessId-${businessId}`)
 			.collection("company").doc(displayName);
 		user.set({
+			displayName,
 			uid,
 			role,
 			address1,
@@ -49,10 +50,26 @@ router.post("/business", async (req: Request, res: Response) => {
 	}
 });
 
+
+// GET request to fetch business data from Firestore.
+router.get("/business/:businessId", async (req, res) => {
+	try {
+		const { businessId } = req.params;
+		const db = admin.firestore();
+		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("company").get();
+		const businessData = companyRef.docs[0].data();
+		res.status(200).send(businessData);
+	} catch (err) {
+		handleError(res, err);
+	}
+});
+
+
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
 }
+
 
 // Generate a 6-digit businessId integer and convert to string:
 function getBusinessId (): string {
@@ -65,5 +82,6 @@ function getBusinessId (): string {
 	}
 	return leadingZerosAsStr + idString;
 }
+
 
 export default router;
