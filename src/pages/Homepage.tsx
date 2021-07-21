@@ -17,7 +17,7 @@ function Homepage (): JSX.Element {
 	const user = auth.user;
 	const headerName = `Welcome, ${user.displayName}`;
 	const headerRole = `Access level: ${role}`;
-	const headerBusiness = `Business name here: ${businessName}`;
+	const headerBusiness = `Business: ${businessName}`;
 	const headerBusinessId = `Business ID: ${businessId}`;
 
 	async function fetchClaims () {
@@ -31,7 +31,7 @@ function Homepage (): JSX.Element {
 	async function fetchBusinessData () {
 		const data = await getBusinessData(user, businessId);
 		if (data) {
-			setBusinessName(data.address1);
+			setBusinessName(data.displayName);
 		}
 	}
 
