@@ -13,8 +13,7 @@ function Homepage (): JSX.Element {
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 
-	const auth = useAuth();
-	const user = auth.user;
+	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
 	const headerRole = `Access level: ${role}`;
 	const headerBusiness = `Business: ${businessName}`;
