@@ -7,7 +7,7 @@ const router: Router = Router();
 // Create user with POST request to /user.
 router.post("/user", async (req: Request, res: Response) => {
 	try {
-		const role = "user";
+		const role = "staff";
 		const { displayName, phoneNumber, email, password, lastName, businessId } = req.body;
 
 		// Check that businessId exists by querying the Firestore.
@@ -29,7 +29,7 @@ router.post("/user", async (req: Request, res: Response) => {
 
 		// Not all required user data can be stored by auth. Use Firestore instead.
 		const user = db.collection("users").doc(`businessId-${businessId}`)
-			.collection("user").doc(`${displayName} ${lastName}`);
+			.collection("users").doc(uid);
 		user.set({
 			firstName: displayName,
 			lastName,
@@ -38,7 +38,7 @@ router.post("/user", async (req: Request, res: Response) => {
 			businessId
 		});
 
-		return res.status(200).send({ message: "User account created" });
+		return res.status(200).send({ message: "Staff account created" });
 	} catch (err) {
 		return handleError(res, err);
 	}

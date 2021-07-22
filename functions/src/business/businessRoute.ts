@@ -8,7 +8,7 @@ const router: Router = Router();
 // Create business user with POST request to /business.
 router.post("/business", async (req: Request, res: Response) => {
 	try {
-		const role = "company";
+		const role = "owner";
 		const { displayName, phoneNumber, email, password, address1, address2, city, phoneNumberCountry, postcode } = req.body;
 		const country = localeMapper.getCountryNameByAlpha2(phoneNumberCountry);
 
@@ -32,7 +32,7 @@ router.post("/business", async (req: Request, res: Response) => {
 
 		// Not all required user data can be stored by auth. Use Firestore instead.
 		const user = db.collection("users").doc(`businessId-${businessId}`)
-			.collection("company").doc(displayName);
+			.collection("users").doc(uid);
 		user.set({
 			displayName,
 			uid,
@@ -44,7 +44,7 @@ router.post("/business", async (req: Request, res: Response) => {
 			postcode,
 		});
 
-		res.status(200).send({ message: "Company account created" });
+		res.status(200).send({ message: "Owner account created" });
 	} catch (err) {
 		handleError(res, err);
 	}
@@ -56,7 +56,7 @@ router.get("/business/:businessId", async (req, res) => {
 	try {
 		const { businessId } = req.params;
 		const db = admin.firestore();
-		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("company").get();
+		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("users").where("role", "==", "owner").get();
 		const businessData = companyRef.docs[0].data();
 		res.status(200).send(businessData);
 	} catch (err) {

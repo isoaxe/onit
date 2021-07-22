@@ -13,11 +13,10 @@ function Homepage (): JSX.Element {
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 
-	const auth = useAuth();
-	const user = auth.user;
+	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
 	const headerRole = `Access level: ${role}`;
-	const headerBusiness = `Business name here: ${businessName}`;
+	const headerBusiness = `Business: ${businessName}`;
 	const headerBusinessId = `Business ID: ${businessId}`;
 
 	async function fetchClaims () {
@@ -31,7 +30,7 @@ function Homepage (): JSX.Element {
 	async function fetchBusinessData () {
 		const data = await getBusinessData(user, businessId);
 		if (data) {
-			setBusinessName(data.address1);
+			setBusinessName(data.displayName);
 		}
 	}
 
@@ -62,8 +61,8 @@ function Homepage (): JSX.Element {
 				<header style={styles.header}>
 					<HeaderText text={headerName} />
 					<HeaderText text={headerRole} />
-					{role !== "company" && <HeaderText text={headerBusiness} />}
-					{role === "company" && <HeaderText text={headerBusinessId} />}
+					{role !== "owner" && <HeaderText text={headerBusiness} />}
+					{role === "owner" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
 				<section style={styles.section}>
@@ -93,7 +92,8 @@ const styles: StyleSheet = {
 		flexDirection: "column",
 		alignItems: "flex-start",
 		justifyContent: "flex-start",
-		width: "1200px",
+		width: "95%",
+		maxWidth: "1200px",
 		minHeight: "inherit",
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
