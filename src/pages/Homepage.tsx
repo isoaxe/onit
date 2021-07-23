@@ -65,7 +65,7 @@ function Homepage (): JSX.Element {
 					{role === "owner" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
-				<section>
+				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
 						<MenuItem label="People" onClick={people} />
 						<MenuItem label="Tasks" onClick={tasks} />
@@ -107,6 +107,12 @@ const styles: StyleSheet = {
 		alignItems: "center",
 		justifyContent: "space-between",
 		width: "100%"
+	},
+	menuWrapper: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "flex-start",
+		justifyContent: "flex-start"
 	},
 	menuItems: {
 		display: "flex",
