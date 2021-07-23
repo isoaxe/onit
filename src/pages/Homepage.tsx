@@ -65,11 +65,11 @@ function Homepage (): JSX.Element {
 					{role === "owner" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
-				<section style={styles.section}>
+				<div style={styles.menuItems}>
 					<MenuItem label="People" onClick={people} />
 					<MenuItem label="Tasks" onClick={tasks} />
 					<MenuItem label="Calendar" onClick={calendar} />
-				</section>
+				</div>
 			</div>
 		</div>
 	);
@@ -106,7 +106,7 @@ const styles: StyleSheet = {
 		justifyContent: "space-between",
 		width: "100%"
 	},
-	section: {
+	menuItems: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-start",
