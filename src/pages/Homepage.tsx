@@ -65,10 +65,14 @@ function Homepage (): JSX.Element {
 					{role === "owner" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
-				<section style={styles.section}>
-					<MenuItem label="People" onClick={people} />
-					<MenuItem label="Tasks" onClick={tasks} />
-					<MenuItem label="Calendar" onClick={calendar} />
+				<section style={styles.menuWrapper}>
+					<div style={styles.menuItems}>
+						<MenuItem label="People" onClick={people} />
+						<MenuItem label="Tasks" onClick={tasks} />
+						<MenuItem label="Calendar" onClick={calendar} />
+					</div>
+					<div style={styles.menuContent}>
+					</div>
 				</section>
 			</div>
 		</div>
@@ -106,11 +110,23 @@ const styles: StyleSheet = {
 		justifyContent: "space-between",
 		width: "100%"
 	},
-	section: {
+	menuWrapper: {
+		display: "flex",
+		flexDirection: "row",
+		alignItems: "flex-start",
+		justifyContent: "flex-start"
+	},
+	menuItems: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-start",
 		justifyContent: "flex-start"
+	},
+	menuContent: {
+		marginLeft: "10px",
+		padding: "10px",
+		border: `2px ${secondaryMain} solid`,
+		borderRadius: "10px"
 	}
 };
 
