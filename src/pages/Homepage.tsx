@@ -71,6 +71,8 @@ function Homepage (): JSX.Element {
 						<MenuItem label="Tasks" onClick={tasks} />
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
+					<div style={styles.menuContent}>
+					</div>
 				</section>
 			</div>
 		</div>
@@ -119,6 +121,12 @@ const styles: StyleSheet = {
 		flexDirection: "column",
 		alignItems: "flex-start",
 		justifyContent: "flex-start"
+	},
+	menuContent: {
+		marginLeft: "10px",
+		padding: "10px",
+		border: `2px ${secondaryMain} solid`,
+		borderRadius: "10px"
 	}
 };
 
