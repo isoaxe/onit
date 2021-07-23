@@ -65,11 +65,13 @@ function Homepage (): JSX.Element {
 					{role === "owner" && <HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
-				<div style={styles.menuItems}>
-					<MenuItem label="People" onClick={people} />
-					<MenuItem label="Tasks" onClick={tasks} />
-					<MenuItem label="Calendar" onClick={calendar} />
-				</div>
+				<section>
+					<div style={styles.menuItems}>
+						<MenuItem label="People" onClick={people} />
+						<MenuItem label="Tasks" onClick={tasks} />
+						<MenuItem label="Calendar" onClick={calendar} />
+					</div>
+				</section>
 			</div>
 		</div>
 	);
