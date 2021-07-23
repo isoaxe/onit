@@ -20,7 +20,7 @@ const authContext = createContext(undefined); //or null?
 
 // Provider component that wraps your app and makes auth object available to any
 // child component that calls useAuth().
-export function ProvideAuth ({ children }) {
+export function ProvideAuth ({ children }): JSX.Element {
 	const auth = useProvideAuth();
 	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
@@ -32,7 +32,7 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state.
 function useProvideAuth () {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<firebase.User | null>(null);
 
 	// Wrap any Firebase methods we want to use making sure to save the user to state.
 	const signin = (email, password) => {
@@ -50,7 +50,7 @@ function useProvideAuth () {
 			.auth()
 			.signOut()
 			.then(() => {
-				setUser(false);
+				setUser(null);
 			});
 	};
 
@@ -80,7 +80,7 @@ function useProvideAuth () {
 			if (user) {
 				setUser(user);
 			} else {
-				setUser(false);
+				setUser(null);
 			}
 		});
 
