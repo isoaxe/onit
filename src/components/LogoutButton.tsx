@@ -7,7 +7,7 @@ function LogoutButton (): JSX.Element {
 	const auth = useAuth();
 
 	function logout () {
-		auth.signout();
+		auth.signOut();
 	}
 
 	return (

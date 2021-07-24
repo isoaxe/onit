@@ -20,7 +20,7 @@ const authContext = createContext(undefined); //or null?
 
 // Provider component that wraps your app and makes auth object available to any
 // child component that calls useAuth().
-export function ProvideAuth ({ children }) {
+export function ProvideAuth ({ children }): JSX.Element {
 	const auth = useProvideAuth();
 	return <authContext.Provider value={auth}>{children}</authContext.Provider>;
 }
@@ -32,57 +32,43 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state.
 function useProvideAuth () {
-	const [user, setUser] = useState(null);
+	const [user, setUser] = useState<firebase.User | null>(null);
 
 	// Wrap any Firebase methods we want to use making sure to save the user to state.
-	const signin = (email, password) => {
-		return firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((response) => {
-				setUser(response.user);
-				return response.user;
-			});
-	};
+	async function signIn (email: string, password: string) {
+		const response = await firebase.auth().signInWithEmailAndPassword(email, password);
+		setUser(response.user);
+		return response.user;
+	}
 
-	const signout = () => {
-		return firebase
-			.auth()
-			.signOut()
-			.then(() => {
-				setUser(false);
-			});
-	};
+	async function signOut () {
+		await firebase.auth().signOut();
+		setUser(null);
+	}
 
-	const sendPasswordResetEmail = (email) => {
-		return firebase
-			.auth()
-			.sendPasswordResetEmail(email)
-			.then(() => {
-				return true;
-			});
-	};
+	async function sendPasswordResetEmail (email: string) {
+		await firebase.auth().sendPasswordResetEmail(email);
+		return true;
+	}
 
-	const confirmPasswordReset = (code, password) => {
-		return firebase
-			.auth()
-			.confirmPasswordReset(code, password)
-			.then(() => {
-				return true;
-			});
-	};
+	async function confirmPasswordReset (code: string, password: string) {
+		await firebase.auth().confirmPasswordReset(code, password);
+		return true;
+	}
 
 	// Subscribe to user on mount.
 	// Because this sets state in the callback it will cause any component that
 	// utilizes this hook to re-render with the latest auth object.
 	useEffect(() => {
-		const unsubscribe = firebase.auth().onAuthStateChanged((user) => {
-			if (user) {
-				setUser(user);
-			} else {
-				setUser(false);
-			}
-		});
+		function unsubscribe () {
+			firebase.auth().onAuthStateChanged((user) => {
+				if (user) {
+					setUser(user);
+				} else {
+					setUser(null);
+				}
+			});
+		}
 
 		// Cleanup subscription on unmount.
 		return () => unsubscribe();
@@ -91,8 +77,8 @@ function useProvideAuth () {
 	// Return the user object and auth methods.
 	return {
 		user,
-		signin,
-		signout,
+		signIn,
+		signOut,
 		sendPasswordResetEmail,
 		confirmPasswordReset,
 	};

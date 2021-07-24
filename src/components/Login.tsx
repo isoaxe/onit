@@ -28,7 +28,7 @@ function Login (): JSX.Element {
 		if (!loginValidated) { return false; }
 
 		try {
-			await auth.signin(email, password);
+			await auth.signIn(email, password);
 		} catch (err) {
 			console.log(err);
 			if (err.code === "auth/user-not-found") {
