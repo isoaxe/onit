@@ -42,23 +42,23 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 			postcode,
 		});
 
-		res.status(200).send({ message: "Owner account created" });
+		return res.status(200).send({ message: "Owner account created" });
 	} catch (err) {
-		handleError(res, err);
+		return handleError(res, err);
 	}
 }
 
 
 // GET request to fetch business data from Firestore.
-export async function get (req: Request, res: Result): Promise<Response<void>> {
+export async function get (req: Request, res: Response): Promise<Response<void>> {
 	try {
 		const { businessId } = req.params;
 		const db = admin.firestore();
 		const companyRef = await db.collection("users").doc(`businessId-${businessId}`).collection("users").where("role", "==", "owner").get();
 		const businessData = companyRef.docs[0].data();
-		res.status(200).send(businessData);
+		return res.status(200).send(businessData);
 	} catch (err) {
-		handleError(res, err);
+		return handleError(res, err);
 	}
 }
 
@@ -80,6 +80,3 @@ function getBusinessId (): string {
 	}
 	return leadingZerosAsStr + idString;
 }
-
-
-export default router;
