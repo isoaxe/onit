@@ -1,12 +1,10 @@
 import * as admin from "firebase-admin";
 import * as localeMapper from "country-locale-map";
-import { Router, Request, Response } from "express";
-
-const router: Router = Router();
+import { Request, Response } from "express";
 
 
-// Create business user with POST request to /business.
-router.post("/business", async (req: Request, res: Response) => {
+// Create new business user.
+export async function create (req: Request, res: Response): Promise<Response<void>> {
 	try {
 		const role = "owner";
 		const { displayName, phoneNumber, email, password, address1, address2, city, phoneNumberCountry, postcode } = req.body;
@@ -48,11 +46,11 @@ router.post("/business", async (req: Request, res: Response) => {
 	} catch (err) {
 		handleError(res, err);
 	}
-});
+}
 
 
 // GET request to fetch business data from Firestore.
-router.get("/business/:businessId", async (req, res) => {
+export async function get (req: Request, res: Result): Promise<Response<void>> {
 	try {
 		const { businessId } = req.params;
 		const db = admin.firestore();
@@ -62,7 +60,7 @@ router.get("/business/:businessId", async (req, res) => {
 	} catch (err) {
 		handleError(res, err);
 	}
-});
+}
 
 
 // Standard error helper function.
