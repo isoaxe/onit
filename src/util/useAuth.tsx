@@ -35,41 +35,25 @@ function useProvideAuth () {
 	const [user, setUser] = useState<firebase.User | null>(null);
 
 	// Wrap any Firebase methods we want to use making sure to save the user to state.
-	function signIn (email: string, password: string) {
-		return firebase
-			.auth()
-			.signInWithEmailAndPassword(email, password)
-			.then((response) => {
-				setUser(response.user);
-				return response.user;
-			});
+	async function signIn (email: string, password: string) {
+		const response = await firebase.auth().signInWithEmailAndPassword(email, password);
+		setUser(response.user);
+		return response.user;
 	}
 
-	function signOut () {
-		return firebase
-			.auth()
-			.signOut()
-			.then(() => {
-				setUser(null);
-			});
+	async function signOut () {
+		await firebase.auth().signOut();
+		setUser(null);
 	}
 
-	function sendPasswordResetEmail (email: string) {
-		return firebase
-			.auth()
-			.sendPasswordResetEmail(email)
-			.then(() => {
-				return true;
-			});
+	async function sendPasswordResetEmail (email: string) {
+		await firebase.auth().sendPasswordResetEmail(email);
+		return true;
 	}
 
-	function confirmPasswordReset (code: string, password: string) {
-		return firebase
-			.auth()
-			.confirmPasswordReset(code, password)
-			.then(() => {
-				return true;
-			});
+	async function confirmPasswordReset (code: string, password: string) {
+		await firebase.auth().confirmPasswordReset(code, password);
+		return true;
 	}
 
 	// Subscribe to user on mount.
