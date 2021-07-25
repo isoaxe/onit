@@ -3,8 +3,14 @@ import { Request, Response, NextFunction } from "express";
 
 export function isAuthorized (opts: { hasRole: Array<"owner" | "manager" | "staff">, allowSameUser?: boolean }) {
 	return (req: Request, res: Response, next: NextFunction): Response<void> | void => {
-		const { role, email, uid } = res.locals;
-		const { id } = req.params;
+		const { role, email, uid, bid } = res.locals;
+		const { id, businessId } = req.params;
+
+		if (!bid || bid !== businessId)
+			return res.status(403).send({ message: "Forbidden due to incorrect businessId" });
+
+		if (!role)
+			return res.status(403).send({ message: "Forbidden due to lack of role" });
 
 		if (email === "lucasoconnell4@gmail.com")
 			return next();
@@ -14,9 +20,6 @@ export function isAuthorized (opts: { hasRole: Array<"owner" | "manager" | "staf
 
 		if (opts.hasRole.includes(role))
 			return next();
-
-		if (!role)
-			return res.status(403).send({ message: "Forbidden due to lack of role" });
 
 		return res.status(403).send({ message: "Forbidden" });
 	};
