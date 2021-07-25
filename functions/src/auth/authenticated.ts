@@ -20,7 +20,7 @@ export async function isAuthenticated (req: Request, res: Response, next: NextFu
 	try {
 		const decodedToken: admin.auth.DecodedIdToken = await admin.auth().verifyIdToken(token);
 		console.log("decodedToken", JSON.stringify(decodedToken));
-		res.locals = { ...res.locals, uid: decodedToken.uid, role: decodedToken.role, email: decodedToken.email };
+		res.locals = { ...res.locals, uid: decodedToken.uid, bid: decodedToken.businessId, role: decodedToken.role, email: decodedToken.email };
 		return next();
 	}
 	catch (err) {
