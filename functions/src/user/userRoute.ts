@@ -10,7 +10,7 @@ export function userRoute (app: Application): void {
 		create
 	);
 	// Fetch all users within the business.
-	app.get("/user",
+	app.get("/user/:businessId",
 		isAuthenticated,
 		isAuthorised({ hasRole: ["owner", "manager"] }),
 		all
