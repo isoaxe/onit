@@ -3,6 +3,7 @@ import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
+import People from "./../components/People";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -12,6 +13,7 @@ function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
+	const [peopleActive, setPeopleActive] = useState(false);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -35,7 +37,7 @@ function Homepage (): JSX.Element {
 	}
 
 	function people () {
-		return true;
+		setPeopleActive(true);
 	}
 
 	function tasks () {
@@ -72,6 +74,7 @@ function Homepage (): JSX.Element {
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
 					<div style={styles.menuContent}>
+						{peopleActive && <People />}
 					</div>
 				</section>
 			</div>
