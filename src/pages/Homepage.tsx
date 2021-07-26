@@ -13,6 +13,7 @@ function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
+	const [menuItemSelected, setMenuItemSelected] = useState(false);
 	const [peopleActive, setPeopleActive] = useState(false);
 	const [tasksActive, setTasksActive] = useState(false);
 	const [calendarActive, setCalendarActive] = useState(false);
@@ -39,18 +40,21 @@ function Homepage (): JSX.Element {
 	}
 
 	function people () {
+		setMenuItemSelected(true);
 		setTasksActive(false);
 		setCalendarActive(false);
 		setPeopleActive(true);
 	}
 
 	function tasks () {
+		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setCalendarActive(false);
 		setTasksActive(true);
 	}
 
 	function calendar () {
+		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setTasksActive(false);
 		setCalendarActive(true);
@@ -82,6 +86,7 @@ function Homepage (): JSX.Element {
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
 					<div style={styles.menuContent}>
+						{!menuItemSelected && <h3>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
 						{calendarActive && <h3>Calendar Placeholder</h3>}
