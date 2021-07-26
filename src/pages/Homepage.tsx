@@ -86,7 +86,7 @@ function Homepage (): JSX.Element {
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
 					<div style={styles.menuContent}>
-						{!menuItemSelected && <h3>Select an action from the menu items on the left</h3>}
+						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
 						{calendarActive && <h3>Calendar Placeholder</h3>}
@@ -145,6 +145,10 @@ const styles: StyleSheet = {
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
 		borderRadius: "10px"
+	},
+	noMenuItemText: {
+		opacity: "40%",
+		fontWeight: "normal"
 	}
 };
 
