@@ -4,7 +4,7 @@ import { textMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
 
 
-function People (): JSX.Element {
+function People (props): JSX.Element {
 
 	function getUsers () {
 		firebase.auth().currentUser.getIdToken(true).then(function (token) {
@@ -12,13 +12,15 @@ function People (): JSX.Element {
 				method: "GET",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			fetch(`${API_URL}/user`, requestOptions)
+			fetch(`${API_URL}/user/${props.businessId}`, requestOptions)
 				.then(res => res.json())
 				.then(data => console.log(data));
 		}).catch(function (error) {
 			console.log(`GET request to /user failed: ${error}`);
 		});
 	}
+
+	getUsers();
 
 	return (
 		<div style={styles.root}>
