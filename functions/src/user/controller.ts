@@ -42,6 +42,20 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+// Helper function to create object containing user data.
+function mapUser (user: admin.auth.UserRecord) {
+	const customClaims = (user.customClaims || { role: "" }) as { role?: string };
+	const role = customClaims.role ? customClaims.role : "";
+	return {
+		uid: user.uid,
+		email: user.email || "",
+		displayName: user.displayName || "",
+		role,
+		lastSignInTime: user.metadata.lastSignInTime,
+		creationTime: user.metadata.creationTime
+	};
+}
+
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
