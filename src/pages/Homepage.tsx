@@ -39,14 +39,20 @@ function Homepage (): JSX.Element {
 	}
 
 	function people () {
+		setTasksActive(false);
+		setCalendarActive(false);
 		setPeopleActive(true);
 	}
 
 	function tasks () {
+		setPeopleActive(false);
+		setCalendarActive(false);
 		setTasksActive(true);
 	}
 
 	function calendar () {
+		setPeopleActive(false);
+		setTasksActive(false);
 		setCalendarActive(true);
 	}
 
