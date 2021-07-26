@@ -14,6 +14,7 @@ function Homepage (): JSX.Element {
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 	const [peopleActive, setPeopleActive] = useState(false);
+	const [tasksActive, setTasksActive] = useState(false);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -41,7 +42,7 @@ function Homepage (): JSX.Element {
 	}
 
 	function tasks () {
-		return true;
+		setTasksActive(true);
 	}
 
 	function calendar () {
@@ -75,6 +76,7 @@ function Homepage (): JSX.Element {
 					</div>
 					<div style={styles.menuContent}>
 						{peopleActive && <People />}
+						{tasksActive && <h3>Tasks Placeholder</h3>}
 					</div>
 				</section>
 			</div>
