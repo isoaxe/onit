@@ -15,6 +15,7 @@ function Homepage (): JSX.Element {
 	const [businessName, setBusinessName] = useState(null);
 	const [peopleActive, setPeopleActive] = useState(false);
 	const [tasksActive, setTasksActive] = useState(false);
+	const [calendarActive, setCalendarActive] = useState(false);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -46,7 +47,7 @@ function Homepage (): JSX.Element {
 	}
 
 	function calendar () {
-		return true;
+		setCalendarActive(true);
 	}
 
 	useEffect(() => {
@@ -77,6 +78,7 @@ function Homepage (): JSX.Element {
 					<div style={styles.menuContent}>
 						{peopleActive && <People />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
+						{calendarActive && <h3>Calendar Placeholder</h3>}
 					</div>
 				</section>
 			</div>
