@@ -42,6 +42,17 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+// Returns a list of all users.
+export async function all (res: Response): Promise<Response<void>> {
+	try {
+		const listUsers = await admin.auth().listUsers();
+		const users = listUsers.users.map(mapUser);
+		return res.status(200).send({ users });
+	} catch (err) {
+		return handleError(res, err);
+	}
+}
+
 // Helper function to create object containing user data.
 function mapUser (user: admin.auth.UserRecord) {
 	const customClaims = (user.customClaims || { role: "" }) as { role?: string };
