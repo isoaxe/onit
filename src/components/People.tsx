@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import { API_URL } from "./../util/urls";
 import { textMain } from "./../util/colours";
@@ -24,7 +24,11 @@ function People (props): JSX.Element {
 		}
 	}
 
-	getUsers();
+	useEffect(() => {
+		if (!users) {
+			getUsers();
+		}
+	});
 
 	return (
 		<div style={styles.root}>
