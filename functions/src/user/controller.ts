@@ -43,7 +43,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 }
 
 // Returns a list of all users.
-export async function all (res: Response): Promise<Response<void>> {
+export async function all (req: Request, res: Response): Promise<Response<void>> {
 	try {
 		const listUsers = await admin.auth().listUsers();
 		const users = listUsers.users.map(mapUser);
