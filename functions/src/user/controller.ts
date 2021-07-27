@@ -55,13 +55,15 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 
 // Helper function to create object containing user data.
 function mapUser (user: admin.auth.UserRecord) {
-	const customClaims = (user.customClaims || { role: "" }) as { role?: string };
-	const role = customClaims.role ? customClaims.role : "";
+	const customClaims = (user.customClaims || { role: "", businessId: "" }) as { role?: string, businessId?: string };
+	const role = customClaims.role;
+	const businessId = customClaims.businessId;
 	return {
 		uid: user.uid,
 		email: user.email || "",
 		displayName: user.displayName || "",
 		role,
+		businessId,
 		lastSignInTime: user.metadata.lastSignInTime,
 		creationTime: user.metadata.creationTime
 	};
