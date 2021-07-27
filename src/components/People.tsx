@@ -1,3 +1,4 @@
+import { useState } from "react";
 import firebase from "firebase/app";
 import { API_URL } from "./../util/urls";
 import { textMain } from "./../util/colours";
@@ -5,6 +6,7 @@ import { StyleSheet } from "./../util/types";
 
 
 function People (props): JSX.Element {
+	const [users, setUsers] = useState(null);
 
 	async function getUsers () {
 		try {
@@ -15,7 +17,8 @@ function People (props): JSX.Element {
 			};
 			const res = await fetch(`${API_URL}/user/${props.businessId}`, requestOptions);
 			const data = await res.json();
-			console.log(data);
+			setUsers(data);
+			return data;
 		} catch (error) {
 			console.log(`GET request to /user failed: ${error}`);
 		}
