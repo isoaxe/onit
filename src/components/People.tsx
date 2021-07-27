@@ -6,17 +6,16 @@ import { StyleSheet } from "./../util/types";
 
 function People (props): JSX.Element {
 
-	function getUsers () {
+	async function getUsers () {
 		try {
-			firebase.auth().currentUser.getIdToken(true).then(function (token) {
-				const requestOptions = {
-					method: "GET",
-					headers: { authorization: `Bearer ${token}` }
-				};
-				fetch(`${API_URL}/user/${props.businessId}`, requestOptions)
-					.then(res => res.json())
-					.then(data => console.log(data));
-			});
+			const token = await firebase.auth().currentUser.getIdToken(true);
+			const requestOptions = {
+				method: "GET",
+				headers: { authorization: `Bearer ${token}` }
+			};
+			const res = await fetch(`${API_URL}/user/${props.businessId}`, requestOptions);
+			const data = await res.json();
+			console.log(data);
 		} catch (error) {
 			console.log(`GET request to /user failed: ${error}`);
 		}
