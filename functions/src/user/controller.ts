@@ -45,9 +45,11 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 // Returns a list of all users.
 export async function all (req: Request, res: Response): Promise<Response<void>> {
 	try {
+		const { businessId } = req.params;
 		const listUsers = await admin.auth().listUsers();
-		const users = listUsers.users.map(mapUser);
-		return res.status(200).send({ users });
+		const allUsers = listUsers.users.map(mapUser);
+		const companyUsers = allUsers.filter(user => user.businessId === businessId);
+		return res.status(200).send({ companyUsers });
 	} catch (err) {
 		return handleError(res, err);
 	}
