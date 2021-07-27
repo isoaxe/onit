@@ -49,7 +49,7 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 		const listUsers = await admin.auth().listUsers();
 		const allUsers = listUsers.users.map(mapUser);
 		const companyUsers = allUsers.filter(user => user.businessId === businessId);
-		return res.status(200).send({ companyUsers });
+		return res.status(200).send(companyUsers);
 	} catch (err) {
 		return handleError(res, err);
 	}
