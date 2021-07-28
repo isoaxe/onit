@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import firebase from "firebase/app";
+import UserTable from "./UserTable";
 import { API_URL } from "./../util/urls";
 import { textMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
@@ -32,6 +33,7 @@ function People (props): JSX.Element {
 
 	return (
 		<div style={styles.root}>
+			{<UserTable users={users} />}
 		</div>
 	);
 }
