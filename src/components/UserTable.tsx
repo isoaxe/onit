@@ -7,16 +7,19 @@ function UserTable (props) {
 	const data = useMemo(
 		() => [
 			{
-				col1: "Hello",
-				col2: "World",
+				displayName: "Hello",
+				email: "World",
+				role: "temp",
 			},
 			{
-				col1: "react-table",
-				col2: "rocks",
+				displayName: "react-table",
+				email: "rocks",
+				role: "staff",
 			},
 			{
-				col1: "whatever",
-				col2: "you want",
+				displayName: "whatever",
+				email: "you want",
+				role: "owner",
 			},
 		],
 		[]
@@ -25,12 +28,16 @@ function UserTable (props) {
 	const columns = useMemo(
 		() => [
 			{
-				Header: "Column 1",
-				accessor: "col1", // accessor is the "key" in the data
+				Header: "First Name",
+				accessor: "displayName", // accessor is the "key" in the data
 			},
 			{
-				Header: "Column 2",
-				accessor: "col2",
+				Header: "Email",
+				accessor: "email",
+			},
+			{
+				Header: "Role",
+				accessor: "role",
 			},
 		],
 		[]
