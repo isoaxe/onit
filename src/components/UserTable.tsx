@@ -3,26 +3,11 @@ import { useTable } from "react-table";
 
 
 function UserTable (props) {
+	const users = props.users;
 
 	const data = useMemo(
-		() => [
-			{
-				displayName: "Hello",
-				email: "World",
-				role: "temp",
-			},
-			{
-				displayName: "react-table",
-				email: "rocks",
-				role: "staff",
-			},
-			{
-				displayName: "whatever",
-				email: "you want",
-				role: "owner",
-			},
-		],
-		[]
+		() => users,
+		[users]
 	);
 
 	const columns = useMemo(
