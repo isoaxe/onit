@@ -33,7 +33,7 @@ function People (props): JSX.Element {
 
 	return (
 		<div style={styles.root}>
-			{<UserTable users={users} />}
+			{users && <UserTable users={users} />}
 		</div>
 	);
 }
