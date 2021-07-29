@@ -67,7 +67,7 @@ function mapUser (user: admin.auth.UserRecord) {
 		role,
 		businessId,
 		lastSignInTime: user.metadata.lastSignInTime,
-		creationTime: user.metadata.creationTime
+		creationTime: user.metadata.creationTime.slice(5, 16)
 	};
 }
 
