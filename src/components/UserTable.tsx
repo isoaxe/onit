@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
+import { StyleSheet } from "./../util/types";
 
 
 function UserTable (props) {
@@ -83,6 +84,10 @@ function UserTable (props) {
 		</table>
 	);
 }
+
+const styles: StyleSheet = {
+	
+};
 
 
 export default UserTable;
