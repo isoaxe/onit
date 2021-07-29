@@ -23,6 +23,10 @@ function UserTable (props) {
 				accessor: "email",
 			},
 			{
+				Header: "Created",
+				accessor: "creationTime",
+			},
+			{
 				Header: "Role",
 				accessor: "role",
 			},
