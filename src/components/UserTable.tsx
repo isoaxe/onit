@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
+import { tertiaryMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
 
 
@@ -41,7 +42,7 @@ function UserTable (props) {
 
 	return (
 	// apply the table props
-		<table {...getTableProps()}>
+		<table {...getTableProps()} style={styles.table}>
 			<thead>
 				{// Loop over the header rows
 					headerGroups.map(headerGroup => (
@@ -50,7 +51,7 @@ function UserTable (props) {
 							{// Loop over the headers in each row
 								headerGroup.headers.map(column => (
 									// Apply the header cell props
-									<th {...column.getHeaderProps()}>
+									<th {...column.getHeaderProps()} style={styles.header}>
 										{// Render the header
 											column.render("Header")}
 									</th>
@@ -71,7 +72,7 @@ function UserTable (props) {
 									row.cells.map(cell => {
 										// Apply the cell props
 										return (
-											<td {...cell.getCellProps()}>
+											<td {...cell.getCellProps()} style={styles.data}>
 												{// Render the cell contents
 													cell.render("Cell")}
 											</td>
@@ -86,7 +87,17 @@ function UserTable (props) {
 }
 
 const styles: StyleSheet = {
-	
+	table: {
+		padding: "3px",
+	},
+	header: {
+		borderBottom: `3px solid ${tertiaryMain}`,
+		fontWeight: "bold",
+	},
+	data: {
+		padding: "7px",
+		borderBottom: `1px solid ${tertiaryMain}`,
+	}
 };
 
 
