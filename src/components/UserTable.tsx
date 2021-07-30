@@ -35,8 +35,12 @@ function UserTable (props) {
 				Header: "Upgrade",
 				id: "upgrade",
 				Cell: ( { row } ) => {
+					function callUpgradeRole () {
+						const uid = row.original.uid;
+						upgradeRole(uid);
+					}
 					if (row.values.role === "staff") {
-						return (<Button onClick={upgradeRole} >
+						return (<Button onClick={callUpgradeRole} >
 							Upgrade
 						</Button>);
 					} else if (row.values.role === "manager") {
@@ -50,9 +54,9 @@ function UserTable (props) {
 		[]
 	);
 
-	function upgradeRole () {
+	function upgradeRole (userId: string) {
 		// Need to pass an agrument based on current user role here.
-		console.log("Role upgraded!");
+		console.log(`${userId} upgraded!`);
 	}
 
 	const tableInstance = useTable({ columns, data });
