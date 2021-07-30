@@ -32,11 +32,18 @@ function UserTable (props) {
 			},
 			{
 				Header: "Upgrade",
-				Cell: () => (
-					<button onClick={upgradeRole} >
-						Upgrade
-					</button>
-				),
+				id: "upgrade",
+				Cell: ( { row } ) => {
+					if (row.values.role === "staff") {
+						return (<button onClick={upgradeRole} >
+							Upgrade
+						</button>);
+					} else if (row.values.role === "manager") {
+						return (<span>upgraded</span>);
+					} else {
+						return null;
+					}
+				},
 			}
 		],
 		[]
