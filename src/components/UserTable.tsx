@@ -30,9 +30,22 @@ function UserTable (props) {
 				Header: "Role",
 				accessor: "role",
 			},
+			{
+				Header: "Upgrade",
+				Cell: () => (
+					<button onClick={upgradeRole} >
+						Upgrade
+					</button>
+				),
+			}
 		],
 		[]
 	);
+
+	function upgradeRole () {
+		// Need to pass an agrument based on current user role here.
+		console.log("Role upgraded!");
+	}
 
 	const tableInstance = useTable({ columns, data });
 
