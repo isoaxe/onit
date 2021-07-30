@@ -5,8 +5,6 @@ import { Request, Response } from "express";
 // Find custom claims set for user.
 export async function get (req: Request, res: Response) {
 	const { id } = req.params;
-	admin.auth().getUser(id)
-		.then((userRecord) => {
-			res.status(200).send(userRecord.customClaims);
-		});
+	const userRecord = await admin.auth().getUser(id);
+	res.status(200).send(userRecord.customClaims);
 }
