@@ -1,5 +1,6 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
+import styled from "styled-components";
 import { tertiaryMain } from "./../util/colours";
 import { StyleSheet } from "./../util/types";
 
@@ -35,9 +36,9 @@ function UserTable (props) {
 				id: "upgrade",
 				Cell: ( { row } ) => {
 					if (row.values.role === "staff") {
-						return (<button onClick={upgradeRole} >
+						return (<Button onClick={upgradeRole} >
 							Upgrade
-						</button>);
+						</Button>);
 					} else if (row.values.role === "manager") {
 						return (<span>upgraded</span>);
 					} else {
@@ -121,8 +122,14 @@ const styles: StyleSheet = {
 	data: {
 		padding: "7px",
 		borderBottom: `1px solid ${tertiaryMain}`,
-	}
+	},
 };
+
+const Button = styled.button`
+	&:hover {
+	  cursor: pointer;
+	}
+`;
 
 
 export default UserTable;
