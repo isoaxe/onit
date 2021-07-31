@@ -10,7 +10,7 @@ export function claimsRoute (app: Application): void {
 		get
 	);
 	// POST request to change users role.
-	app.post("/claims/:uid",
+	app.post("/claims/:uid/:businessId",
 		isAuthenticated,
 		isAuthorised({ hasRole: ["owner"] }),
 		change
