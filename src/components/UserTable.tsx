@@ -63,7 +63,7 @@ function UserTable (props) {
 				method: "POST",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			const res = await fetch(`${API_URL}/claims/${userId}`, requestOptions);
+			const res = await fetch(`${API_URL}/claims/${userId}/${props.businessId}`, requestOptions);
 			const data = await res.json();
 			console.log(data);
 		} catch (error) {
