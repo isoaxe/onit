@@ -13,6 +13,24 @@ export async function get (req: Request, res: Response) {
 	}
 }
 
+// Set the role for the user.
+export async function change (req: Request, res: Response) {
+	try {
+		const { uid } = req.params;
+		const userRecord = await admin.auth().getUser(uid);
+		const claims = userRecord.customClaims;
+		if (claims) {
+			claims.role = "manager";
+			admin.auth().setCustomUserClaims(uid, claims);
+			return res.status(200).send({ message: "Manager role assigned" });
+		} else {
+			return res.status(406).send({ error: "Claims not found" });
+		}
+	} catch (err) {
+		return handleError(res, err);
+	}
+}
+
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
