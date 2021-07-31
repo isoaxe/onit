@@ -9,6 +9,7 @@ import { StyleSheet } from "./../util/types";
 
 function UserTable (props) {
 	const users = props.users;
+	const businessId = props.businessId;
 
 	const upgradeRole = useCallback(
 		async (userId: string) => {
@@ -18,14 +19,14 @@ function UserTable (props) {
 					method: "POST",
 					headers: { authorization: `Bearer ${token}` }
 				};
-				const res = await fetch(`${API_URL}/claims/${userId}/${props.businessId}`, requestOptions);
+				const res = await fetch(`${API_URL}/claims/${userId}/${businessId}`, requestOptions);
 				const data = await res.json();
 				console.log(data);
 			} catch (error) {
 				console.log(`GET request to /user failed: ${error}`);
 			}
 		},
-		[props.businessId]
+		[businessId]
 	);
 
 	const data = useMemo(
