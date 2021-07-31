@@ -1,7 +1,9 @@
 import { useMemo } from "react";
 import { useTable } from "react-table";
+import firebase from "firebase/app";
 import styled from "styled-components";
 import { tertiaryMain } from "./../util/colours";
+import { API_URL } from "./../util/urls";
 import { StyleSheet } from "./../util/types";
 
 
@@ -54,9 +56,19 @@ function UserTable (props) {
 		[]
 	);
 
-	function upgradeRole (userId: string) {
-		// Need to pass an agrument based on current user role here.
-		console.log(`${userId} upgraded!`);
+	async function upgradeRole (userId: string) {
+		try {
+			const token = await firebase.auth().currentUser.getIdToken(true);
+			const requestOptions = {
+				method: "POST",
+				headers: { authorization: `Bearer ${token}` }
+			};
+			const res = await fetch(`${API_URL}/claims/${userId}`, requestOptions);
+			const data = await res.json();
+			console.log(data);
+		} catch (error) {
+			console.log(`GET request to /user failed: ${error}`);
+		}
 	}
 
 	const tableInstance = useTable({ columns, data });
