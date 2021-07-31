@@ -8,6 +8,7 @@ import { StyleSheet } from "./../util/types";
 
 function People (props): JSX.Element {
 	const [users, setUsers] = useState(null);
+	const businessId = props.businessId;
 
 	async function getUsers () {
 		try {
@@ -16,7 +17,7 @@ function People (props): JSX.Element {
 				method: "GET",
 				headers: { authorization: `Bearer ${token}` }
 			};
-			const res = await fetch(`${API_URL}/user/${props.businessId}`, requestOptions);
+			const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 			const data = await res.json();
 			setUsers(data);
 			return data;
@@ -33,7 +34,7 @@ function People (props): JSX.Element {
 
 	return (
 		<div style={styles.root}>
-			{users && <UserTable users={users} />}
+			{users && <UserTable users={users} businessId={businessId} />}
 		</div>
 	);
 }
