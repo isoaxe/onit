@@ -1,4 +1,4 @@
-import { useMemo } from "react";
+import { useMemo, useCallback } from "react";
 import { useTable } from "react-table";
 import firebase from "firebase/app";
 import styled from "styled-components";
@@ -9,6 +9,24 @@ import { StyleSheet } from "./../util/types";
 
 function UserTable (props) {
 	const users = props.users;
+
+	const upgradeRole = useCallback(
+		async (userId: string) => {
+			try {
+				const token = await firebase.auth().currentUser.getIdToken(true);
+				const requestOptions = {
+					method: "POST",
+					headers: { authorization: `Bearer ${token}` }
+				};
+				const res = await fetch(`${API_URL}/claims/${userId}/${props.businessId}`, requestOptions);
+				const data = await res.json();
+				console.log(data);
+			} catch (error) {
+				console.log(`GET request to /user failed: ${error}`);
+			}
+		},
+		[props.businessId]
+	);
 
 	const data = useMemo(
 		() => users,
@@ -53,23 +71,8 @@ function UserTable (props) {
 				},
 			}
 		],
-		[]
+		[upgradeRole]
 	);
-
-	async function upgradeRole (userId: string) {
-		try {
-			const token = await firebase.auth().currentUser.getIdToken(true);
-			const requestOptions = {
-				method: "POST",
-				headers: { authorization: `Bearer ${token}` }
-			};
-			const res = await fetch(`${API_URL}/claims/${userId}/${props.businessId}`, requestOptions);
-			const data = await res.json();
-			console.log(data);
-		} catch (error) {
-			console.log(`GET request to /user failed: ${error}`);
-		}
-	}
 
 	const tableInstance = useTable({ columns, data });
 
