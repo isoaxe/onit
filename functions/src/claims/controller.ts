@@ -23,6 +23,10 @@ export async function change (req: Request, res: Response) {
 			claims.role = "manager";
 			admin.auth().setCustomUserClaims(uid, claims);
 			return res.status(200).send({ message: "Manager role assigned" });
+		} else if (claims && claims.role === "manager") {
+			claims.role = "staff";
+			admin.auth().setCustomUserClaims(uid, claims);
+			return res.status(200).send({ message: "Staff role assigned" });
 		} else {
 			return res.status(406).send({ error: "Claims not found" });
 		}
