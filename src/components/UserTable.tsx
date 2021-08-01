@@ -65,7 +65,9 @@ function UserTable (props) {
 							Upgrade
 						</Button>);
 					} else if (row.values.role === "manager") {
-						return (<span>upgraded</span>);
+						return (<Button onClick={callChangeRole} >
+							Downgrade
+						</Button>);
 					} else {
 						return null;
 					}
