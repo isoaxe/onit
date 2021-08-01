@@ -19,7 +19,7 @@ export async function change (req: Request, res: Response) {
 		const { uid } = req.params;
 		const userRecord = await admin.auth().getUser(uid);
 		const claims = userRecord.customClaims;
-		if (claims) {
+		if (claims && claims.role === "staff") {
 			claims.role = "manager";
 			admin.auth().setCustomUserClaims(uid, claims);
 			return res.status(200).send({ message: "Manager role assigned" });
