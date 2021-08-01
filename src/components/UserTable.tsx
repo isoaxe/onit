@@ -23,7 +23,7 @@ function UserTable (props) {
 				const data = await res.json();
 				console.log(data);
 			} catch (error) {
-				console.log(`GET request to /user failed: ${error}`);
+				console.error(`POST request to /claims failed: ${error}`);
 			}
 		},
 		[businessId]
