@@ -11,7 +11,7 @@ function UserTable (props) {
 	const users = props.users;
 	const businessId = props.businessId;
 
-	const upgradeRole = useCallback(
+	const changeRole = useCallback(
 		async (userId: string) => {
 			try {
 				const token = await firebase.auth().currentUser.getIdToken(true);
@@ -56,12 +56,12 @@ function UserTable (props) {
 				Header: "Upgrade",
 				id: "upgrade",
 				Cell: ( { row } ) => {
-					function callUpgradeRole () {
+					function callChangeRole () {
 						const uid = row.original.uid;
-						upgradeRole(uid);
+						changeRole(uid);
 					}
 					if (row.values.role === "staff") {
-						return (<Button onClick={callUpgradeRole} >
+						return (<Button onClick={callChangeRole} >
 							Upgrade
 						</Button>);
 					} else if (row.values.role === "manager") {
@@ -72,7 +72,7 @@ function UserTable (props) {
 				},
 			}
 		],
-		[upgradeRole]
+		[changeRole]
 	);
 
 	const tableInstance = useTable({ columns, data });
