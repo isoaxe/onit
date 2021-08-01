@@ -53,8 +53,8 @@ function UserTable (props) {
 				accessor: "role",
 			},
 			{
-				Header: "Upgrade",
-				id: "upgrade",
+				Header: "Modify",
+				id: "modify",
 				Cell: ( { row } ) => {
 					function callChangeRole () {
 						const uid = row.original.uid;
@@ -88,7 +88,7 @@ function UserTable (props) {
 	} = tableInstance;
 
 	return (
-	// apply the table props
+		// apply the table props
 		<table {...getTableProps()} style={styles.table}>
 			<thead>
 				{// Loop over the header rows
