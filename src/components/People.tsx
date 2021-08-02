@@ -8,6 +8,7 @@ import { StyleSheet } from "./../util/types";
 
 function People (props): JSX.Element {
 	const [users, setUsers] = useState(null);
+	const [refresh, setRefresh] = useState(false);
 	const businessId = props.businessId;
 
 	async function getUsers () {
@@ -26,15 +27,19 @@ function People (props): JSX.Element {
 		}
 	}
 
+	function forceRefresh () {
+		setRefresh(true);
+	}
+
 	useEffect(() => {
-		if (!users) {
+		if (!users || refresh) {
 			getUsers();
 		}
 	});
 
 	return (
 		<div style={styles.root}>
-			{users && <UserTable users={users} businessId={businessId} />}
+			{users && <UserTable users={users} businessId={businessId} refresh={forceRefresh} />}
 		</div>
 	);
 }
