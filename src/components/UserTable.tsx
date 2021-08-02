@@ -59,6 +59,7 @@ function UserTable (props) {
 					function callChangeRole () {
 						const uid = row.original.uid;
 						changeRole(uid);
+						props.refresh();
 					}
 					if (row.values.role === "staff") {
 						return (<Button onClick={callChangeRole} >
@@ -74,7 +75,7 @@ function UserTable (props) {
 				},
 			}
 		],
-		[changeRole]
+		[props, changeRole]
 	);
 
 	const tableInstance = useTable({ columns, data });
