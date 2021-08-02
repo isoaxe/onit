@@ -23,7 +23,7 @@ function People (props): JSX.Element {
 			setUsers(data);
 			return data;
 		} catch (error) {
-			console.log(`GET request to /user failed: ${error}`);
+			console.error(`GET request to /user failed: ${error}`);
 		}
 	}
 

@@ -57,7 +57,7 @@ function CreateUser (): JSX.Element {
 			await postFormDataAsJson({ url, formData });
 			auth.signIn(email, password);
 		} catch (err) {
-			console.log(err);
+			console.error(err);
 			if (err.message.indexOf("phone number already exists") !== -1) {
 				phoneTaken(form);
 			}
