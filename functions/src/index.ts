@@ -5,7 +5,6 @@ import * as cors from "cors";
 import * as bodyParser from "body-parser";
 
 import { routesConfig } from "./users/routesConfig";
-import loginSuccessRoute from "./loginSuccess/loginSuccess";
 import { businessRoute } from "./business/businessRoute";
 import { userRoute } from "./user/userRoute";
 import { claimsRoute } from "./claims/claimsRoute";
@@ -20,9 +19,6 @@ const app = express();
 app.use(cors({ origin: true }));
 
 app.use(bodyParser.json());
-
-// Set handler for when user logs in successfully.
-app.use(loginSuccessRoute);
 
 // Set the handlers for each http verb.
 routesConfig(app);
