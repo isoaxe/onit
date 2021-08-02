@@ -21,6 +21,7 @@ function People (props): JSX.Element {
 			const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 			const data = await res.json();
 			setUsers(data);
+			setRefresh(false);
 			return data;
 		} catch (error) {
 			console.error(`GET request to /user failed: ${error}`);
