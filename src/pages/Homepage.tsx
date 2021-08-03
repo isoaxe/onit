@@ -81,7 +81,7 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						{role === ("owner" || "manager") && <MenuItem label="People" onClick={people} />}
+						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={people} />}
 						<MenuItem label="Tasks" onClick={tasks} />
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
