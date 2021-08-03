@@ -41,6 +41,10 @@ function UserTable (props) {
 				accessor: "displayName", // accessor is the "key" in the data
 			},
 			{
+				Header: "Surname",
+				accessor: "lastName",
+			},
+			{
 				Header: "Email",
 				accessor: "email",
 			},
