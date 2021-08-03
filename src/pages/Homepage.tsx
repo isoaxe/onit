@@ -3,6 +3,7 @@ import { primaryMain, secondaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
+import People from "./../components/People";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -12,6 +13,10 @@ function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
+	const [menuItemSelected, setMenuItemSelected] = useState(false);
+	const [peopleActive, setPeopleActive] = useState(false);
+	const [tasksActive, setTasksActive] = useState(false);
+	const [calendarActive, setCalendarActive] = useState(false);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -35,15 +40,24 @@ function Homepage (): JSX.Element {
 	}
 
 	function people () {
-		return true;
+		setMenuItemSelected(true);
+		setTasksActive(false);
+		setCalendarActive(false);
+		setPeopleActive(true);
 	}
 
 	function tasks () {
-		return true;
+		setMenuItemSelected(true);
+		setPeopleActive(false);
+		setCalendarActive(false);
+		setTasksActive(true);
 	}
 
 	function calendar () {
-		return true;
+		setMenuItemSelected(true);
+		setPeopleActive(false);
+		setTasksActive(false);
+		setCalendarActive(true);
 	}
 
 	useEffect(() => {
@@ -67,11 +81,15 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						<MenuItem label="People" onClick={people} />
+						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={people} />}
 						<MenuItem label="Tasks" onClick={tasks} />
 						<MenuItem label="Calendar" onClick={calendar} />
 					</div>
 					<div style={styles.menuContent}>
+						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
+						{peopleActive && <People businessId={businessId} role={role} />}
+						{tasksActive && <h3>Tasks Placeholder</h3>}
+						{calendarActive && <h3>Calendar Placeholder</h3>}
 					</div>
 				</section>
 			</div>
@@ -127,6 +145,10 @@ const styles: StyleSheet = {
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
 		borderRadius: "10px"
+	},
+	noMenuItemText: {
+		opacity: "40%",
+		fontWeight: "normal"
 	}
 };
 

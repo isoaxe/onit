@@ -26,7 +26,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 			password
 		});
 
-		admin.auth().setCustomUserClaims(uid, { role, businessId });
+		await admin.auth().setCustomUserClaims(uid, { role, businessId });
 
 		// Not all required user data can be stored by auth. Use Firestore instead.
 		const user = db.collection("users").doc(`businessId-${businessId}`)

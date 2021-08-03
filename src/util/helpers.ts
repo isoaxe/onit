@@ -40,7 +40,7 @@ export async function getClaims (user: firebase.User) {
 		const jsonResponse = await response.json();
 		return jsonResponse;
 	} catch (error) {
-		console.log(`An error occured whilst fetching claims: ${error}`);
+		console.error(`An error occured whilst fetching claims: ${error}`);
 	}
 }
 
@@ -57,6 +57,6 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 		const jsonResponse = await response.json();
 		return jsonResponse;
 	} catch (error) {
-		console.log(`An error occured whilst fetching business data: ${error}`);
+		console.error(`An error occured whilst fetching business data: ${error}`);
 	}
 }
