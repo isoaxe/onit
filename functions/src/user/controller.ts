@@ -1,5 +1,6 @@
 import * as admin from "firebase-admin";
 import { Request, Response } from "express";
+import { UserData } from "./../util/types";
 
 
 // Create new staff user.
@@ -42,18 +43,40 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+
 // Returns a list of all users.
 export async function all (req: Request, res: Response): Promise<Response<void>> {
 	try {
 		const { businessId } = req.params;
+
+		// Get primary user data from Auth.
 		const listUsers = await admin.auth().listUsers();
 		const allUsers = listUsers.users.map(mapUser);
 		const companyUsers = allUsers.filter(user => user.businessId === businessId);
-		return res.status(200).send(companyUsers);
+
+		// Get additional user data from Firestore.
+		const db = admin.firestore();
+		const firestoreData: {lastName: string}[] = [];
+		const firestoreRef = await db.collection("users").doc(`businessId-${businessId}`)
+			.collection("users").get();
+		firestoreRef.forEach((doc) => {
+			const data = doc.data();
+			firestoreData.push({ lastName: data.lastName });
+		});
+
+		// Merge data.
+		const userData: UserData[] = [];
+		for (let i = 0; i < companyUsers.length; i++) {
+			const mergedObj = Object.assign(companyUsers[i], firestoreData[i]);
+			userData.push(mergedObj);
+		}
+
+		return res.status(200).send(userData);
 	} catch (err) {
 		return handleError(res, err);
 	}
 }
+
 
 // Helper function to create object containing user data.
 function mapUser (user: admin.auth.UserRecord) {
@@ -70,6 +93,7 @@ function mapUser (user: admin.auth.UserRecord) {
 		creationTime: user.metadata.creationTime.slice(5, 16)
 	};
 }
+
 
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
