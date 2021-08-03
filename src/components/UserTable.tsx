@@ -35,29 +35,32 @@ function UserTable (props) {
 	);
 
 	const columns = useMemo(
-		() => [
-			{
-				Header: "First Name",
-				accessor: "displayName", // accessor is the "key" in the data
-			},
-			{
-				Header: "Surname",
-				accessor: "lastName",
-			},
-			{
-				Header: "Email",
-				accessor: "email",
-			},
-			{
-				Header: "Created",
-				accessor: "creationTime",
-			},
-			{
-				Header: "Role",
-				accessor: "role",
-			},
-			{
+		() => {
+			const columnArray = [
+				{
+					Header: "First Name",
+					accessor: "displayName", // accessor is the "key" in the data
+				},
+				{
+					Header: "Surname",
+					accessor: "lastName",
+				},
+				{
+					Header: "Email",
+					accessor: "email",
+				},
+				{
+					Header: "Created",
+					accessor: "creationTime",
+				},
+				{
+					Header: "Role",
+					accessor: "role",
+				},
+			];
+			const header = {
 				Header: "Modify",
+				accessor: "modify",
 				id: "modify",
 				Cell: ( { row } ) => {
 					function callChangeRole () {
@@ -77,8 +80,12 @@ function UserTable (props) {
 						return null;
 					}
 				},
+			};
+			if (props.role === "owner") {
+				columnArray.push(header);
 			}
-		],
+			return columnArray;
+		},
 		[props, changeRole]
 	);
 
