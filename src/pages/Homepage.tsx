@@ -87,7 +87,7 @@ function Homepage (): JSX.Element {
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
-						{peopleActive && <People businessId={businessId}/>}
+						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
 						{calendarActive && <h3>Calendar Placeholder</h3>}
 					</div>
