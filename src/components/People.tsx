@@ -40,7 +40,7 @@ function People (props): JSX.Element {
 
 	return (
 		<div style={styles.root}>
-			{users && <UserTable users={users} businessId={businessId} refresh={forceRefresh} />}
+			{users && <UserTable users={users} businessId={businessId} role={props.role} refresh={forceRefresh} />}
 		</div>
 	);
 }
