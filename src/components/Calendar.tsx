@@ -8,6 +8,7 @@ function Calendar () {
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			initialView="dayGridMonth"
+			height="88vh"
 		/>
 	);
 }
