@@ -6,7 +6,7 @@ export const primaryMain = "#282C34";
 export const primaryLight = "#3F4552";
 
 export const secondaryMain = "#3F524C";
-export const secondaryLight = "#4A615A";
+export const secondaryLight = "#638279";
 
 export const tertiaryMain = "#007474";
 export const tertiaryLight = "#00A693";
