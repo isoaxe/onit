@@ -144,6 +144,7 @@ const styles: StyleSheet = {
 		justifyContent: "flex-start",
 	},
 	menuContent: {
+		marginTop: "10px",
 		marginLeft: "10px",
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
