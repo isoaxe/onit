@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { primaryMain, secondaryMain, textMain } from "./../util/colours";
+import { primaryMain, secondaryMain, secondaryLight, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
@@ -147,6 +147,7 @@ const styles: StyleSheet = {
 		marginTop: "10px",
 		marginLeft: "10px",
 		padding: "10px",
+		background: secondaryLight, //TODO: Remove this when not calendar.
 		border: `2px ${secondaryMain} solid`,
 		borderRadius: "10px",
 		width: "100%", //TODO: Remove this when not calendar.
