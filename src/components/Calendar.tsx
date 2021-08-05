@@ -7,6 +7,11 @@ function Calendar () {
 	return (
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
+			headerToolbar={{
+				start: "prev,next today",
+				center: "title",
+				end: "dayGridMonth listDay,listWeek,listMonth"
+			}}
 			initialView="dayGridMonth"
 			height="88vh"
 		/>
