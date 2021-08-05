@@ -108,7 +108,7 @@ const styles: StyleSheet = {
 		backgroundColor: primaryMain,
 		minHeight: "calc(100vh - 44px)",
 		padding: "10px",
-		color: textMain
+		color: textMain,
 	},
 	wrapper: {
 		display: "flex",
@@ -120,36 +120,39 @@ const styles: StyleSheet = {
 		minHeight: "inherit",
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px"
+		borderRadius: "10px",
 	},
 	header: {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "center",
 		justifyContent: "space-between",
-		width: "100%"
+		width: "100%",
 	},
 	menuWrapper: {
 		display: "flex",
 		flexDirection: "row",
 		alignItems: "flex-start",
-		justifyContent: "flex-start"
+		justifyContent: "flex-start",
+		width: "100%",
+		maxWidth: "1100px",
 	},
 	menuItems: {
 		display: "flex",
 		flexDirection: "column",
 		alignItems: "flex-start",
-		justifyContent: "flex-start"
+		justifyContent: "flex-start",
 	},
 	menuContent: {
 		marginLeft: "10px",
 		padding: "10px",
 		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px"
+		borderRadius: "10px",
+		width: "100%", //TODO: Remove this when not calendar.
 	},
 	noMenuItemText: {
 		opacity: "40%",
-		fontWeight: "normal"
+		fontWeight: "normal",
 	}
 };
 
