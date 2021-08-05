@@ -19,18 +19,27 @@ function Calendar () {
 				},
 				dayList: {
 					type: "listDay",
-					buttonText: "List Day"
+					buttonText: "List Day",
 				},
 				weekList: {
 					type: "listWeek",
 					buttonText: "List Week",
 				},
 			}}
+			events={dummyEvents}
 			initialView="dayGridMonth"
 			height="88vh"
 		/>
 	);
 }
+
+const dummyEvents = [
+	{
+		title: "R906 Plant watering",
+		start: "2021-08-07",
+		end: "2021-08-08",
+	}
+];
 
 
 export default Calendar;
