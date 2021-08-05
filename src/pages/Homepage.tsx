@@ -70,6 +70,66 @@ function Homepage (): JSX.Element {
 		}
 	});
 
+	const styles: StyleSheet = {
+		root: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			justifyContent: "center",
+			textAlign: "center",
+			backgroundColor: primaryMain,
+			minHeight: "calc(100vh - 44px)",
+			padding: "10px",
+			color: textMain,
+		},
+		wrapper: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+			width: "95%",
+			maxWidth: "1200px",
+			minHeight: "inherit",
+			padding: "10px",
+			border: `2px ${secondaryMain} solid`,
+			borderRadius: "10px",
+		},
+		header: {
+			display: "flex",
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+			width: "100%",
+		},
+		menuWrapper: {
+			display: "flex",
+			flexDirection: "row",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+			width: "100%",
+			maxWidth: "1100px",
+		},
+		menuItems: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+		},
+		menuContent: {
+			marginTop: "10px",
+			marginLeft: "10px",
+			padding: "10px",
+			background: secondaryLight, //TODO: Remove this when not calendar.
+			border: `2px ${secondaryMain} solid`,
+			borderRadius: "10px",
+			width: "100%", //TODO: Remove this when not calendar.
+		},
+		noMenuItemText: {
+			opacity: "40%",
+			fontWeight: "normal",
+		}
+	};
+
 	return (
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
@@ -97,66 +157,6 @@ function Homepage (): JSX.Element {
 		</div>
 	);
 }
-
-const styles: StyleSheet = {
-	root: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
-		textAlign: "center",
-		backgroundColor: primaryMain,
-		minHeight: "calc(100vh - 44px)",
-		padding: "10px",
-		color: textMain,
-	},
-	wrapper: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "flex-start",
-		width: "95%",
-		maxWidth: "1200px",
-		minHeight: "inherit",
-		padding: "10px",
-		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px",
-	},
-	header: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		width: "100%",
-	},
-	menuWrapper: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "flex-start",
-		justifyContent: "flex-start",
-		width: "100%",
-		maxWidth: "1100px",
-	},
-	menuItems: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "flex-start",
-	},
-	menuContent: {
-		marginTop: "10px",
-		marginLeft: "10px",
-		padding: "10px",
-		background: secondaryLight, //TODO: Remove this when not calendar.
-		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px",
-		width: "100%", //TODO: Remove this when not calendar.
-	},
-	noMenuItemText: {
-		opacity: "40%",
-		fontWeight: "normal",
-	}
-};
 
 
 export default Homepage;
