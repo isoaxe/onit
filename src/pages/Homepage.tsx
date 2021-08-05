@@ -119,10 +119,10 @@ function Homepage (): JSX.Element {
 			marginTop: "10px",
 			marginLeft: "10px",
 			padding: "10px",
-			background: secondaryLight, //TODO: Remove this when not calendar.
+			background: calendarActive ? secondaryLight : "inherit",
 			border: `2px ${secondaryMain} solid`,
 			borderRadius: "10px",
-			width: "100%", //TODO: Remove this when not calendar.
+			width: calendarActive ? "100%" : "auto",
 		},
 		noMenuItemText: {
 			opacity: "40%",
