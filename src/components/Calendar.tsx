@@ -10,7 +10,21 @@ function Calendar () {
 			headerToolbar={{
 				start: "prev,next today",
 				center: "title",
-				end: "dayGridMonth listDay,listWeek,listMonth"
+				end: "calendar dayList,weekList"
+			}}
+			views={{
+				calendar: {
+					type: "dayGridMonth",
+					buttonText: "Calendar",
+				},
+				dayList: {
+					type: "listDay",
+					buttonText: "List Day"
+				},
+				weekList: {
+					type: "listWeek",
+					buttonText: "List Week",
+				},
 			}}
 			initialView="dayGridMonth"
 			height="88vh"
