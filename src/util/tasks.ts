@@ -45,8 +45,8 @@ export const dummyTasks = [
 			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-07T10:00:00",
-			assignees: ["Dara Hensey"],
-			assigneeUids: ["dtdVI82ktJdFH90B1vyH5mkfB6r2"],
+			assignees: ["Dara Hensey", "Paddy Moogan"],
+			assigneeUids: ["dtdVI82ktJdFH90B1vyH5mkfB6r2", "lnQ9B1qLqsZcOddV9F4K60oTo6E2"],
 			assignor: "Aaron Quigley",
 			assignorUid: "79TP3KL4Gzd5X0OUfzKb4fkp6423",
 		}
