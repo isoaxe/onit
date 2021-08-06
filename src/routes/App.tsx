@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 
 import { ProvideAuth } from "./../util/useAuth";
@@ -7,6 +8,11 @@ import LoginSignup from "./../pages/LoginSignup";
 
 
 function App (): JSX.Element {
+
+	useEffect(() => {
+		document.title = "Onit";
+	}, []);
+
 	return (
 		<div>
 			<ProvideAuth>
