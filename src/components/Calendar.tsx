@@ -20,11 +20,11 @@ function Calendar () {
 				},
 				dayList: {
 					type: "listDay",
-					buttonText: "List Day",
+					buttonText: "Day",
 				},
 				weekList: {
 					type: "listWeek",
-					buttonText: "List Week",
+					buttonText: "Week",
 				},
 			}}
 			events={dummyTasks}
