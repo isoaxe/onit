@@ -12,6 +12,7 @@ export const tertiaryMain = "#007474";
 export const tertiaryLight = "#00A693";
 
 export const textMain = "#FFFFFF";
+export const textAlt = "#000000";
 
 export const inputError = "2px solid #CC0000";
 
