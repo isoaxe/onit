@@ -83,4 +83,52 @@ export const dummyTasks = [
 			assignorUid: "79TP3KL4Gzd5X0OUfzKb4fkp6423",
 		}
 	},
+	{
+		title: "Mop lobby entrance",
+		allDay: true,
+		start: "2021-08-09",
+		end: "2021-08-09",
+		extendedProps: {
+			message: "Mop darkly scuffed area at the lobby entrance",
+			complete: false,
+			completionTime: null,
+			assignedTime: "2021-08-06T11:25:00",
+			assignees: ["Paddy Moogan"],
+			assigneeUids: ["lnQ9B1qLqsZcOddV9F4K60oTo6E2"],
+			assignor: "Aaron Quigley",
+			assignorUid: "79TP3KL4Gzd5X0OUfzKb4fkp6423",
+		}
+	},
+	{
+		title: "Change lightbulbs",
+		allDay: true,
+		start: "2021-08-09",
+		end: "2021-08-09",
+		extendedProps: {
+			message: "Lightbulbs in the lobby need changing. Ask receptionist which ones.",
+			complete: false,
+			completionTime: null,
+			assignedTime: "2021-08-05T14:00:00",
+			assignees: ["Dara Hensey"],
+			assigneeUids: ["dtdVI82ktJdFH90B1vyH5mkfB6r2"],
+			assignor: "Aaron Quigley",
+			assignorUid: "79TP3KL4Gzd5X0OUfzKb4fkp6423",
+		}
+	},
+	{
+		title: "Discuss COVID measures",
+		allDay: false,
+		start: "2021-08-09T17:00:00",
+		end: "2021-08-09T17:30:00",
+		extendedProps: {
+			message: "Discuss the frequency of cleaning touchpoints in the common areas.",
+			complete: false,
+			completionTime: null,
+			assignedTime: "2021-08-05T14:30:00",
+			assignees: ["Dara Hensey"],
+			assigneeUids: ["dtdVI82ktJdFH90B1vyH5mkfB6r2"],
+			assignor: "Aaron Quigley",
+			assignorUid: "79TP3KL4Gzd5X0OUfzKb4fkp6423",
+		}
+	},
 ];
