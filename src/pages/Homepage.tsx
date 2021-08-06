@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { primaryMain, secondaryMain, secondaryLight, textMain } from "./../util/colours";
+import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
@@ -120,7 +120,7 @@ function Homepage (): JSX.Element {
 			marginLeft: "10px",
 			padding: "10px",
 			background: calendarActive ? secondaryLight : "inherit",
-			border: `2px ${secondaryMain} solid`,
+			border: `2px ${tertiaryMain} solid`,
 			borderRadius: "10px",
 			width: calendarActive ? "100%" : "auto",
 		},
