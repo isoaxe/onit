@@ -30,6 +30,7 @@ function Calendar () {
 			events={dummyTasks}
 			initialView="dayGridMonth"
 			height="88vh"
+			fixedWeekCount={false}
 		/>
 	);
 }
