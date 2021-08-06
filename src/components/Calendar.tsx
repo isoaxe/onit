@@ -17,6 +17,12 @@ function Calendar () {
 				calendar: {
 					type: "dayGridMonth",
 					buttonText: "Calendar",
+					eventTimeFormat: {
+						hour: "2-digit",
+						minute: "2-digit",
+						meridiem: false,
+						hour12: false,
+					},
 				},
 				dayList: {
 					type: "listDay",
