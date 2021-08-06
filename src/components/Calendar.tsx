@@ -31,6 +31,7 @@ function Calendar () {
 			initialView="dayGridMonth"
 			height="88vh"
 			fixedWeekCount={false}
+			firstDay={1}
 		/>
 	);
 }
