@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain } from "./../util/colours";
+import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain, textAlt } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
@@ -123,6 +123,7 @@ function Homepage (): JSX.Element {
 			border: `2px ${tertiaryMain} solid`,
 			borderRadius: "10px",
 			width: calendarActive ? "100%" : "auto",
+			color: textAlt,
 		},
 		noMenuItemText: {
 			opacity: "40%",
