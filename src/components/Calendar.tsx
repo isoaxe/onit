@@ -38,6 +38,7 @@ function Calendar () {
 			height="88vh"
 			fixedWeekCount={false}
 			firstDay={1}
+			dayMaxEventRows={4}
 		/>
 	);
 }
