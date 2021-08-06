@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import { tertiaryLight } from "./../util/colours";
+import { tertiaryLight, textAlt } from "./../util/colours";
 import { dummyTasks } from "./../util/tasks";
 
 
@@ -40,6 +40,7 @@ function Calendar () {
 			fixedWeekCount={false}
 			firstDay={1}
 			eventColor={tertiaryLight}
+			eventTextColor={textAlt}
 			dayMaxEventRows={4}
 		/>
 	);
