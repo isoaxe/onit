@@ -1,8 +1,6 @@
 /* Targets listview heading (i.e. day of week). */
-.fc-list-day.fc-day {
-	/* Can target other attributes, but background-color has no effect. */
-	background-color: blue;
-	border: 4px solid black;
+.fc-list-day-cushion.fc-cell-shaded {
+	background-color: #007474;
 }
 
 /* Targets entire calendar in listview. */
