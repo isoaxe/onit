@@ -13,3 +13,13 @@
 	border: 2px solid black;
 	--fc-list-event-hover-bg-color: #00A693;
 }
+
+/* Targets timed event in regular view. Does not work in Firefox. */
+.fc-daygrid-dot-event .fc-event-title {
+	font-weight: normal;
+}
+
+/* Chrome and Safari were making headers in listview bold */
+.fc th {
+	font-weight: normal;
+}
