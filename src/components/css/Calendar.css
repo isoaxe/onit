@@ -7,6 +7,16 @@
 	background-color: #007474;
 }
 
+/* Targeting Firefox only due to quirks with that browser. */
+@-moz-document url-prefix() {
+	.fc-list-day.fc-day {
+		/* Border only renders as 2px so is in line with other browsers. */
+		border: 4px solid black;
+		/* Otherwise white lines above and below header. */
+		--fc-page-bg-color: #007474;
+	}
+}
+
 /* Targets entire calendar in listview. */
 .fc-list.fc-view {
 	border: 2px solid black;
