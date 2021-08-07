@@ -1,3 +1,7 @@
+/*
+	CSS tested on Firefox, Chrome and Safari only. Not all styles could be applied to all browsers.
+ */
+
 /* Targets listview heading (i.e. day of week). */
 .fc-list-day-cushion.fc-cell-shaded {
 	background-color: #007474;
