@@ -128,6 +128,7 @@ function Homepage (): JSX.Element {
 		noMenuItemText: {
 			opacity: "40%",
 			fontWeight: "normal",
+			color: textMain,
 		}
 	};
 
