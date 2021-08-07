@@ -1,0 +1,13 @@
+.fc-list-day.fc-day {
+	/* Can target other attributes, but background-color has no effect. */
+	background-color: blue;
+	border: 2px solid black;
+}
+
+.fc-list.fc-view {
+	border: 1px solid black;
+}
+
+.fc-list-event.fc-event {
+	border: 2px solid black;
+}
