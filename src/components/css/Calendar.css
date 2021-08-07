@@ -13,4 +13,5 @@
 /* Targets an event entry in listview. */
 .fc-list-event.fc-event {
 	border: 2px solid black;
+	--fc-list-event-hover-bg-color: #00A693;
 }
