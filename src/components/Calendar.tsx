@@ -37,7 +37,6 @@ function Calendar () {
 			}}
 			events={dummyTasks}
 			initialView="dayGridMonth"
-			height="88vh"
 			fixedWeekCount={false}
 			firstDay={1}
 			eventColor={tertiaryMain}
