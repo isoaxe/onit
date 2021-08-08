@@ -37,3 +37,8 @@
 .fc th {
 	font-weight: normal;
 }
+
+/* Prevent cell height from increasing when events added in regular view. */
+div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
+	height: 12vh;
+}
