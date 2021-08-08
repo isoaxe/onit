@@ -1,9 +1,10 @@
 import { useState, useEffect } from "react";
-import { primaryMain, secondaryMain, textMain } from "./../util/colours";
+import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain, textAlt } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
+import Calendar from "./../components/Calendar";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -69,6 +70,68 @@ function Homepage (): JSX.Element {
 		}
 	});
 
+	const styles: StyleSheet = {
+		root: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "center",
+			justifyContent: "center",
+			textAlign: "center",
+			backgroundColor: primaryMain,
+			minHeight: "calc(100vh - 44px)",
+			padding: "10px",
+			color: textMain,
+		},
+		wrapper: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+			width: "95%",
+			maxWidth: "1200px",
+			minHeight: "inherit",
+			padding: "10px",
+			border: `2px ${secondaryMain} solid`,
+			borderRadius: "10px",
+		},
+		header: {
+			display: "flex",
+			flexDirection: "row",
+			alignItems: "center",
+			justifyContent: "space-between",
+			width: "100%",
+		},
+		menuWrapper: {
+			display: "flex",
+			flexDirection: "row",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+			width: "100%",
+			maxWidth: "1100px",
+		},
+		menuItems: {
+			display: "flex",
+			flexDirection: "column",
+			alignItems: "flex-start",
+			justifyContent: "flex-start",
+		},
+		menuContent: {
+			marginTop: "10px",
+			marginLeft: "10px",
+			padding: "10px",
+			background: calendarActive ? secondaryLight : "inherit",
+			border: `2px ${tertiaryMain} solid`,
+			borderRadius: "10px",
+			width: calendarActive ? "100%" : "auto",
+			color: textAlt,
+		},
+		noMenuItemText: {
+			opacity: "40%",
+			fontWeight: "normal",
+			color: textMain,
+		}
+	};
+
 	return (
 		<div style={styles.root}>
 			<div style={styles.wrapper}>
@@ -89,68 +152,13 @@ function Homepage (): JSX.Element {
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
-						{calendarActive && <h3>Calendar Placeholder</h3>}
+						{calendarActive && <Calendar />}
 					</div>
 				</section>
 			</div>
 		</div>
 	);
 }
-
-const styles: StyleSheet = {
-	root: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "center",
-		justifyContent: "center",
-		textAlign: "center",
-		backgroundColor: primaryMain,
-		minHeight: "calc(100vh - 44px)",
-		padding: "10px",
-		color: textMain
-	},
-	wrapper: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "flex-start",
-		width: "95%",
-		maxWidth: "1200px",
-		minHeight: "inherit",
-		padding: "10px",
-		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px"
-	},
-	header: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "center",
-		justifyContent: "space-between",
-		width: "100%"
-	},
-	menuWrapper: {
-		display: "flex",
-		flexDirection: "row",
-		alignItems: "flex-start",
-		justifyContent: "flex-start"
-	},
-	menuItems: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "flex-start"
-	},
-	menuContent: {
-		marginLeft: "10px",
-		padding: "10px",
-		border: `2px ${secondaryMain} solid`,
-		borderRadius: "10px"
-	},
-	noMenuItemText: {
-		opacity: "40%",
-		fontWeight: "normal"
-	}
-};
 
 
 export default Homepage;
