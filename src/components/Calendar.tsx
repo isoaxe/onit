@@ -35,13 +35,16 @@ function Calendar () {
 					buttonText: "Week",
 				},
 			}}
-			events={dummyTasks}
 			initialView="dayGridMonth"
 			fixedWeekCount={false}
 			firstDay={1}
+			events={dummyTasks}
 			eventColor={tertiaryMain}
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}
+			eventClick={(info) => {
+				info.view.calendar.changeView("dayList", info.event.start);
+			}}
 		/>
 	);
 }
