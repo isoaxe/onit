@@ -48,13 +48,19 @@ function Calendar () {
 					// Redirect to listview for day that event takes place.
 					info.view.calendar.changeView("dayList", info.event.start);
 				} else {
-					// Find listview row (event) that was clicked and display message below.
+					// Find listview row (event) that was clicked and insert row below.
 					const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 					const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 					const rowArray = Array.from(rows);
 					const index = rowArray.findIndex((row) => row.textContent.includes(info.event.title));
 					const displayInfo = table.insertRow(index + 1);
-					displayInfo.innerHTML = "A temporary message testing this feature";
+
+					// Insert cell to display message and make equal to table width.
+					const cell = displayInfo.insertCell(0);
+					const colspan = document.createAttribute("colspan");
+					colspan.value = "3";
+					cell.setAttributeNode(colspan);
+					cell.innerHTML = "A temporary message testing this feature";
 				}
 			}}
 		/>
