@@ -7,6 +7,7 @@ import "./css/Calendar.css";
 
 
 function Calendar () {
+
 	return (
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
@@ -43,7 +44,18 @@ function Calendar () {
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}
 			eventClick={(info) => {
-				info.view.calendar.changeView("dayList", info.event.start);
+				if (info.view.type === "calendar") {
+					// Redirect to listview for day that event takes place.
+					info.view.calendar.changeView("dayList", info.event.start);
+				} else {
+					// Find listview row (event) that was clicked and display message below.
+					const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
+					const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
+					const rowArray = Array.from(rows);
+					const index = rowArray.findIndex((row) => row.textContent.includes(info.event.title));
+					const displayInfo = table.insertRow(index + 1);
+					displayInfo.innerHTML = "A temporary message testing this feature";
+				}
 			}}
 		/>
 	);
