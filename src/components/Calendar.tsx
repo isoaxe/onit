@@ -18,10 +18,10 @@ function Calendar () {
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
 			const index = rowArray.findIndex((row) => row.textContent.includes(info.event.title));
-			const displayInfo = table.insertRow(index + 1);
+			const newRow = table.insertRow(index + 1);
 
 			// Insert cell to display message and make equal to table width.
-			const cell = displayInfo.insertCell(0);
+			const cell = newRow.insertCell(0);
 			const colspan = document.createAttribute("colspan");
 			colspan.value = "3";
 			cell.setAttributeNode(colspan);
