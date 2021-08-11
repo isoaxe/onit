@@ -25,8 +25,17 @@ function Calendar () {
 			const colspan = document.createAttribute("colspan");
 			colspan.value = "3";
 			cell.setAttributeNode(colspan);
-			cell.innerHTML = "A temporary message testing this feature";
+			cell.innerHTML = displayInfo(info);
 		}
+	}
+
+	// TODO: Make the displayInfo object here and insert into cell above.
+	function displayInfo (info) {
+		return (
+			`<div>
+				<p>Details: ${info.event.extendedProps.message}</p>
+			</div>`
+		);
 	}
 
 	return (
