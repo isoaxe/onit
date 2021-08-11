@@ -46,3 +46,7 @@ div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
 .fc-event-title:hover {
 	cursor: pointer;
 }
+
+.fc-list-event:hover {
+	cursor: pointer;
+}
