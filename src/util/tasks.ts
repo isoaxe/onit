@@ -10,7 +10,6 @@ export const dummyTasks = [
 		end: "2021-08-07",
 		extendedProps: {
 			message: "There are 8 plants in total. Use the full bucket of water.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-07T11:00:00",
 			assignees: ["Dara Hensey"],
@@ -26,7 +25,6 @@ export const dummyTasks = [
 		end: "2021-08-07T11:30:00",
 		extendedProps: {
 			message: "External electrical contractor to come and repair the generator.",
-			complete: true,
 			completionTime: "2021-08-07T12:15:00",
 			assignedTime: "2021-08-05T18:00:00",
 			assignees: ["Dara Hensey"],
@@ -42,7 +40,6 @@ export const dummyTasks = [
 		end: "2021-08-08T14:30:00",
 		extendedProps: {
 			message: "New tenant coming to view the property. Discuss leasing options.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-07T10:00:00",
 			assignees: ["Dara Hensey", "Paddy Moogan"],
@@ -58,7 +55,6 @@ export const dummyTasks = [
 		end: "2021-08-09T13:00:00",
 		extendedProps: {
 			message: "Spray pest repellant in apartment drains from ground to 8th floor inclusive.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-04T11:00:00",
 			assignees: ["Dara Hensey"],
@@ -74,7 +70,6 @@ export const dummyTasks = [
 		end: "2021-08-09",
 		extendedProps: {
 			message: "Tenent moved out yesterday. Full clean of apartment required.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-05T12:15:00",
 			assignees: ["Dara Hensey"],
@@ -90,7 +85,6 @@ export const dummyTasks = [
 		end: "2021-08-09",
 		extendedProps: {
 			message: "Mop darkly scuffed area at the lobby entrance",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-06T11:25:00",
 			assignees: ["Paddy Moogan"],
@@ -106,7 +100,6 @@ export const dummyTasks = [
 		end: "2021-08-09",
 		extendedProps: {
 			message: "Lightbulbs in the lobby need changing. Ask receptionist which ones.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-05T14:00:00",
 			assignees: ["Dara Hensey"],
@@ -122,7 +115,6 @@ export const dummyTasks = [
 		end: "2021-08-09T17:30:00",
 		extendedProps: {
 			message: "Discuss the frequency of cleaning touchpoints in the common areas.",
-			complete: false,
 			completionTime: null,
 			assignedTime: "2021-08-05T14:30:00",
 			assignees: ["Dara Hensey"],
