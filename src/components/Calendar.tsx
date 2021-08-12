@@ -38,9 +38,17 @@ function Calendar () {
 
 	// TODO: Make the displayInfo object here and insert into cell above.
 	function displayInfo (info) {
+		const infoProps = info.event.extendedProps;
+
 		return (
 			`<div>
-				<p>Details: ${info.event.extendedProps.message}</p>
+				<p>Details: ${infoProps.message}</p>
+				<p>Assignee(s): ${infoProps.assignees}</p>
+				<p>Assignor: ${infoProps.assignor}</p>
+				<p>Created: ${infoProps.assignedTime}</p>
+				<p>Status: ${infoProps.completionTime ?
+				`Task completed at ${infoProps.completionTime}` :
+				"Awaiting completion"}</p>
 			</div>`
 		);
 	}
