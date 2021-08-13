@@ -81,7 +81,7 @@ function Calendar () {
 					buttonText: "Week",
 				},
 			}}
-			initialView="dayGridMonth"
+			initialView="calendar"
 			fixedWeekCount={false}
 			firstDay={1}
 			events={dummyTasks}
