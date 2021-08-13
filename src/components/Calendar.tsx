@@ -74,6 +74,23 @@ function Calendar () {
 		}
 	}, []);
 
+	// Remove infoRow if navagating away from current view.
+	useEffect(() => {
+		// Helper function returns true if the button selected is not the current one.
+		function newButtonSelected () {
+			const activeButton = document.getElementsByClassName("fc-button-active")[0];
+			console.log("New button?:", !(activeButton.className.includes(buttonClass)));
+			return !(activeButton.className.includes(buttonClass));
+		}
+		// Remove infoRow if open and using new button.
+		if (newButtonSelected() && infoRowIndex !== 99) {
+			console.log("Removing info row...");
+			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
+			table.deleteRow(infoRowIndex);
+			setInfoRowIndex(99);
+		}
+	}, [buttonClass, infoRowIndex]);
+
 	return (
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
