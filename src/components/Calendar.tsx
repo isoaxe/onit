@@ -38,7 +38,7 @@ function Calendar () {
 		}
 	}
 
-	// TODO: Make the displayInfo object here and insert into cell above.
+	// Display the task info. To be inserted into the infoRow cell in eventClicked.
 	function displayInfo (info) {
 		const infoProps = info.event.extendedProps;
 
