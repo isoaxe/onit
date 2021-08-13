@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
 import { dummyTasks } from "./../util/tasks";
 import "./css/Calendar.css";
@@ -9,6 +9,7 @@ import "./css/Calendar.css";
 
 function Calendar () {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
+	const [buttonClass, setButtonClass] = useState("No button clicked");
 
 	// Event handling for when task is clicked in any view.
 	function eventClicked (info) {
@@ -59,6 +60,19 @@ function Calendar () {
 			</div>`
 		);
 	}
+
+	// Listen for button clicks and save class name to state when clicked.
+	useEffect(() => {
+		function clickButton (event) {
+			setButtonClass(event.target.className);
+			console.log("Button class:", event.target.className);
+		}
+		const buttons = document.getElementsByClassName("fc-button");
+		for (let i = 0; i < buttons.length; i++) {
+			buttons[i].addEventListener("click", clickButton);
+			console.log(`Event listener added to button number ${i}`);
+		}
+	}, []);
 
 	return (
 		<FullCalendar
