@@ -68,12 +68,10 @@ function Calendar () {
 		function clickButton (event) {
 			setButtonClass(event.target.className);
 			setButtonClicked(true);
-			console.log("Button class:", event.target.className);
 		}
 		const buttons = document.getElementsByClassName("fc-button");
 		for (let i = 0; i < buttons.length; i++) {
 			buttons[i].addEventListener("click", clickButton);
-			console.log(`Event listener added to button number ${i}`);
 		}
 	}, []);
 
@@ -82,12 +80,10 @@ function Calendar () {
 		// Helper function returns true if the button selected is not the current one.
 		function newButtonSelected () {
 			const activeButton = document.getElementsByClassName("fc-button-active")[0];
-			console.log("New button?:", !(activeButton.className.includes(buttonClass)));
 			return !(activeButton.className.includes(buttonClass));
 		}
 		// Remove infoRow if open and using new button.
 		if (newButtonSelected() && infoRowIndex !== 99 && buttonClicked) {
-			console.log("Removing info row...");
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
 			setInfoRowIndex(99);
