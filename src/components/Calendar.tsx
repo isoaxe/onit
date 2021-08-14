@@ -46,12 +46,12 @@ function Calendar () {
 		const infoProps = info.event.extendedProps;
 
 		return (
-			`<div>
-				<p>Details: ${infoProps.message}</p>
-				<p>Assignee(s): ${infoProps.assignees}</p>
-				<p>Assignor: ${infoProps.assignor}</p>
-				<p>Created: ${infoProps.assignedTime}</p>
-				<p>Status: ${infoProps.completionTime ?
+			`<div class="info">
+				<p><span>Details:</span> ${infoProps.message}</p>
+				<p><span>Assignee(s):</span> ${infoProps.assignees}</p>
+				<p><span>Assignor:</span> ${infoProps.assignor}</p>
+				<p><span>Created:</span> ${infoProps.assignedTime}</p>
+				<p><span>Status:</span> ${infoProps.completionTime ?
 				`Task completed at ${infoProps.completionTime}` :
 				"Awaiting completion"}</p>
 			</div>`
