@@ -24,6 +24,7 @@ function Calendar () {
 				table.deleteRow(infoRowIndex);
 			}
 			setButtonClicked(false);
+
 			// Find row index of event that was clicked and create row for info below.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
@@ -57,7 +58,7 @@ function Calendar () {
 		);
 	}
 
-	// Set listeners for clicks on all buttons.
+	// Set listeners for clicks on all buttons on initial render.
 	useEffect(() => {
 		const buttons = document.getElementsByClassName("fc-button");
 		for (let i = 0; i < buttons.length; i++) {
@@ -65,15 +66,14 @@ function Calendar () {
 		}
 	}, []);
 
-	// Remove infoRow if navagating away from current view.
+	// Remove infoRow if open and using a button.
 	useEffect(() => {
-		// Remove infoRow if open and using a button.
 		if (infoRowIndex !== 99 && buttonClicked) {
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
 			setInfoRowIndex(99);
 		}
-	}, [buttonClicked, infoRowIndex]);
+	}, [infoRowIndex, buttonClicked]);
 
 	return (
 		<FullCalendar
