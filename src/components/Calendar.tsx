@@ -31,11 +31,6 @@ function Calendar () {
 			const infoRow = table.insertRow(index + 1);
 			setInfoRowIndex(index + 1);
 
-			// Attach a class name to the row for future reference.
-			const className = document.createAttribute("class");
-			className.value = "infoRow";
-			infoRow.setAttributeNode(className);
-
 			// Insert cell to display message and make equal to table width.
 			const cell = infoRow.insertCell(0);
 			const colspan = document.createAttribute("colspan");
