@@ -4,6 +4,7 @@ import listPlugin from "@fullcalendar/list";
 import { useState, useEffect } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
 import { dummyTasks } from "./../util/tasks";
+import { ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
 
 
@@ -61,7 +62,7 @@ function Calendar () {
 	// Takes an ISO 8601 compliant date and formats it nicely.
 	function formatDate (compliantDate) {
 		const date = new Date(compliantDate);
-		const day = date.getDate();
+		const day = ordinal(date.getDate());
 		const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
 		const hours = date.getHours();
 		const minutes = date.getMinutes();
