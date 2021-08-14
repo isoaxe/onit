@@ -65,7 +65,8 @@ function Calendar () {
 		const day = ordinal(date.getDate());
 		const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
 		const hours = date.getHours();
-		const minutes = date.getMinutes();
+		const unformattedMins = date.getMinutes();
+		const minutes = unformattedMins < 10 ? "0" + unformattedMins : unformattedMins;
 		return `${month} ${day} at ${hours}:${minutes}`;
 	}
 
