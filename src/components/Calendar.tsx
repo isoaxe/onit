@@ -57,7 +57,7 @@ function Calendar () {
 		);
 	}
 
-	// Listen for button clicks and save class name to state when clicked.
+	// Set listeners for clicks on all buttons.
 	useEffect(() => {
 		function clickButton (event) {
 			setButtonClicked(true);
@@ -70,7 +70,7 @@ function Calendar () {
 
 	// Remove infoRow if navagating away from current view.
 	useEffect(() => {
-		// Remove infoRow if open and using new button.
+		// Remove infoRow if open and using a button.
 		if (infoRowIndex !== 99 && buttonClicked) {
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
