@@ -59,12 +59,9 @@ function Calendar () {
 
 	// Set listeners for clicks on all buttons.
 	useEffect(() => {
-		function clickButton (event) {
-			setButtonClicked(true);
-		}
 		const buttons = document.getElementsByClassName("fc-button");
 		for (let i = 0; i < buttons.length; i++) {
-			buttons[i].addEventListener("click", clickButton);
+			buttons[i].addEventListener("click", () => setButtonClicked(true));
 		}
 	}, []);
 
