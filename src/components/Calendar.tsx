@@ -10,6 +10,7 @@ import "./css/Calendar.css";
 function Calendar () {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClass, setButtonClass] = useState("No button clicked");
+	const [buttonClicked, setButtonClicked] = useState(false);
 
 	// Event handling for when task is clicked in any view.
 	function eventClicked (info) {
@@ -23,6 +24,7 @@ function Calendar () {
 			if (infoRowIndex !== 99) {
 				table.deleteRow(infoRowIndex);
 			}
+			setButtonClicked(false);
 			// Find row index of event that was clicked and create row for info below.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
@@ -65,6 +67,7 @@ function Calendar () {
 	useEffect(() => {
 		function clickButton (event) {
 			setButtonClass(event.target.className);
+			setButtonClicked(true);
 			console.log("Button class:", event.target.className);
 		}
 		const buttons = document.getElementsByClassName("fc-button");
@@ -83,13 +86,13 @@ function Calendar () {
 			return !(activeButton.className.includes(buttonClass));
 		}
 		// Remove infoRow if open and using new button.
-		if (newButtonSelected() && infoRowIndex !== 99) {
+		if (newButtonSelected() && infoRowIndex !== 99 && buttonClicked) {
 			console.log("Removing info row...");
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
 			setInfoRowIndex(99);
 		}
-	}, [buttonClass, infoRowIndex]);
+	}, [buttonClicked, buttonClass, infoRowIndex]);
 
 	return (
 		<FullCalendar
