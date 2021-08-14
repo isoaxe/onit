@@ -9,7 +9,6 @@ import "./css/Calendar.css";
 
 function Calendar () {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
-	const [buttonClass, setButtonClass] = useState("No button clicked");
 	const [buttonClicked, setButtonClicked] = useState(false);
 
 	// Event handling for when task is clicked in any view.
@@ -66,7 +65,6 @@ function Calendar () {
 	// Listen for button clicks and save class name to state when clicked.
 	useEffect(() => {
 		function clickButton (event) {
-			setButtonClass(event.target.className);
 			setButtonClicked(true);
 		}
 		const buttons = document.getElementsByClassName("fc-button");
@@ -77,18 +75,13 @@ function Calendar () {
 
 	// Remove infoRow if navagating away from current view.
 	useEffect(() => {
-		// Helper function returns true if the button selected is not the current one.
-		function newButtonSelected () {
-			const activeButton = document.getElementsByClassName("fc-button-active")[0];
-			return !(activeButton.className.includes(buttonClass));
-		}
 		// Remove infoRow if open and using new button.
-		if (newButtonSelected() && infoRowIndex !== 99 && buttonClicked) {
+		if (infoRowIndex !== 99 && buttonClicked) {
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
 			setInfoRowIndex(99);
 		}
-	}, [buttonClicked, buttonClass, infoRowIndex]);
+	}, [buttonClicked, infoRowIndex]);
 
 	return (
 		<FullCalendar
