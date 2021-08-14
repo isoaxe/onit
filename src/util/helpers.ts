@@ -60,3 +60,19 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 		console.error(`An error occured whilst fetching business data: ${error}`);
 	}
 }
+
+
+// Add correct suffix to supplied date.
+export function ordinal (number) {
+	const english_ordinal_rules = new Intl.PluralRules("en", {
+		type: "ordinal"
+	});
+	const suffixes = {
+		one: "st",
+		two: "nd",
+		few: "rd",
+		other: "th"
+	};
+	const suffix = suffixes[english_ordinal_rules.select(number)];
+	return (number + suffix);
+}
