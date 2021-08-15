@@ -65,7 +65,7 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 
 // Add correct suffix to supplied date.
 export function ordinal (number) {
-	const english_ordinal_rules = new Intl.PluralRules("en", {
+	const ordinalRules = new Intl.PluralRules("en", {
 		type: "ordinal"
 	});
 	const suffixes = {
@@ -74,7 +74,7 @@ export function ordinal (number) {
 		few: "rd",
 		other: "th"
 	};
-	const suffix = suffixes[english_ordinal_rules.select(number)];
+	const suffix = suffixes[ordinalRules.select(number)];
 	return (number + suffix);
 }
 
