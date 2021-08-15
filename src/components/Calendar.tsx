@@ -26,19 +26,23 @@ function Calendar () {
 			}
 			setButtonClicked(false);
 
-			// Find row index of event that was clicked and create row for info below.
+			// Find row index of event that was clicked.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
 			const index = rowArray.findIndex((row) => row.textContent.includes(info.event.title));
-			const infoRow = table.insertRow(index + 1);
-			setInfoRowIndex(index + 1);
 
-			// Insert cell to display message and make equal to table width.
-			const cell = infoRow.insertCell(0);
-			const colspan = document.createAttribute("colspan");
-			colspan.value = "3";
-			cell.setAttributeNode(colspan);
-			cell.innerHTML = displayInfo(info);
+			// Create new row for info if event clicked is different to previous event.
+			if (index + 1 !== infoRowIndex) {
+				const infoRow = table.insertRow(index + 1);
+				setInfoRowIndex(index + 1);
+
+				// Insert cell to display message and make equal to table width.
+				const cell = infoRow.insertCell(0);
+				const colspan = document.createAttribute("colspan");
+				colspan.value = "3";
+				cell.setAttributeNode(colspan);
+				cell.innerHTML = displayInfo(info);
+			}
 		}
 	}
 
