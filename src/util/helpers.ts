@@ -2,6 +2,7 @@
  * Various helper functions used throughout the project.
  */
 import firebase from "firebase/app";
+import generator from "generate-password";
 import { API_URL } from "./../util/urls";
 
 
@@ -75,4 +76,13 @@ export function ordinal (number) {
 	};
 	const suffix = suffixes[english_ordinal_rules.select(number)];
 	return (number + suffix);
+}
+
+
+// Generate an id for tasks.
+export function getId () {
+	return generator.generate({
+		length: 28,
+		numbers: true
+	});
 }
