@@ -8,6 +8,7 @@
     "@fullcalendar/react": "^5.9.0",
     "firebase": "^8.4.3",
     "firebaseui": "^4.8.0",
+    "generate-password": "^1.6.1",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
     "react-phone-number-input": "^3.1.23",
