@@ -30,7 +30,18 @@ function Calendar () {
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
 			const index = rowArray.findIndex((row) => {
-				return row.textContent.includes(info.event.title);
+				const domText = row.textContent;
+				const titleMatch = domText.includes(info.event.title);
+				function timeMatch () {
+					if (info.event.allDay) {
+						return domText.includes("all-day");
+					} else {
+						const start = info.event.start.toLocaleTimeString("en").substring(0, 4);
+						const end = info.event.end.toLocaleTimeString("en").substring(0, 4);
+						return domText.includes(start) && domText.includes(end);
+					}
+				}
+				return (titleMatch && timeMatch());
 			});
 
 			// Create new row for info if event clicked is different to previous event.
@@ -55,7 +66,7 @@ function Calendar () {
 		const infoProps = info.event.extendedProps;
 
 		return (
-			`<div class="info">
+			`<div class="info" id=${info.event.id}>
 				<p><span>Details:</span> ${infoProps.message}</p>
 				<p><span>Assignee(s):</span> ${infoProps.assignees}</p>
 				<p><span>Assignor:</span> ${infoProps.assignor}</p>
