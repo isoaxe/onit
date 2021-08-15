@@ -5,6 +5,7 @@
 export const dummyTasks = [
 	{
 		title: "R906 Plant watering",
+		id: "n423GcfafcZx60EsRfVwSbqE10S5",
 		allDay: true,
 		start: "2021-08-07",
 		end: "2021-08-07",
@@ -20,6 +21,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "Electrical repairs",
+		id: "euY4Qu3JrcAbQvY2onw00jxhPULu",
 		allDay: false,
 		start: "2021-08-07T09:00:00",
 		end: "2021-08-07T11:30:00",
@@ -35,6 +37,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "R807 New tenant",
+		id: "Zdv8sovMG3Fn3AsLb6cNFR7Jb5ah",
 		allDay: false,
 		start: "2021-08-08T14:00:00",
 		end: "2021-08-08T14:30:00",
@@ -50,6 +53,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "Pest repellant in drain",
+		id: "tb7mkwPnNlstrGZraKcIyJLMsTaj",
 		allDay: false,
 		start: "2021-08-09T08:00:00",
 		end: "2021-08-09T13:00:00",
@@ -65,6 +69,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "R503 Clean apartment",
+		id: "xvfBXhzzS7zHUYbJfEkaWesgNJR3",
 		allDay: true,
 		start: "2021-08-09",
 		end: "2021-08-09",
@@ -80,6 +85,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "Mop lobby entrance",
+		id: "gdE3e1CeaQDwFit4e6EVjP3fexjZ",
 		allDay: true,
 		start: "2021-08-09",
 		end: "2021-08-09",
@@ -95,6 +101,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "Change lightbulbs",
+		id: "6RTzcB6aGYrG0inppHCqKfcYpxGx",
 		allDay: true,
 		start: "2021-08-09",
 		end: "2021-08-09",
@@ -110,6 +117,7 @@ export const dummyTasks = [
 	},
 	{
 		title: "Discuss COVID measures",
+		id: "3x94X47gXNYL9x8WGxn7Waw7VZnI",
 		allDay: false,
 		start: "2021-08-09T17:00:00",
 		end: "2021-08-09T17:30:00",
