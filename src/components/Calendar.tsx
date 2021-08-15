@@ -29,7 +29,9 @@ function Calendar () {
 			// Find row index of event that was clicked.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
-			const index = rowArray.findIndex((row) => row.textContent.includes(info.event.title));
+			const index = rowArray.findIndex((row) => {
+				return row.textContent.includes(info.event.title);
+			});
 
 			// Create new row for info if event clicked is different to previous event.
 			if (index + 1 !== infoRowIndex) {
