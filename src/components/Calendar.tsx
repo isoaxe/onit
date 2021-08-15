@@ -42,6 +42,8 @@ function Calendar () {
 				colspan.value = "3";
 				cell.setAttributeNode(colspan);
 				cell.innerHTML = displayInfo(info);
+			} else {
+				setInfoRowIndex(99);
 			}
 		}
 	}
