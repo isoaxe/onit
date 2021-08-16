@@ -8,7 +8,7 @@ import { ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
 
 
-function Calendar () {
+function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
 
@@ -93,6 +93,7 @@ function Calendar () {
 	function addEvent () {
 		// Temporary placeholder until modal is built.
 		alert("Add event modal opens...");
+		props.setTaskModalVisible(true);
 	}
 
 	// Set listeners for clicks on all buttons on initial render.
