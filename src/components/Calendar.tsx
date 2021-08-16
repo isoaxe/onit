@@ -89,6 +89,12 @@ function Calendar () {
 		return `${month} ${day} at ${hours}:${minutes}`;
 	}
 
+	// Opens a modal so the user can input information and create event.
+	function addEvent () {
+		// Temporary placeholder until modal is built.
+		alert("Add event modal opens...");
+	}
+
 	// Set listeners for clicks on all buttons on initial render.
 	useEffect(() => {
 		const buttons = document.getElementsByClassName("fc-button");
@@ -112,7 +118,13 @@ function Calendar () {
 			headerToolbar={{
 				start: "prev,next today",
 				center: "title",
-				end: "calendar dayList,weekList"
+				end: "calendar dayList,weekList",
+			}}
+			customButtons={{
+				addEvent: {
+					text: "+",
+					click: addEvent,
+				}
 			}}
 			views={{
 				calendar: {
