@@ -5,7 +5,7 @@ import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
 import Calendar from "./../components/Calendar";
-import TaskModal from "./../components/taskModal";
+import TaskModal from "./../components/TaskModal";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
