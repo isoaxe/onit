@@ -5,6 +5,7 @@ import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
 import Calendar from "./../components/Calendar";
+import TaskModal from "./../components/taskModal";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -18,6 +19,7 @@ function Homepage (): JSX.Element {
 	const [peopleActive, setPeopleActive] = useState(false);
 	const [tasksActive, setTasksActive] = useState(false);
 	const [calendarActive, setCalendarActive] = useState(false);
+	const [taskModalVisible, setTaskModalVisible] = useState(false);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -152,7 +154,8 @@ function Homepage (): JSX.Element {
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
-						{calendarActive && <Calendar />}
+						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible}/>}
+						{taskModalVisible && <TaskModal />}
 					</div>
 				</section>
 			</div>
