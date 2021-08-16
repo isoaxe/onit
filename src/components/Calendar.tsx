@@ -116,7 +116,7 @@ function Calendar () {
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
-				start: "prev,next today",
+				start: "prev,next today addEvent",
 				center: "title",
 				end: "calendar dayList,weekList",
 			}}
