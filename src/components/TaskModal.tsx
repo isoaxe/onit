@@ -11,7 +11,7 @@ function TaskModal (props): JSX.Element {
 			onRequestClose={false}
 			contentLabel="My dialog"
 			className="taskModal"
-			overlayTaskName="overlay"
+			overlayClassName="overlay"
 		>
 			<div>My modal dialog.</div>
 			<button onClick={() => props.setTaskModalVisible(false)}>Close modal</button>
