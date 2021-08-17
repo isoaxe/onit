@@ -8,7 +8,7 @@ function TaskModal (props): JSX.Element {
 	return (
 		<Modal
 			isOpen={props.taskModalVisible}
-			onRequestClose={false}
+			onRequestClose={() => props.setTaskModalVisible(false)}
 			contentLabel="My dialog"
 			className="taskModal"
 			overlayClassName="overlay"
