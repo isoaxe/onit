@@ -20,3 +20,7 @@
   max-height: 95vh;
   padding: 10px;
 }
+
+.taskModal button:hover {
+  cursor: pointer;
+}
