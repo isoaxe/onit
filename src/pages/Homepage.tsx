@@ -154,8 +154,8 @@ function Homepage (): JSX.Element {
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
-						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible}/>}
-						{taskModalVisible && <TaskModal />}
+						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} />}
+						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} />
 					</div>
 				</section>
 			</div>
