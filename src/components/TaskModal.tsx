@@ -1,4 +1,5 @@
 import Modal from "react-modal";
+import "./css/TaskModal.css";
 
 
 function TaskModal (props): JSX.Element {
@@ -9,6 +10,8 @@ function TaskModal (props): JSX.Element {
 			isOpen={props.taskModalVisible}
 			onRequestClose={false}
 			contentLabel="My dialog"
+			className="taskModal"
+			overlayTaskName="overlay"
 		>
 			<div>My modal dialog.</div>
 			<button onClick={() => props.setTaskModalVisible(false)}>Close modal</button>
