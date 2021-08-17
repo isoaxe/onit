@@ -13,8 +13,10 @@ function TaskModal (props): JSX.Element {
 			className="taskModal"
 			overlayClassName="overlay"
 		>
-			<div>My modal dialog.</div>
-			<button onClick={() => props.setTaskModalVisible(false)}>Close modal</button>
+			<div className={"wrapper"}>
+				<div>My modal dialog.</div>
+				<button onClick={() => props.setTaskModalVisible(false)}>Close modal</button>
+			</div>
 		</Modal>
 	);
 }
