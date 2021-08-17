@@ -1,31 +1,20 @@
-import { textMain } from "./../util/colours";
-import { StyleSheet } from "./../util/types";
+import Modal from "react-modal";
 
 
 function TaskModal (props): JSX.Element {
+	Modal.setAppElement("#root");
 
 	return (
-		<form style={styles.taskModal}>
-
-		</form>
+		<Modal
+			isOpen={props.taskModalVisible}
+			onRequestClose={false}
+			contentLabel="My dialog"
+		>
+			<div>My modal dialog.</div>
+			<button onClick={() => props.setTaskModalVisible(false)}>Close modal</button>
+		</Modal>
 	);
 }
-
-const styles: StyleSheet = {
-	taskModal: {
-		display: "flex",
-		flexDirection: "column",
-		alignItems: "flex-start",
-		justifyContent: "flex-start",
-		textAlign: "center",
-		width: "95%",
-		maxWidth: "900px",
-		height: "95vh",
-		maxHeight: "95vh",
-		padding: "10px",
-		color: textMain
-	}
-};
 
 
 export default TaskModal;
