@@ -91,8 +91,6 @@ function Calendar (props) {
 
 	// Opens a modal so the user can input information and create event.
 	function addEvent () {
-		// Temporary placeholder until modal is built.
-		alert("Add event modal opens...");
 		props.setTaskModalVisible(true);
 	}
 
