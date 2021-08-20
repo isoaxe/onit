@@ -5,17 +5,21 @@ import "./css/TaskModal.css";
 function TaskModal (props): JSX.Element {
 	Modal.setAppElement("#root");
 
+	function close () {
+		props.setTaskModalVisible(false);
+	}
+
 	return (
 		<Modal
 			isOpen={props.taskModalVisible}
-			onRequestClose={() => props.setTaskModalVisible(false)}
+			onRequestClose={close}
 			contentLabel="Task Modal"
 			className="content"
 			overlayClassName="overlay"
 		>
 			<div className="wrapper">
 				<div>Some Modal Text</div>
-				<button onClick={() => props.setTaskModalVisible(false)}>Close Modal</button>
+				<button onClick={close}>Close Modal</button>
 			</div>
 		</Modal>
 	);
