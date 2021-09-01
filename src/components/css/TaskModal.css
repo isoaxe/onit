@@ -9,17 +9,11 @@
 }
 
 .content {
-  /*
-    The below works as expected when testing React Modal without FullCalendar.
-    With FullCalendar, causes the modal not to be interactive (e.g. close button frozen).
-  */
-  /*
   position: fixed;
   top: 50%;
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  */
   background-color: #3F524C;
   color: #FFFFFF;
   text-align: center;
