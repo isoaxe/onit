@@ -18,7 +18,7 @@ function TaskModal (props): JSX.Element {
 			overlayClassName="overlay"
 		>
 			<div className="wrapper">
-				<div>Some Modal Text</div>
+				<div className="title">Add Task</div>
 				<button onClick={close}>Close Modal</button>
 			</div>
 		</Modal>
