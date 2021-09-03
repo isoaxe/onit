@@ -1,11 +1,13 @@
 import { useState, ChangeEvent } from "react";
 import Modal from "react-modal";
+import Switch from "react-switch";
 import "./css/TaskModal.css";
 
 
 function TaskModal (props): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [message, setMessage] = useState("");
+	const [allDay, setAllDay] = useState(false);
 	Modal.setAppElement("#root");
 
 	function handleTitle (event: ChangeEvent<HTMLInputElement>): void {
@@ -14,6 +16,10 @@ function TaskModal (props): JSX.Element {
 
 	function handleMessage (event: ChangeEvent<HTMLTextAreaElement>): void {
 		setMessage(event.currentTarget.value);
+	}
+
+	function handleAllDay (toggle: boolean): void {
+		setAllDay(toggle);
 	}
 
 	function close () {
@@ -33,6 +39,7 @@ function TaskModal (props): JSX.Element {
 				<form className="form">
 					<input value={title} onChange={handleTitle} type="text" placeholder="Title" name="title" />
 					<textarea value={message} onChange={handleMessage} placeholder="Message" name="message" rows={4} />
+					<Switch onChange={handleAllDay} checked={allDay} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
