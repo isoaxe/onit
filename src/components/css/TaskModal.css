@@ -57,3 +57,10 @@ label span {
 .content div button:hover {
   cursor: pointer;
 }
+
+
+/* Overrides */
+
+.react-datepicker {
+  width: 327px;
+}
