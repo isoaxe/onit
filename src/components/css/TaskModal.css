@@ -30,6 +30,13 @@
   justify-content: flex-start;
 }
 
+.allDay-container {
+  width: 96%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+
 header {
   font-weight: bold;
 }

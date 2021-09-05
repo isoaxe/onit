@@ -39,7 +39,10 @@ function TaskModal (props): JSX.Element {
 				<form className="form">
 					<input value={title} onChange={handleTitle} type="text" placeholder="Title" name="title" />
 					<textarea value={message} onChange={handleMessage} placeholder="Message" name="message" rows={4} />
-					<Switch onChange={handleAllDay} checked={allDay} />
+					<label className="allDay-container">
+						<span>All Day</span>
+						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
+					</label>
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
