@@ -1,6 +1,8 @@
 import { useState, ChangeEvent } from "react";
 import Modal from "react-modal";
 import Switch from "react-switch";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
 
@@ -8,6 +10,7 @@ function TaskModal (props): JSX.Element {
 	const [title, setTitle] = useState("");
 	const [message, setMessage] = useState("");
 	const [allDay, setAllDay] = useState(false);
+	const [startDate, setStartDate] = useState(new Date());
 	Modal.setAppElement("#root");
 
 	function handleTitle (event: ChangeEvent<HTMLInputElement>): void {
@@ -43,6 +46,7 @@ function TaskModal (props): JSX.Element {
 						<span>All Day</span>
 						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
 					</label>
+					<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
