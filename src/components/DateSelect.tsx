@@ -6,7 +6,7 @@ import "./css/TaskModal.css";
 function DateSelect (props): JSX.Element {
 
 	return (
-		<DatePicker selected={props.startDate} onChange={(date) => props.setStartDate(date)} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
+		<DatePicker selected={props.startDate} onChange={props.handleStartDate} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
 	);
 }
 
