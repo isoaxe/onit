@@ -1,7 +1,7 @@
 import { useState, ChangeEvent } from "react";
 import Modal from "react-modal";
 import Switch from "react-switch";
-import DatePicker from "react-datepicker";
+import DateSelect from "./DateSelect";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
@@ -25,6 +25,10 @@ function TaskModal (props): JSX.Element {
 		setAllDay(toggle);
 	}
 
+	function handleStartDate (date) {
+		setStartDate(date);
+	}
+
 	function close () {
 		props.setTaskModalVisible(false);
 	}
@@ -46,7 +50,7 @@ function TaskModal (props): JSX.Element {
 						<span>All Day</span>
 						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
 					</label>
-					<DatePicker selected={startDate} onChange={(date) => setStartDate(date)} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
+					<DateSelect startDate={startDate} handleStartDate={handleStartDate} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
