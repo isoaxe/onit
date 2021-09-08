@@ -1,6 +1,6 @@
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-import "./css/TaskModal.css";
+import "./css/DateSelect.css";
 
 
 function DateSelect (props): JSX.Element {
