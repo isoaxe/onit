@@ -50,7 +50,7 @@ function TaskModal (props): JSX.Element {
 						<span>All Day</span>
 						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
 					</label>
-					<DateSelect startDate={startDate} handleStartDate={handleStartDate} />
+					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
