@@ -2,6 +2,7 @@ import { useState, ChangeEvent } from "react";
 import Modal from "react-modal";
 import Switch from "react-switch";
 import DateSelect from "./DateSelect";
+import { StyleSheet } from "./../util/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
@@ -42,7 +43,7 @@ function TaskModal (props): JSX.Element {
 			overlayClassName="overlay"
 		>
 			<div>
-				<header>Add Task</header>
+				<header className="header-text">Add Task</header>
 				<form className="form">
 					<input value={title} onChange={handleTitle} type="text" placeholder="Title" name="title" />
 					<textarea value={message} onChange={handleMessage} placeholder="Message" name="message" rows={4} />
