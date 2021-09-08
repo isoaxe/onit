@@ -46,7 +46,7 @@ function TaskModal (props): JSX.Element {
 				<form className="form">
 					<input value={title} onChange={handleTitle} type="text" placeholder="Title" name="title" />
 					<textarea value={message} onChange={handleMessage} placeholder="Message" name="message" rows={4} />
-					<label className="allDay-container">
+					<label className="all-day-container">
 						<span>All Day</span>
 						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
 					</label>
