@@ -2,7 +2,6 @@ import { useState, ChangeEvent } from "react";
 import Modal from "react-modal";
 import Switch from "react-switch";
 import DateSelect from "./DateSelect";
-import { StyleSheet } from "./../util/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
