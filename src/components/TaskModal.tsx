@@ -1,4 +1,4 @@
-import { useState, ChangeEvent } from "react";
+import { useState, useCallback, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
@@ -14,6 +14,7 @@ function TaskModal (props): JSX.Element {
 	const [allDay, setAllDay] = useState(false);
 	const [startDate, setStartDate] = useState(new Date());
 	const [users, setUsers] = useState(null);
+	const businessId = props.businessId;
 	Modal.setAppElement("#root");
 
 	function handleTitle (event: ChangeEvent<HTMLInputElement>): void {
@@ -36,21 +37,23 @@ function TaskModal (props): JSX.Element {
 		props.setTaskModalVisible(false);
 	}
 
-	async function getUsers () {
-		try {
-			const token = await firebase.auth().currentUser.getIdToken(true);
-			const requestOptions = {
-				method: "GET",
-				headers: { authorization: `Bearer ${token}` }
-			};
-			const res = await fetch(`${API_URL}/user/${props.businessId}`, requestOptions);
-			const data = await res.json();
-			setUsers(data);
-			return data;
-		} catch (error) {
-			console.error(`GET request to /user failed: ${error}`);
-		}
-	}
+	const getUsers = useCallback(
+		async () => {
+			try {
+				const token = await firebase.auth().currentUser.getIdToken(true);
+				const requestOptions = {
+					method: "GET",
+					headers: { authorization: `Bearer ${token}` }
+				};
+				const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
+				const data = await res.json();
+				setUsers(data);
+				return data;
+			} catch (error) {
+				console.error(`GET request to /user failed: ${error}`);
+			}
+		}, [businessId]
+	);
 
 	return (
 		<Modal
