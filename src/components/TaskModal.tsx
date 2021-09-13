@@ -1,4 +1,4 @@
-import { useState, useCallback, ChangeEvent } from "react";
+import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
@@ -54,6 +54,10 @@ function TaskModal (props): JSX.Element {
 			}
 		}, [businessId]
 	);
+
+	useEffect(() => {
+		getUsers();
+	}, [getUsers]);
 
 	return (
 		<Modal
