@@ -56,8 +56,8 @@ function TaskModal (props): JSX.Element {
 	);
 
 	useEffect(() => {
-		getUsers();
-	}, [getUsers]);
+		if (businessId) getUsers();
+	}, [businessId, getUsers]);
 
 	return (
 		<Modal
