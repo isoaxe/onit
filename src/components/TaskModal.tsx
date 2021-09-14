@@ -46,9 +46,10 @@ function TaskModal (props): JSX.Element {
 					headers: { authorization: `Bearer ${token}` }
 				};
 				const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
-				const data = await res.json();
-				setUsers(data);
-				return data;
+				const userArray = await res.json();
+				const filteredUsers = userArray.filter(arr => arr.role !== "owner");
+				setUsers(filteredUsers);
+				return filteredUsers;
 			} catch (error) {
 				console.error(`GET request to /user failed: ${error}`);
 			}
