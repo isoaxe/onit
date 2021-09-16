@@ -87,7 +87,7 @@ function TaskModal (props): JSX.Element {
 					</label>
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Select Staff for Task</header>
-					<Select className="dropdown"/>
+					<Select className="dropdown" options={users} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
