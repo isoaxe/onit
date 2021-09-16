@@ -49,8 +49,15 @@ function TaskModal (props): JSX.Element {
 				const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 				const userArray = await res.json();
 				const filteredUsers = userArray.filter(arr => arr.role !== "owner");
-				setUsers(filteredUsers);
-				return filteredUsers;
+				const formattedUsers = [];
+				for (let i = 0; i < filteredUsers.length; i++) {
+					const value = filteredUsers[i].displayName + " " + filteredUsers[i].lastName;
+					const label = value;
+					const formattedUser = { value: value, label: label };
+					formattedUsers.push(formattedUser);
+				}
+				setUsers(formattedUsers);
+				return formattedUsers;
 			} catch (error) {
 				console.error(`GET request to /user failed: ${error}`);
 			}
