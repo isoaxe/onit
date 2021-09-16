@@ -2,6 +2,7 @@ import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
+import Select from "react-select";
 import DateSelect from "./DateSelect";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
@@ -79,6 +80,7 @@ function TaskModal (props): JSX.Element {
 					</label>
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header>Select Staff for Task</header>
+					<Select />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
