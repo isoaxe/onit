@@ -42,6 +42,15 @@
   font-weight: bold;
 }
 
+.staff-text {
+  padding-bottom: 5px;
+}
+
+.dropdown {
+  width: 96%;
+  padding-bottom: 10px;
+}
+
 input, textarea {
   width: 93%;
   margin: 3px;
