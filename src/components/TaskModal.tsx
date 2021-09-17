@@ -7,6 +7,7 @@ import DateSelect from "./DateSelect";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
+import { textAlt } from "./../util/colours";
 
 
 function TaskModal (props): JSX.Element {
@@ -87,13 +88,30 @@ function TaskModal (props): JSX.Element {
 					</label>
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Select Staff for Task</header>
-					<Select className="dropdown" options={users} />
+					<Select className="dropdown" options={users} styles={selectorStyles} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
 		</Modal>
 	);
 }
+
+const selectorStyles = {
+	option: (provided) => ({
+		...provided,
+		color: textAlt,
+		padding: 5,
+		fontSize: 13,
+	}),
+	control: (provided) => ({
+		...provided,
+		border: 0,
+	}),
+	singleValue: (provided) => ({
+		...provided,
+		fontSize: 13,
+	}),
+};
 
 
 export default TaskModal;
