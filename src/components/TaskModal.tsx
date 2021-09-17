@@ -88,7 +88,7 @@ function TaskModal (props): JSX.Element {
 					</label>
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Assign Staff</header>
-					<Select className="dropdown" options={users} styles={selectorStyles} />
+					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
@@ -106,6 +106,7 @@ const selectorStyles = {
 	control: (provided) => ({
 		...provided,
 		border: 0,
+		width: 188,
 	}),
 	singleValue: (provided) => ({
 		...provided,
