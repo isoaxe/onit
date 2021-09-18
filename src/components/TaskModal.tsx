@@ -15,6 +15,7 @@ function TaskModal (props): JSX.Element {
 	const [message, setMessage] = useState("");
 	const [allDay, setAllDay] = useState(false);
 	const [startDate, setStartDate] = useState(new Date());
+	const [assignees, setAssignees] = useState([]);
 	const [users, setUsers] = useState(null);
 	const businessId = props.businessId;
 	Modal.setAppElement("#root");
@@ -33,6 +34,10 @@ function TaskModal (props): JSX.Element {
 
 	function handleStartDate (date) {
 		setStartDate(date);
+	}
+
+	function handleSelect (selectedOption) {
+		setAssignees(selectedOption);
 	}
 
 	function close () {
@@ -88,7 +93,7 @@ function TaskModal (props): JSX.Element {
 					</label>
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Assign Staff</header>
-					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} />
+					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} onChange={handleSelect} />
 				</form>
 				<button onClick={close}>Close Modal</button>
 			</div>
