@@ -98,7 +98,7 @@ function TaskModal (props): JSX.Element {
 		>
 			<div>
 				<header className="header-text">Add Task</header>
-				<form className="form">
+				<form className="form" onSubmit={createTask}>
 					<input value={title} onChange={handleTitle} type="text" placeholder="Title" name="title" />
 					<textarea value={message} onChange={handleMessage} placeholder="Message" name="message" rows={4} />
 					<label className="all-day-container">
@@ -108,7 +108,7 @@ function TaskModal (props): JSX.Element {
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Assign Staff</header>
 					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} onChange={handleSelect} />
-					<button onClick={createTask} type="submit">Create Task</button>
+					<button type="submit">Create Task</button>
 				</form>
 			</div>
 		</Modal>
