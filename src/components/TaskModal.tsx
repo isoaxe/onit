@@ -44,6 +44,10 @@ function TaskModal (props): JSX.Element {
 		props.setTaskModalVisible(false);
 	}
 
+	async function createTask (event) {
+		event.preventDefault();
+	}
+
 	const getUsers = useCallback(
 		async () => {
 			try {
@@ -94,8 +98,8 @@ function TaskModal (props): JSX.Element {
 					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} />
 					<header className="staff-text">Assign Staff</header>
 					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} onChange={handleSelect} />
+					<button onClick={createTask} type="submit">Create Task</button>
 				</form>
-				<button onClick={close}>Close Modal</button>
 			</div>
 		</Modal>
 	);
