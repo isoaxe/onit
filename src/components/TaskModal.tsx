@@ -7,6 +7,7 @@ import DateSelect from "./DateSelect";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
+import { postFormDataAsJson } from "./../util/helpers";
 import { textAlt } from "./../util/colours";
 
 
@@ -46,6 +47,15 @@ function TaskModal (props): JSX.Element {
 
 	async function createTask (event) {
 		event.preventDefault();
+		const url = `${API_URL}/task`;
+		const form = event.currentTarget;
+
+		try {
+			const formData = new FormData(form);
+			await postFormDataAsJson({ url, formData });
+		} catch (err) {
+			console.error(err);
+		}
 	}
 
 	const getUsers = useCallback(
