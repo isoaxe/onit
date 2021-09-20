@@ -7,6 +7,7 @@ import * as bodyParser from "body-parser";
 import { routesConfig } from "./users/routesConfig";
 import { businessRoute } from "./business/businessRoute";
 import { userRoute } from "./user/userRoute";
+import { tasksRoute } from "./tasks/tasksRoute";
 import { claimsRoute } from "./claims/claimsRoute";
 
 
@@ -26,6 +27,8 @@ routesConfig(app);
 businessRoute(app);
 // Set handler for individual user accounts.
 userRoute(app);
+// Set handler for tasks.
+tasksRoute(app);
 // Set handler for setting and fetching custom claims.
 claimsRoute(app);
 
