@@ -47,7 +47,7 @@ function TaskModal (props): JSX.Element {
 
 	async function createTask (event) {
 		event.preventDefault();
-		const url = `${API_URL}/task`;
+		const url = `${API_URL}/tasks`;
 		const form = event.currentTarget;
 
 		try {
