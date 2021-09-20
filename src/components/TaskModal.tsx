@@ -7,7 +7,7 @@ import DateSelect from "./DateSelect";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
-import { postFormDataAsJson } from "./../util/helpers";
+import { postFormDataAsJson, getId } from "./../util/helpers";
 import { textAlt } from "./../util/colours";
 
 
@@ -47,7 +47,8 @@ function TaskModal (props): JSX.Element {
 
 	async function createTask (event) {
 		event.preventDefault();
-		const url = `${API_URL}/tasks`;
+		const taskId = getId(); // Randomly generated id.
+		const url = `${API_URL}/tasks/${taskId}/${businessId}`;
 		const form = event.currentTarget;
 
 		try {
