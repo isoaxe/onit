@@ -8,15 +8,8 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 		const { title, message } = req.body;
 		const { taskId, businessId } = req.params;
 
-		// Check that businessId exists by querying the Firestore.
-		const db = admin.firestore();
-		const idList = await db.collection("users").listDocuments();
-		const ids = idList.map(doc => doc.id.split("businessId-")[1]);
-		if (!ids.includes(businessId)) {
-			return res.status(400).send({ error: "businessId not found" });
-		}
-
 		// Save task data to Firestore.
+		const db = admin.firestore();
 		const task = db.collection("tasks").doc(`businessId-${businessId}`)
 			.collection("tasks").doc(taskId);
 		task.set({
