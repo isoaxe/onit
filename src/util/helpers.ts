@@ -10,9 +10,16 @@ import { API_URL } from "./../util/urls";
 export async function postFormDataAsJson ({ url, formData }) {
 	const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
+	let token: string;
+	try {
+		token = await firebase.auth().currentUser.getIdToken(true);
+	} catch {
+		token = "no_token_found";
+	}
 	const fetchConfig = {
 		method: "POST",
 		headers: {
+			authorization: `Bearer ${token}`,
 			"Content-Type": "application/json",
 			"Accept": "application/json"
 		},
