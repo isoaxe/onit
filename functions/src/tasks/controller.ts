@@ -13,9 +13,11 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 		const task = db.collection("tasks").doc(`businessId-${businessId}`)
 			.collection("tasks").doc(taskId);
 		task.set({
+			id: taskId,
 			title,
-			message,
-			businessId
+			extendedProps: {
+				message,
+			}
 		});
 
 		return res.status(200).send({ message: "Task created" });
