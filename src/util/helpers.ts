@@ -6,7 +6,7 @@ import generator from "generate-password";
 import { API_URL } from "./../util/urls";
 
 
-// Used to POST account creation data without using form attributes.
+// POST form data. Used for account and task creation.
 export async function postFormDataAsJson ({ url, formData }) {
 	const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
