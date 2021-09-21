@@ -5,7 +5,7 @@ import { Request, Response } from "express";
 // Create and save the task to Firestore.
 export async function create (req: Request, res: Response): Promise<Response<void>> {
 	try {
-		const { title, message } = req.body;
+		const { title, message, assignees } = req.body;
 		const { taskId, businessId } = req.params;
 
 		// Save task data to Firestore.
@@ -17,6 +17,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 			title,
 			extendedProps: {
 				message,
+				assignees,
 			}
 		});
 
