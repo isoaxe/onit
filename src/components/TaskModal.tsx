@@ -18,7 +18,9 @@ function TaskModal (props): JSX.Element {
 	const [startDate, setStartDate] = useState(new Date());
 	const [assignees, setAssignees] = useState([]);
 	const [users, setUsers] = useState(null);
+
 	const businessId = props.businessId;
+	const formattedAssignees = assignees.map(assignee => assignee.value).toString();
 	Modal.setAppElement("#root");
 
 	function handleTitle (event: ChangeEvent<HTMLInputElement>): void {
@@ -53,6 +55,7 @@ function TaskModal (props): JSX.Element {
 
 		try {
 			const formData = new FormData(form);
+			formData.append("assignees", formattedAssignees);
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
