@@ -56,6 +56,7 @@ function TaskModal (props): JSX.Element {
 		try {
 			const formData = new FormData(form);
 			formData.append("assignees", formattedAssignees);
+			formData.append("allDay", allDay.toString());
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
