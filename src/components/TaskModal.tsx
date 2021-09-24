@@ -47,6 +47,17 @@ function TaskModal (props): JSX.Element {
 		props.setTaskModalVisible(false);
 	}
 
+	// Get the supplied date as a ISO string with local time.
+	function formattedDate (date) {
+		const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
+		const localIsoDate = new Date(epochLocalTime).toISOString().substring(0, 19);
+		if (allDay) {
+			return localIsoDate.split("T")[0];
+		} else {
+			return localIsoDate;
+		}
+	}
+
 	async function createTask (event) {
 		event.preventDefault();
 		const taskId = getId(); // Randomly generated id.
