@@ -69,7 +69,7 @@ function TaskModal (props): JSX.Element {
 			formData.append("assignees", formattedAssignees);
 			formData.append("allDay", allDay.toString());
 			formData.append("start", formattedDate(startDate));
-			formData.append("utcOffset", startDate.toString().substring(25, 33));
+			formData.append("timeOffset", startDate.toString().substring(25, 33));
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
