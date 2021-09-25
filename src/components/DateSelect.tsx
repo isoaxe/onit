@@ -30,8 +30,8 @@ function DateSelect (props): JSX.Element {
 				<DatePicker selected={props.startDate} onChange={props.handleStartDate} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
 				<div className="duration">
 					<header>Duration:</header>
-					<input value={hours} onChange={handleHours} type="number" placeholder="Hours" name="hours" min="0" max="99" />
-					<input value={minutes} onChange={handleMinutes} type="number" placeholder="Minutes" name="minutes" min="0" max="59" />
+					<input className="time-input" value={hours} onChange={handleHours} type="number" placeholder="Hours" name="hours" min="0" max="99" />
+					<input className="time-input" value={minutes} onChange={handleMinutes} type="number" placeholder="Minutes" name="minutes" min="0" max="59" />
 				</div>
 			</div>
 		);
