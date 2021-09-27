@@ -16,6 +16,19 @@ function DateSelect (props): JSX.Element {
 		setMinutes(event.currentTarget.value);
 	}
 
+	// Returns task duration in HH:MM format.
+	function getDuration () {
+		let hourString = hours.toString();
+		let minuteString = minutes.toString();
+		if (parseInt(hours) < 10) {
+			hourString = "0" + hourString;
+		}
+		if (parseInt(minutes) < 10) {
+			minuteString = "0" + minuteString;
+		}
+		return hourString + ":" + minuteString;
+	}
+
 	if (props.allDay) {
 		return (
 			<div>
