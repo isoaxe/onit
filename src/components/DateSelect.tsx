@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
@@ -28,6 +28,10 @@ function DateSelect (props): JSX.Element {
 		}
 		return hourString + ":" + minuteString;
 	}
+
+	useEffect(() => {
+		props.setDuration(getDuration);
+	});
 
 	if (props.allDay) {
 		return (
