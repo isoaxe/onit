@@ -1,12 +1,9 @@
-import { useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
 
 function DateSelect (props): JSX.Element {
-	const [hours, setHours] = useState("");
-	const [minutes, setMinutes] = useState("");
 
 	function handleHours (event) {
 		props.setDurationHours(event.currentTarget.value);
@@ -15,23 +12,6 @@ function DateSelect (props): JSX.Element {
 	function handleMinutes (event) {
 		props.setDurationMinutes(event.currentTarget.value);
 	}
-
-	// Returns task duration in HH:MM format.
-	function getDuration () {
-		let hourString = hours.toString();
-		let minuteString = minutes.toString();
-		if (parseInt(hours) < 10) {
-			hourString = "0" + hourString;
-		}
-		if (parseInt(minutes) < 10) {
-			minuteString = "0" + minuteString;
-		}
-		return hourString + ":" + minuteString;
-	}
-
-	useEffect(() => {
-		props.setDuration(getDuration);
-	});
 
 	if (props.allDay) {
 		return (
