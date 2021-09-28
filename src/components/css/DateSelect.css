@@ -13,3 +13,8 @@ header {
   font-weight: normal;
   padding: 2px;
 }
+
+p {
+  margin: 3px;
+  font-size: 14px;
+}
