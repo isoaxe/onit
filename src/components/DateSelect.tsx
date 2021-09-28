@@ -45,10 +45,12 @@ function DateSelect (props): JSX.Element {
 			<div>
 				<header>Select Task Day and Time</header>
 				<DatePicker selected={props.startDate} onChange={props.handleStartDate} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
+				<header>Duration</header>
 				<div className="duration">
-					<header>Duration:</header>
-					<input className="time-input" value={hours} onChange={handleHours} type="number" placeholder="Hrs" name="hours" min="0" max="99" />
-					<input className="time-input" value={minutes} onChange={handleMinutes} type="number" placeholder="Mins" name="minutes" min="0" max="59" />
+					<input className="time-input" value={hours} onChange={handleHours} type="number" name="hours" min="0" max="99" />
+					<p>Hours</p>
+					<input className="time-input" value={minutes} onChange={handleMinutes} type="number" name="minutes" min="0" max="59" />
+					<p>Mins</p>
 				</div>
 			</div>
 		);
