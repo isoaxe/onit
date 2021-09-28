@@ -18,6 +18,8 @@ function TaskModal (props): JSX.Element {
 	const [startDate, setStartDate] = useState(new Date());
 	const [assignees, setAssignees] = useState([]);
 	const [users, setUsers] = useState(null);
+	const [durationHours, setDurationHours] = useState(0);
+	const [durationMinutes, setDurationMinutes] = useState(0);
 	const [duration, setDuration] = useState("01:00");
 
 	const businessId = props.businessId;
@@ -135,7 +137,7 @@ function TaskModal (props): JSX.Element {
 						<span>All Day</span>
 						<Switch onChange={handleAllDay} checked={allDay} height={22} width={44} />
 					</label>
-					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} setDuration={setDuration} />
+					<DateSelect startDate={startDate} handleStartDate={handleStartDate} allDay={allDay} setDuration={setDuration} durationHours={durationHours} durationMinutes={durationMinutes} setDurationHours={setDurationHours} setDurationMinutes={setDurationMinutes} />
 					<header className="staff-text">Assign Staff</header>
 					<Select className="dropdown" options={users} styles={selectorStyles} isMulti={true} width={200} onChange={handleSelect} />
 					<button type="submit">Create Task</button>
