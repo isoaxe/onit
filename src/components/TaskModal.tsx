@@ -59,6 +59,16 @@ function TaskModal (props): JSX.Element {
 		}
 	}
 
+	function getEndDate () {
+		if (allDay) {
+			return formattedDate(startDate); // Since startDate === endDate.
+		} else {
+			const epochEndDate = startDate.getTime() + 6*60*60*1000; // Add 6 hours.
+			const endDate = new Date(epochEndDate);
+			return formattedDate(endDate);
+		}
+	}
+
 	async function createTask (event) {
 		event.preventDefault();
 		const taskId = getId(); // Randomly generated id.
