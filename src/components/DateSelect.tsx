@@ -9,11 +9,11 @@ function DateSelect (props): JSX.Element {
 	const [minutes, setMinutes] = useState("");
 
 	function handleHours (event) {
-		setHours(event.currentTarget.value);
+		props.setDurationHours(event.currentTarget.value);
 	}
 
 	function handleMinutes (event) {
-		setMinutes(event.currentTarget.value);
+		props.setDurationMinutes(event.currentTarget.value);
 	}
 
 	// Returns task duration in HH:MM format.
@@ -47,9 +47,9 @@ function DateSelect (props): JSX.Element {
 				<DatePicker selected={props.startDate} onChange={props.handleStartDate} showTimeSelect dateFormat="dd/MM/yyyy - HH:mm" />
 				<header>Duration</header>
 				<div className="duration">
-					<input className="time-input" value={hours} onChange={handleHours} type="number" name="hours" min="0" max="99" />
+					<input className="time-input" value={props.durationHours} onChange={handleHours} type="number" name="hours" min="0" max="99" />
 					<p>Hours</p>
-					<input className="time-input" value={minutes} onChange={handleMinutes} type="number" name="minutes" min="0" max="59" />
+					<input className="time-input" value={props.durationMinutes} onChange={handleMinutes} type="number" name="minutes" min="0" max="59" />
 					<p>Mins</p>
 				</div>
 			</div>
