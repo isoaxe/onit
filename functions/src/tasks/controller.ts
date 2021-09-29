@@ -8,6 +8,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 		const { title, message, assignees, allDay } = req.body;
 		const { taskId, businessId } = req.params;
 
+		// Cast strings as other data types.
 		const assigneeArray = assignees.split(",");
 		const allDayBoolean = (allDay === "true");
 
