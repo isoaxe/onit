@@ -64,7 +64,7 @@ function TaskModal (props): JSX.Element {
 		if (allDay) {
 			return formattedDate(startDate); // Since startDate === endDate.
 		} else {
-			const epochEndDate = startDate.getTime() + 6*60*60*1000; // Add 6 hours.
+			const epochEndDate = startDate.getTime() + durationHours*60*60*1000 + durationMinutes*60*1000;
 			const endDate = new Date(epochEndDate);
 			return formattedDate(endDate);
 		}
