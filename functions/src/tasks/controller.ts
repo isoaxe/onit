@@ -8,6 +8,8 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 		const { title, message, assignees } = req.body;
 		const { taskId, businessId } = req.params;
 
+		const assigneeArray = assignees.split(",");
+
 		// Save task data to Firestore.
 		const db = admin.firestore();
 		const task = db.collection("tasks").doc(`businessId-${businessId}`)
@@ -17,7 +19,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 			title,
 			extendedProps: {
 				message,
-				assignees,
+				assignees: assigneeArray,
 			}
 		});
 
