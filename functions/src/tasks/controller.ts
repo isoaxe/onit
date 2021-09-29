@@ -5,10 +5,11 @@ import { Request, Response } from "express";
 // Create and save the task to Firestore.
 export async function create (req: Request, res: Response): Promise<Response<void>> {
 	try {
-		const { title, message, assignees } = req.body;
+		const { title, message, assignees, allDay } = req.body;
 		const { taskId, businessId } = req.params;
 
 		const assigneeArray = assignees.split(",");
+		const allDayBoolean = (allDay === "true");
 
 		// Save task data to Firestore.
 		const db = admin.firestore();
@@ -17,9 +18,11 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 		task.set({
 			id: taskId,
 			title,
+			allDay: allDayBoolean,
 			extendedProps: {
 				message,
 				assignees: assigneeArray,
+
 			}
 		});
 
