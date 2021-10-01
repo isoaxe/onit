@@ -28,9 +28,9 @@ function DateSelect (props): JSX.Element {
 				<header>Duration</header>
 				<div className="duration">
 					<input className="time-input" value={props.durationHours} onChange={handleHours} type="number" name="hours" min="0" max="99" />
-					<p>Hours</p>
+					<p className="time-text">Hours</p>
 					<input className="time-input" value={props.durationMinutes} onChange={handleMinutes} type="number" name="minutes" min="0" max="59" />
-					<p>Mins</p>
+					<p className="time-text">Mins</p>
 				</div>
 			</div>
 		);
