@@ -87,6 +87,7 @@ function TaskModal (props): JSX.Element {
 			formData.append("start", removeTimeIfAllDay(formattedDate(startDate)));
 			formData.append("end", removeTimeIfAllDay(getEndDate()));
 			formData.append("timeOffset", startDate.toString().substring(25, 33));
+			formData.append("assignedTime", formattedDate(new Date()));
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
