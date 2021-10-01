@@ -52,11 +52,15 @@ function TaskModal (props): JSX.Element {
 	// Get the supplied date as a ISO string with local time.
 	function formattedDate (date) {
 		const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
-		const localIsoDate = new Date(epochLocalTime).toISOString().substring(0, 19);
+		return new Date(epochLocalTime).toISOString().substring(0, 19);
+	}
+
+	// Remove time from date string if task is all day.
+	function removeTimeIfAllDay (formattedDate: string) {
 		if (allDay) {
-			return localIsoDate.split("T")[0];
+			return formattedDate.split("T")[0];
 		} else {
-			return localIsoDate;
+			return formattedDate;
 		}
 	}
 
@@ -80,8 +84,8 @@ function TaskModal (props): JSX.Element {
 			const formData = new FormData(form);
 			formData.append("assignees", formattedAssignees);
 			formData.append("allDay", allDay.toString());
-			formData.append("start", formattedDate(startDate));
-			formData.append("end", getEndDate());
+			formData.append("start", removeTimeIfAllDay(formattedDate(startDate)));
+			formData.append("end", removeTimeIfAllDay(getEndDate()));
 			formData.append("timeOffset", startDate.toString().substring(25, 33));
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
