@@ -23,6 +23,7 @@ function TaskModal (props): JSX.Element {
 
 	const businessId = props.businessId;
 	const formattedAssignees = assignees.map(assignee => assignee.value).toString();
+	const formattedAssigneeUids = assignees.map(assignee => assignee.uid).toString();
 	Modal.setAppElement("#root");
 
 	function handleTitle (event: ChangeEvent<HTMLInputElement>): void {
@@ -88,6 +89,7 @@ function TaskModal (props): JSX.Element {
 			formData.append("end", removeTimeIfAllDay(getEndDate()));
 			formData.append("timeOffset", startDate.toString().substring(25, 33));
 			formData.append("assignedTime", formattedDate(new Date()));
+			formData.append("assigneeUids", formattedAssigneeUids);
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
