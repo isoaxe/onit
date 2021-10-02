@@ -109,7 +109,8 @@ function TaskModal (props): JSX.Element {
 				for (let i = 0; i < filteredUsers.length; i++) {
 					const value = filteredUsers[i].displayName + " " + filteredUsers[i].lastName;
 					const label = value;
-					const formattedUser = { value: value, label: label };
+					const uid = filteredUsers[i].uid;
+					const formattedUser = { value: value, label: label, uid: uid };
 					formattedUsers.push(formattedUser);
 				}
 				setUsers(formattedUsers);
