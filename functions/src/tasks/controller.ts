@@ -25,6 +25,7 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 			end,
 			extendedProps: {
 				message,
+				completionTime: null,
 				assignedTime,
 				assignees: assigneeArray,
 				assigneeUids: assigneeUidArray,
