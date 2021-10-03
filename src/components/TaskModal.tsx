@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import Switch from "react-switch";
 import Select from "react-select";
 import DateSelect from "./DateSelect";
+import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
@@ -21,6 +22,7 @@ function TaskModal (props): JSX.Element {
 	const [durationHours, setDurationHours] = useState(0);
 	const [durationMinutes, setDurationMinutes] = useState(0);
 
+	const { user } = useAuth();
 	const businessId = props.businessId;
 	const formattedAssignees = assignees.map(assignee => assignee.value).toString();
 	const formattedAssigneeUids = assignees.map(assignee => assignee.uid).toString();
