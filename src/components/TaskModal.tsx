@@ -77,6 +77,15 @@ function TaskModal (props): JSX.Element {
 		}
 	}
 
+	function getFullName () {
+		if (props.role === "owner") {
+			return user.displayName;
+		} else {
+			const currentUser = users.find(person => person.value.includes(user.displayName));
+			return currentUser.value;
+		}
+	}
+
 	async function createTask (event) {
 		event.preventDefault();
 		const taskId = getId(); // Randomly generated id.
@@ -92,6 +101,7 @@ function TaskModal (props): JSX.Element {
 			formData.append("timeOffset", startDate.toString().substring(25, 33));
 			formData.append("assignedTime", formattedDate(new Date()));
 			formData.append("assigneeUids", formattedAssigneeUids);
+			formData.append("assignor", getFullName());
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
