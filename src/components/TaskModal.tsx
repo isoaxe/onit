@@ -81,7 +81,7 @@ function TaskModal (props): JSX.Element {
 		if (props.role === "owner") {
 			return user.displayName;
 		} else {
-			const currentUser = users.find(person => person.value.includes(user.displayName));
+			const currentUser = users.find(person => person.uid === user.uid);
 			return currentUser.value;
 		}
 	}
