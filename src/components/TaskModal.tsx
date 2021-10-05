@@ -102,6 +102,7 @@ function TaskModal (props): JSX.Element {
 			formData.append("assignedTime", formattedDate(new Date()));
 			formData.append("assigneeUids", formattedAssigneeUids);
 			formData.append("assignor", getFullName());
+			formData.append("assignorUid", user.uid);
 			await postFormDataAsJson({ url, formData });
 		} catch (err) {
 			console.error(err);
