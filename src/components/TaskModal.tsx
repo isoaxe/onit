@@ -86,6 +86,18 @@ function TaskModal (props): JSX.Element {
 		}
 	}
 
+	// Reset all state variables on form modal.
+	function clearData () {
+		setTitle("");
+		setMessage("");
+		setAllDay(false);
+		setStartDate(new Date());
+		setAssignees([]);
+		setUsers(null);
+		setDurationHours(0);
+		setDurationMinutes(0);
+	}
+
 	async function createTask (event) {
 		event.preventDefault();
 		const taskId = getId(); // Randomly generated id.
