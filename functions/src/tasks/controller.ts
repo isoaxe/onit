@@ -41,6 +41,25 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+// Get all tasks from the Firestore.
+export async function all (req: Request, res: Response): Promise<Response<void>> {
+	try {
+		const { businessId } = req.params;
+		const db = admin.firestore();
+		const firestoreRef = await db.collection("tasks").doc(`businessId-${businessId}`)
+			.collection("tasks").get();
+		const tasks = [{}];
+		firestoreRef.forEach((doc) => {
+			const data = doc.data();
+			tasks.push(data);
+		});
+		tasks.shift();
+		return res.status(200).send(tasks);
+	} catch (err) {
+		return handleError(res, err);
+	}
+}
+
 // Standard error helper function.
 function handleError (res: Response, err: Error) {
 	return res.status(500).send({ error: `${err}` });
