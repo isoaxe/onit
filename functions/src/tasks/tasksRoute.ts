@@ -1,5 +1,5 @@
 import { Application } from "express";
-import { create } from "./controller";
+import { create, all } from "./controller";
 import { isAuthenticated } from "../auth/authenticated";
 import { isAuthorised } from "../auth/authorised";
 
@@ -10,5 +10,11 @@ export function tasksRoute (app: Application): void {
 		isAuthenticated,
 		isAuthorised({ hasRole: ["owner", "manager"] }),
 		create
+	);
+	// GET all tasks.
+	app.get("/tasks/:businessId",
+		isAuthenticated,
+		isAuthorised({ hasRole: ["owner", "manager", "staff"] }),
+		all
 	);
 }
