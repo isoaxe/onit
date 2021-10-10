@@ -1,8 +1,10 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+import firebase from "firebase/app";
 import { tertiaryMain, textAlt } from "./../util/colours";
+import { API_URL } from "./../util/urls";
 import { dummyTasks } from "./../util/tasks";
 import { ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
@@ -11,6 +13,9 @@ import "./css/Calendar.css";
 function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
+	const [tasks, setTasks] = useState([]);
+
+	const businessId = props.businessId;
 
 	// Event handling for when task is clicked in any view.
 	function eventClicked (info) {
@@ -93,6 +98,23 @@ function Calendar (props) {
 	function addEvent () {
 		props.setTaskModalVisible(true);
 	}
+
+	const getTasks = useCallback(
+		async () => {
+			try {
+				const token = await firebase.auth().currentUser.getIdToken(true);
+				const requestOptions = {
+					method: "GET",
+					headers: { authorization: `Bearer ${token}` }
+				};
+				const res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
+				const taskArray = await res.json();
+				setTasks(taskArray);
+			} catch (error) {
+				console.error(`GET request to /tasks failed: ${error}`);
+			}
+		}, [businessId]
+	);
 
 	// Set listeners for clicks on all buttons on initial render.
 	useEffect(() => {
