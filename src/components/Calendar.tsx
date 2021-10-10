@@ -5,7 +5,6 @@ import { useState, useEffect, useCallback } from "react";
 import firebase from "firebase/app";
 import { tertiaryMain, textAlt } from "./../util/colours";
 import { API_URL } from "./../util/urls";
-import { dummyTasks } from "./../util/tasks";
 import { ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
 
