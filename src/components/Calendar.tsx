@@ -175,7 +175,7 @@ function Calendar (props) {
 			initialView="calendar"
 			fixedWeekCount={false}
 			firstDay={1}
-			events={dummyTasks}
+			events={tasks}
 			eventColor={tertiaryMain}
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}
