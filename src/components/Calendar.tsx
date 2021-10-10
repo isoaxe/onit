@@ -133,6 +133,11 @@ function Calendar (props) {
 		}
 	}, [infoRowIndex, buttonClicked]);
 
+	// Fetch tasks from Firestore.
+	useEffect(() => {
+		getTasks();
+	}, [getTasks]);
+
 	return (
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
