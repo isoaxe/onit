@@ -69,6 +69,21 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 	}
 }
 
+export async function getTasks (businessId) {
+	try {
+		const token = await firebase.auth().currentUser.getIdToken(true);
+		const requestOptions = {
+			method: "GET",
+			headers: { authorization: `Bearer ${token}` }
+		};
+		const res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
+		const taskArray = await res.json();
+		return taskArray;
+	} catch (error) {
+		console.error(`GET request to /tasks failed: ${error}`);
+	}
+}
+
 
 // Add correct suffix to supplied date.
 export function ordinal (number) {
