@@ -2,10 +2,8 @@ import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import { useState, useEffect, useCallback } from "react";
-import firebase from "firebase/app";
 import { tertiaryMain, textAlt } from "./../util/colours";
-import { API_URL } from "./../util/urls";
-import { ordinal } from "./../util/helpers";
+import { getTasks, ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
 
 
@@ -98,20 +96,10 @@ function Calendar (props) {
 		props.setTaskModalVisible(true);
 	}
 
-	const getTasks = useCallback(
+	const fetchTasks = useCallback(
 		async () => {
-			try {
-				const token = await firebase.auth().currentUser.getIdToken(true);
-				const requestOptions = {
-					method: "GET",
-					headers: { authorization: `Bearer ${token}` }
-				};
-				const res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
-				const taskArray = await res.json();
-				setTasks(taskArray);
-			} catch (error) {
-				console.error(`GET request to /tasks failed: ${error}`);
-			}
+			const newTasks = await getTasks(businessId);
+			setTasks(newTasks);
 		}, [businessId]
 	);
 
@@ -134,8 +122,8 @@ function Calendar (props) {
 
 	// Fetch tasks from Firestore.
 	useEffect(() => {
-		getTasks();
-	}, [getTasks]);
+		fetchTasks();
+	});
 
 	return (
 		<FullCalendar
