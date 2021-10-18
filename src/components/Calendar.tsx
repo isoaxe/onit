@@ -123,7 +123,7 @@ function Calendar (props) {
 	// Fetch tasks from Firestore.
 	useEffect(() => {
 		fetchTasks();
-	});
+	}, [fetchTasks]);
 
 	return (
 		<FullCalendar
