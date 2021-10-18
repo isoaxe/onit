@@ -42,21 +42,21 @@ function Homepage (): JSX.Element {
 		}
 	}
 
-	function people () {
+	function peopleMenuItem () {
 		setMenuItemSelected(true);
 		setTasksActive(false);
 		setCalendarActive(false);
 		setPeopleActive(true);
 	}
 
-	function tasks () {
+	function tasksMenuItem () {
 		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setCalendarActive(false);
 		setTasksActive(true);
 	}
 
-	function calendar () {
+	function calendarMenuItem () {
 		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setTasksActive(false);
@@ -146,9 +146,9 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={people} />}
-						<MenuItem label="Tasks" onClick={tasks} />
-						<MenuItem label="Calendar" onClick={calendar} />
+						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={peopleMenuItem} />}
+						<MenuItem label="Tasks" onClick={tasksMenuItem} />
+						<MenuItem label="Calendar" onClick={calendarMenuItem} />
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
