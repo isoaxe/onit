@@ -20,6 +20,7 @@ function Homepage (): JSX.Element {
 	const [tasksActive, setTasksActive] = useState(false);
 	const [calendarActive, setCalendarActive] = useState(false);
 	const [taskModalVisible, setTaskModalVisible] = useState(false);
+	const [tasks, setTasks] = useState([]);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -154,7 +155,7 @@ function Homepage (): JSX.Element {
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
-						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} />}
+						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} />}
 						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} />
 					</div>
 				</section>
