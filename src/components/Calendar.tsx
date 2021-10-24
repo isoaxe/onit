@@ -10,7 +10,6 @@ import "./css/Calendar.css";
 function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
-	const [tasks, setTasks] = useState([]);
 
 	const businessId = props.businessId;
 
@@ -96,11 +95,12 @@ function Calendar (props) {
 		props.setTaskModalVisible(true);
 	}
 
+	// Get all tasks and save to state in parent.
 	const fetchTasks = useCallback(
 		async () => {
 			const newTasks = await getTasks(businessId);
-			setTasks(newTasks);
-		}, [businessId]
+			props.setTasks(newTasks);
+		}, [businessId, props]
 	);
 
 	// Set listeners for clicks on all buttons on initial render.
@@ -120,10 +120,10 @@ function Calendar (props) {
 		}
 	}, [infoRowIndex, buttonClicked]);
 
-	// Fetch tasks from Firestore.
+	// Fetch tasks from Firestore on first render.
 	useEffect(() => {
-		fetchTasks();
-	}, [fetchTasks]);
+		if (props.tasks.length === 0) fetchTasks();
+	}, [fetchTasks, props.tasks]);
 
 	return (
 		<FullCalendar
@@ -162,7 +162,7 @@ function Calendar (props) {
 			initialView="calendar"
 			fixedWeekCount={false}
 			firstDay={1}
-			events={tasks}
+			events={props.tasks}
 			eventColor={tertiaryMain}
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}
