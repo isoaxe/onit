@@ -8,7 +8,7 @@ import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
-import { postFormDataAsJson, getId } from "./../util/helpers";
+import { postFormDataAsJson, getId, getTasks } from "./../util/helpers";
 import { textAlt } from "./../util/colours";
 
 
@@ -118,6 +118,7 @@ function TaskModal (props): JSX.Element {
 			await postFormDataAsJson({ url, formData });
 			clearData();
 			close();
+			fetchTasks();
 		} catch (err) {
 			console.error(err);
 		}
@@ -148,6 +149,13 @@ function TaskModal (props): JSX.Element {
 				console.error(`GET request to /user failed: ${error}`);
 			}
 		}, [businessId]
+	);
+
+	const fetchTasks = useCallback(
+		async () => {
+			const newTasks = await getTasks(businessId);
+			props.setTasks(newTasks);
+		}, [businessId, props]
 	);
 
 	useEffect(() => {
