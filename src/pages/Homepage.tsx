@@ -156,7 +156,7 @@ function Homepage (): JSX.Element {
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
 						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} />}
-						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} />
+						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />
 					</div>
 				</section>
 			</div>
