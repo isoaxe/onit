@@ -5,6 +5,7 @@ import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
 import Calendar from "./../components/Calendar";
+import TaskModal from "./../components/TaskModal";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -18,6 +19,8 @@ function Homepage (): JSX.Element {
 	const [peopleActive, setPeopleActive] = useState(false);
 	const [tasksActive, setTasksActive] = useState(false);
 	const [calendarActive, setCalendarActive] = useState(false);
+	const [taskModalVisible, setTaskModalVisible] = useState(false);
+	const [tasks, setTasks] = useState([]);
 
 	const { user } = useAuth();
 	const headerName = `Welcome, ${user.displayName}`;
@@ -40,21 +43,21 @@ function Homepage (): JSX.Element {
 		}
 	}
 
-	function people () {
+	function peopleMenuItem () {
 		setMenuItemSelected(true);
 		setTasksActive(false);
 		setCalendarActive(false);
 		setPeopleActive(true);
 	}
 
-	function tasks () {
+	function tasksMenuItem () {
 		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setCalendarActive(false);
 		setTasksActive(true);
 	}
 
-	function calendar () {
+	function calendarMenuItem () {
 		setMenuItemSelected(true);
 		setPeopleActive(false);
 		setTasksActive(false);
@@ -144,15 +147,16 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={people} />}
-						<MenuItem label="Tasks" onClick={tasks} />
-						<MenuItem label="Calendar" onClick={calendar} />
+						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={peopleMenuItem} />}
+						<MenuItem label="Tasks" onClick={tasksMenuItem} />
+						<MenuItem label="Calendar" onClick={calendarMenuItem} />
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
 						{tasksActive && <h3>Tasks Placeholder</h3>}
-						{calendarActive && <Calendar />}
+						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} />}
+						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />
 					</div>
 				</section>
 			</div>

@@ -1,0 +1,21 @@
+.duration {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.time-input {
+  width: 35px;
+  margin-left: 5px;
+}
+
+.time-text {
+  margin: 3px;
+  font-size: 14px;
+}
+
+header {
+  font-weight: normal;
+  padding: 2px;
+}

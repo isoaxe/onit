@@ -2,16 +2,24 @@
  * Various helper functions used throughout the project.
  */
 import firebase from "firebase/app";
+import generator from "generate-password";
 import { API_URL } from "./../util/urls";
 
 
-// Used to POST account creation data without using form attributes.
+// POST form data. Used for account and task creation.
 export async function postFormDataAsJson ({ url, formData }) {
 	const plainFormData = Object.fromEntries(formData.entries());
 	const formDataJsonString = JSON.stringify(plainFormData);
+	let token: string;
+	try {
+		token = await firebase.auth().currentUser.getIdToken(true);
+	} catch {
+		token = "no_token_found";
+	}
 	const fetchConfig = {
 		method: "POST",
 		headers: {
+			authorization: `Bearer ${token}`,
 			"Content-Type": "application/json",
 			"Accept": "application/json"
 		},
@@ -59,4 +67,44 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 	} catch (error) {
 		console.error(`An error occured whilst fetching business data: ${error}`);
 	}
+}
+
+export async function getTasks (businessId) {
+	try {
+		const token = await firebase.auth().currentUser.getIdToken(true);
+		const requestOptions = {
+			method: "GET",
+			headers: { authorization: `Bearer ${token}` }
+		};
+		const res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
+		const taskArray = await res.json();
+		return taskArray;
+	} catch (error) {
+		console.error(`GET request to /tasks failed: ${error}`);
+	}
+}
+
+
+// Add correct suffix to supplied date.
+export function ordinal (number) {
+	const ordinalRules = new Intl.PluralRules("en", {
+		type: "ordinal"
+	});
+	const suffixes = {
+		one: "st",
+		two: "nd",
+		few: "rd",
+		other: "th"
+	};
+	const suffix = suffixes[ordinalRules.select(number)];
+	return (number + suffix);
+}
+
+
+// Generate an id for tasks.
+export function getId () {
+	return generator.generate({
+		length: 28,
+		numbers: true
+	});
 }

@@ -2,6 +2,20 @@
 	CSS tested on Firefox, Chrome and Safari only. Not all styles could be applied to all browsers.
  */
 
+ .info {
+	 display: inline-block;
+	 background: #3F524C;
+	 padding: 1px 15px;
+	 max-width: 600px;
+	 font-size: 0.9em;
+	 border: 2px solid #00A693;
+	 border-radius: 10px;
+ }
+
+ .info p span {
+	 font-weight: bold;
+ }
+
 /* Targets listview heading (i.e. day of week). Does not work in Firefox. */
 .fc-list-day-cushion.fc-cell-shaded {
 	background-color: #007474;
@@ -41,4 +55,12 @@
 /* Prevent cell height from increasing when events added in regular view. */
 div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
 	height: 12vh;
+}
+
+.fc-event-title:hover {
+	cursor: pointer;
+}
+
+.fc-list-event:hover {
+	cursor: pointer;
 }
