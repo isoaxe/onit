@@ -17,7 +17,6 @@ function Homepage (): JSX.Element {
 	const [businessName, setBusinessName] = useState(null);
 	const [menuItemSelected, setMenuItemSelected] = useState(false);
 	const [peopleActive, setPeopleActive] = useState(false);
-	const [tasksActive, setTasksActive] = useState(false);
 	const [calendarActive, setCalendarActive] = useState(false);
 	const [taskModalVisible, setTaskModalVisible] = useState(false);
 	const [tasks, setTasks] = useState([]);
@@ -45,22 +44,13 @@ function Homepage (): JSX.Element {
 
 	function peopleMenuItem () {
 		setMenuItemSelected(true);
-		setTasksActive(false);
 		setCalendarActive(false);
 		setPeopleActive(true);
-	}
-
-	function tasksMenuItem () {
-		setMenuItemSelected(true);
-		setPeopleActive(false);
-		setCalendarActive(false);
-		setTasksActive(true);
 	}
 
 	function calendarMenuItem () {
 		setMenuItemSelected(true);
 		setPeopleActive(false);
-		setTasksActive(false);
 		setCalendarActive(true);
 	}
 
@@ -148,13 +138,11 @@ function Homepage (): JSX.Element {
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
 						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={peopleMenuItem} />}
-						<MenuItem label="Tasks" onClick={tasksMenuItem} />
 						<MenuItem label="Calendar" onClick={calendarMenuItem} />
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
-						{tasksActive && <h3>Tasks Placeholder</h3>}
 						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} />}
 						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />
 					</div>
