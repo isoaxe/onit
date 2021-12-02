@@ -27,8 +27,8 @@ function LoginSignup (): JSX.Element {
 				<p style={styles.title}>Login</p>
 				<Login />
 				<p style={styles.title}>Sign Up</p>
-				<SignUpButton label="Create User Account" onClick={userForm} />
-				<SignUpButton label="Create Business Account" onClick={businessForm} />
+				<SignUpButton active={""} label="Create User Account" onClick={userForm} />
+				<SignUpButton active={""} label="Create Business Account" onClick={businessForm} />
 			</header>
 			{userFormActive && <CreateUser />}
 			{businessFormActive && <CreateBusiness />}
