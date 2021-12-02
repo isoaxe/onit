@@ -15,7 +15,7 @@ function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
-	const [menuItemSelected, setMenuItemSelected] = useState("");
+	const [menuItem, setMenuItem] = useState("");
 	const [taskModalVisible, setTaskModalVisible] = useState(false);
 	const [tasks, setTasks] = useState([]);
 
@@ -41,11 +41,11 @@ function Homepage (): JSX.Element {
 	}
 
 	function peopleMenuItem () {
-		setMenuItemSelected("people");
+		setMenuItem("people");
 	}
 
 	function calendarMenuItem () {
-		setMenuItemSelected("calendar");
+		setMenuItem("calendar");
 	}
 
 	useEffect(() => {
@@ -59,7 +59,7 @@ function Homepage (): JSX.Element {
 
 	useEffect(() => {
 		if (role === "staff") {
-			setMenuItemSelected("calendar");
+			setMenuItem("calendar");
 		}
 	}, [role]);
 
@@ -112,10 +112,10 @@ function Homepage (): JSX.Element {
 			marginTop: "10px",
 			marginLeft: "10px",
 			padding: "10px",
-			background: menuItemSelected === "calendar" ? secondaryLight : "inherit",
+			background: menuItem === "calendar" ? secondaryLight : "inherit",
 			border: `2px ${tertiaryMain} solid`,
 			borderRadius: "10px",
-			width: menuItemSelected === "calendar" ? "100%" : "auto",
+			width: menuItem === "calendar" ? "100%" : "auto",
 			color: textAlt,
 		},
 		noMenuItemText: {
@@ -141,9 +141,9 @@ function Homepage (): JSX.Element {
 						<MenuItem label="Calendar" onClick={calendarMenuItem} />
 					</div>
 					<div style={styles.menuContent}>
-						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
-						{menuItemSelected === "people" && <People businessId={businessId} role={role} />}
-						{menuItemSelected === "calendar" && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} role={role} />}
+						{!menuItem && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
+						{menuItem === "people" && <People businessId={businessId} role={role} />}
+						{menuItem === "calendar" && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} role={role} />}
 						{role !== "staff" && <TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />}
 					</div>
 				</section>
