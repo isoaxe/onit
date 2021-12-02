@@ -40,14 +40,6 @@ function Homepage (): JSX.Element {
 		}
 	}
 
-	function peopleMenuItem () {
-		setMenuItem("people");
-	}
-
-	function calendarMenuItem () {
-		setMenuItem("calendar");
-	}
-
 	useEffect(() => {
 		if (user) {
 			fetchClaims();
@@ -137,8 +129,8 @@ function Homepage (): JSX.Element {
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={peopleMenuItem} />}
-						<MenuItem label="Calendar" onClick={calendarMenuItem} />
+						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={() => setMenuItem("people")} />}
+						<MenuItem label="Calendar" onClick={() => setMenuItem("calendar")} />
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItem && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
