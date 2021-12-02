@@ -129,7 +129,7 @@ function Calendar (props) {
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
-				start: "prev,next today addEvent",
+				start: `prev,next today${props.role === "staff" ? "" : " addEvent"}`,
 				center: "title",
 				end: "calendar dayList,weekList",
 			}}
