@@ -129,6 +129,7 @@ function Calendar (props) {
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
+				// Do not render addTask button for staff user.
 				start: `prev,next today${props.role === "staff" ? "" : " addTask"}`,
 				center: "title",
 				end: "calendar dayList,weekList",
