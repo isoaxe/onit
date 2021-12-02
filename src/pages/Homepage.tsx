@@ -133,10 +133,12 @@ function Homepage (): JSX.Element {
 					<div style={styles.menuItems}>
 						{(role === "owner" || role === "manager") &&
 							<MenuItem
+								active={menuItem}
 								label="People"
 								onClick={() => setMenuItem("people")}
 							/>}
 						<MenuItem
+							active={menuItem}
 							label="Calendar"
 							onClick={() => setMenuItem("calendar")}
 						/>
