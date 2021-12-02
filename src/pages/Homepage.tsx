@@ -123,20 +123,46 @@ function Homepage (): JSX.Element {
 				<header style={styles.header}>
 					<HeaderText text={headerName} />
 					<HeaderText text={headerRole} />
-					{role !== "owner" && <HeaderText text={headerBusiness} />}
-					{role === "owner" && <HeaderText text={headerBusinessId} />}
+					{role !== "owner" &&
+						<HeaderText text={headerBusiness} />}
+					{role === "owner" &&
+						<HeaderText text={headerBusinessId} />}
 					<LogoutButton />
 				</header>
 				<section style={styles.menuWrapper}>
 					<div style={styles.menuItems}>
-						{(role === "owner" || role === "manager") && <MenuItem label="People" onClick={() => setMenuItem("people")} />}
-						<MenuItem label="Calendar" onClick={() => setMenuItem("calendar")} />
+						{(role === "owner" || role === "manager") &&
+							<MenuItem
+								label="People"
+								onClick={() => setMenuItem("people")}
+							/>}
+						<MenuItem
+							label="Calendar"
+							onClick={() => setMenuItem("calendar")}
+						/>
 					</div>
 					<div style={styles.menuContent}>
-						{!menuItem && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
-						{menuItem === "people" && <People businessId={businessId} role={role} />}
-						{menuItem === "calendar" && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} role={role} />}
-						{role !== "staff" && <TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />}
+						{!menuItem &&
+							<h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
+						{menuItem === "people" &&
+							<People businessId={businessId} role={role} />}
+						{menuItem === "calendar" &&
+							<Calendar
+								setTaskModalVisible={setTaskModalVisible}
+								businessId={businessId}
+								tasks={tasks}
+								setTasks={setTasks}
+								role={role}
+							/>}
+						{role !== "staff" &&
+							<TaskModal
+								taskModalVisible={taskModalVisible}
+								setTaskModalVisible={setTaskModalVisible}
+								businessId={businessId}
+								role={role}
+								tasks={tasks}
+								setTasks={setTasks}
+							/>}
 					</div>
 				</section>
 			</div>
