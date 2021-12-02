@@ -11,6 +11,7 @@ export interface StyleSheet {
 
 // Prop shape for the GenericButton component.
 export interface GenericButtonProps {
+  active: string;
   label: string;
   onClick: ((event: MouseEvent) => void) | undefined;
 }
