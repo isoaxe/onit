@@ -143,7 +143,7 @@ function Homepage (): JSX.Element {
 					<div style={styles.menuContent}>
 						{!menuItemSelected && <h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
 						{peopleActive && <People businessId={businessId} role={role} />}
-						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} />}
+						{calendarActive && <Calendar setTaskModalVisible={setTaskModalVisible} businessId={businessId} tasks={tasks} setTasks={setTasks} role={role} />}
 						<TaskModal taskModalVisible={taskModalVisible} setTaskModalVisible={setTaskModalVisible} businessId={businessId} role={role} tasks={tasks} setTasks={setTasks} />
 					</div>
 				</section>
