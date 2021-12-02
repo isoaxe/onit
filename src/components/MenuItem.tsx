@@ -4,10 +4,11 @@ import { GenericButtonProps } from "./../util/types";
 
 
 function MenuItem (props: GenericButtonProps): JSX.Element {
+	const label = props.label;
 
 	return (
 		<Item onClick={props.onClick}>
-			{props.label}
+			{label}
 		</Item>
 	);
 }
