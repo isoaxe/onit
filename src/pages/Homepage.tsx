@@ -63,6 +63,13 @@ function Homepage (): JSX.Element {
 		}
 	});
 
+	useEffect(() => {
+		if (role === "staff") {
+			setMenuItemSelected(true);
+			setCalendarActive(true);
+		}
+	}, [role]);
+
 	const styles: StyleSheet = {
 		root: {
 			display: "flex",
