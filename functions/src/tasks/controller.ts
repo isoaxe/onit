@@ -48,12 +48,12 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 		const db = admin.firestore();
 		const firestoreRef = await db.collection("tasks").doc(`businessId-${businessId}`)
 			.collection("tasks").get();
-		const tasks = [{}];
+		const tasks = [{}]; // Start array with placeholder object.
 		firestoreRef.forEach((doc) => {
 			const data = doc.data();
 			tasks.push(data);
 		});
-		tasks.shift();
+		tasks.shift(); // Remove placeholder object from array.
 		return res.status(200).send(tasks);
 	} catch (err) {
 		return handleError(res, err);
