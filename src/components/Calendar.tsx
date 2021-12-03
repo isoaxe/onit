@@ -91,7 +91,7 @@ function Calendar (props) {
 	}
 
 	// Opens a modal so the user can input information and create event.
-	function addEvent () {
+	function addTask () {
 		props.setTaskModalVisible(true);
 	}
 
@@ -129,14 +129,15 @@ function Calendar (props) {
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
-				start: "prev,next today addEvent",
+				// Do not render addTask button for staff user.
+				start: `prev,next today${props.role === "staff" ? "" : " addTask"}`,
 				center: "title",
 				end: "calendar dayList,weekList",
 			}}
 			customButtons={{
-				addEvent: {
+				addTask: {
 					text: "+",
-					click: addEvent,
+					click: addTask,
 				}
 			}}
 			views={{

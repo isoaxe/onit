@@ -1,18 +1,9 @@
 import styled from "styled-components";
-import { secondaryMain, secondaryLight, textMain, buttonShadow } from "./../util/colours";
+import { secondaryLight, secondaryMain, tertiaryLight, textMain, buttonShadow } from "./../util/colours";
 import { GenericButtonProps } from "./../util/types";
 
 
-function MenuItem (props: GenericButtonProps): JSX.Element {
-
-	return (
-		<Item onClick={props.onClick}>
-			{props.label}
-		</Item>
-	);
-}
-
-const Item = styled.div`
+const Item = styled.div<{label: string, active: string}>`
 	background-color: ${secondaryMain};
 	box-shadow: ${buttonShadow};
 	border-radius: 4px;
@@ -23,11 +14,20 @@ const Item = styled.div`
 	width: 60px;
 	padding: 10px;
 	margin-bottom: 10px;
+	border: ${props => props.label.toLowerCase() === props.active ? `2px solid ${tertiaryLight};` : "none;"}
 	&:hover {
 		background-color: ${secondaryLight};
 		cursor: pointer;
 	}
 `;
+
+function MenuItem (props: GenericButtonProps): JSX.Element {
+	return (
+		<Item onClick={props.onClick} label={props.label} active={props.active}>
+			{props.label}
+		</Item>
+	);
+}
 
 
 export default MenuItem;
