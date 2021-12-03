@@ -24,6 +24,7 @@ function TaskModal (props): JSX.Element {
 
 	const { user } = useAuth();
 	const businessId = props.businessId;
+	const role = props.role;
 	const formattedAssignees = assignees.map(assignee => assignee.value).toString();
 	const formattedAssigneeUids = assignees.map(assignee => assignee.uid).toString();
 	Modal.setAppElement("#root");
@@ -78,7 +79,7 @@ function TaskModal (props): JSX.Element {
 	}
 
 	function getFullName () {
-		if (props.role === "owner") {
+		if (role === "owner") {
 			return user.displayName;
 		} else {
 			const currentUser = users.find(person => person.uid === user.uid);
