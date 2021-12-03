@@ -38,13 +38,13 @@ function Homepage (): JSX.Element {
 		const data = await getBusinessData(user, businessId);
 		if (data) {
 			setBusinessName(data.displayName);
-			setUserId(data.uid);
 		}
 	}
 
 	useEffect(() => {
 		if (user) {
 			fetchClaims();
+			setUserId(user.uid);
 		}
 		if (user && businessId) {
 			fetchBusinessData();
