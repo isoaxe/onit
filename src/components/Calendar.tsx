@@ -100,9 +100,9 @@ function Calendar (props) {
 	// Get all tasks and save to state in parent.
 	const fetchTasks = useCallback(
 		async () => {
-			const newTasks = await getTasks(businessId);
+			const newTasks = await getTasks(role, businessId, props.userId);
 			props.setTasks(newTasks);
-		}, [businessId, props]
+		}, [role, businessId, props]
 	);
 
 	// Set listeners for clicks on all buttons on initial render.
