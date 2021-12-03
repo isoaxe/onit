@@ -13,6 +13,7 @@ function Calendar (props) {
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
+	const role = props.role;
 
 	// Event handling for when task is clicked in any view.
 	function eventClicked (info) {
@@ -131,7 +132,7 @@ function Calendar (props) {
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
 				// Do not render addTask button for staff user.
-				start: `prev,next today${props.role === "staff" ? "" : " addTask"}`,
+				start: `prev,next today${role === "staff" ? "" : " addTask"}`,
 				center: "title",
 				end: "calendar dayList,weekList",
 			}}
