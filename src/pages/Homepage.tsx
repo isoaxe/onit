@@ -13,6 +13,7 @@ import { StyleSheet } from "./../util/types";
 
 function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
+	const [userId, setUserId] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 	const [menuItem, setMenuItem] = useState("");
@@ -37,6 +38,7 @@ function Homepage (): JSX.Element {
 		const data = await getBusinessData(user, businessId);
 		if (data) {
 			setBusinessName(data.displayName);
+			setUserId(data.uid);
 		}
 	}
 
@@ -151,6 +153,7 @@ function Homepage (): JSX.Element {
 						{menuItem === "calendar" &&
 							<Calendar
 								setTaskModalVisible={setTaskModalVisible}
+								userId={userId}
 								businessId={businessId}
 								tasks={tasks}
 								setTasks={setTasks}
@@ -160,6 +163,7 @@ function Homepage (): JSX.Element {
 							<TaskModal
 								taskModalVisible={taskModalVisible}
 								setTaskModalVisible={setTaskModalVisible}
+								userId={userId}
 								businessId={businessId}
 								role={role}
 								tasks={tasks}
