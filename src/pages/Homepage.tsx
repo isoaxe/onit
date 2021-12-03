@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain, textAlt } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
@@ -26,20 +26,24 @@ function Homepage (): JSX.Element {
 	const headerBusiness = `Business: ${businessName}`;
 	const headerBusinessId = `Business ID: ${businessId}`;
 
-	async function fetchClaims () {
-		const claims = await getClaims(user);
-		if (claims) {
-			setRole(claims.role);
-			setBusinessId(claims.businessId);
-		}
-	}
+	const fetchClaims = useCallback(
+		async () => {
+			const claims = await getClaims(user);
+			if (claims) {
+				setRole(claims.role);
+				setBusinessId(claims.businessId);
+			}
+		}, [user]
+	);
 
-	async function fetchBusinessData () {
-		const data = await getBusinessData(user, businessId);
-		if (data) {
-			setBusinessName(data.displayName);
-		}
-	}
+	const fetchBusinessData = useCallback(
+		async () => {
+			const data = await getBusinessData(user, businessId);
+			if (data) {
+				setBusinessName(data.displayName);
+			}
+		}, [user, businessId]
+	);
 
 	useEffect(() => {
 		if (user) {
@@ -49,7 +53,7 @@ function Homepage (): JSX.Element {
 		if (user && businessId) {
 			fetchBusinessData();
 		}
-	});
+	}, [user, businessId, fetchClaims, fetchBusinessData]);
 
 	useEffect(() => {
 		if (role === "staff") {
