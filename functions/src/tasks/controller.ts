@@ -41,6 +41,27 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+// Get the tasks assigned to the user of a given uid.
+export async function assigned (req: Request, res: Response): Promise<Response<void>> {
+	try {
+		const { userId, businessId } = req.params;
+		const db = admin.firestore();
+		const firestoreRef = await db.collection("tasks").doc(`businessId-${businessId}`)
+			.collection("tasks").get();
+		const tasks = [{}]; // Start array with placeholder object.
+		firestoreRef.forEach((doc) => {
+			const data = doc.data();
+			if (data.extendedProps.assigneeUids.includes(userId)) {
+				tasks.push(data);
+			}
+		});
+		tasks.shift(); // Remove placeholder object from array.
+		return res.status(200).send(tasks);
+	} catch (err) {
+		return handleError(res, err);
+	}
+}
+
 // Get all tasks from the Firestore.
 export async function all (req: Request, res: Response): Promise<Response<void>> {
 	try {
