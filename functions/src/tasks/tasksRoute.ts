@@ -20,7 +20,7 @@ export function tasksRoute (app: Application): void {
 	// GET all tasks.
 	app.get("/tasks/:businessId",
 		isAuthenticated,
-		isAuthorised({ hasRole: ["owner", "manager", "staff"] }),
+		isAuthorised({ hasRole: ["owner", "manager"] }),
 		all
 	);
 }
