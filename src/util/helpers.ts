@@ -69,14 +69,19 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 	}
 }
 
-export async function getTasks (businessId) {
+export async function getTasks (role, businessId, userId) {
 	try {
 		const token = await firebase.auth().currentUser.getIdToken(true);
 		const requestOptions = {
 			method: "GET",
 			headers: { authorization: `Bearer ${token}` }
 		};
-		const res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
+		let res;
+		if (role === "staff") {
+			res = await fetch(`${API_URL}/tasks/${userId}/${businessId}`, requestOptions);
+		} else {
+			res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
+		}
 		const taskArray = await res.json();
 		return taskArray;
 	} catch (error) {
