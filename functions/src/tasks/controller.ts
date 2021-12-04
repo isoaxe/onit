@@ -50,9 +50,9 @@ export async function assigned (req: Request, res: Response): Promise<Response<v
 			.collection("tasks").get();
 		const tasks = [{}]; // Start array with placeholder object.
 		firestoreRef.forEach((doc) => {
-			const data = doc.data();
-			if (data.extendedProps.assigneeUids.includes(userId)) {
-				tasks.push(data);
+			const task = doc.data();
+			if (task.extendedProps.assigneeUids.includes(userId)) {
+				tasks.push(task);
 			}
 		});
 		tasks.shift(); // Remove placeholder object from array.
@@ -71,8 +71,8 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 			.collection("tasks").get();
 		const tasks = [{}]; // Start array with placeholder object.
 		firestoreRef.forEach((doc) => {
-			const data = doc.data();
-			tasks.push(data);
+			const task = doc.data();
+			tasks.push(task);
 		});
 		tasks.shift(); // Remove placeholder object from array.
 		return res.status(200).send(tasks);
