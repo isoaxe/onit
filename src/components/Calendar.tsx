@@ -12,6 +12,8 @@ function Calendar (props) {
 	const [buttonClicked, setButtonClicked] = useState(false);
 
 	const businessId = props.businessId;
+	const tasks = props.tasks;
+	const role = props.role;
 
 	// Event handling for when task is clicked in any view.
 	function eventClicked (info) {
@@ -98,9 +100,9 @@ function Calendar (props) {
 	// Get all tasks and save to state in parent.
 	const fetchTasks = useCallback(
 		async () => {
-			const newTasks = await getTasks(businessId);
+			const newTasks = await getTasks(role, businessId, props.userId);
 			props.setTasks(newTasks);
-		}, [businessId, props]
+		}, [role, businessId, props]
 	);
 
 	// Set listeners for clicks on all buttons on initial render.
@@ -122,15 +124,15 @@ function Calendar (props) {
 
 	// Fetch tasks from Firestore on first render.
 	useEffect(() => {
-		if (props.tasks.length === 0) fetchTasks();
-	}, [fetchTasks, props.tasks]);
+		if (tasks.length === 0) fetchTasks();
+	}, [fetchTasks, tasks]);
 
 	return (
 		<FullCalendar
 			plugins={[ dayGridPlugin, listPlugin ]}
 			headerToolbar={{
 				// Do not render addTask button for staff user.
-				start: `prev,next today${props.role === "staff" ? "" : " addTask"}`,
+				start: `prev,next today${role === "staff" ? "" : " addTask"}`,
 				center: "title",
 				end: "calendar dayList,weekList",
 			}}
@@ -163,7 +165,7 @@ function Calendar (props) {
 			initialView="calendar"
 			fixedWeekCount={false}
 			firstDay={1}
-			events={props.tasks}
+			events={tasks}
 			eventColor={tertiaryMain}
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}

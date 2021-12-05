@@ -1,4 +1,4 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
 import { primaryMain, secondaryMain, secondaryLight, tertiaryMain, textMain, textAlt } from "./../util/colours";
 import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
@@ -13,6 +13,7 @@ import { StyleSheet } from "./../util/types";
 
 function Homepage (): JSX.Element {
 	const [role, setRole] = useState(null);
+	const [userId, setUserId] = useState(null);
 	const [businessId, setBusinessId] = useState(null);
 	const [businessName, setBusinessName] = useState(null);
 	const [menuItem, setMenuItem] = useState("");
@@ -25,29 +26,34 @@ function Homepage (): JSX.Element {
 	const headerBusiness = `Business: ${businessName}`;
 	const headerBusinessId = `Business ID: ${businessId}`;
 
-	async function fetchClaims () {
-		const claims = await getClaims(user);
-		if (claims) {
-			setRole(claims.role);
-			setBusinessId(claims.businessId);
-		}
-	}
+	const fetchClaims = useCallback(
+		async () => {
+			const claims = await getClaims(user);
+			if (claims) {
+				setRole(claims.role);
+				setBusinessId(claims.businessId);
+			}
+		}, [user]
+	);
 
-	async function fetchBusinessData () {
-		const data = await getBusinessData(user, businessId);
-		if (data) {
-			setBusinessName(data.displayName);
-		}
-	}
+	const fetchBusinessData = useCallback(
+		async () => {
+			const data = await getBusinessData(user, businessId);
+			if (data) {
+				setBusinessName(data.displayName);
+			}
+		}, [user, businessId]
+	);
 
 	useEffect(() => {
 		if (user) {
 			fetchClaims();
+			setUserId(user.uid);
 		}
 		if (user && businessId) {
 			fetchBusinessData();
 		}
-	});
+	}, [user, businessId, fetchClaims, fetchBusinessData]);
 
 	useEffect(() => {
 		if (role === "staff") {
@@ -151,6 +157,7 @@ function Homepage (): JSX.Element {
 						{menuItem === "calendar" &&
 							<Calendar
 								setTaskModalVisible={setTaskModalVisible}
+								userId={userId}
 								businessId={businessId}
 								tasks={tasks}
 								setTasks={setTasks}
@@ -160,6 +167,7 @@ function Homepage (): JSX.Element {
 							<TaskModal
 								taskModalVisible={taskModalVisible}
 								setTaskModalVisible={setTaskModalVisible}
+								userId={userId}
 								businessId={businessId}
 								role={role}
 								tasks={tasks}
