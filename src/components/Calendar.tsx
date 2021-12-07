@@ -10,6 +10,7 @@ import "./css/Calendar.css";
 function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
+	const [tasksFetched, setTasksFetched] = useState(false);
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
@@ -124,8 +125,11 @@ function Calendar (props) {
 
 	// Fetch tasks from Firestore on first render.
 	useEffect(() => {
-		if (tasks.length === 0) fetchTasks();
-	}, [fetchTasks, tasks]);
+		if (!tasksFetched) {
+			setTasksFetched(true);
+			fetchTasks();
+		}
+	}, [tasksFetched, fetchTasks]);
 
 	return (
 		<FullCalendar
