@@ -20,6 +20,11 @@ function People (props): JSX.Element {
 			};
 			const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 			const data = await res.json();
+			// If user data has not been fetched, do not save to state.
+			if (data.error) {
+				console.error(data.error);
+				return false;
+			}
 			setUsers(data);
 			setRefresh(false);
 			return data;
