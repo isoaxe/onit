@@ -73,7 +73,7 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 
 		// Merge data.
 		const userData: UserData[] = [];
-		for (let i = 0; i < companyUsers.length; i++) {
+		for (let i = 0; i < numAuthUsers; i++) {
 			const mergedObj = Object.assign(companyUsers[i], firestoreData[i]);
 			userData.push(mergedObj);
 		}
