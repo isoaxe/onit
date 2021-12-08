@@ -1,9 +1,9 @@
+// Disallow client access to everything as the Admin SDK controls access.
 rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
-    match /users/{businessId} {
-      allow create, read: if request.auth != null;
-      allow update, delete: if false;
+    match /{document=**} {
+      allow read, write: if false;
     }
   }
 }
