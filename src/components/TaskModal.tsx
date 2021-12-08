@@ -135,6 +135,10 @@ function TaskModal (props): JSX.Element {
 				};
 				const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 				const userArray = await res.json();
+				// If user array has not been fetched, do not operate.
+				if (userArray.error) {
+					return false;
+				}
 				const filteredUsers = userArray.filter(arr => arr.role !== "owner");
 				const formattedUsers = [];
 				for (let i = 0; i < filteredUsers.length; i++) {

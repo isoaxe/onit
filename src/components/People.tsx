@@ -9,6 +9,7 @@ import { StyleSheet } from "./../util/types";
 function People (props): JSX.Element {
 	const [users, setUsers] = useState(null);
 	const [refresh, setRefresh] = useState(false);
+	const [errorMessage, setErrorMessage] = useState("");
 	const businessId = props.businessId;
 
 	async function getUsers () {
@@ -20,6 +21,12 @@ function People (props): JSX.Element {
 			};
 			const res = await fetch(`${API_URL}/user/${businessId}`, requestOptions);
 			const data = await res.json();
+			// If user data has not been fetched, do not save to state.
+			if (data.error) {
+				console.error(data.error);
+				setErrorMessage(data.error);
+				return false;
+			}
 			setUsers(data);
 			setRefresh(false);
 			return data;
@@ -41,6 +48,7 @@ function People (props): JSX.Element {
 	return (
 		<div style={styles.root}>
 			{users && <UserTable users={users} businessId={businessId} role={props.role} refresh={forceRefresh} />}
+			{!users && <h3>{errorMessage}</h3>}
 		</div>
 	);
 }

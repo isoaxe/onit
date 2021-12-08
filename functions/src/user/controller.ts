@@ -64,9 +64,16 @@ export async function all (req: Request, res: Response): Promise<Response<void>>
 			firestoreData.push({ lastName: data.lastName });
 		});
 
+		// Check that number of Firestore and Auth users match.
+		const numAuthUsers = companyUsers.length;
+		const numFirestoreUsers = firestoreData.length;
+		if (numAuthUsers !== numFirestoreUsers) {
+			return res.status(500).send({ error: `There are ${numAuthUsers} users in the Auth data and ${numFirestoreUsers} in Firestore. This mismatch was likely caused by the admin deleting user data from one source in the Firebase console without deleting the corresponding data from the other source.` });
+		}
+
 		// Merge data.
 		const userData: UserData[] = [];
-		for (let i = 0; i < companyUsers.length; i++) {
+		for (let i = 0; i < numAuthUsers; i++) {
 			const mergedObj = Object.assign(companyUsers[i], firestoreData[i]);
 			userData.push(mergedObj);
 		}
