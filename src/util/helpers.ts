@@ -113,3 +113,10 @@ export function getId () {
 		numbers: true
 	});
 }
+
+
+// Get the supplied date as a ISO string with local time.
+export function isoLocalDate (date) {
+	const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
+	return new Date(epochLocalTime).toISOString().substring(0, 19);
+}
