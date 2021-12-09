@@ -8,7 +8,7 @@ import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
-import { postFormDataAsJson, getId, getTasks } from "./../util/helpers";
+import { postFormDataAsJson, getId, getTasks, isoLocalDate } from "./../util/helpers";
 import { textAlt } from "./../util/colours";
 
 
@@ -53,28 +53,22 @@ function TaskModal (props): JSX.Element {
 		props.setTaskModalVisible(false);
 	}
 
-	// Get the supplied date as a ISO string with local time.
-	function formattedDate (date) {
-		const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
-		return new Date(epochLocalTime).toISOString().substring(0, 19);
-	}
-
 	// Remove time from date string if task is all day.
-	function removeTimeIfAllDay (formattedDate: string) {
+	function removeTimeIfAllDay (isoLocalDate: string) {
 		if (allDay) {
-			return formattedDate.split("T")[0];
+			return isoLocalDate.split("T")[0];
 		} else {
-			return formattedDate;
+			return isoLocalDate;
 		}
 	}
 
 	function getEndDate () {
 		if (allDay) {
-			return formattedDate(startDate); // Since startDate === endDate.
+			return isoLocalDate(startDate); // Since startDate === endDate.
 		} else {
 			const epochEndDate = startDate.getTime() + durationHours*60*60*1000 + durationMinutes*60*1000;
 			const endDate = new Date(epochEndDate);
-			return formattedDate(endDate);
+			return isoLocalDate(endDate);
 		}
 	}
 
@@ -109,10 +103,10 @@ function TaskModal (props): JSX.Element {
 			const formData = new FormData(form);
 			formData.append("assignees", formattedAssignees);
 			formData.append("allDay", allDay.toString());
-			formData.append("start", removeTimeIfAllDay(formattedDate(startDate)));
+			formData.append("start", removeTimeIfAllDay(isoLocalDate(startDate)));
 			formData.append("end", removeTimeIfAllDay(getEndDate()));
 			formData.append("timeOffset", startDate.toString().substring(25, 33));
-			formData.append("assignedTime", formattedDate(new Date()));
+			formData.append("assignedTime", isoLocalDate(new Date()));
 			formData.append("assigneeUids", formattedAssigneeUids);
 			formData.append("assignor", getFullName());
 			formData.append("assignorUid", user.uid);
