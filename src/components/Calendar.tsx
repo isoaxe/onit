@@ -1,7 +1,7 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import { useState, useEffect, useCallback } from "react";
+import { useState, useRef, useEffect, useCallback } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
 import { getTasks, ordinal } from "./../util/helpers";
 import "./css/Calendar.css";
@@ -11,6 +11,7 @@ function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
 	const [tasksFetched, setTasksFetched] = useState(false);
+	let currentTaskId = useRef("");
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
@@ -29,6 +30,8 @@ function Calendar (props) {
 				table.deleteRow(infoRowIndex);
 			}
 			setButtonClicked(false);
+			// Track task id for Firestore request.
+			currentTaskId = info.event.id;
 
 			// Find row index of event that was clicked.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
