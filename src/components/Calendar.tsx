@@ -1,9 +1,11 @@
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
+import firebase from "firebase/app";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
 import { getTasks, ordinal, isoLocalDate } from "./../util/helpers";
+import { API_URL } from "./../util/urls";
 import "./css/Calendar.css";
 
 
@@ -104,9 +106,22 @@ function Calendar (props) {
 	}
 
 	// Sends task completion timestamp to Firestore.
-	function markTaskComplete () {
+	async function markTaskComplete () {
 		const completionTime = isoLocalDate(new Date());
-		// TODO: POST completion to Firestore tasks based on ID.
+		const taskId = currentTaskId;
+		try {
+			const token = await firebase.auth().currentUser.getIdToken(true);
+			const requestOptions = {
+				method: "PUT",
+				headers: { authorization: `Bearer ${token}` },
+				body: completionTime
+			};
+			const res = await fetch(`${API_URL}/tasks/${taskId}/${businessId}`, requestOptions);
+			const data = await res.json();
+			console.log(data);
+		} catch (error) {
+			console.error(`POST request to /tasks failed: ${error}`);
+		}
 	}
 
 	// Get all tasks and save to state in parent.
