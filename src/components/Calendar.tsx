@@ -20,9 +20,9 @@ function Calendar (props) {
 	const role = props.role;
 
 	// Event handling for when task is clicked in any view.
-	function eventClicked (info) {
+	function taskClicked (info) {
 		if (info.view.type === "calendar") {
-			// Redirect to listview for day that event takes place.
+			// Redirect to listview for day that task takes place.
 			info.view.calendar.changeView("dayList", info.event.start);
 		} else {
 			// If in listview, display info below clicked task.
@@ -35,7 +35,7 @@ function Calendar (props) {
 			// Track task id for Firestore request.
 			taskId = info.event.id;
 
-			// Find row index of event that was clicked.
+			// Find row index of task that was clicked.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
 			const rowArray = Array.from(rows);
 			const index = rowArray.findIndex((row) => {
@@ -53,7 +53,7 @@ function Calendar (props) {
 				return (titleMatch && timeMatch());
 			});
 
-			// Create new row for info if event clicked is different to previous event.
+			// Create new row for info if task clicked is different to previous task.
 			if (index + 1 !== infoRowIndex) {
 				const infoRow = table.insertRow(index + 1);
 				setInfoRowIndex(index + 1);
@@ -71,7 +71,7 @@ function Calendar (props) {
 		}
 	}
 
-	// Display the task info. To be inserted into the infoRow cell in eventClicked.
+	// Display the task info. To be inserted into the infoRow cell in taskClicked.
 	function displayInfo (info) {
 		const infoProps = info.event.extendedProps;
 
@@ -100,7 +100,7 @@ function Calendar (props) {
 		return `${month} ${day} at ${hours}:${minutes}`;
 	}
 
-	// Opens a modal so the user can input information and create event.
+	// Opens a modal so the user can input information and create task.
 	function addTask () {
 		props.setTaskModalVisible(true);
 	}
@@ -198,7 +198,7 @@ function Calendar (props) {
 			eventColor={tertiaryMain}
 			eventTextColor={textAlt}
 			dayMaxEventRows={4}
-			eventClick={eventClicked}
+			eventClick={taskClicked}
 		/>
 	);
 }
