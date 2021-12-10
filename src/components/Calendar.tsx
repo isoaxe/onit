@@ -3,7 +3,7 @@ import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
-import { getTasks, ordinal } from "./../util/helpers";
+import { getTasks, ordinal, isoLocalDate } from "./../util/helpers";
 import "./css/Calendar.css";
 
 
@@ -100,6 +100,12 @@ function Calendar (props) {
 	// Opens a modal so the user can input information and create event.
 	function addTask () {
 		props.setTaskModalVisible(true);
+	}
+
+	// Sends task completion timestamp to Firestore.
+	function markTaskComplete () {
+		const completionTime = isoLocalDate(new Date());
+		// TODO: POST completion to Firestore tasks based on ID.
 	}
 
 	// Get all tasks and save to state in parent.
