@@ -62,6 +62,7 @@ function Calendar (props) {
 				colspan.value = "3";
 				cell.setAttributeNode(colspan);
 				cell.innerHTML = displayInfo(info);
+				document.getElementById("completionButton").addEventListener("click", markTaskComplete);
 			} else {
 				setInfoRowIndex(99);
 			}
@@ -81,7 +82,7 @@ function Calendar (props) {
 				<p><span>Status:</span> ${infoProps.completionTime ?
 				`Task completed on ${formatDate(infoProps.completionTime)}` :
 				"Awaiting completion"}</p>
-				<button>Mark as Complete</button>
+				<button id="completionButton">Mark as Complete</button>
 			</div>`
 		);
 	}
