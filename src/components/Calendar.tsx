@@ -13,7 +13,7 @@ function Calendar (props) {
 	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
 	const [tasksFetched, setTasksFetched] = useState(false);
-	let currentTaskId = useRef("");
+	let taskId = useRef("");
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
@@ -33,7 +33,7 @@ function Calendar (props) {
 			}
 			setButtonClicked(false);
 			// Track task id for Firestore request.
-			currentTaskId = info.event.id;
+			taskId = info.event.id;
 
 			// Find row index of event that was clicked.
 			const rows = table.getElementsByTagName("tbody")[0].getElementsByTagName("tr");
@@ -108,7 +108,6 @@ function Calendar (props) {
 	// Sends task completion timestamp to Firestore.
 	async function markTaskComplete () {
 		const completionTime = isoLocalDate(new Date());
-		const taskId = currentTaskId;
 		try {
 			const token = await firebase.auth().currentUser.getIdToken(true);
 			const requestOptions = {
