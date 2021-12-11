@@ -10,14 +10,15 @@ import "./css/Calendar.css";
 
 
 function Calendar (props) {
-	const [infoRowIndex, setInfoRowIndex] = useState(99);
 	const [buttonClicked, setButtonClicked] = useState(false);
 	const [tasksFetched, setTasksFetched] = useState(false);
+	const infoRowIndexRef = useRef(99);
 	let taskId = useRef("");
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
 	const role = props.role;
+	let infoRowIndex = infoRowIndexRef.current;
 
 	// Event handling for when task is clicked in any view.
 	function taskClicked (info) {
@@ -56,7 +57,7 @@ function Calendar (props) {
 			// Create new row for info if task clicked is different to previous task.
 			if (index + 1 !== infoRowIndex) {
 				const infoRow = table.insertRow(index + 1);
-				setInfoRowIndex(index + 1);
+				infoRowIndex = index + 1;
 
 				// Insert cell to display message and make equal to table width.
 				const cell = infoRow.insertCell(0);
@@ -66,7 +67,7 @@ function Calendar (props) {
 				cell.innerHTML = displayInfo(info);
 				document.getElementById("completionButton").addEventListener("click", markTaskComplete);
 			} else {
-				setInfoRowIndex(99);
+				infoRowIndex = 99;
 			}
 		}
 	}
@@ -144,7 +145,8 @@ function Calendar (props) {
 		if (infoRowIndex !== 99 && buttonClicked) {
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex);
-			setInfoRowIndex(99);
+			// eslint-disable-next-line react-hooks/exhaustive-deps
+			infoRowIndex = 99;
 		}
 	}, [infoRowIndex, buttonClicked]);
 
