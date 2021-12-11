@@ -110,6 +110,7 @@ function Calendar (props) {
 	async function markTaskComplete () {
 		const completionTime = isoLocalDate(new Date());
 		try {
+			// PUT request to tasks endpoint.
 			const token = await firebase.auth().currentUser.getIdToken(true);
 			const requestOptions = {
 				method: "PUT",
@@ -119,6 +120,13 @@ function Calendar (props) {
 			const res = await fetch(`${API_URL}/tasks/${taskId}/${businessId}`, requestOptions);
 			const data = await res.json();
 			console.log(data);
+
+			// Collapse task info and then fetch tasks again before reopening.
+			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
+			table.deleteRow(infoRowIndex);
+			infoRowIndex = 99;
+			fetchTasks();
+			// TODO: Need to reopen task info here.
 		} catch (error) {
 			console.error(`POST request to /tasks failed: ${error}`);
 		}
