@@ -120,12 +120,11 @@ function Calendar (props) {
 			const data = await res.json();
 			console.log(data);
 
-			// Collapse task info and then fetch tasks again before reopening.
+			// Collapse task info and then fetch tasks again.
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			table.deleteRow(infoRowIndex.current);
 			infoRowIndex.current = 99;
 			fetchTasks();
-			// TODO: Need to reopen task info here.
 		} catch (error) {
 			console.error(`POST request to /tasks failed: ${error}`);
 		}
