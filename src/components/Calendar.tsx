@@ -12,13 +12,12 @@ import "./css/Calendar.css";
 function Calendar (props) {
 	const [buttonClicked, setButtonClicked] = useState(false);
 	const [tasksFetched, setTasksFetched] = useState(false);
-	const infoRowIndexRef = useRef(99);
+	const infoRowIndex = useRef(99);
 	let taskId = useRef("");
 
 	const businessId = props.businessId;
 	const tasks = props.tasks;
 	const role = props.role;
-	let infoRowIndex = infoRowIndexRef.current;
 
 	// Event handling for when task is clicked in any view.
 	function taskClicked (info) {
@@ -29,8 +28,8 @@ function Calendar (props) {
 			// If in listview, display info below clicked task.
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
 			// Remove previous infoRow if open.
-			if (infoRowIndex !== 99) {
-				table.deleteRow(infoRowIndex);
+			if (infoRowIndex.current !== 99) {
+				table.deleteRow(infoRowIndex.current);
 			}
 			setButtonClicked(false);
 			// Track task id for Firestore request.
@@ -55,9 +54,9 @@ function Calendar (props) {
 			});
 
 			// Create new row for info if task clicked is different to previous task.
-			if (index + 1 !== infoRowIndex) {
+			if (index + 1 !== infoRowIndex.current) {
 				const infoRow = table.insertRow(index + 1);
-				infoRowIndex = index + 1;
+				infoRowIndex.current = index + 1;
 
 				// Insert cell to display message and make equal to table width.
 				const cell = infoRow.insertCell(0);
@@ -67,7 +66,7 @@ function Calendar (props) {
 				cell.innerHTML = displayInfo(info);
 				document.getElementById("completionButton").addEventListener("click", markTaskComplete);
 			} else {
-				infoRowIndex = 99;
+				infoRowIndex.current = 99;
 			}
 		}
 	}
@@ -123,8 +122,8 @@ function Calendar (props) {
 
 			// Collapse task info and then fetch tasks again before reopening.
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
-			table.deleteRow(infoRowIndex);
-			infoRowIndex = 99;
+			table.deleteRow(infoRowIndex.current);
+			infoRowIndex.current = 99;
 			fetchTasks();
 			// TODO: Need to reopen task info here.
 		} catch (error) {
@@ -150,11 +149,10 @@ function Calendar (props) {
 
 	// Remove infoRow if open and using a button.
 	useEffect(() => {
-		if (infoRowIndex !== 99 && buttonClicked) {
+		if (infoRowIndex.current !== 99 && buttonClicked) {
 			const table = document.getElementsByClassName("fc-list-table")[0] as HTMLTableElement;
-			table.deleteRow(infoRowIndex);
-			// eslint-disable-next-line react-hooks/exhaustive-deps
-			infoRowIndex = 99;
+			table.deleteRow(infoRowIndex.current);
+			infoRowIndex.current = 99;
 		}
 	}, [infoRowIndex, buttonClicked]);
 
