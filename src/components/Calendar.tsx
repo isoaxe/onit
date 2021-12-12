@@ -64,7 +64,10 @@ function Calendar (props) {
 				colspan.value = "3";
 				cell.setAttributeNode(colspan);
 				cell.innerHTML = displayInfo(info);
-				document.getElementById("completionButton").addEventListener("click", markTaskComplete);
+				// Button is only rendered when task is incomplete.
+				if (!info.event.extendedProps.completionTime) {
+					document.getElementById("completionButton").addEventListener("click", markTaskComplete);
+				}
 			} else {
 				infoRowIndex.current = 99;
 			}
