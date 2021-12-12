@@ -68,3 +68,7 @@ div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
 #completionButton {
   margin-bottom: 15px;
 }
+
+#completionButton:hover {
+  cursor: pointer;
+}
