@@ -92,22 +92,6 @@ export async function getTasks (role, businessId, userId) {
 }
 
 
-// Add correct suffix to supplied date.
-export function ordinal (number) {
-	const ordinalRules = new Intl.PluralRules("en", {
-		type: "ordinal"
-	});
-	const suffixes = {
-		one: "st",
-		two: "nd",
-		few: "rd",
-		other: "th"
-	};
-	const suffix = suffixes[ordinalRules.select(number)];
-	return (number + suffix);
-}
-
-
 // Generate an id for tasks.
 export function getId () {
 	return generator.generate({
@@ -133,4 +117,21 @@ export function formatDate (compliantDate) {
 	const unformattedMins = date.getMinutes();
 	const minutes = unformattedMins < 10 ? "0" + unformattedMins : unformattedMins;
 	return `${month} ${day} at ${hours}:${minutes}`;
+}
+
+/* Helpers for the above helper functions... */
+
+// Add correct suffix to supplied date.
+function ordinal (number) {
+	const ordinalRules = new Intl.PluralRules("en", {
+		type: "ordinal"
+	});
+	const suffixes = {
+		one: "st",
+		two: "nd",
+		few: "rd",
+		other: "th"
+	};
+	const suffix = suffixes[ordinalRules.select(number)];
+	return (number + suffix);
 }
