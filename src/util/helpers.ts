@@ -69,6 +69,8 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 	}
 }
 
+
+// GET only assigned tasks for staff users and all tasks for other users.
 export async function getTasks (role, businessId, userId) {
 	try {
 		const token = await firebase.auth().currentUser.getIdToken(true);
