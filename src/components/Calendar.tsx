@@ -87,7 +87,7 @@ function Calendar (props) {
 				<p><span>Status:</span> ${infoProps.completionTime ?
 				`Task completed on ${formatDate(infoProps.completionTime)}` :
 				"Awaiting completion"}</p>
-				<button id="completionButton">Mark as Complete</button>
+				${(!infoProps.completionTime) ? "<button id='completionButton'>Mark as Complete</button>" : ""}
 			</div>`
 		);
 	}
