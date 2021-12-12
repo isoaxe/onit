@@ -4,7 +4,7 @@ import listPlugin from "@fullcalendar/list";
 import firebase from "firebase/app";
 import { useState, useRef, useEffect, useCallback } from "react";
 import { tertiaryMain, textAlt } from "./../util/colours";
-import { getTasks, ordinal, isoLocalDate } from "./../util/helpers";
+import { getTasks, formatDate, isoLocalDate } from "./../util/helpers";
 import { API_URL } from "./../util/urls";
 import "./css/Calendar.css";
 
@@ -90,17 +90,6 @@ function Calendar (props) {
 				${(!infoProps.completionTime) ? "<button id='completionButton'>Mark as Complete</button>" : ""}
 			</div>`
 		);
-	}
-
-	// Takes an ISO 8601 compliant date and formats it nicely.
-	function formatDate (compliantDate) {
-		const date = new Date(compliantDate);
-		const day = ordinal(date.getDate());
-		const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
-		const hours = date.getHours();
-		const unformattedMins = date.getMinutes();
-		const minutes = unformattedMins < 10 ? "0" + unformattedMins : unformattedMins;
-		return `${month} ${day} at ${hours}:${minutes}`;
 	}
 
 	// Opens a modal so the user can input information and create task.
