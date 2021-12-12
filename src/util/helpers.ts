@@ -120,3 +120,15 @@ export function isoLocalDate (date) {
 	const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
 	return new Date(epochLocalTime).toISOString().substring(0, 19);
 }
+
+
+// Takes an ISO 8601 compliant date and formats it nicely.
+export function formatDate (compliantDate) {
+	const date = new Date(compliantDate);
+	const day = ordinal(date.getDate());
+	const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
+	const hours = date.getHours();
+	const unformattedMins = date.getMinutes();
+	const minutes = unformattedMins < 10 ? "0" + unformattedMins : unformattedMins;
+	return `${month} ${day} at ${hours}:${minutes}`;
+}
