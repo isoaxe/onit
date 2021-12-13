@@ -79,7 +79,7 @@ function Calendar (props) {
 		const infoProps = info.event.extendedProps;
 
 		return (
-			`<div class="info" id=${info.event.id}>
+			`<div class="task ${infoProps.completionTime ? "complete" : "incomplete"}" id=${info.event.id}>
 				<p><span>Details:</span> ${infoProps.message}</p>
 				<p><span>Assignee(s):</span> ${infoProps.assignees}</p>
 				<p><span>Assignor:</span> ${infoProps.assignor}</p>
