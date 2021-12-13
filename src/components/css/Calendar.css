@@ -15,12 +15,12 @@
  }
 
  .complete {
-   background: #3F524C;
-   border: 2px solid #00A693;
+   background: #696969;
+   border: 2px solid #000000;
  }
 
  .incomplete {
-   background: #3F524C;
+   background: #007474;
    border: 2px solid #00A693;
  }
 
