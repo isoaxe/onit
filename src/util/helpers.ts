@@ -85,7 +85,7 @@ export async function getTasks (role, businessId, userId) {
 			res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
 		}
 		const taskArray = await res.json();
-		return taskArray;
+		return addTaskAttributes(taskArray);
 	} catch (error) {
 		console.error(`GET request to /tasks failed: ${error}`);
 	}
@@ -119,7 +119,9 @@ export function formatDate (compliantDate) {
 	return `${month} ${day} at ${hours}:${minutes}`;
 }
 
-/* Helpers for the above helper functions... */
+/*
+ * Helpers for the above helper functions...
+ */
 
 // Add correct suffix to supplied date.
 function ordinal (number) {
@@ -134,4 +136,14 @@ function ordinal (number) {
 	};
 	const suffix = suffixes[ordinalRules.select(number)];
 	return (number + suffix);
+}
+
+
+// Add additional attributes to each event object in the tasks array.
+function addTaskAttributes (tasks) {
+	for (let i = 0; i < tasks.length; i++) {
+		if (tasks[i].extendedProps.completionTime)
+			tasks[i].color = "#696969";
+	}
+	return tasks;
 }
