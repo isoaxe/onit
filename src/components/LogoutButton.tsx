@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import { tertiaryMain, tertiaryLight, buttonShadow } from "./../util/colours";
+import { tertiaryMain, tertiaryLight, textMain, buttonShadow } from "./../util/colours";
 import { useAuth } from "./../util/useAuth";
 
 
@@ -25,6 +25,7 @@ const Button = styled.div`
 	font-size: 14px;
 	font-weight: bold;
 	padding: 10px;
+	color: ${textMain};
 	&:hover {
 		background-color: ${tertiaryLight};
 		cursor: pointer;
