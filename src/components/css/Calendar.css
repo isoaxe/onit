@@ -24,6 +24,11 @@
    border: 2px solid #00A693;
  }
 
+ .overdue {
+   background: #AD2D06;
+   border: 2px solid #000000;
+ }
+
 /* Targets listview heading (i.e. day of week). Does not work in Firefox. */
 .fc-list-day-cushion.fc-cell-shaded {
 	background-color: #007474;

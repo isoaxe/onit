@@ -78,8 +78,18 @@ function Calendar (props) {
 	function displayInfo (info) {
 		const infoProps = info.event.extendedProps;
 
+		function taskColour (infoProps) {
+			if (infoProps.completionTime) {
+				return "complete";
+			} else if (infoProps.overdue) {
+				return "overdue";
+			} else {
+				return "incomplete";
+			}
+		}
+
 		return (
-			`<div class="task ${infoProps.completionTime ? "complete" : "incomplete"}" id=${info.event.id}>
+			`<div class="task ${taskColour(infoProps)}" id=${info.event.id}>
 				<p><span>Details:</span> ${infoProps.message}</p>
 				<p><span>Assignee(s):</span> ${infoProps.assignees}</p>
 				<p><span>Assignor:</span> ${infoProps.assignor}</p>
