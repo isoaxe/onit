@@ -144,7 +144,7 @@ function addTaskAttributes (tasks) {
 	const now = isoLocalDate(new Date());
 	for (let i = 0; i < tasks.length; i++) {
 		if (tasks[i].extendedProps.completionTime) {
-			tasks[i].color = "#696969";
+			tasks[i].color = "#71797E";
 		} else if (tasks[i].end < now) {
 			tasks[i].color = "#AD2D06";
 			tasks[i].extendedProps.overdue = true;
