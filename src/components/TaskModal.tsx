@@ -63,11 +63,14 @@ function TaskModal (props): JSX.Element {
 	}
 
 	function getEndDate () {
+		let endDate = new Date();
+		// If allDay, set end to following day for overdue to work properly.
 		if (allDay) {
-			return isoLocalDate(startDate); // Since startDate === endDate.
+			endDate.setDate(endDate.getDate() + 1);
+			return isoLocalDate(endDate);
 		} else {
 			const epochEndDate = startDate.getTime() + durationHours*60*60*1000 + durationMinutes*60*1000;
-			const endDate = new Date(epochEndDate);
+			endDate = new Date(epochEndDate);
 			return isoLocalDate(endDate);
 		}
 	}
