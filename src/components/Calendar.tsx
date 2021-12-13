@@ -88,15 +88,23 @@ function Calendar (props) {
 			}
 		}
 
+		function taskStatus (infoProps) {
+			if (infoProps.completionTime) {
+				return "Task completed on " + formatDate(infoProps.completionTime);
+			} else if (infoProps.overdue) {
+				return "Overdue";
+			} else {
+				return "Awaiting completion";
+			}
+		}
+
 		return (
 			`<div class="task ${taskColour(infoProps)}" id=${info.event.id}>
 				<p><span>Details:</span> ${infoProps.message}</p>
 				<p><span>Assignee(s):</span> ${infoProps.assignees}</p>
 				<p><span>Assignor:</span> ${infoProps.assignor}</p>
 				<p><span>Created:</span> ${formatDate(infoProps.assignedTime)}</p>
-				<p><span>Status:</span> ${infoProps.completionTime ?
-				`Task completed on ${formatDate(infoProps.completionTime)}` :
-				"Awaiting completion"}</p>
+				<p><span>Status:</span> ${taskStatus(infoProps)}</p>
 				${(!infoProps.completionTime) ? "<button id='completionButton'>Mark as Complete</button>" : ""}
 			</div>`
 		);
