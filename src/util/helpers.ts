@@ -141,9 +141,13 @@ function ordinal (number) {
 
 // Add additional attributes to each event object in the tasks array.
 function addTaskAttributes (tasks) {
+	const now = isoLocalDate(new Date());
 	for (let i = 0; i < tasks.length; i++) {
-		if (tasks[i].extendedProps.completionTime)
+		if (tasks[i].extendedProps.completionTime) {
 			tasks[i].color = "#696969";
+		} else if (tasks[i].end < now) {
+			tasks[i].color = "#AD2D06";
+		}
 	}
 	return tasks;
 }
