@@ -147,6 +147,7 @@ function addTaskAttributes (tasks) {
 			tasks[i].color = "#696969";
 		} else if (tasks[i].end < now) {
 			tasks[i].color = "#AD2D06";
+			tasks[i].extendedProps.overdue = true;
 		}
 	}
 	return tasks;
