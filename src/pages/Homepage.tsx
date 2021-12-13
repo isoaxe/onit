@@ -151,7 +151,9 @@ function Homepage (): JSX.Element {
 					</div>
 					<div style={styles.menuContent}>
 						{!menuItem &&
-							<h3 style={styles.noMenuItemText}>Select an action from the menu items on the left</h3>}
+							<h3 style={styles.noMenuItemText}>
+								Select an action from the menu items on the left
+							</h3>}
 						{menuItem === "people" &&
 							<People businessId={businessId} role={role} />}
 						{menuItem === "calendar" &&
