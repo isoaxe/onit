@@ -41,6 +41,23 @@ export async function create (req: Request, res: Response): Promise<Response<voi
 	}
 }
 
+// Edit and save existing task to Firestore.
+export async function edit (req: Request, res: Response): Promise<Response<void>> {
+	try {
+		const completionTime = req.body;
+		const { taskId, businessId } = req.params;
+
+		// Save task data to Firestore.
+		const db = admin.firestore();
+		const task = db.collection("tasks").doc(`businessId-${businessId}`)
+			.collection("tasks").doc(taskId);
+		task.set({ extendedProps: { completionTime } }, { merge: true });
+		return res.status(200).send({ message: "Completion time saved." });
+	} catch (err) {
+		return handleError(res, err);
+	}
+}
+
 // Get the tasks assigned to the user of a given uid.
 export async function assigned (req: Request, res: Response): Promise<Response<void>> {
 	try {

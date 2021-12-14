@@ -2,18 +2,31 @@
 	CSS tested on Firefox, Chrome and Safari only. Not all styles could be applied to all browsers.
  */
 
- .info {
+ .task {
 	 display: inline-block;
-	 background: #3F524C;
 	 padding: 1px 15px;
 	 max-width: 600px;
 	 font-size: 0.9em;
-	 border: 2px solid #00A693;
 	 border-radius: 10px;
  }
 
- .info p span {
+ .task p span {
 	 font-weight: bold;
+ }
+
+ .complete {
+   background: #71797E;
+   border: 2px solid #000000;
+ }
+
+ .incomplete {
+   background: #007474;
+   border: 2px solid #00A693;
+ }
+
+ .overdue {
+   background: #AD2D06;
+   border: 2px solid #000000;
  }
 
 /* Targets listview heading (i.e. day of week). Does not work in Firefox. */
@@ -63,4 +76,12 @@ div.fc-daygrid-day-frame.fc-scrollgrid-sync-inner {
 
 .fc-list-event:hover {
 	cursor: pointer;
+}
+
+#completionButton {
+  margin-bottom: 15px;
+}
+
+#completionButton:hover {
+  cursor: pointer;
 }

@@ -69,6 +69,8 @@ export async function getBusinessData (user: firebase.User, businessId: string) 
 	}
 }
 
+
+// GET only assigned tasks for staff users and all tasks for other users.
 export async function getTasks (role, businessId, userId) {
 	try {
 		const token = await firebase.auth().currentUser.getIdToken(true);
@@ -83,15 +85,46 @@ export async function getTasks (role, businessId, userId) {
 			res = await fetch(`${API_URL}/tasks/${businessId}`, requestOptions);
 		}
 		const taskArray = await res.json();
-		return taskArray;
+		return addTaskAttributes(taskArray);
 	} catch (error) {
 		console.error(`GET request to /tasks failed: ${error}`);
 	}
 }
 
 
+// Generate an id for tasks.
+export function getId () {
+	return generator.generate({
+		length: 28,
+		numbers: true
+	});
+}
+
+
+// Get the supplied date as a ISO string with local time.
+export function isoLocalDate (date) {
+	const epochLocalTime = date.getTime() - date.getTimezoneOffset()*60*1000;
+	return new Date(epochLocalTime).toISOString().substring(0, 19);
+}
+
+
+// Takes an ISO 8601 compliant date and formats it nicely.
+export function formatDate (compliantDate) {
+	const date = new Date(compliantDate);
+	const day = ordinal(date.getDate());
+	const month = new Intl.DateTimeFormat("en", { month: "long" }).format(date);
+	const hours = date.getHours();
+	const unformattedMins = date.getMinutes();
+	const minutes = unformattedMins < 10 ? "0" + unformattedMins : unformattedMins;
+	return `${month} ${day} at ${hours}:${minutes}`;
+}
+
+/*
+ * Helpers for the above helper functions...
+ */
+
 // Add correct suffix to supplied date.
-export function ordinal (number) {
+function ordinal (number) {
 	const ordinalRules = new Intl.PluralRules("en", {
 		type: "ordinal"
 	});
@@ -106,10 +139,16 @@ export function ordinal (number) {
 }
 
 
-// Generate an id for tasks.
-export function getId () {
-	return generator.generate({
-		length: 28,
-		numbers: true
-	});
+// Add additional attributes to each event object in the tasks array.
+function addTaskAttributes (tasks) {
+	const now = isoLocalDate(new Date());
+	for (let i = 0; i < tasks.length; i++) {
+		if (tasks[i].extendedProps.completionTime) {
+			tasks[i].color = "#71797E";
+		} else if (tasks[i].end < now) {
+			tasks[i].color = "#AD2D06";
+			tasks[i].extendedProps.overdue = true;
+		}
+	}
+	return tasks;
 }
