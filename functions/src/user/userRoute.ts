@@ -5,7 +5,7 @@ import { isAuthorised } from "../auth/authorised";
 
 
 export function userRoute (app: Application): void {
-	// Create a new business user.
+	// Create a new staff user.
 	app.post("/user",
 		create
 	);
