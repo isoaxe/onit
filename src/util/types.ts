@@ -3,7 +3,6 @@
  */
 import { CSSProperties, MouseEvent } from "react";
 
-
 // Declare CSS as object within a TS file.
 export interface StyleSheet {
   [key: string]: CSSProperties;

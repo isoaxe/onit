@@ -2,7 +2,6 @@
  *  Interfaces to define object shapes for TypeScript.
  */
 
-
 // UserData type for combined Auth and Firestore data.
 export interface UserData {
   uid: string;

@@ -14,8 +14,8 @@
   left: 50%;
   margin-right: -50%;
   transform: translate(-50%, -50%);
-  background-color: #3F524C;
-  color: #FFFFFF;
+  background-color: #3f524c;
+  color: #ffffff;
   text-align: center;
   max-width: 900px;
   max-height: 95vh;
@@ -51,7 +51,8 @@
   padding-bottom: 10px;
 }
 
-input, textarea {
+input,
+textarea {
   width: 93%;
   margin: 3px;
   padding: 3px;
@@ -66,7 +67,6 @@ label span {
 .content div button:hover {
   cursor: pointer;
 }
-
 
 /* Overrides */
 

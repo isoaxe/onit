@@ -9,7 +9,6 @@ import { userRoute } from "./user/userRoute";
 import { tasksRoute } from "./tasks/tasksRoute";
 import { claimsRoute } from "./claims/claimsRoute";
 
-
 // Initialise the firebase-admin SDK in order to access its services.
 admin.initializeApp();
 
