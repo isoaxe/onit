@@ -6,27 +6,25 @@ import RestrictedRoute from "./../routes/RestrictedRoute";
 import Homepage from "./../pages/Homepage";
 import LoginSignup from "./../pages/LoginSignup";
 
+function App(): JSX.Element {
+  useEffect(() => {
+    document.title = "Onit";
+  }, []);
 
-function App (): JSX.Element {
-
-	useEffect(() => {
-		document.title = "Onit";
-	}, []);
-
-	return (
-		<div>
-			<ProvideAuth>
-				<Switch>
-					<RestrictedRoute path="/home">
-						<Homepage />
-					</RestrictedRoute>
-					<Route path="/">
-						<LoginSignup />
-					</Route>
-				</Switch>
-			</ProvideAuth>
-		</div>
-	);
+  return (
+    <div>
+      <ProvideAuth>
+        <Switch>
+          <RestrictedRoute path="/home">
+            <Homepage />
+          </RestrictedRoute>
+          <Route path="/">
+            <LoginSignup />
+          </Route>
+        </Switch>
+      </ProvideAuth>
+    </div>
+  );
 }
 
 export default App;

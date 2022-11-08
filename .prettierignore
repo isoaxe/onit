@@ -1,0 +1,27 @@
+# File list copied from gitignore.
+
+# Dependencies:
+node_modules/
+
+# Testing:
+coverage/
+
+# Production:
+build/
+
+# Compiled JavaScript files:
+functions/lib/**/*.js
+functions/lib/**/*.js.map
+
+# TypeScript:
+typings/
+
+# Miscellaneous:
+.DS_Store
+.env.local
+.env.development.local
+.env.test.local
+.env.production.local
+.firebase
+*.log
+README.md
