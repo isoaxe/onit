@@ -24,3 +24,4 @@ typings/
 .env.production.local
 .firebase
 *.log
+README.md
