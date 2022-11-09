@@ -1,19 +1,19 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import { useAuth } from "./../util/useAuth";
+import { StyleSheet } from "./../util/types";
 import {
   secondaryMain,
   secondaryLight,
   textMain,
   buttonShadow,
 } from "./../util/colours";
-import { useAuth } from "./../util/useAuth";
 import {
   validateLogin,
   emailNotFound,
   incorrectPassword,
 } from "./../util/validation";
-import { StyleSheet } from "./../util/types";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");

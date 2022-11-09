@@ -1,6 +1,11 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import PhoneNumber from "./PhoneNumber";
+import { postFormDataAsJson } from "./../util/helpers";
+import { useAuth } from "./../util/useAuth";
+import { StyleSheet } from "./../util/types";
+import { API_URL } from "./../util/urls";
 import {
   primaryLight,
   secondaryMain,
@@ -8,17 +13,12 @@ import {
   textMain,
   buttonShadow,
 } from "./../util/colours";
-import { postFormDataAsJson } from "./../util/helpers";
 import {
   validateSharedSignup,
   validateBusinessSignup,
   phoneTaken,
   emailTaken,
 } from "./../util/validation";
-import PhoneNumber from "./PhoneNumber";
-import { useAuth } from "./../util/useAuth";
-import { StyleSheet } from "./../util/types";
-import { API_URL } from "./../util/urls";
 
 function CreateBusiness(): JSX.Element {
   const [businessName, setBusinessName] = useState("");
