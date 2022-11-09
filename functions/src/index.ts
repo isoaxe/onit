@@ -2,7 +2,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as express from "express";
 import * as cors from "cors";
-import * as bodyParser from "body-parser";
 
 import { businessRoute } from "./business/businessRoute";
 import { userRoute } from "./user/userRoute";
@@ -17,7 +16,7 @@ const app = express();
 // Automatically allow cross-origin requests.
 app.use(cors({ origin: true }));
 
-app.use(bodyParser.json());
+app.use(express.json());
 
 // Set handler for business accounts.
 businessRoute(app);
