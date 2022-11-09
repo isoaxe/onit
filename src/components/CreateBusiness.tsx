@@ -89,7 +89,7 @@ function CreateBusiness(): JSX.Element {
       const formData = new FormData(form);
       await postFormDataAsJson({ url, formData });
       auth.signIn(email, password);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       if (err.message.indexOf("phone number already exists") !== -1) {
         phoneTaken(form, 3);

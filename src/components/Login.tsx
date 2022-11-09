@@ -41,7 +41,7 @@ function Login(): JSX.Element {
 
     try {
       await auth.signIn(email, password);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {
         emailNotFound(form);
