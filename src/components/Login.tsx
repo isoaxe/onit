@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import TextField from "@mui/material/TextField";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import {
@@ -62,6 +63,12 @@ function Login(): JSX.Element {
           type="text"
           placeholder="Email"
           name="email"
+        />
+        <TextField
+          label="Email"
+          value={email}
+          onChange={handleEmail}
+          sx={styles.inputField}
         />
         <input
           value={password}
