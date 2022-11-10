@@ -19,6 +19,8 @@ import {
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const [emailNotFoundError, setEmailNotFoundError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
@@ -46,6 +48,8 @@ function Login(): JSX.Element {
       console.error(err);
       if (err.code === "auth/user-not-found") {
         emailNotFound(form);
+        setEmailNotFoundError(true);
+        setEmailHelperText("Email not found");
       }
       if (err.code === "auth/wrong-password") {
         incorrectPassword(form);
@@ -68,6 +72,8 @@ function Login(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
+          error={emailNotFoundError}
+          helperText={emailHelperText}
           sx={styles.inputField}
         />
         <input
