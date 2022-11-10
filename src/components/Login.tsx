@@ -10,11 +10,7 @@ import {
   textMain,
   buttonShadow,
 } from "./../util/colours";
-import {
-  validateLogin,
-  emailNotFound,
-  incorrectPassword,
-} from "./../util/validation";
+import { validateLogin, incorrectPassword } from "./../util/validation";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -47,7 +43,6 @@ function Login(): JSX.Element {
     } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {
-        emailNotFound(form);
         setEmailNotFoundError(true);
         setEmailHelperText("Email not found");
       }
@@ -60,14 +55,6 @@ function Login(): JSX.Element {
   return (
     <div>
       <form onSubmit={login} style={styles.login}>
-        <input
-          value={email}
-          onChange={handleEmail}
-          style={styles.inputField}
-          type="text"
-          placeholder="Email"
-          name="email"
-        />
         <TextField
           label="Email"
           value={email}
