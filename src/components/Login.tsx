@@ -84,12 +84,7 @@ const styles: StyleSheet = {
   },
   inputField: {
     margin: "5px 10%",
-    padding: "3px",
-    height: "25px",
     width: "80%",
-    fontSize: "14px",
-    border: "0px",
-    borderRadius: "3px",
   },
 };
 
