@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import validator from "validator";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
@@ -24,6 +25,13 @@ function Login(): JSX.Element {
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
+    if (!validator.isEmail(email)) {
+      setEmailNotFoundError(true);
+      setEmailHelperText("Please enter a valid email");
+    } else {
+      setEmailNotFoundError(false);
+      setEmailHelperText("");
+    }
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
