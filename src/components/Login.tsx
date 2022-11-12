@@ -11,7 +11,6 @@ import {
   textMain,
   buttonShadow,
 } from "./../util/colours";
-import { validateLogin } from "./../util/validation";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -53,11 +52,6 @@ function Login(): JSX.Element {
     setPasswordError(false);
     setEmailHelperText("");
     setPasswordHelperText("");
-    const form = event.currentTarget;
-    const loginValidated = validateLogin(email, password, form);
-    if (!loginValidated) {
-      return false;
-    }
 
     try {
       await auth.signIn(email, password);
