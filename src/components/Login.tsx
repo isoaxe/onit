@@ -18,18 +18,18 @@ function Login(): JSX.Element {
   const [password, setPassword] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
-  const [emailNotFoundError, setEmailNotFoundError] = useState(false);
-  const [passwordIncorrectError, setPasswordIncorrectError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
     if (!validator.isEmail(email)) {
-      setEmailNotFoundError(true);
+      setEmailError(true);
       setEmailHelperText("Please enter a valid email");
     } else {
-      setEmailNotFoundError(false);
+      setEmailError(false);
       setEmailHelperText("");
     }
   }
@@ -37,10 +37,10 @@ function Login(): JSX.Element {
   function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
     setPassword(event.currentTarget.value);
     if (password.length < 8) {
-      setPasswordIncorrectError(true);
+      setPasswordError(true);
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
-      setPasswordIncorrectError(false);
+      setPasswordError(false);
       setPasswordHelperText("");
     }
   }
@@ -49,8 +49,8 @@ function Login(): JSX.Element {
     event: SyntheticEvent<HTMLFormElement>
   ): Promise<void | boolean> {
     event.preventDefault();
-    setEmailNotFoundError(false);
-    setPasswordIncorrectError(false);
+    setEmailError(false);
+    setPasswordError(false);
     setEmailHelperText("");
     setPasswordHelperText("");
     const form = event.currentTarget;
@@ -64,11 +64,11 @@ function Login(): JSX.Element {
     } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {
-        setEmailNotFoundError(true);
+        setEmailError(true);
         setEmailHelperText("Email not found");
       }
       if (err.code === "auth/wrong-password") {
-        setPasswordIncorrectError(true);
+        setPasswordError(true);
         setPasswordHelperText("Password not correct");
       }
     }
@@ -81,7 +81,7 @@ function Login(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
-          error={emailNotFoundError}
+          error={emailError}
           helperText={emailHelperText}
           sx={styles.inputField}
         />
@@ -89,7 +89,7 @@ function Login(): JSX.Element {
           label="Password"
           value={password}
           onChange={handlePassword}
-          error={passwordIncorrectError}
+          error={passwordError}
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
