@@ -10,7 +10,7 @@ import {
   textMain,
   buttonShadow,
 } from "./../util/colours";
-import { validateLogin, incorrectPassword } from "./../util/validation";
+import { validateLogin } from "./../util/validation";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -49,7 +49,6 @@ function Login(): JSX.Element {
         setEmailHelperText("Email not found");
       }
       if (err.code === "auth/wrong-password") {
-        incorrectPassword(form);
         setPasswordIncorrectError(true);
         setPasswordHelperText("Password not correct");
       }
@@ -74,14 +73,6 @@ function Login(): JSX.Element {
           error={passwordIncorrectError}
           helperText={passwordHelperText}
           sx={styles.inputField}
-        />
-        <input
-          value={password}
-          onChange={handlePassword}
-          style={styles.inputField}
-          type="text"
-          placeholder="Password"
-          name="password"
         />
         <Button type="submit">Login</Button>
       </form>
