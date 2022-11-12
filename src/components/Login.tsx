@@ -34,6 +34,10 @@ function Login(): JSX.Element {
     event: SyntheticEvent<HTMLFormElement>
   ): Promise<void | boolean> {
     event.preventDefault();
+    setEmailNotFoundError(false);
+    setPasswordIncorrectError(false);
+    setEmailHelperText("");
+    setPasswordHelperText("");
     const form = event.currentTarget;
     const loginValidated = validateLogin(email, password, form);
     if (!loginValidated) {
