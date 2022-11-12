@@ -16,7 +16,9 @@ function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
   const [emailNotFoundError, setEmailNotFoundError] = useState(false);
+  const [passwordIncorrectError, setPasswordIncorrectError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
@@ -48,6 +50,8 @@ function Login(): JSX.Element {
       }
       if (err.code === "auth/wrong-password") {
         incorrectPassword(form);
+        setPasswordIncorrectError(true);
+        setPasswordHelperText("Password not correct");
       }
     }
   }
@@ -61,6 +65,14 @@ function Login(): JSX.Element {
           onChange={handleEmail}
           error={emailNotFoundError}
           helperText={emailHelperText}
+          sx={styles.inputField}
+        />
+        <TextField
+          label="Password"
+          value={password}
+          onChange={handlePassword}
+          error={passwordIncorrectError}
+          helperText={passwordHelperText}
           sx={styles.inputField}
         />
         <input
