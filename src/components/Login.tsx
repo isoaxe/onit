@@ -36,6 +36,13 @@ function Login(): JSX.Element {
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
     setPassword(event.currentTarget.value);
+    if (password.length < 8) {
+      setPasswordIncorrectError(true);
+      setPasswordHelperText("Needs to be > 7 characters");
+    } else {
+      setPasswordIncorrectError(false);
+      setPasswordHelperText("");
+    }
   }
 
   async function login(
