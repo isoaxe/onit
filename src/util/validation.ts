@@ -171,9 +171,3 @@ export function idNotFound(form) {
   form[6].value = "";
   form[6].placeholder = "Id not found";
 }
-
-export function incorrectPassword(form) {
-  form[1].style.outline = inputError;
-  form[1].value = "";
-  form[1].placeholder = "Password not correct";
-}
