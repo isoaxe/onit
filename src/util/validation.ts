@@ -133,27 +133,6 @@ export function validateUserSignup(
   return firstName && lastName && businessId.length === 6;
 }
 
-export function validateLogin(email: string, password: string, form): boolean {
-  if (!validator.isEmail(email)) {
-    form[0].style.outline = inputError;
-    form[0].value = "";
-    form[0].placeholder = "Please enter a valid email";
-  } else {
-    form[0].style.outline = 0;
-  }
-
-  if (password.length < 8) {
-    form[1].style.outline = inputError;
-    form[1].value = "";
-    form[1].placeholder = "Needs to be > 7 characters";
-  } else {
-    form[1].style.outline = 0;
-  }
-
-  // If all fields pass, then return true.
-  return validator.isEmail(email) && password.length > 7;
-}
-
 export function phoneTaken(form, n = 0) {
   form[3 + n].style.outline = inputError;
   form[3 + n].value = "";
