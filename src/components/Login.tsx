@@ -1,4 +1,4 @@
-import { useState, ChangeEvent, SyntheticEvent } from "react";
+import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
 import validator from "validator";
@@ -24,24 +24,10 @@ function Login(): JSX.Element {
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
-    if (!validator.isEmail(email)) {
-      setEmailError(true);
-      setEmailHelperText("Please enter a valid email");
-    } else {
-      setEmailError(false);
-      setEmailHelperText("");
-    }
   }
 
   function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
     setPassword(event.currentTarget.value);
-    if (password.length < 8) {
-      setPasswordError(true);
-      setPasswordHelperText("Needs to be > 7 characters");
-    } else {
-      setPasswordError(false);
-      setPasswordHelperText("");
-    }
   }
 
   async function login(
@@ -67,6 +53,28 @@ function Login(): JSX.Element {
       }
     }
   }
+
+  // Display email validation in DOM as user types.
+  useEffect(() => {
+    if (!validator.isEmail(email)) {
+      setEmailError(true);
+      setEmailHelperText("Please enter a valid email");
+    } else {
+      setEmailError(false);
+      setEmailHelperText("");
+    }
+  }, [email]);
+
+  // Display password validation in DOM as user types.
+  useEffect(() => {
+    if (password.length < 8) {
+      setPasswordError(true);
+      setPasswordHelperText("Needs to be > 7 characters");
+    } else {
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+  }, [password]);
 
   return (
     <div>
