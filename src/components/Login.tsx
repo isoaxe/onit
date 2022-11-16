@@ -56,7 +56,7 @@ function Login(): JSX.Element {
 
   // Display email validation in DOM as user types.
   useEffect(() => {
-    if (!validator.isEmail(email)) {
+    if (email.length && !validator.isEmail(email)) {
       setEmailError(true);
       setEmailHelperText("Please enter a valid email");
     } else {
@@ -67,7 +67,7 @@ function Login(): JSX.Element {
 
   // Display password validation in DOM as user types.
   useEffect(() => {
-    if (password.length < 8) {
+    if (password.length && password.length < 8) {
       setPasswordError(true);
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
