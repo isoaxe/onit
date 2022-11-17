@@ -72,7 +72,7 @@ function Login(): JSX.Element {
   }, [password]);
 
   return (
-    <div>
+    <div style={styles.wrapper}>
       <form onSubmit={login} style={styles.login}>
         <TextField
           label="Email"
@@ -98,12 +98,18 @@ function Login(): JSX.Element {
 }
 
 const styles: StyleSheet = {
+  wrapper: {
+    width: "102%",
+  },
   login: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "10px",
     borderBottom: `3px solid ${secondaryMain}`,
   },
   inputField: {
-    margin: "5px 10%",
-    width: "80%",
+    marginBottom: "15px",
   },
 };
 
