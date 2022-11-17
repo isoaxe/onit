@@ -1,16 +1,10 @@
 import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import styled from "styled-components";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
-import {
-  secondaryMain,
-  secondaryLight,
-  textMain,
-  buttonShadow,
-} from "./../util/colours";
+import { secondaryMain } from "./../util/colours";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -95,7 +89,6 @@ function Login(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
-        <Button type="submit">Login</Button>
       </form>
       {user && <Redirect to="home" />}
     </div>
@@ -111,20 +104,5 @@ const styles: StyleSheet = {
     width: "80%",
   },
 };
-
-const Button = styled.button`
-  background-color: ${secondaryMain};
-  box-shadow: ${buttonShadow};
-  border: 0px;
-  border-radius: 4px;
-  color: ${textMain};
-  font-size: 14px;
-  padding: 10px 20px;
-  margin: 20px 90px;
-  &:hover {
-    background-color: ${secondaryLight};
-    cursor: pointer;
-  }
-`;
 
 export default Login;
