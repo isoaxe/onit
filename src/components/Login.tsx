@@ -2,6 +2,7 @@ import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
+import PrimaryButton from "./PrimaryButton";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { secondaryMain } from "./../util/colours";
@@ -89,6 +90,7 @@ function Login(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
+        <PrimaryButton label="login" type="submit" />
       </form>
       {user && <Redirect to="home" />}
     </div>
