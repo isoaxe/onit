@@ -14,6 +14,7 @@ function Login(): JSX.Element {
   const [passwordHelperText, setPasswordHelperText] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [loginDisabled, setLoginDisabled] = useState(true);
   const auth = useAuth();
   const user = auth.user;
 
@@ -71,6 +72,15 @@ function Login(): JSX.Element {
     }
   }, [password]);
 
+  // Decide if the Login button should be disabled
+  useEffect(() => {
+    if (!email.length || !password.length || emailError || passwordError) {
+      setLoginDisabled(true);
+    } else {
+      setLoginDisabled(false);
+    }
+  });
+
   return (
     <div style={styles.wrapper}>
       <form onSubmit={login} style={styles.login}>
@@ -90,7 +100,7 @@ function Login(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
-        <PrimaryButton label="login" type="submit" />
+        <PrimaryButton label="login" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>
