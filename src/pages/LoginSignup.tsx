@@ -64,7 +64,7 @@ const styles: StyleSheet = {
     justifyContent: "center",
     backgroundColor: primaryLight,
     border: `2px solid ${secondaryMain}`,
-    width: "250px",
+    width: "270px",
     borderRadius: "10px",
     paddingBottom: "25px",
     marginBottom: "30px",
