@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Login from "./../components/Login";
+import PrimaryButton from "./../components/PrimaryButton";
 import CreateUser from "./../components/CreateUser";
 import CreateBusiness from "./../components/CreateBusiness";
 import {
@@ -30,6 +31,16 @@ function LoginSignup(): JSX.Element {
         <p style={styles.title}>Login</p>
         <Login />
         <p style={styles.title}>Sign Up</p>
+        <PrimaryButton
+          label="create user account"
+          type="button"
+          onClick={userForm}
+        />
+        <PrimaryButton
+          label="create business account"
+          type="button"
+          onClick={businessForm}
+        />
       </header>
       {userFormActive && <CreateUser />}
       {businessFormActive && <CreateBusiness />}
