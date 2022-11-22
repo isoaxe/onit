@@ -1,10 +1,15 @@
 import Button from "@mui/material/Button";
 
 function PrimaryButton(props): JSX.Element {
-  const { label, type, disabled } = props;
+  const { label, onClick, type, disabled } = props;
 
   return (
-    <Button variant="contained" type={type} disabled={disabled}>
+    <Button
+      variant="contained"
+      onClick={onClick}
+      type={type}
+      disabled={disabled}
+    >
       {label}
     </Button>
   );
