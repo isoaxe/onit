@@ -7,7 +7,6 @@ import {
   textMain,
   textAlt,
 } from "./../util/colours";
-import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
@@ -134,7 +133,6 @@ function Homepage(): JSX.Element {
           <HeaderText text={headerRole} />
           {role !== "owner" && <HeaderText text={headerBusiness} />}
           {role === "owner" && <HeaderText text={headerBusinessId} />}
-          <LogoutButton />
           <PrimaryButton label="logout" type="button" onClick={signOut} />
         </header>
         <section style={styles.menuWrapper}>
