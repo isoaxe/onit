@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import TextField from "@mui/material/TextField";
 import PhoneNumber from "./PhoneNumber";
 import { postFormDataAsJson } from "./../util/helpers";
 import { useAuth } from "./../util/useAuth";
@@ -28,6 +29,10 @@ function CreateUser(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [businessId, setBusinessId] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [emailError, setEmailError] = useState(false);
+  const [passwordError, setPasswordError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
@@ -96,46 +101,41 @@ function CreateUser(): JSX.Element {
     <div>
       <form onSubmit={createUser} style={styles.form}>
         <header style={styles.header}>Create Account</header>
-        <input
+        <TextField
+          label="First Name"
           value={firstName}
           onChange={handleFirstName}
-          style={styles.inputField}
-          type="text"
-          placeholder="First name"
-          name="displayName"
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Last Name"
           value={lastName}
           onChange={handleLastName}
-          style={styles.inputField}
-          type="text"
-          placeholder="Last name"
-          name="lastName"
+          sx={styles.inputField}
         />
         <PhoneNumber value={phone} onChange={setPhone} name="phoneNumber" />
-        <input
+        <TextField
+          label="Email"
           value={email}
           onChange={handleEmail}
-          style={styles.inputField}
-          type="text"
-          placeholder="Email address"
-          name="email"
+          error={emailError}
+          helperText={emailHelperText}
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Password"
           value={password}
           onChange={handlePassword}
-          style={styles.inputField}
-          type="text"
-          placeholder="Password"
-          name="password"
+          error={passwordError}
+          helperText={passwordHelperText}
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Business ID"
+          type="number"
           value={businessId}
           onChange={handleBusinessId}
-          style={styles.inputField}
-          type="number"
-          placeholder="Business ID"
-          name="businessId"
+          sx={styles.inputField}
         />
         <Button type="submit">Submit</Button>
       </form>
