@@ -1,6 +1,7 @@
-import { useState, ChangeEvent, SyntheticEvent } from "react";
+import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import validator from "validator";
 import TextField from "@mui/material/TextField";
 import PhoneNumber from "./PhoneNumber";
 import { postFormDataAsJson } from "./../util/helpers";
@@ -96,6 +97,28 @@ function CreateUser(): JSX.Element {
       }
     }
   }
+
+  // Display email validation in DOM as user types.
+  useEffect(() => {
+    if (email.length && !validator.isEmail(email)) {
+      setEmailError(true);
+      setEmailHelperText("Please enter a valid email");
+    } else {
+      setEmailError(false);
+      setEmailHelperText("");
+    }
+  }, [email]);
+
+  // Display password validation in DOM as user types.
+  useEffect(() => {
+    if (password.length && password.length < 8) {
+      setPasswordError(true);
+      setPasswordHelperText("Needs to be > 7 characters");
+    } else {
+      setPasswordError(false);
+      setPasswordHelperText("");
+    }
+  }, [password]);
 
   return (
     <div>
