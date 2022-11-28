@@ -2,7 +2,7 @@ import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
 
-const phoneInputStyles = { width: "82%" };
+const phoneInputStyles = { width: "79%", marginBottom: "15px" };
 
 function PhoneNumber(props: PhoneInputProps): JSX.Element {
   return (
