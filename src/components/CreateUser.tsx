@@ -1,20 +1,14 @@
 import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import styled from "styled-components";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
 import PhoneNumber from "./PhoneNumber";
+import PrimaryButton from "./PrimaryButton";
 import { postFormDataAsJson } from "./../util/helpers";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
-import {
-  primaryLight,
-  secondaryMain,
-  secondaryLight,
-  textMain,
-  buttonShadow,
-} from "./../util/colours";
+import { primaryLight, secondaryMain, textMain } from "./../util/colours";
 import {
   validateSharedSignup,
   validateUserSignup,
@@ -175,7 +169,7 @@ function CreateUser(): JSX.Element {
           helperText={businessIdHelperText}
           sx={styles.inputField}
         />
-        <Button type="submit">Submit</Button>
+        <PrimaryButton label="submit" type="submit" />
       </form>
       {user && <Redirect to="home" />}
     </div>
@@ -206,20 +200,5 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-const Button = styled.button`
-  background-color: ${secondaryMain};
-  box-shadow: ${buttonShadow};
-  border: 0px;
-  border-radius: 3px;
-  color: ${textMain};
-  font-size: 14px;
-  padding: 4px 13px 4px;
-  margin-top: 10px;
-  &:hover {
-    background-color: ${secondaryLight};
-    cursor: pointer;
-  }
-`;
 
 export default CreateUser;
