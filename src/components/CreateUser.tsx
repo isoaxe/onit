@@ -32,8 +32,10 @@ function CreateUser(): JSX.Element {
   const [businessId, setBusinessId] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [businessIdHelperText, setBusinessIdHelperText] = useState("");
   const [emailError, setEmailError] = useState(false);
   const [passwordError, setPasswordError] = useState(false);
+  const [businessIdError, setBusinessIdError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
@@ -120,6 +122,17 @@ function CreateUser(): JSX.Element {
     }
   }, [password]);
 
+  // Display business ID validation in DOM as user types.
+  useEffect(() => {
+    if (businessId.length && businessId.length !== 6) {
+      setBusinessIdError(true);
+      setBusinessIdHelperText("Must be a six digit number");
+    } else {
+      setBusinessIdError(false);
+      setBusinessIdHelperText("");
+    }
+  }, [businessId]);
+
   return (
     <div>
       <form onSubmit={createUser} style={styles.form}>
@@ -158,6 +171,8 @@ function CreateUser(): JSX.Element {
           type="number"
           value={businessId}
           onChange={handleBusinessId}
+          error={businessIdError}
+          helperText={businessIdHelperText}
           sx={styles.inputField}
         />
         <Button type="submit">Submit</Button>
