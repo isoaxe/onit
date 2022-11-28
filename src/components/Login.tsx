@@ -115,10 +115,10 @@ const styles: StyleSheet = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
-    padding: "10px",
     borderBottom: `3px solid ${secondaryMain}`,
   },
   inputField: {
+    width: "80%",
     marginBottom: "15px",
   },
 };
