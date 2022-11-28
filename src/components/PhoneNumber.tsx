@@ -4,8 +4,10 @@ import "./css/PhoneNumber.css";
 
 const phoneInputStyles = { width: "79%", marginBottom: "15px" };
 
-function PhoneNumber(props: PhoneInputProps): JSX.Element {
-  const { name, value, onChange } = props;
+type PhoneNumberProps = PhoneInputProps & { helperText: string };
+
+function PhoneNumber(props: PhoneNumberProps): JSX.Element {
+  const { name, value, onChange, helperText } = props;
 
   return (
     <PhoneInput
