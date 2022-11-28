@@ -115,6 +115,7 @@ const styles: StyleSheet = {
     display: "flex",
     flexDirection: "column",
     alignItems: "center",
+    paddingBottom: "15px",
     borderBottom: `3px solid ${secondaryMain}`,
   },
   inputField: {
