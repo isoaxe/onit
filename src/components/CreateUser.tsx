@@ -25,6 +25,7 @@ function CreateUser(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [businessId, setBusinessId] = useState("");
+  const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
   const [businessIdHelperText, setBusinessIdHelperText] = useState("");
@@ -95,6 +96,15 @@ function CreateUser(): JSX.Element {
     }
   }
 
+  // Display phone number validation in DOM as user types.
+  useEffect(() => {
+    if (phone.length && !validator.isMobilePhone(phone)) {
+      setPhoneHelperText("Please enter a valid phone number");
+    } else {
+      setPhoneHelperText("");
+    }
+  }, [phone]);
+
   // Display email validation in DOM as user types.
   useEffect(() => {
     if (email.length && !validator.isEmail(email)) {
@@ -144,7 +154,12 @@ function CreateUser(): JSX.Element {
           onChange={handleLastName}
           sx={styles.inputField}
         />
-        <PhoneNumber value={phone} onChange={setPhone} name="phoneNumber" />
+        <PhoneNumber
+          value={phone}
+          onChange={setPhone}
+          name="phoneNumber"
+          helperText={phoneHelperText}
+        />
         <TextField
           label="Email"
           value={email}
