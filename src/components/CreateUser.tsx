@@ -16,6 +16,7 @@ import {
   emailTaken,
   idNotFound,
 } from "./../util/validation";
+import "./css/CreateUser.css";
 
 function CreateUser(): JSX.Element {
   const [firstName, setFirstName] = useState("");
