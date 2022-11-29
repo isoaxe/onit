@@ -12,8 +12,6 @@ function Login(): JSX.Element {
   const [password, setPassword] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
   const [loginDisabled, setLoginDisabled] = useState(true);
   const auth = useAuth();
   const user = auth.user;
@@ -30,8 +28,6 @@ function Login(): JSX.Element {
     event: SyntheticEvent<HTMLFormElement>
   ): Promise<void | boolean> {
     event.preventDefault();
-    setEmailError(false);
-    setPasswordError(false);
     setEmailHelperText("");
     setPasswordHelperText("");
 
@@ -40,11 +36,9 @@ function Login(): JSX.Element {
     } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {
-        setEmailError(true);
         setEmailHelperText("Email not found");
       }
       if (err.code === "auth/wrong-password") {
-        setPasswordError(true);
         setPasswordHelperText("Password not correct");
       }
     }
@@ -53,10 +47,8 @@ function Login(): JSX.Element {
   // Display email validation in DOM as user types.
   useEffect(() => {
     if (email.length && !validator.isEmail(email)) {
-      setEmailError(true);
       setEmailHelperText("Please enter a valid email");
     } else {
-      setEmailError(false);
       setEmailHelperText("");
     }
   }, [email]);
@@ -64,17 +56,20 @@ function Login(): JSX.Element {
   // Display password validation in DOM as user types.
   useEffect(() => {
     if (password.length && password.length < 8) {
-      setPasswordError(true);
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
-      setPasswordError(false);
       setPasswordHelperText("");
     }
   }, [password]);
 
   // Decide if the Login button should be disabled
   useEffect(() => {
-    if (!email.length || !password.length || emailError || passwordError) {
+    if (
+      !email.length ||
+      !password.length ||
+      emailHelperText ||
+      passwordHelperText
+    ) {
       setLoginDisabled(true);
     } else {
       setLoginDisabled(false);
@@ -88,7 +83,7 @@ function Login(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
-          error={emailError}
+          error={emailHelperText ? true : false}
           helperText={emailHelperText}
           sx={styles.inputField}
         />
@@ -96,7 +91,7 @@ function Login(): JSX.Element {
           label="Password"
           value={password}
           onChange={handlePassword}
-          error={passwordError}
+          error={passwordHelperText ? true : false}
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
