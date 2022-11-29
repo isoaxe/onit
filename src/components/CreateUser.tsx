@@ -9,13 +9,7 @@ import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 import { primaryLight, secondaryMain, textMain } from "./../util/colours";
-import {
-  validateSharedSignup,
-  validateUserSignup,
-  phoneTaken,
-  emailTaken,
-  idNotFound,
-} from "./../util/validation";
+import { phoneTaken, emailTaken, idNotFound } from "./../util/validation";
 import "./css/CreateUser.css";
 
 function CreateUser(): JSX.Element {
@@ -59,22 +53,6 @@ function CreateUser(): JSX.Element {
     event.preventDefault();
     const form = event.currentTarget;
     const url = `${API_URL}/user`;
-
-    const sharedSignupValidated = validateSharedSignup(
-      phone,
-      email,
-      password,
-      form
-    );
-    const userSignupValidated = validateUserSignup(
-      firstName,
-      lastName,
-      businessId,
-      form
-    );
-    if (!sharedSignupValidated || !userSignupValidated) {
-      return false;
-    }
 
     try {
       const formData = new FormData(form);
