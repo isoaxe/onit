@@ -236,7 +236,7 @@ const styles: StyleSheet = {
     border: `2px solid ${secondaryMain}`,
     borderRadius: "10px",
     width: "270px",
-    paddingBottom: "25px",
+    paddingBottom: "15px",
     marginBottom: "30px",
     fontSize: "20px",
     color: textMain,
