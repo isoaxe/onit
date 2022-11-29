@@ -9,7 +9,6 @@ import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 import { primaryLight, secondaryMain, textMain } from "./../util/colours";
-import { phoneTaken, emailTaken, idNotFound } from "./../util/validation";
 import "./css/CreateUser.css";
 
 function CreateUser(): JSX.Element {
@@ -61,13 +60,13 @@ function CreateUser(): JSX.Element {
     } catch (err: any) {
       console.error(err);
       if (err.message.indexOf("phone number already exists") !== -1) {
-        phoneTaken(form);
+        setPhoneHelperText("Number already in use");
       }
       if (err.message.indexOf("email address is already in use") !== -1) {
-        emailTaken(form);
+        setEmailHelperText("Email already in use");
       }
       if (err.message.indexOf("businessId not found") !== -1) {
-        idNotFound(form);
+        setBusinessIdHelperText("Business ID not found");
       }
     }
   }
