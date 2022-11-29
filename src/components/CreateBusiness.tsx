@@ -225,15 +225,12 @@ const styles: StyleSheet = {
     color: textMain,
   },
   header: {
-    fontSize: "15px",
-    padding: "8px",
+    fontSize: "20px",
+    padding: "14px",
   },
   inputField: {
-    margin: "3px",
-    padding: "3px",
     width: "80%",
-    border: "0px",
-    borderRadius: "3px",
+    marginBottom: "15px",
   },
   space: {
     marginBottom: "10px",
