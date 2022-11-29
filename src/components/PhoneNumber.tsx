@@ -14,9 +14,14 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     const input = document.getElementsByClassName(
       "PhoneInputInput"
     )[0] as HTMLElement;
+    const inFocus = document.getElementsByClassName(
+      "PhoneInput--focus"
+    )[0] as HTMLElement;
 
     if (helperText) {
       input.style.outlineColor = "#cc0000";
+    } else if (inFocus) {
+      input.style.outlineColor = "#3b74cb";
     } else {
       input.style.outlineColor = "#31353d";
     }
