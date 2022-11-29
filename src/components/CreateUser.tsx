@@ -98,7 +98,7 @@ function CreateUser(): JSX.Element {
 
   // Display phone number validation in DOM as user types.
   useEffect(() => {
-    if (phone.length && !validator.isMobilePhone(phone)) {
+    if (phone?.length && !validator.isMobilePhone(phone)) {
       setPhoneHelperText("Please enter a valid phone number");
     } else {
       setPhoneHelperText("");
