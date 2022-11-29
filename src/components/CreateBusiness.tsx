@@ -9,7 +9,6 @@ import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 import { primaryLight, secondaryMain, textMain } from "./../util/colours";
-import { phoneTaken, emailTaken } from "./../util/validation";
 
 function CreateBusiness(): JSX.Element {
   const [businessName, setBusinessName] = useState("");
@@ -70,10 +69,10 @@ function CreateBusiness(): JSX.Element {
     } catch (err: any) {
       console.error(err);
       if (err.message.indexOf("phone number already exists") !== -1) {
-        phoneTaken(form, 3);
+        setPhoneHelperText("Number already in use");
       }
       if (err.message.indexOf("email address is already in use") !== -1) {
-        emailTaken(form, 3);
+        setEmailHelperText("Email already in use");
       }
     }
   }
