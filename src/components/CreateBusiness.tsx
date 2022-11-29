@@ -9,12 +9,7 @@ import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
 import { primaryLight, secondaryMain, textMain } from "./../util/colours";
-import {
-  validateSharedSignup,
-  validateBusinessSignup,
-  phoneTaken,
-  emailTaken,
-} from "./../util/validation";
+import { phoneTaken, emailTaken } from "./../util/validation";
 
 function CreateBusiness(): JSX.Element {
   const [businessName, setBusinessName] = useState("");
@@ -67,24 +62,6 @@ function CreateBusiness(): JSX.Element {
     event.preventDefault();
     const url = `${API_URL}/business`;
     const form = event.currentTarget;
-
-    const sharedSignupValidated = validateSharedSignup(
-      phone,
-      email,
-      password,
-      form
-    );
-    const businessSignupValidated = validateBusinessSignup(
-      businessName,
-      address1,
-      address2,
-      city,
-      postcode,
-      form
-    );
-    if (!sharedSignupValidated || !businessSignupValidated) {
-      return false;
-    }
 
     try {
       const formData = new FormData(form);
