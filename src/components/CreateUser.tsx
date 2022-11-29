@@ -152,7 +152,7 @@ function CreateUser(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
-          error={emailHelperText ? true : false}
+          error={!!emailHelperText}
           helperText={emailHelperText}
           sx={styles.inputField}
         />
@@ -160,7 +160,7 @@ function CreateUser(): JSX.Element {
           label="Password"
           value={password}
           onChange={handlePassword}
-          error={passwordHelperText ? true : false}
+          error={!!passwordHelperText}
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
@@ -169,7 +169,7 @@ function CreateUser(): JSX.Element {
           type="number"
           value={businessId}
           onChange={handleBusinessId}
-          error={businessIdHelperText ? true : false}
+          error={!!businessIdHelperText}
           helperText={businessIdHelperText}
           sx={styles.inputField}
         />
