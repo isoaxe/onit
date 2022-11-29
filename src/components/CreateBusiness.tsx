@@ -25,6 +25,7 @@ function CreateBusiness(): JSX.Element {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginDisabled, setLoginDisabled] = useState(true);
   const [postcodeHelperText, setPostcodeHelperText] = useState("");
   const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
@@ -138,6 +139,28 @@ function CreateBusiness(): JSX.Element {
     }
   }, [password]);
 
+  // Decide if the Submit button should be disabled.
+  useEffect(() => {
+    if (
+      !businessName ||
+      !address1 ||
+      !address2 ||
+      !city ||
+      !postcode ||
+      !phone ||
+      !email ||
+      !password ||
+      postcodeHelperText ||
+      phoneHelperText ||
+      emailHelperText ||
+      passwordHelperText
+    ) {
+      setLoginDisabled(true);
+    } else {
+      setLoginDisabled(false);
+    }
+  });
+
   return (
     <div>
       <form onSubmit={createBusiness} style={styles.form}>
@@ -196,7 +219,7 @@ function CreateBusiness(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
-        <PrimaryButton label="submit" type="submit" />
+        <PrimaryButton label="submit" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>
