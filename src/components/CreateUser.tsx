@@ -30,9 +30,6 @@ function CreateUser(): JSX.Element {
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
   const [businessIdHelperText, setBusinessIdHelperText] = useState("");
-  const [emailError, setEmailError] = useState(false);
-  const [passwordError, setPasswordError] = useState(false);
-  const [businessIdError, setBusinessIdError] = useState(false);
   const auth = useAuth();
   const user = auth.user;
 
@@ -109,10 +106,8 @@ function CreateUser(): JSX.Element {
   // Display email validation in DOM as user types.
   useEffect(() => {
     if (email.length && !validator.isEmail(email)) {
-      setEmailError(true);
       setEmailHelperText("Please enter a valid email");
     } else {
-      setEmailError(false);
       setEmailHelperText("");
     }
   }, [email]);
@@ -120,10 +115,8 @@ function CreateUser(): JSX.Element {
   // Display password validation in DOM as user types.
   useEffect(() => {
     if (password.length && password.length < 8) {
-      setPasswordError(true);
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
-      setPasswordError(false);
       setPasswordHelperText("");
     }
   }, [password]);
@@ -131,10 +124,8 @@ function CreateUser(): JSX.Element {
   // Display business ID validation in DOM as user types.
   useEffect(() => {
     if (businessId.length && businessId.length !== 6) {
-      setBusinessIdError(true);
       setBusinessIdHelperText("Must be a six digit number");
     } else {
-      setBusinessIdError(false);
       setBusinessIdHelperText("");
     }
   }, [businessId]);
@@ -147,9 +138,9 @@ function CreateUser(): JSX.Element {
       !email ||
       !password ||
       !businessId ||
-      emailError ||
-      passwordError ||
-      businessIdError
+      emailHelperText ||
+      passwordHelperText ||
+      businessIdHelperText
     ) {
       setLoginDisabled(true);
     } else {
@@ -183,7 +174,7 @@ function CreateUser(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
-          error={emailError}
+          error={emailHelperText ? true : false}
           helperText={emailHelperText}
           sx={styles.inputField}
         />
@@ -191,7 +182,7 @@ function CreateUser(): JSX.Element {
           label="Password"
           value={password}
           onChange={handlePassword}
-          error={passwordError}
+          error={passwordHelperText ? true : false}
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
@@ -200,7 +191,7 @@ function CreateUser(): JSX.Element {
           type="number"
           value={businessId}
           onChange={handleBusinessId}
-          error={businessIdError}
+          error={businessIdHelperText ? true : false}
           helperText={businessIdHelperText}
           sx={styles.inputField}
         />
