@@ -25,6 +25,7 @@ function CreateUser(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [businessId, setBusinessId] = useState("");
+  const [loginDisabled, setLoginDisabled] = useState(true);
   const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
@@ -138,6 +139,24 @@ function CreateUser(): JSX.Element {
     }
   }, [businessId]);
 
+  // Decide if the Submit button should be disabled.
+  useEffect(() => {
+    if (
+      !firstName ||
+      !lastName ||
+      !email ||
+      !password ||
+      !businessId ||
+      emailError ||
+      passwordError ||
+      businessIdError
+    ) {
+      setLoginDisabled(true);
+    } else {
+      setLoginDisabled(false);
+    }
+  });
+
   return (
     <div>
       <form onSubmit={createUser} style={styles.form}>
@@ -185,7 +204,7 @@ function CreateUser(): JSX.Element {
           helperText={businessIdHelperText}
           sx={styles.inputField}
         />
-        <PrimaryButton label="submit" type="submit" />
+        <PrimaryButton label="submit" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>
