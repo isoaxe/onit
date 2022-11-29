@@ -1,6 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import { postFormDataAsJson } from "./../util/helpers";
 import { useAuth } from "./../util/useAuth";
@@ -105,45 +106,35 @@ function CreateBusiness(): JSX.Element {
     <div>
       <form onSubmit={createBusiness} style={styles.form}>
         <header style={styles.header}>Create Account</header>
-        <input
+        <TextField
+          label="Business Name"
           value={businessName}
           onChange={handleBusiness}
-          style={combinedSelectors}
-          type="text"
-          placeholder="Business name"
-          name="displayName"
+          sx={combinedSelectors}
         />
-        <input
+        <TextField
+          label="Address Line 1"
           value={address1}
           onChange={handleAddress1}
-          style={styles.inputField}
-          type="text"
-          placeholder="Address line 1"
-          name="address1"
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Address Line 2"
           value={address2}
           onChange={handleAddress2}
-          style={styles.inputField}
-          type="text"
-          placeholder="Address line 2"
-          name="address2"
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="City"
           value={city}
           onChange={handleCity}
-          style={styles.inputField}
-          type="text"
-          placeholder="City"
-          name="city"
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Postcode"
           value={postcode}
           onChange={handlePostcode}
-          style={combinedSelectors}
-          type="text"
-          placeholder="Postcode"
-          name="postcode"
+          sx={combinedSelectors}
         />
         <PhoneNumber
           value={phone}
@@ -151,21 +142,17 @@ function CreateBusiness(): JSX.Element {
           name="phoneNumber"
           helperText={phoneHelperText}
         />
-        <input
+        <TextField
+          label="Email"
           value={email}
           onChange={handleEmail}
-          style={styles.inputField}
-          type="text"
-          placeholder="Email address"
-          name="email"
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Password"
           value={password}
           onChange={handlePassword}
-          style={styles.inputField}
-          type="text"
-          placeholder="Password"
-          name="password"
+          sx={styles.inputField}
         />
         <Button type="submit">Submit</Button>
       </form>
