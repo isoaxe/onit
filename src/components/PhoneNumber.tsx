@@ -1,6 +1,5 @@
 import { useEffect } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
-import { inputError } from "../util/colours";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
 
@@ -17,7 +16,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     )[0] as HTMLElement;
 
     if (helperText) {
-      input.style.outline = inputError;
+      input.style.outline = "1px solid #cc0000";
     } else {
       input.style.outline = "1px solid #31353d";
     }
@@ -25,7 +24,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
 
   return (
     <PhoneInput
-      placeholder="Phone number"
+      placeholder="Phone Number"
       international
       defaultCountry="TH"
       name={name}
