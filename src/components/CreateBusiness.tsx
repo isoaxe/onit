@@ -29,6 +29,7 @@ function CreateBusiness(): JSX.Element {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [phoneHelperText, setPhoneHelperText] = useState("");
   const auth = useAuth();
   const user = auth.user;
 
@@ -144,7 +145,12 @@ function CreateBusiness(): JSX.Element {
           placeholder="Postcode"
           name="postcode"
         />
-        <PhoneNumber value={phone} onChange={setPhone} name="phoneNumber" />
+        <PhoneNumber
+          value={phone}
+          onChange={setPhone}
+          name="phoneNumber"
+          helperText={phoneHelperText}
+        />
         <input
           value={email}
           onChange={handleEmail}
