@@ -112,9 +112,3 @@ export function emailTaken(form, n = 0) {
   form[4 + n].value = "";
   form[4 + n].placeholder = "Email already in use";
 }
-
-export function idNotFound(form) {
-  form[6].style.outline = inputError;
-  form[6].value = "";
-  form[6].placeholder = "Id not found";
-}
