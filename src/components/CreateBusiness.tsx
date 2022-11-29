@@ -176,6 +176,8 @@ function CreateBusiness(): JSX.Element {
           label="Postcode"
           value={postcode}
           onChange={handlePostcode}
+          error={!!postcodeHelperText}
+          helperText={postcodeHelperText}
           sx={combinedSelectors}
         />
         <PhoneNumber
@@ -188,12 +190,16 @@ function CreateBusiness(): JSX.Element {
           label="Email"
           value={email}
           onChange={handleEmail}
+          error={!!emailHelperText}
+          helperText={emailHelperText}
           sx={styles.inputField}
         />
         <TextField
           label="Password"
           value={password}
           onChange={handlePassword}
+          error={!!passwordHelperText}
+          helperText={passwordHelperText}
           sx={styles.inputField}
         />
         <Button type="submit">Submit</Button>
