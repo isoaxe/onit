@@ -13,5 +13,6 @@ export const tertiaryLight = "#00A693";
 
 export const textMain = "#FFFFFF";
 export const textAlt = "#000000";
+export const textError = "#d32f2f"; // Same as MUI error colour.
 
 export const buttonShadow = "0px 3px 5px rgba(0, 0, 0, 0.2)";
