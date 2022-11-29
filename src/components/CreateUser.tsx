@@ -96,7 +96,7 @@ function CreateUser(): JSX.Element {
 
   // Display phone number validation in DOM as user types.
   useEffect(() => {
-    if (phone?.length && !validator.isMobilePhone(phone)) {
+    if (phone && !validator.isMobilePhone(phone)) {
       setPhoneHelperText("Please enter a valid phone number");
     } else {
       setPhoneHelperText("");
@@ -105,7 +105,7 @@ function CreateUser(): JSX.Element {
 
   // Display email validation in DOM as user types.
   useEffect(() => {
-    if (email.length && !validator.isEmail(email)) {
+    if (email && !validator.isEmail(email)) {
       setEmailHelperText("Please enter a valid email");
     } else {
       setEmailHelperText("");
@@ -114,7 +114,7 @@ function CreateUser(): JSX.Element {
 
   // Display password validation in DOM as user types.
   useEffect(() => {
-    if (password.length && password.length < 8) {
+    if (password && password.length < 8) {
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
       setPasswordHelperText("");
@@ -123,7 +123,7 @@ function CreateUser(): JSX.Element {
 
   // Display business ID validation in DOM as user types.
   useEffect(() => {
-    if (businessId.length && businessId.length !== 6) {
+    if (businessId && businessId.length !== 6) {
       setBusinessIdHelperText("Must be a six digit number");
     } else {
       setBusinessIdHelperText("");
