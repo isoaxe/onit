@@ -8,6 +8,6 @@
   background-color: #3f4552;
 }
 
-*:focus {
-  outline: 2px solid #3b74cb;
+.PhoneInputInput:focus {
+  outline: 2px solid #3b74cb !important;
 }
