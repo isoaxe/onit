@@ -11,6 +11,14 @@ type PhoneNumberProps = PhoneInputProps & { helperText: string };
 function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   const { name, value, onChange, helperText } = props;
 
+  const displayStyle = helperText ? "inline" : "none";
+  const phoneHelperTextStyle = {
+    display: displayStyle,
+    fontSize: "12px",
+    color: "#d32f2f",
+    margin: "-12px 10px 22px",
+  };
+
   useEffect(() => {
     const input = document.getElementsByClassName(
       "PhoneInputInput"
@@ -29,15 +37,18 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   });
 
   return (
-    <PhoneInput
-      placeholder="Phone Number"
-      international
-      defaultCountry="TH"
-      name={name}
-      value={value}
-      onChange={onChange}
-      style={phoneInputStyles}
-    />
+    <div className="phone-wrapper">
+      <PhoneInput
+        placeholder="Phone Number"
+        international
+        defaultCountry="TH"
+        name={name}
+        value={value}
+        onChange={onChange}
+        style={phoneInputStyles}
+      />
+      <p style={phoneHelperTextStyle}>{helperText}</p>
+    </div>
   );
 }
 

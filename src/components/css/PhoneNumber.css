@@ -13,3 +13,9 @@
   outline-width: 2px !important;
   outline-color: #3b74cb; /* This never gets applied */
 }
+
+.phone-wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
