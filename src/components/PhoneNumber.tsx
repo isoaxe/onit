@@ -16,9 +16,9 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     )[0] as HTMLElement;
 
     if (helperText) {
-      input.style.outline = "1px solid #cc0000";
+      input.style.outlineColor = "#cc0000";
     } else {
-      input.style.outline = "1px solid #31353d";
+      input.style.outlineColor = "#31353d";
     }
   });
 
