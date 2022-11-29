@@ -152,7 +152,7 @@ function CreateBusiness(): JSX.Element {
           label="Business Name"
           value={businessName}
           onChange={handleBusiness}
-          sx={combinedSelectors}
+          sx={styles.inputField}
         />
         <TextField
           label="Address Line 1"
@@ -178,7 +178,7 @@ function CreateBusiness(): JSX.Element {
           onChange={handlePostcode}
           error={!!postcodeHelperText}
           helperText={postcodeHelperText}
-          sx={combinedSelectors}
+          sx={styles.inputField}
         />
         <PhoneNumber
           value={phone}
@@ -232,13 +232,7 @@ const styles: StyleSheet = {
     width: "80%",
     marginBottom: "15px",
   },
-  space: {
-    marginBottom: "10px",
-  },
 };
-
-const deepCopy = JSON.parse(JSON.stringify(styles.inputField));
-const combinedSelectors = Object.assign(deepCopy, styles.space);
 
 const Button = styled.button`
   background-color: ${secondaryMain};
