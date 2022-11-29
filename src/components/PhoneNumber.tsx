@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
+import { textError } from "../util/colours";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
 
@@ -19,7 +20,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     )[0] as HTMLElement;
 
     if (helperText) {
-      input.style.outlineColor = "#cc0000";
+      input.style.outlineColor = textError;
     } else if (inFocus) {
       input.style.outlineColor = "#3b74cb";
     } else {
