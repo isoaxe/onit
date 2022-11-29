@@ -46,7 +46,7 @@ function Login(): JSX.Element {
 
   // Display email validation in DOM as user types.
   useEffect(() => {
-    if (email.length && !validator.isEmail(email)) {
+    if (email && !validator.isEmail(email)) {
       setEmailHelperText("Please enter a valid email");
     } else {
       setEmailHelperText("");
@@ -55,7 +55,7 @@ function Login(): JSX.Element {
 
   // Display password validation in DOM as user types.
   useEffect(() => {
-    if (password.length && password.length < 8) {
+    if (password && password.length < 8) {
       setPasswordHelperText("Needs to be > 7 characters");
     } else {
       setPasswordHelperText("");
@@ -64,12 +64,7 @@ function Login(): JSX.Element {
 
   // Decide if the Login button should be disabled
   useEffect(() => {
-    if (
-      !email.length ||
-      !password.length ||
-      emailHelperText ||
-      passwordHelperText
-    ) {
+    if (!email || !password || emailHelperText || passwordHelperText) {
       setLoginDisabled(true);
     } else {
       setLoginDisabled(false);
