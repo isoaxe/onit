@@ -1,6 +1,7 @@
-import { useState, ChangeEvent, SyntheticEvent } from "react";
+import { useState, useEffect, ChangeEvent, SyntheticEvent } from "react";
 import { Redirect } from "react-router-dom";
 import styled from "styled-components";
+import validator from "validator";
 import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import { postFormDataAsJson } from "./../util/helpers";
@@ -30,7 +31,10 @@ function CreateBusiness(): JSX.Element {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [postcodeHelperText, setPostcodeHelperText] = useState("");
   const [phoneHelperText, setPhoneHelperText] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
   const auth = useAuth();
   const user = auth.user;
 
@@ -101,6 +105,44 @@ function CreateBusiness(): JSX.Element {
       }
     }
   }
+
+  // Display postcode validation in DOM as user types.
+  useEffect(() => {
+    const locale: any = "TH";
+    const postcodeValid = validator.isPostalCode(postcode, locale);
+    if (postcode && !postcodeValid) {
+      setPostcodeHelperText("Please enter a valid postcode");
+    } else {
+      setPostcodeHelperText("");
+    }
+  }, [postcode]);
+
+  // Display phone number validation in DOM as user types.
+  useEffect(() => {
+    if (phone && !validator.isMobilePhone(phone)) {
+      setPhoneHelperText("Please enter a valid phone number");
+    } else {
+      setPhoneHelperText("");
+    }
+  }, [phone]);
+
+  // Display email validation in DOM as user types.
+  useEffect(() => {
+    if (email && !validator.isEmail(email)) {
+      setEmailHelperText("Please enter a valid email");
+    } else {
+      setEmailHelperText("");
+    }
+  }, [email]);
+
+  // Display password validation in DOM as user types.
+  useEffect(() => {
+    if (password && password.length < 8) {
+      setPasswordHelperText("Needs to be > 7 characters");
+    } else {
+      setPasswordHelperText("");
+    }
+  }, [password]);
 
   return (
     <div>
