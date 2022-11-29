@@ -138,6 +138,7 @@ function CreateUser(): JSX.Element {
       !email ||
       !password ||
       !businessId ||
+      phoneHelperText ||
       emailHelperText ||
       passwordHelperText ||
       businessIdHelperText
