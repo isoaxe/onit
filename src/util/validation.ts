@@ -101,38 +101,6 @@ export function validateBusinessSignup(
   return !!businessName && address1 && address2 && city && postcodeValid;
 }
 
-export function validateUserSignup(
-  firstName: string,
-  lastName: string,
-  businessId: string,
-  form
-) {
-  if (firstName === "") {
-    form[0].style.outline = inputError;
-    form[0].placeholder = "Enter your first name";
-  } else {
-    form[0].style.outline = 0;
-  }
-
-  if (lastName === "") {
-    form[1].style.outline = inputError;
-    form[1].placeholder = "Enter your surname";
-  } else {
-    form[1].style.outline = 0;
-  }
-
-  if (businessId.length !== 6) {
-    form[6].style.outline = inputError;
-    form[6].value = "";
-    form[6].placeholder = "Must be 6 digit number";
-  } else {
-    form[6].style.outline = 0;
-  }
-
-  // If all fields pass, then return true.
-  return firstName && lastName && businessId.length === 6;
-}
-
 export function phoneTaken(form, n = 0) {
   form[3 + n].style.outline = inputError;
   form[3 + n].value = "";
