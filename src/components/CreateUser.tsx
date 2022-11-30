@@ -1,7 +1,7 @@
 import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
 import validator from "validator";
-import TextField from "@mui/material/TextField";
+import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import PrimaryButton from "./PrimaryButton";
 import { postFormDataAsJson } from "./../util/helpers";
