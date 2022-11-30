@@ -7,12 +7,12 @@ import {
   textMain,
   textAlt,
 } from "./../util/colours";
-import LogoutButton from "./../components/LogoutButton";
 import HeaderText from "./../components/HeaderText";
 import MenuItem from "./../components/MenuItem";
 import People from "./../components/People";
 import Calendar from "./../components/Calendar";
 import TaskModal from "./../components/TaskModal";
+import PrimaryButton from "./../components/PrimaryButton";
 import { useAuth } from "./../util/useAuth";
 import { getClaims, getBusinessData } from "./../util/helpers";
 import { StyleSheet } from "./../util/types";
@@ -26,7 +26,7 @@ function Homepage(): JSX.Element {
   const [taskModalVisible, setTaskModalVisible] = useState(false);
   const [tasks, setTasks] = useState([]);
 
-  const { user } = useAuth();
+  const { user, signOut } = useAuth();
   const headerName = `Welcome, ${user.displayName}`;
   const headerRole = `Access level: ${role}`;
   const headerBusiness = `Business: ${businessName}`;
@@ -133,7 +133,7 @@ function Homepage(): JSX.Element {
           <HeaderText text={headerRole} />
           {role !== "owner" && <HeaderText text={headerBusiness} />}
           {role === "owner" && <HeaderText text={headerBusinessId} />}
-          <LogoutButton />
+          <PrimaryButton label="logout" type="button" onClick={signOut} />
         </header>
         <section style={styles.menuWrapper}>
           <div style={styles.menuItems}>

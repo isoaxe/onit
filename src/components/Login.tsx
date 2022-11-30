@@ -1,23 +1,18 @@
-import { useState, ChangeEvent, SyntheticEvent } from "react";
+import { useState, ChangeEvent, SyntheticEvent, useEffect } from "react";
 import { Redirect } from "react-router-dom";
-import styled from "styled-components";
-import {
-  secondaryMain,
-  secondaryLight,
-  textMain,
-  buttonShadow,
-} from "./../util/colours";
+import validator from "validator";
+import TextField from "@mui/material/TextField";
+import PrimaryButton from "./PrimaryButton";
 import { useAuth } from "./../util/useAuth";
-import {
-  validateLogin,
-  emailNotFound,
-  incorrectPassword,
-} from "./../util/validation";
 import { StyleSheet } from "./../util/types";
+import { secondaryMain } from "./../util/colours";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [emailHelperText, setEmailHelperText] = useState("");
+  const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [loginDisabled, setLoginDisabled] = useState(true);
   const auth = useAuth();
   const user = auth.user;
 
@@ -33,45 +28,69 @@ function Login(): JSX.Element {
     event: SyntheticEvent<HTMLFormElement>
   ): Promise<void | boolean> {
     event.preventDefault();
-    const form = event.currentTarget;
-    const loginValidated = validateLogin(email, password, form);
-    if (!loginValidated) {
-      return false;
-    }
+    setEmailHelperText("");
+    setPasswordHelperText("");
 
     try {
       await auth.signIn(email, password);
-    } catch (err) {
+    } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {
-        emailNotFound(form);
+        setEmailHelperText("Email not found");
       }
       if (err.code === "auth/wrong-password") {
-        incorrectPassword(form);
+        setPasswordHelperText("Password not correct");
       }
     }
   }
 
+  // Display email validation in DOM as user types.
+  useEffect(() => {
+    if (email && !validator.isEmail(email)) {
+      setEmailHelperText("Please enter a valid email");
+    } else {
+      setEmailHelperText("");
+    }
+  }, [email]);
+
+  // Display password validation in DOM as user types.
+  useEffect(() => {
+    if (password && password.length < 8) {
+      setPasswordHelperText("Needs to be > 7 characters");
+    } else {
+      setPasswordHelperText("");
+    }
+  }, [password]);
+
+  // Decide if the Login button should be disabled
+  useEffect(() => {
+    if (!email || !password || emailHelperText || passwordHelperText) {
+      setLoginDisabled(true);
+    } else {
+      setLoginDisabled(false);
+    }
+  });
+
   return (
-    <div>
+    <div style={styles.wrapper}>
       <form onSubmit={login} style={styles.login}>
-        <input
+        <TextField
+          label="Email"
           value={email}
           onChange={handleEmail}
-          style={styles.inputField}
-          type="text"
-          placeholder="Email"
-          name="email"
+          error={emailHelperText ? true : false}
+          helperText={emailHelperText}
+          sx={styles.inputField}
         />
-        <input
+        <TextField
+          label="Password"
           value={password}
           onChange={handlePassword}
-          style={styles.inputField}
-          type="text"
-          placeholder="Password"
-          name="password"
+          error={passwordHelperText ? true : false}
+          helperText={passwordHelperText}
+          sx={styles.inputField}
         />
-        <Button type="submit">Login</Button>
+        <PrimaryButton label="login" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>
@@ -79,33 +98,20 @@ function Login(): JSX.Element {
 }
 
 const styles: StyleSheet = {
+  wrapper: {
+    width: "102%",
+  },
   login: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    paddingBottom: "15px",
     borderBottom: `3px solid ${secondaryMain}`,
   },
   inputField: {
-    margin: "5px 10%",
-    padding: "3px",
-    height: "25px",
     width: "80%",
-    fontSize: "14px",
-    border: "0px",
-    borderRadius: "3px",
+    marginBottom: "15px",
   },
 };
-
-const Button = styled.button`
-  background-color: ${secondaryMain};
-  box-shadow: ${buttonShadow};
-  border: 0px;
-  border-radius: 4px;
-  color: ${textMain};
-  font-size: 14px;
-  padding: 10px 20px;
-  margin: 20px 90px;
-  &:hover {
-    background-color: ${secondaryLight};
-    cursor: pointer;
-  }
-`;
 
 export default Login;

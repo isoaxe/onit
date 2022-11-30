@@ -1,6 +1,6 @@
 import { useState } from "react";
 import Login from "./../components/Login";
-import SignUpButton from "./../components/SignUpButton";
+import PrimaryButton from "./../components/PrimaryButton";
 import CreateUser from "./../components/CreateUser";
 import CreateBusiness from "./../components/CreateBusiness";
 import {
@@ -31,14 +31,14 @@ function LoginSignup(): JSX.Element {
         <p style={styles.title}>Login</p>
         <Login />
         <p style={styles.title}>Sign Up</p>
-        <SignUpButton
-          active={""}
-          label="Create User Account"
+        <PrimaryButton
+          label="create user account"
+          type="button"
           onClick={userForm}
         />
-        <SignUpButton
-          active={""}
-          label="Create Business Account"
+        <PrimaryButton
+          label="create business account"
+          type="button"
           onClick={businessForm}
         />
       </header>
@@ -64,7 +64,7 @@ const styles: StyleSheet = {
     justifyContent: "center",
     backgroundColor: primaryLight,
     border: `2px solid ${secondaryMain}`,
-    width: "250px",
+    width: "270px",
     borderRadius: "10px",
     paddingBottom: "25px",
     marginBottom: "30px",

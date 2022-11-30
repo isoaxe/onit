@@ -10,7 +10,7 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "14"
+    "node": "16"
   },
   "main": "lib/index.js",
   "dependencies": {
@@ -18,8 +18,8 @@
     "cors": "^2.8.5",
     "country-locale-map": "^1.7.2",
     "express": "^4.17.1",
-    "firebase-admin": "^9.2.0",
-    "firebase-functions": "^3.16.0"
+    "firebase-admin": "^11.3.0",
+    "firebase-functions": "^4.1.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
