@@ -29,7 +29,7 @@ function CreateBusiness(): JSX.Element {
   const auth = useAuth();
   const user = auth.user;
 
-  function handleBusiness(event: ChangeEvent<HTMLInputElement>): void {
+  function handleBusinessName(event: ChangeEvent<HTMLInputElement>): void {
     setBusinessName(event.currentTarget.value);
   }
 
@@ -154,7 +154,7 @@ function CreateBusiness(): JSX.Element {
         <TextField
           label="Business Name"
           value={businessName}
-          onChange={handleBusiness}
+          onChange={handleBusinessName}
           sx={styles.inputField}
         />
         <PhoneNumber
