@@ -24,6 +24,7 @@ function CreateBusiness(): JSX.Element {
   const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
+  const [locale, setLocale] = useState<any>("TH");
   const auth = useAuth();
   const user = auth.user;
 
@@ -77,9 +78,17 @@ function CreateBusiness(): JSX.Element {
     }
   }
 
+  // Get locale from phone and save to state.
+  useEffect(() => {
+    const localeFromPhone = document.getElementsByClassName(
+      "PhoneInputCountrySelect"
+    )[0] as any;
+
+    setLocale(localeFromPhone.value);
+  }, [phone]);
+
   // Display postcode validation in DOM as user types.
   useEffect(() => {
-    const locale: any = "TH";
     const postcodeValid = validator.isPostalCode(postcode, locale);
     if (postcode && !postcodeValid) {
       setPostcodeHelperText("Please enter a valid postcode");
