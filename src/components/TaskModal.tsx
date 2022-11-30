@@ -189,14 +189,16 @@ function TaskModal(props): JSX.Element {
             label="Title"
             value={title}
             onChange={handleTitle}
-            sx={styles.inputField}
+            sx={styles.title}
           />
-          <textarea
+          <TextField
+            label="Message"
             value={message}
             onChange={handleMessage}
-            placeholder="Message"
-            name="message"
-            rows={4}
+            multiline
+            minRows={2}
+            maxRows={4}
+            sx={styles.message}
           />
           <label className="all-day-container">
             <span>All Day</span>
@@ -233,8 +235,12 @@ function TaskModal(props): JSX.Element {
 }
 
 const styles: StyleSheet = {
-  inputField: {
+  title: {
     marginBottom: "10px",
+  },
+  message: {
+    marginBottom: "10px",
+    width: "93%",
   },
 };
 
