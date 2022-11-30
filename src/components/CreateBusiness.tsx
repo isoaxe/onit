@@ -8,6 +8,7 @@ import { postFormDataAsJson } from "./../util/helpers";
 import { useAuth } from "./../util/useAuth";
 import { StyleSheet } from "./../util/types";
 import { API_URL } from "./../util/urls";
+import { COUNTRY_CODE } from "../util/constants";
 import { primaryLight, secondaryMain, textMain } from "./../util/colours";
 
 function CreateBusiness(): JSX.Element {
@@ -24,7 +25,7 @@ function CreateBusiness(): JSX.Element {
   const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
   const [passwordHelperText, setPasswordHelperText] = useState("");
-  const [locale, setLocale] = useState<any>("TH");
+  const [locale, setLocale] = useState<any>(COUNTRY_CODE);
   const auth = useAuth();
   const user = auth.user;
 
