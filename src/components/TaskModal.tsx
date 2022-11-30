@@ -3,11 +3,11 @@ import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
 import Select from "react-select";
+import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
 import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
-import "react-datepicker/dist/react-datepicker.css";
-import "./css/TaskModal.css";
+import { StyleSheet } from "./../util/types";
 import {
   postFormDataAsJson,
   getId,
@@ -15,6 +15,8 @@ import {
   isoLocalDate,
 } from "./../util/helpers";
 import { textAlt } from "./../util/colours";
+import "react-datepicker/dist/react-datepicker.css";
+import "./css/TaskModal.css";
 
 function TaskModal(props): JSX.Element {
   const [title, setTitle] = useState("");
@@ -183,12 +185,11 @@ function TaskModal(props): JSX.Element {
       <div>
         <header className="header-text">Add Task</header>
         <form className="form" onSubmit={createTask}>
-          <input
+          <TextField
+            label="Title"
             value={title}
             onChange={handleTitle}
-            type="text"
-            placeholder="Title"
-            name="title"
+            sx={styles.inputField}
           />
           <textarea
             value={message}
@@ -230,6 +231,12 @@ function TaskModal(props): JSX.Element {
     </Modal>
   );
 }
+
+const styles: StyleSheet = {
+  inputField: {
+    marginBottom: "10px",
+  },
+};
 
 const selectorStyles = {
   option: (provided) => ({
