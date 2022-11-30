@@ -157,6 +157,12 @@ function CreateBusiness(): JSX.Element {
           onChange={handleBusiness}
           sx={styles.inputField}
         />
+        <PhoneNumber
+          value={phone}
+          onChange={setPhone}
+          name="phoneNumber"
+          helperText={phoneHelperText}
+        />
         <TextField
           label="Address Line 1"
           value={address1}
@@ -182,12 +188,6 @@ function CreateBusiness(): JSX.Element {
           error={!!postcodeHelperText}
           helperText={postcodeHelperText}
           sx={styles.inputField}
-        />
-        <PhoneNumber
-          value={phone}
-          onChange={setPhone}
-          name="phoneNumber"
-          helperText={phoneHelperText}
         />
         <TextField
           label="Email"
