@@ -1,6 +1,7 @@
 import { useEffect } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
 import { textError } from "../util/colours";
+import { COUNTRY_CODE } from "../util/constants";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
 
@@ -41,7 +42,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
       <PhoneInput
         placeholder="Phone Number"
         international
-        defaultCountry="TH"
+        defaultCountry={COUNTRY_CODE}
         name={name}
         value={value}
         onChange={onChange}
