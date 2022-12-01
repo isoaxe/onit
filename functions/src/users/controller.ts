@@ -21,7 +21,7 @@ export async function create(
     await admin.auth().setCustomUserClaims(uid, { role });
 
     return res.status(201).send({ uid });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -35,7 +35,7 @@ export async function all(
     const listUsers = await admin.auth().listUsers();
     const users = listUsers.users.map(mapUser);
     return res.status(200).send({ users });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -49,7 +49,7 @@ export async function get(
     const { id } = req.params;
     const user = await admin.auth().getUser(id);
     return res.status(200).send({ user: mapUser(user) });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -72,7 +72,7 @@ export async function patch(
     const user = await admin.auth().getUser(id);
 
     return res.status(204).send({ user: mapUser(user) });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -86,7 +86,7 @@ export async function remove(
     const { id } = req.params;
     await admin.auth().deleteUser(id);
     return res.status(204).send({});
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }

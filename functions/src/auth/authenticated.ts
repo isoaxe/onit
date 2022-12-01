@@ -38,7 +38,7 @@ export async function isAuthenticated(
       email: decodedToken.email,
     };
     return next();
-  } catch (err) {
+  } catch (err: any) {
     console.error(`${err.code} -  ${err.message}`);
     return res.status(401).send({ message: "Authentication failure" });
   }

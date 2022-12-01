@@ -58,7 +58,7 @@ export async function create(
     });
 
     return res.status(200).send({ message: "Owner account created" });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -79,7 +79,7 @@ export async function get(
       .get();
     const businessData = companyRef.docs[0].data();
     return res.status(200).send(businessData);
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }

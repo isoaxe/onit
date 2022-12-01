@@ -44,7 +44,7 @@ export async function create(
     });
 
     return res.status(200).send({ message: "Staff account created" });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -94,7 +94,7 @@ export async function all(
     }
 
     return res.status(200).send(userData);
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
