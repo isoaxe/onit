@@ -1,5 +1,6 @@
 import DatePicker from "react-datepicker";
 import { TextField } from "@mui/material";
+import { StyleSheet } from "./../util/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
@@ -51,6 +52,7 @@ function DateSelect(props): JSX.Element {
             size="small"
             value={durationHours}
             onChange={handleHours}
+            sx={styles.durationField}
           />
           <input
             className="time-input"
@@ -67,5 +69,12 @@ function DateSelect(props): JSX.Element {
     );
   }
 }
+
+const styles: StyleSheet = {
+  durationField: {
+    width: "40%",
+    marginBottom: "15px",
+  },
+};
 
 export default DateSelect;
