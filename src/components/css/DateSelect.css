@@ -5,6 +5,11 @@
   justify-content: space-between;
 }
 
+/* Override so that duration label text is behind datepicker overlay. */
+.react-datepicker-popper {
+  z-index: 2;
+}
+
 header {
   font-weight: normal;
   padding: 2px;
