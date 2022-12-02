@@ -3,21 +3,31 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
 function DateSelect(props): JSX.Element {
+  const {
+    startDate,
+    handleStartDate,
+    allDay,
+    durationHours,
+    durationMinutes,
+    setDurationHours,
+    setDurationMinutes,
+  } = props;
+
   function handleHours(event) {
-    props.setDurationHours(event.currentTarget.value);
+    setDurationHours(event.currentTarget.value);
   }
 
   function handleMinutes(event) {
-    props.setDurationMinutes(event.currentTarget.value);
+    setDurationMinutes(event.currentTarget.value);
   }
 
-  if (props.allDay) {
+  if (allDay) {
     return (
       <div>
         <header>Select Task Day</header>
         <DatePicker
-          selected={props.startDate}
-          onChange={props.handleStartDate}
+          selected={startDate}
+          onChange={handleStartDate}
           dateFormat="dd/MM/yyyy"
         />
       </div>
@@ -27,8 +37,8 @@ function DateSelect(props): JSX.Element {
       <div>
         <header>Select Task Day and Time</header>
         <DatePicker
-          selected={props.startDate}
-          onChange={props.handleStartDate}
+          selected={startDate}
+          onChange={handleStartDate}
           showTimeSelect
           dateFormat="dd/MM/yyyy - HH:mm"
         />
@@ -36,7 +46,7 @@ function DateSelect(props): JSX.Element {
         <div className="duration">
           <input
             className="time-input"
-            value={props.durationHours}
+            value={durationHours}
             onChange={handleHours}
             type="number"
             name="hours"
@@ -46,7 +56,7 @@ function DateSelect(props): JSX.Element {
           <p className="time-text">Hours</p>
           <input
             className="time-input"
-            value={props.durationMinutes}
+            value={durationMinutes}
             onChange={handleMinutes}
             type="number"
             name="minutes"
