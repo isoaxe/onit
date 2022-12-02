@@ -70,8 +70,8 @@ function DateSelect(props): JSX.Element {
 
 const styles: StyleSheet = {
   durationField: {
-    width: "40%",
-    marginBottom: "15px",
+    width: "85px",
+    margin: "5px 0px 15px",
   },
 };
 
