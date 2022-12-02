@@ -54,6 +54,14 @@ function DateSelect(props): JSX.Element {
             onChange={handleHours}
             sx={styles.durationField}
           />
+          <TextField
+            label="Minutes"
+            type="number"
+            size="small"
+            value={durationMinutes}
+            onChange={handleMinutes}
+            sx={styles.durationField}
+          />
           <input
             className="time-input"
             value={durationMinutes}
