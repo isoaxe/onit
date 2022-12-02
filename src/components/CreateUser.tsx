@@ -17,7 +17,7 @@ function CreateUser(): JSX.Element {
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
-  const [businessId, setBusinessId] = useState("");
+  const [businessId, setBusinessId] = useState(null);
   const [loginDisabled, setLoginDisabled] = useState(true);
   const [phoneHelperText, setPhoneHelperText] = useState("");
   const [emailHelperText, setEmailHelperText] = useState("");
@@ -100,7 +100,10 @@ function CreateUser(): JSX.Element {
 
   // Display business ID validation in DOM as user types.
   useEffect(() => {
-    if (businessId && businessId.length !== 6) {
+    const numCheck = businessId * 1; // Coalesce to number or NaN.
+    if (isNaN(numCheck)) {
+      setBusinessIdHelperText("Only numbers allowed for ID");
+    } else if (businessId && businessId.length !== 6) {
       setBusinessIdHelperText("Must be a six digit number");
     } else {
       setBusinessIdHelperText("");
@@ -166,7 +169,8 @@ function CreateUser(): JSX.Element {
         />
         <TextField
           label="Business ID"
-          type="number"
+          type="text"
+          inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
           value={businessId}
           onChange={handleBusinessId}
           error={!!businessIdHelperText}
