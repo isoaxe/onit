@@ -25,8 +25,8 @@ function TaskModal(props): JSX.Element {
   const [startDate, setStartDate] = useState(new Date());
   const [assignees, setAssignees] = useState([]);
   const [users, setUsers] = useState(null);
-  const [durationHours, setDurationHours] = useState(0);
-  const [durationMinutes, setDurationMinutes] = useState(0);
+  const [durationHours, setDurationHours] = useState(null);
+  const [durationMinutes, setDurationMinutes] = useState(null);
 
   const { user } = useAuth();
   const businessId = props.businessId;
