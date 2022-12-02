@@ -45,16 +45,6 @@ function DateSelect(props): JSX.Element {
         />
         <header>Duration</header>
         <div className="duration">
-          <input
-            className="time-input"
-            value={durationHours}
-            onChange={handleHours}
-            type="number"
-            name="hours"
-            min="0"
-            max="99"
-          />
-          <p className="time-text">Hours</p>
           <TextField
             label="Hours"
             type="number"
