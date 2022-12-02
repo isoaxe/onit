@@ -19,34 +19,27 @@ function DateSelect(props): JSX.Element {
     setDurationMinutes,
   } = props;
 
-  function handleHours(event) {
-    const hours = event.currentTarget.value;
-    const numCheck = hours * 1; // Coalesce to number or NaN.
+  function handleTime(event, setTimeHelperText, setTime) {
+    const time = event.currentTarget.value;
+    const numCheck = time * 1; // Coalesce to number or NaN.
     if (isNaN(numCheck)) {
-      setHoursHelperText("Only num");
-    } else if (hours < 0) {
-      setHoursHelperText("Too low");
-    } else if (hours > 100) {
-      setHoursHelperText("Too high");
+      setTimeHelperText("Only num");
+    } else if (time < 0) {
+      setTimeHelperText("Too low");
+    } else if (time > 59) {
+      setTimeHelperText("Too high");
     } else {
-      setHoursHelperText("");
+      setTimeHelperText("");
     }
-    setDurationHours(hours);
+    setTime(time);
+  }
+
+  function handleHours(event) {
+    handleTime(event, setHoursHelperText, setDurationHours);
   }
 
   function handleMinutes(event) {
-    const minutes = event.currentTarget.value;
-    const numCheck = minutes * 1; // Coalesce to number or NaN.
-    if (isNaN(numCheck)) {
-      setMinsHelperText("Only num");
-    } else if (minutes < 0) {
-      setMinsHelperText("Too low");
-    } else if (minutes > 59) {
-      setMinsHelperText("Too high");
-    } else {
-      setMinsHelperText("");
-    }
-    setDurationMinutes(minutes);
+    handleTime(event, setMinsHelperText, setDurationMinutes);
   }
 
   if (allDay) {
