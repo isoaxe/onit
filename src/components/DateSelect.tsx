@@ -62,16 +62,6 @@ function DateSelect(props): JSX.Element {
             onChange={handleMinutes}
             sx={styles.durationField}
           />
-          <input
-            className="time-input"
-            value={durationMinutes}
-            onChange={handleMinutes}
-            type="number"
-            name="minutes"
-            min="0"
-            max="59"
-          />
-          <p className="time-text">Mins</p>
         </div>
       </div>
     );
