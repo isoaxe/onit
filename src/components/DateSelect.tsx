@@ -1,4 +1,5 @@
 import DatePicker from "react-datepicker";
+import { TextField } from "@mui/material";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
@@ -54,6 +55,13 @@ function DateSelect(props): JSX.Element {
             max="99"
           />
           <p className="time-text">Hours</p>
+          <TextField
+            label="Hours"
+            type="number"
+            size="small"
+            value={durationHours}
+            onChange={handleHours}
+          />
           <input
             className="time-input"
             value={durationMinutes}
