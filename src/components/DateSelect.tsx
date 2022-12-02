@@ -1,3 +1,4 @@
+import { useState } from "react";
 import DatePicker from "react-datepicker";
 import { TextField } from "@mui/material";
 import { StyleSheet } from "./../util/types";
@@ -5,6 +6,9 @@ import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
 function DateSelect(props): JSX.Element {
+  const [hoursHelperText, setHoursHelperText] = useState("");
+  const [minsHelperText, setMinsHelperText] = useState("");
+
   const {
     startDate,
     handleStartDate,
@@ -16,11 +20,33 @@ function DateSelect(props): JSX.Element {
   } = props;
 
   function handleHours(event) {
-    setDurationHours(event.currentTarget.value);
+    const hours = event.currentTarget.value;
+    const numCheck = hours * 1; // Coalesce to number or NaN.
+    if (isNaN(numCheck)) {
+      setHoursHelperText("Only num");
+    } else if (hours < 0) {
+      setHoursHelperText("Too low");
+    } else if (hours > 100) {
+      setHoursHelperText("Too high");
+    } else {
+      setHoursHelperText("");
+    }
+    setDurationHours(hours);
   }
 
   function handleMinutes(event) {
-    setDurationMinutes(event.currentTarget.value);
+    const minutes = event.currentTarget.value;
+    const numCheck = minutes * 1; // Coalesce to number or NaN.
+    if (isNaN(numCheck)) {
+      setMinsHelperText("Only num");
+    } else if (minutes < 0) {
+      setMinsHelperText("Too low");
+    } else if (minutes > 59) {
+      setMinsHelperText("Too high");
+    } else {
+      setMinsHelperText("");
+    }
+    setDurationMinutes(minutes);
   }
 
   if (allDay) {
@@ -48,18 +74,24 @@ function DateSelect(props): JSX.Element {
         <div className="duration">
           <TextField
             label="Hours"
-            type="number"
+            type="text"
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             size="small"
             value={durationHours}
             onChange={handleHours}
+            error={!!hoursHelperText}
+            helperText={hoursHelperText}
             sx={styles.durationField}
           />
           <TextField
             label="Minutes"
-            type="number"
+            type="text"
+            inputProps={{ inputMode: "numeric", pattern: "[0-9]*" }}
             size="small"
             value={durationMinutes}
             onChange={handleMinutes}
+            error={!!minsHelperText}
+            helperText={minsHelperText}
             sx={styles.durationField}
           />
         </div>
