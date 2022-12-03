@@ -3,6 +3,7 @@
   flex-direction: row;
   align-items: flex-start;
   justify-content: space-between;
+  margin: 0px 3px;
 }
 
 /* Override so that duration label text is behind datepicker overlay. */

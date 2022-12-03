@@ -5,7 +5,7 @@
   border-radius: 3px;
   font-size: 15px;
   outline: 1px solid #31353d;
-  background-color: #3f4552;
+  background-color: #3f4552; /* primaryLight from colours.ts */
 }
 
 .PhoneInputInput:focus {
