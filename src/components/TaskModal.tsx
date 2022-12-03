@@ -2,7 +2,6 @@ import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
-import Select from "react-select";
 import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
 import { useAuth } from "./../util/useAuth";
@@ -218,15 +217,6 @@ function TaskModal(props): JSX.Element {
             setDurationHours={setDurationHours}
             setDurationMinutes={setDurationMinutes}
           />
-          <header className="staff-text">Assign Staff</header>
-          <Select
-            className="dropdown"
-            options={users}
-            styles={selectorStyles}
-            isMulti={true}
-            width={200}
-            onChange={handleSelect}
-          />
           <button type="submit">Create Task</button>
         </form>
       </div>
@@ -242,24 +232,6 @@ const styles: StyleSheet = {
     marginBottom: "15px",
     width: "93%",
   },
-};
-
-const selectorStyles = {
-  option: (provided) => ({
-    ...provided,
-    color: textAlt,
-    padding: 5,
-    fontSize: 13,
-  }),
-  control: (provided) => ({
-    ...provided,
-    border: 0,
-    width: 188,
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    fontSize: 13,
-  }),
 };
 
 export default TaskModal;
