@@ -13,7 +13,6 @@ import {
   getTasks,
   isoLocalDate,
 } from "./../util/helpers";
-import { textAlt } from "./../util/colours";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
