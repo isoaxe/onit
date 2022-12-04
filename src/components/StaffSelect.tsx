@@ -54,10 +54,9 @@ function StaffSelect(props) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 192 }}>
-        <InputLabel id="demo-multiple-name-label">Assign Staff</InputLabel>
+        <InputLabel id="staff-select-label">Assign Staff</InputLabel>
         <Select
-          labelId="demo-multiple-name-label"
-          id="demo-multiple-name"
+          labelId="staff-select-label"
           multiple
           value={personName}
           onChange={handleChange}
