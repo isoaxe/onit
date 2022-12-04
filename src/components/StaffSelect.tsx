@@ -1,5 +1,4 @@
 import { useState } from "react";
-import { Theme, useTheme } from "@mui/material/styles";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -30,19 +29,15 @@ const names = [
   "Kelly Snyder",
 ];
 
-function getStyles(name: string, personName: string[], theme: Theme) {
+function getStyles(name: string, personName: string[]) {
   return {
-    fontWeight:
-      personName.indexOf(name) === -1
-        ? theme.typography.fontWeightRegular
-        : theme.typography.fontWeightMedium,
+    fontWeight: personName.indexOf(name) === -1 ? 400 : 700,
   };
 }
 
 function StaffSelect(props) {
   const [personName, setPersonName] = useState<string[]>([]);
   const { staff, onSelect } = props;
-  const theme = useTheme();
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
     const {
@@ -71,7 +66,7 @@ function StaffSelect(props) {
             <MenuItem
               key={name}
               value={name}
-              style={getStyles(name, personName, theme)}
+              style={getStyles(name, personName)}
             >
               {name}
             </MenuItem>
