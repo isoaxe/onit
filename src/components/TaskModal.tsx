@@ -4,6 +4,7 @@ import Modal from "react-modal";
 import Switch from "react-switch";
 import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
+import StaffSelect from "./StaffSelect";
 import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
 import { StyleSheet } from "./../util/types";
@@ -216,6 +217,7 @@ function TaskModal(props): JSX.Element {
             setDurationHours={setDurationHours}
             setDurationMinutes={setDurationMinutes}
           />
+          <StaffSelect staff={users} onSelect={handleSelect} />
           <button type="submit">Create Task</button>
         </form>
       </div>
