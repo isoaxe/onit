@@ -54,14 +54,14 @@ function StaffSelect(props) {
   return (
     <div>
       <FormControl sx={{ m: 1, width: 192 }}>
-        <InputLabel id="demo-multiple-name-label">Name</InputLabel>
+        <InputLabel id="demo-multiple-name-label">Assign Staff</InputLabel>
         <Select
           labelId="demo-multiple-name-label"
           id="demo-multiple-name"
           multiple
           value={personName}
           onChange={handleChange}
-          input={<OutlinedInput label="Name" />}
+          input={<OutlinedInput label="Assign Staff" />}
           MenuProps={MenuProps}
         >
           {names.map((name) => (
