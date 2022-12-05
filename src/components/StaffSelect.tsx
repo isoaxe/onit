@@ -42,12 +42,10 @@ function StaffSelect(props) {
   const { staff, onSelect } = props;
 
   const handleChange = (event: SelectChangeEvent<typeof personName>) => {
-    const {
-      target: { value },
-    } = event;
+    const name = event.target.value;
     setPersonName(
       // On autofill we get a stringified value.
-      typeof value === "string" ? value.split(",") : value
+      typeof name === "string" ? name.split(",") : name
     );
   };
 
