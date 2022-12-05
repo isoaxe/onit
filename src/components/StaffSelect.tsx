@@ -63,15 +63,18 @@ function StaffSelect(props) {
           input={<OutlinedInput label="Assign Staff" />}
           MenuProps={MenuProps}
         >
-          {names.map((name) => (
-            <MenuItem
-              key={name}
-              value={name}
-              style={getStyles(name, personName)}
-            >
-              {name}
-            </MenuItem>
-          ))}
+          {staff.map((user) => {
+            const { fullName, uid } = user;
+            return (
+              <MenuItem
+                key={uid}
+                value={fullName}
+                style={getStyles(fullName, personName)}
+              >
+                {fullName}
+              </MenuItem>
+            );
+          })}
         </Select>
       </FormControl>
     </div>
