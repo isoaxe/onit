@@ -1,4 +1,3 @@
-import { useState } from "react";
 import OutlinedInput from "@mui/material/OutlinedInput";
 import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
@@ -17,19 +16,6 @@ const MenuProps = {
   },
 };
 
-const names = [
-  "Oliver Hansen",
-  "Van Henry",
-  "April Tucker",
-  "Ralph Hubbard",
-  "Omar Alexander",
-  "Carlos Abbott",
-  "Miriam Wagner",
-  "Bradley Wilkerson",
-  "Virginia Andrews",
-  "Kelly Snyder",
-];
-
 function getStyles(name: string, personName: string[]) {
   return {
     fontWeight: personName.indexOf(name) === -1 ? 400 : 700,
@@ -38,16 +24,11 @@ function getStyles(name: string, personName: string[]) {
 }
 
 function StaffSelect(props) {
-  const [personName, setPersonName] = useState<string[]>([]);
   const { staff, selectedStaff, onSelect } = props;
 
   const handleChange = (event: SelectChangeEvent<typeof staff>) => {
     const name = event.target.value;
     onSelect(name);
-    setPersonName(
-      // On autofill we get a stringified value.
-      typeof name === "string" ? name.split(",") : name
-    );
   };
 
   return (
