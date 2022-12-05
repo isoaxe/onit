@@ -16,10 +16,10 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, personName: string[]) {
+function getStyles(name: string, names: string[]) {
   return {
-    fontWeight: personName.indexOf(name) === -1 ? 400 : 700,
-    background: personName.indexOf(name) === -1 ? 50 : tertiaryLight,
+    fontWeight: names.indexOf(name) === -1 ? 400 : 700,
+    background: names.indexOf(name) === -1 ? 50 : tertiaryLight,
   };
 }
 
