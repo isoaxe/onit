@@ -112,6 +112,8 @@ function TaskModal(props): JSX.Element {
 
     try {
       const formData = new FormData(form);
+      formData.append("title", title);
+      formData.append("message", message);
       formData.append("assignees", formattedAssignees);
       formData.append("allDay", allDay.toString());
       formData.append("start", removeTimeIfAllDay(isoLocalDate(startDate)));
