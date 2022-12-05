@@ -3,6 +3,7 @@ import InputLabel from "@mui/material/InputLabel";
 import MenuItem from "@mui/material/MenuItem";
 import FormControl from "@mui/material/FormControl";
 import Select, { SelectChangeEvent } from "@mui/material/Select";
+import { FormattedStaff } from "../util/types";
 import { tertiaryLight } from "../util/colours";
 
 const ITEM_HEIGHT = 48;
@@ -16,7 +17,7 @@ const MenuProps = {
   },
 };
 
-function getStyles(name: string, names: string[]) {
+function getStyles(name: FormattedStaff, names: FormattedStaff[]) {
   return {
     fontWeight: names.indexOf(name) === -1 ? 400 : 700,
     background: names.indexOf(name) === -1 ? 50 : tertiaryLight,
@@ -27,8 +28,7 @@ function StaffSelect(props) {
   const { staff, selectedStaff, onSelect } = props;
 
   const handleChange = (event: SelectChangeEvent<typeof staff>) => {
-    const name = event.target.value;
-    onSelect(name);
+    onSelect(event.target.value);
   };
 
   return (
@@ -48,8 +48,8 @@ function StaffSelect(props) {
             return (
               <MenuItem
                 key={uid}
-                value={fullName}
-                style={getStyles(fullName, selectedStaff)}
+                value={user}
+                style={getStyles(user, selectedStaff)}
               >
                 {fullName}
               </MenuItem>
