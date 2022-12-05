@@ -14,3 +14,9 @@ export interface GenericButtonProps {
   label: string;
   onClick: ((event: MouseEvent) => void) | undefined;
 }
+
+// Used when selecting staff assigned to a task.
+export interface FormattedStaff {
+  fullName: string;
+  uid: string;
+}
