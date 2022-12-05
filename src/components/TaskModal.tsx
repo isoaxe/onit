@@ -23,7 +23,7 @@ function TaskModal(props): JSX.Element {
   const [allDay, setAllDay] = useState(false);
   const [startDate, setStartDate] = useState(new Date());
   const [assignees, setAssignees] = useState([]);
-  const [users, setUsers] = useState(null);
+  const [users, setUsers] = useState([]);
   const [durationHours, setDurationHours] = useState(null);
   const [durationMinutes, setDurationMinutes] = useState(null);
 
@@ -88,7 +88,7 @@ function TaskModal(props): JSX.Element {
       return user.displayName;
     } else {
       const currentUser = users.find((person) => person.uid === user.uid);
-      return currentUser.value;
+      return currentUser.fullName;
     }
   }
 
@@ -99,7 +99,7 @@ function TaskModal(props): JSX.Element {
     setAllDay(false);
     setStartDate(new Date());
     setAssignees([]);
-    setUsers(null);
+    setUsers([]);
     setDurationHours(0);
     setDurationMinutes(0);
   }
