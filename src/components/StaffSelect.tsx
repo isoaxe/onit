@@ -27,9 +27,9 @@ function getStyles(name: FormattedStaff, names: FormattedStaff[]) {
 function StaffSelect(props) {
   const { staff, selectedStaff, onSelect } = props;
 
-  const handleChange = (event: SelectChangeEvent<typeof staff>) => {
+  function handleChange(event: SelectChangeEvent<typeof staff>) {
     onSelect(event.target.value);
-  };
+  }
 
   return (
     <div>
