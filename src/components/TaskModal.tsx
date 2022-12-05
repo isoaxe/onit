@@ -54,10 +54,6 @@ function TaskModal(props): JSX.Element {
     setStartDate(date);
   }
 
-  function handleSelect(selectedOption) {
-    setAssignees(selectedOption);
-  }
-
   function close() {
     props.setTaskModalVisible(false);
   }
@@ -219,7 +215,7 @@ function TaskModal(props): JSX.Element {
           <StaffSelect
             staff={users}
             selectedStaff={assignees}
-            onSelect={handleSelect}
+            onSelect={setAssignees}
           />
           <button type="submit">Create Task</button>
         </form>
