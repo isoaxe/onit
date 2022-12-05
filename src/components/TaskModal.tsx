@@ -216,7 +216,11 @@ function TaskModal(props): JSX.Element {
             setDurationHours={setDurationHours}
             setDurationMinutes={setDurationMinutes}
           />
-          <StaffSelect staff={users} onSelect={handleSelect} />
+          <StaffSelect
+            staff={users}
+            selectedStaff={assignees}
+            onSelect={handleSelect}
+          />
           <button type="submit">Create Task</button>
         </form>
       </div>
