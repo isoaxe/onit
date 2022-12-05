@@ -31,7 +31,7 @@ function TaskModal(props): JSX.Element {
   const businessId = props.businessId;
   const role = props.role;
   const formattedAssignees = assignees
-    .map((assignee) => assignee.value)
+    .map((assignee) => assignee.fullName)
     .toString();
   const formattedAssigneeUids = assignees
     .map((assignee) => assignee.uid)
