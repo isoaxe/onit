@@ -150,11 +150,10 @@ function TaskModal(props): JSX.Element {
       const filteredUsers = userArray.filter((arr) => arr.role !== "owner");
       const formattedUsers = [];
       for (let i = 0; i < filteredUsers.length; i++) {
-        const value =
+        const fullName =
           filteredUsers[i].displayName + " " + filteredUsers[i].lastName;
-        const label = value;
         const uid = filteredUsers[i].uid;
-        const formattedUser = { value: value, label: label, uid: uid };
+        const formattedUser = { fullName, uid };
         formattedUsers.push(formattedUser);
       }
       setUsers(formattedUsers);
