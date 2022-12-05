@@ -39,10 +39,11 @@ function getStyles(name: string, personName: string[]) {
 
 function StaffSelect(props) {
   const [personName, setPersonName] = useState<string[]>([]);
-  const { staff, onSelect } = props;
+  const { staff, selectedStaff, onSelect } = props;
 
-  const handleChange = (event: SelectChangeEvent<typeof personName>) => {
+  const handleChange = (event: SelectChangeEvent<typeof staff>) => {
     const name = event.target.value;
+    onSelect(name);
     setPersonName(
       // On autofill we get a stringified value.
       typeof name === "string" ? name.split(",") : name
@@ -56,7 +57,7 @@ function StaffSelect(props) {
         <Select
           labelId="staff-select-label"
           multiple
-          value={personName}
+          value={selectedStaff}
           onChange={handleChange}
           input={<OutlinedInput label="Assign Staff" />}
           MenuProps={MenuProps}
@@ -67,7 +68,7 @@ function StaffSelect(props) {
               <MenuItem
                 key={uid}
                 value={fullName}
-                style={getStyles(fullName, personName)}
+                style={getStyles(fullName, selectedStaff)}
               >
                 {fullName}
               </MenuItem>
