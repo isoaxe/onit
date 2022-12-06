@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { TextField } from "@mui/material";
 import { StyleSheet } from "./../util/types";
@@ -17,6 +17,7 @@ function DateSelect(props): JSX.Element {
     durationMinutes,
     setDurationHours,
     setDurationMinutes,
+    setDurationValid,
   } = props;
 
   function handleTime(event, setTimeHelperText, setTime) {
@@ -41,6 +42,18 @@ function DateSelect(props): JSX.Element {
   function handleMinutes(event) {
     handleTime(event, setMinsHelperText, setDurationMinutes);
   }
+
+  useEffect(() => {
+    if (allDay) {
+      setDurationValid(true); // Don't validate duration if task is all day.
+    } else if (hoursHelperText || minsHelperText) {
+      setDurationValid(false); // Invalid if helper text (i.e. errors) present.
+    } else if (durationHours && durationMinutes) {
+      setDurationValid(true); // Only valid when no errors and both duration fields populated.
+    } else {
+      setDurationValid(false); // Default to invalid.
+    }
+  }, [allDay, durationHours, durationMinutes, hoursHelperText, minsHelperText]);
 
   if (allDay) {
     return (
