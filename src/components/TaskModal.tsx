@@ -22,7 +22,7 @@ function TaskModal(props): JSX.Element {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [allDay, setAllDay] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   const [assignees, setAssignees] = useState([]);
   const [users, setUsers] = useState([]);
   const [durationHours, setDurationHours] = useState(null);
