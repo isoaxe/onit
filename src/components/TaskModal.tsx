@@ -27,9 +27,10 @@ function TaskModal(props): JSX.Element {
   const [durationHours, setDurationHours] = useState(null);
   const [durationMinutes, setDurationMinutes] = useState(null);
 
+  const { businessId, role, userId } = props;
+  const { taskModalVisible, setTaskModalVisible, setTasks } = props;
   const { user } = useAuth();
-  const businessId = props.businessId;
-  const role = props.role;
+
   const formattedAssignees = assignees
     .map((assignee) => assignee.fullName)
     .toString();
@@ -55,7 +56,7 @@ function TaskModal(props): JSX.Element {
   }
 
   function close() {
-    props.setTaskModalVisible(false);
+    setTaskModalVisible(false);
   }
 
   // Remove time from date string if task is all day.
@@ -162,9 +163,9 @@ function TaskModal(props): JSX.Element {
   }, [businessId]);
 
   const fetchTasks = useCallback(async () => {
-    const newTasks = await getTasks(role, businessId, props.userId);
-    props.setTasks(newTasks);
-  }, [role, businessId, props]);
+    const newTasks = await getTasks(role, businessId, userId);
+    setTasks(newTasks);
+  }, [role, businessId, userId]);
 
   useEffect(() => {
     if (businessId) getUsers();
@@ -172,7 +173,7 @@ function TaskModal(props): JSX.Element {
 
   return (
     <Modal
-      isOpen={props.taskModalVisible}
+      isOpen={taskModalVisible}
       onRequestClose={close}
       contentLabel="Task Modal"
       className="content"
