@@ -252,10 +252,11 @@ function TaskModal(props): JSX.Element {
 const styles: StyleSheet = {
   title: {
     marginBottom: "15px",
+    width: "100%",
   },
   message: {
     marginBottom: "15px",
-    width: "93%",
+    width: "100%",
   },
 };
 
