@@ -174,6 +174,20 @@ function TaskModal(props): JSX.Element {
     if (businessId) getUsers();
   }, [businessId, getUsers]);
 
+  useEffect(() => {
+    if (
+      !title ||
+      !message ||
+      !startDate ||
+      !durationValid ||
+      !assignees.length
+    ) {
+      setCreateTaskDisabled(true);
+    } else {
+      setCreateTaskDisabled(false);
+    }
+  });
+
   return (
     <Modal
       isOpen={taskModalVisible}
