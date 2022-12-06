@@ -2,35 +2,40 @@ import { useState, useEffect, useCallback, ChangeEvent } from "react";
 import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
-import Select from "react-select";
+import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
+import StaffSelect from "./StaffSelect";
+import PrimaryButton from "./PrimaryButton";
 import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
-import "react-datepicker/dist/react-datepicker.css";
-import "./css/TaskModal.css";
+import { StyleSheet } from "./../util/types";
 import {
   postFormDataAsJson,
   getId,
   getTasks,
   isoLocalDate,
 } from "./../util/helpers";
-import { textAlt } from "./../util/colours";
+import "react-datepicker/dist/react-datepicker.css";
+import "./css/TaskModal.css";
 
 function TaskModal(props): JSX.Element {
   const [title, setTitle] = useState("");
   const [message, setMessage] = useState("");
   const [allDay, setAllDay] = useState(false);
-  const [startDate, setStartDate] = useState(new Date());
+  const [startDate, setStartDate] = useState(null);
   const [assignees, setAssignees] = useState([]);
-  const [users, setUsers] = useState(null);
-  const [durationHours, setDurationHours] = useState(0);
-  const [durationMinutes, setDurationMinutes] = useState(0);
+  const [users, setUsers] = useState([]);
+  const [durationHours, setDurationHours] = useState(null);
+  const [durationMinutes, setDurationMinutes] = useState(null);
+  const [durationValid, setDurationValid] = useState(false);
+  const [createTaskDisabled, setCreateTaskDisabled] = useState(true);
 
+  const { businessId, role, userId } = props;
+  const { taskModalVisible, setTaskModalVisible, setTasks } = props;
   const { user } = useAuth();
-  const businessId = props.businessId;
-  const role = props.role;
+
   const formattedAssignees = assignees
-    .map((assignee) => assignee.value)
+    .map((assignee) => assignee.fullName)
     .toString();
   const formattedAssigneeUids = assignees
     .map((assignee) => assignee.uid)
@@ -53,12 +58,8 @@ function TaskModal(props): JSX.Element {
     setStartDate(date);
   }
 
-  function handleSelect(selectedOption) {
-    setAssignees(selectedOption);
-  }
-
   function close() {
-    props.setTaskModalVisible(false);
+    setTaskModalVisible(false);
   }
 
   // Remove time from date string if task is all day.
@@ -91,7 +92,7 @@ function TaskModal(props): JSX.Element {
       return user.displayName;
     } else {
       const currentUser = users.find((person) => person.uid === user.uid);
-      return currentUser.value;
+      return currentUser.fullName;
     }
   }
 
@@ -102,7 +103,7 @@ function TaskModal(props): JSX.Element {
     setAllDay(false);
     setStartDate(new Date());
     setAssignees([]);
-    setUsers(null);
+    setUsers([]);
     setDurationHours(0);
     setDurationMinutes(0);
   }
@@ -115,6 +116,8 @@ function TaskModal(props): JSX.Element {
 
     try {
       const formData = new FormData(form);
+      formData.append("title", title);
+      formData.append("message", message);
       formData.append("assignees", formattedAssignees);
       formData.append("allDay", allDay.toString());
       formData.append("start", removeTimeIfAllDay(isoLocalDate(startDate)));
@@ -149,11 +152,10 @@ function TaskModal(props): JSX.Element {
       const filteredUsers = userArray.filter((arr) => arr.role !== "owner");
       const formattedUsers = [];
       for (let i = 0; i < filteredUsers.length; i++) {
-        const value =
+        const fullName =
           filteredUsers[i].displayName + " " + filteredUsers[i].lastName;
-        const label = value;
         const uid = filteredUsers[i].uid;
-        const formattedUser = { value: value, label: label, uid: uid };
+        const formattedUser = { fullName, uid };
         formattedUsers.push(formattedUser);
       }
       setUsers(formattedUsers);
@@ -164,17 +166,31 @@ function TaskModal(props): JSX.Element {
   }, [businessId]);
 
   const fetchTasks = useCallback(async () => {
-    const newTasks = await getTasks(role, businessId, props.userId);
-    props.setTasks(newTasks);
-  }, [role, businessId, props]);
+    const newTasks = await getTasks(role, businessId, userId);
+    setTasks(newTasks);
+  }, [role, businessId, userId]);
 
   useEffect(() => {
     if (businessId) getUsers();
   }, [businessId, getUsers]);
 
+  useEffect(() => {
+    if (
+      !title ||
+      !message ||
+      !startDate ||
+      !durationValid ||
+      !assignees.length
+    ) {
+      setCreateTaskDisabled(true);
+    } else {
+      setCreateTaskDisabled(false);
+    }
+  });
+
   return (
     <Modal
-      isOpen={props.taskModalVisible}
+      isOpen={taskModalVisible}
       onRequestClose={close}
       contentLabel="Task Modal"
       className="content"
@@ -183,19 +199,20 @@ function TaskModal(props): JSX.Element {
       <div>
         <header className="header-text">Add Task</header>
         <form className="form" onSubmit={createTask}>
-          <input
+          <TextField
+            label="Title"
             value={title}
             onChange={handleTitle}
-            type="text"
-            placeholder="Title"
-            name="title"
+            sx={styles.title}
           />
-          <textarea
+          <TextField
+            label="Message"
             value={message}
             onChange={handleMessage}
-            placeholder="Message"
-            name="message"
-            rows={4}
+            multiline
+            minRows={2}
+            maxRows={4}
+            sx={styles.message}
           />
           <label className="all-day-container">
             <span>All Day</span>
@@ -214,39 +231,33 @@ function TaskModal(props): JSX.Element {
             durationMinutes={durationMinutes}
             setDurationHours={setDurationHours}
             setDurationMinutes={setDurationMinutes}
+            setDurationValid={setDurationValid}
           />
-          <header className="staff-text">Assign Staff</header>
-          <Select
-            className="dropdown"
-            options={users}
-            styles={selectorStyles}
-            isMulti={true}
-            width={200}
-            onChange={handleSelect}
+          <StaffSelect
+            staff={users}
+            selectedStaff={assignees}
+            onSelect={setAssignees}
           />
-          <button type="submit">Create Task</button>
+          <PrimaryButton
+            label="create task"
+            type="submit"
+            disabled={createTaskDisabled}
+          />
         </form>
       </div>
     </Modal>
   );
 }
 
-const selectorStyles = {
-  option: (provided) => ({
-    ...provided,
-    color: textAlt,
-    padding: 5,
-    fontSize: 13,
-  }),
-  control: (provided) => ({
-    ...provided,
-    border: 0,
-    width: 188,
-  }),
-  singleValue: (provided) => ({
-    ...provided,
-    fontSize: 13,
-  }),
+const styles: StyleSheet = {
+  title: {
+    marginBottom: "15px",
+    width: "100%",
+  },
+  message: {
+    marginBottom: "15px",
+    width: "100%",
+  },
 };
 
 export default TaskModal;

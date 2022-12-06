@@ -7,7 +7,7 @@ export async function get(req: Request, res: Response) {
     const { id } = req.params;
     const userRecord = await admin.auth().getUser(id);
     return res.status(200).send(userRecord.customClaims);
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -37,7 +37,7 @@ export async function change(req: Request, res: Response) {
     } else {
       return res.status(406).send({ error: "Claims not found" });
     }
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }

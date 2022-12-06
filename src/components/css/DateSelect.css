@@ -1,18 +1,18 @@
+.datepicker-duration-wrapper {
+  width: 100%;
+}
+
 .duration {
   display: flex;
   flex-direction: row;
-  align-items: center;
-  justify-content: flex-start;
+  align-items: flex-start;
+  justify-content: space-around;
+  margin: 0px 3px;
 }
 
-.time-input {
-  width: 35px;
-  margin-left: 5px;
-}
-
-.time-text {
-  margin: 3px;
-  font-size: 14px;
+/* Override so that duration label text is behind datepicker overlay. */
+.react-datepicker-popper {
+  z-index: 2 !important;
 }
 
 header {

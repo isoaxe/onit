@@ -53,7 +53,7 @@ export async function create(
     });
 
     return res.status(200).send({ message: "Task created" });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -76,7 +76,7 @@ export async function edit(
       .doc(taskId);
     task.set({ extendedProps: { completionTime } }, { merge: true });
     return res.status(200).send({ message: "Completion time saved." });
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -103,7 +103,7 @@ export async function assigned(
     });
     tasks.shift(); // Remove placeholder object from array.
     return res.status(200).send(tasks);
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
@@ -128,7 +128,7 @@ export async function all(
     });
     tasks.shift(); // Remove placeholder object from array.
     return res.status(200).send(tasks);
-  } catch (err) {
+  } catch (err: any) {
     return handleError(res, err);
   }
 }
