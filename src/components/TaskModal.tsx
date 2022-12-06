@@ -5,6 +5,7 @@ import Switch from "react-switch";
 import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
 import StaffSelect from "./StaffSelect";
+import PrimaryButton from "./PrimaryButton";
 import { useAuth } from "./../util/useAuth";
 import { API_URL } from "./../util/urls";
 import { StyleSheet } from "./../util/types";
@@ -26,6 +27,7 @@ function TaskModal(props): JSX.Element {
   const [users, setUsers] = useState([]);
   const [durationHours, setDurationHours] = useState(null);
   const [durationMinutes, setDurationMinutes] = useState(null);
+  const [createTaskDisabled, setCreateTaskDisabled] = useState(true);
 
   const { businessId, role, userId } = props;
   const { taskModalVisible, setTaskModalVisible, setTasks } = props;
@@ -220,7 +222,11 @@ function TaskModal(props): JSX.Element {
             selectedStaff={assignees}
             onSelect={setAssignees}
           />
-          <button type="submit">Create Task</button>
+          <PrimaryButton
+            label="create task"
+            type="submit"
+            disabled={createTaskDisabled}
+          />
         </form>
       </div>
     </Modal>
