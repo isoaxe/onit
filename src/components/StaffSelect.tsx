@@ -33,7 +33,7 @@ function StaffSelect(props) {
 
   return (
     <div>
-      <FormControl sx={{ m: 1, width: 192 }}>
+      <FormControl sx={{ m: 1, width: 258 }}>
         <InputLabel id="staff-select-label">Assign Staff</InputLabel>
         <Select
           labelId="staff-select-label"
