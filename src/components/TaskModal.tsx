@@ -27,6 +27,7 @@ function TaskModal(props): JSX.Element {
   const [users, setUsers] = useState([]);
   const [durationHours, setDurationHours] = useState(null);
   const [durationMinutes, setDurationMinutes] = useState(null);
+  const [durationValid, setDurationValid] = useState(false);
   const [createTaskDisabled, setCreateTaskDisabled] = useState(true);
 
   const { businessId, role, userId } = props;
@@ -216,6 +217,7 @@ function TaskModal(props): JSX.Element {
             durationMinutes={durationMinutes}
             setDurationHours={setDurationHours}
             setDurationMinutes={setDurationMinutes}
+            setDurationValid={setDurationValid}
           />
           <StaffSelect
             staff={users}
