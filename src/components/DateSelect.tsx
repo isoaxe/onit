@@ -57,7 +57,7 @@ function DateSelect(props): JSX.Element {
 
   if (allDay) {
     return (
-      <div>
+      <div className="datepicker-duration-wrapper">
         <header>Select Task Day</header>
         <DatePicker
           selected={startDate}
@@ -68,7 +68,7 @@ function DateSelect(props): JSX.Element {
     );
   } else {
     return (
-      <div>
+      <div className="datepicker-duration-wrapper">
         <header>Select Task Day and Time</header>
         <DatePicker
           selected={startDate}
@@ -108,7 +108,7 @@ function DateSelect(props): JSX.Element {
 
 const styles: StyleSheet = {
   durationField: {
-    width: "85px",
+    width: "35%",
     margin: "5px 0px 15px",
   },
 };
