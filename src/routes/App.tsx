@@ -5,10 +5,24 @@ import { ProvideAuth } from "./../util/useAuth";
 import RestrictedRoute from "./../routes/RestrictedRoute";
 import Homepage from "./../pages/Homepage";
 import LoginSignup from "./../pages/LoginSignup";
+import { secondaryMain, secondaryLight, textMain } from "../util/colours";
 
 const theme = createTheme({
   palette: {
     mode: "dark",
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: secondaryMain,
+          "&:hover": {
+            backgroundColor: secondaryLight,
+          },
+          color: textMain,
+        },
+      },
+    },
   },
 });
 
