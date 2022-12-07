@@ -41,15 +41,21 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     setInFocus(false);
   }
 
-  useEffect(() => {
-    if (!isLoaded) {
-      // If page is not loaded, the outline setters can't fetch input.
-    } else if (helperText) {
+  function setOutline() {
+    if (helperText) {
       setErrorOutline();
     } else if (inFocus) {
       setFocusedOutline();
     } else {
       setBlurredOutline();
+    }
+  }
+
+  useEffect(() => {
+    if (!isLoaded) {
+      // If page is not loaded, the outline setters can't fetch input.
+    } else {
+      setOutline();
     }
     setIsLoaded(true);
   });
