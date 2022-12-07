@@ -22,7 +22,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   const phoneHelperTextStyle = {
     display: displayStyle,
     fontSize: "12px",
-    color: "#d32f2f",
+    color: muiError,
     margin: "-12px 10px 22px",
   };
 
