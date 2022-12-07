@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
 import { muiBlur, muiError, muiFocus } from "../util/colours";
 import { COUNTRY_CODE } from "../util/constants";
@@ -10,7 +10,13 @@ const phoneInputStyles = { width: "79%", marginBottom: "15px" };
 type PhoneNumberProps = PhoneInputProps & { helperText: string };
 
 function PhoneNumber(props: PhoneNumberProps): JSX.Element {
+  const [inFocus, setInFocus] = useState(false);
+
   const { name, value, onChange, helperText } = props;
+
+  const input = document.getElementsByClassName(
+    "PhoneInputInput"
+  )[0] as HTMLElement;
 
   const displayStyle = helperText ? "inline" : "none";
   const phoneHelperTextStyle = {
@@ -20,20 +26,27 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     margin: "-12px 10px 22px",
   };
 
-  useEffect(() => {
-    const input = document.getElementsByClassName(
-      "PhoneInputInput"
-    )[0] as HTMLElement;
-    const inFocus = document.getElementsByClassName(
-      "PhoneInput--focus"
-    )[0] as HTMLElement;
+  function setErrorOutline() {
+    input.style.outlineColor = muiError;
+  }
 
+  function setFocusedOutline() {
+    input.style.outlineColor = muiFocus;
+    setInFocus(true);
+  }
+
+  function setBlurredOutline() {
+    input.style.outlineColor = muiBlur;
+    setInFocus(false);
+  }
+
+  useEffect(() => {
     if (helperText) {
-      input.style.outlineColor = muiError;
+      setErrorOutline();
     } else if (inFocus) {
-      input.style.outlineColor = muiFocus;
+      setFocusedOutline();
     } else {
-      input.style.outlineColor = muiBlur;
+      setBlurredOutline();
     }
   });
 
@@ -47,6 +60,8 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
         value={value}
         onChange={onChange}
         style={phoneInputStyles}
+        onFocus={setFocusedOutline}
+        onBlur={setBlurredOutline}
       />
       <p style={phoneHelperTextStyle}>{helperText}</p>
     </div>
