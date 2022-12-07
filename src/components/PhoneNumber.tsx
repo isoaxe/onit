@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
-import { muiError, muiActive } from "../util/colours";
+import { muiError, muiFocus } from "../util/colours";
 import { COUNTRY_CODE } from "../util/constants";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
@@ -31,7 +31,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     if (helperText) {
       input.style.outlineColor = muiError;
     } else if (inFocus) {
-      input.style.outlineColor = muiActive;
+      input.style.outlineColor = muiFocus;
     } else {
       input.style.outlineColor = "#31353d";
     }

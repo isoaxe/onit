@@ -95,5 +95,5 @@ label span {
 
 .react-datepicker__input-container input:focus {
   height: 38px; /* reduce height to account for increase in border thickness */
-  border: 2px solid #90caf9; /* muiActive from colours.ts */
+  border: 2px solid #90caf9; /* muiFocus from colours.ts */
 }

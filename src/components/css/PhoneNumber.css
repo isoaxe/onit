@@ -11,7 +11,7 @@
 .PhoneInputInput:focus {
   outline-style: solid !important;
   outline-width: 2px !important;
-  outline-color: #90caf9; /* This is muiActive and never gets applied */
+  outline-color: #90caf9; /* This is muiFocus and never gets applied */
 }
 
 .phone-wrapper {
