@@ -2,16 +2,17 @@
   margin: 3px 0px;
   padding: 15px 6px;
   height: 22px;
+  color: #ffffff;
   border-radius: 3px;
   font-size: 15px;
-  outline: 1px solid #31353d;
+  outline-style: solid;
+  outline-width: 1px;
+  outline-color: rgba(255, 255, 255, 0.3); /* muiBlur from colours.ts */
   background-color: #3f4552; /* primaryLight from colours.ts */
 }
 
 .PhoneInputInput:focus {
-  outline-style: solid !important;
   outline-width: 2px !important;
-  outline-color: #1976d2; /* This never gets applied */
 }
 
 .phone-wrapper {

@@ -239,7 +239,7 @@ function TaskModal(props): JSX.Element {
             onSelect={setAssignees}
           />
           <PrimaryButton
-            label="create task"
+            label="Create Task"
             type="submit"
             disabled={createTaskDisabled}
           />

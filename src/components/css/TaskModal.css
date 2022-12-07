@@ -81,7 +81,8 @@ label span {
 .react-datepicker__input-container input {
   width: 93%;
   height: 40px;
-  border: 1px solid rgba(0, 0, 0, 0.2);
+  color: #ffffff; /* textMain from colours.ts */
+  border: 1px solid rgba(255, 255, 255, 0.3); /* muiBlur from colours.ts */
   border-radius: 4px;
   background-color: #3f524c; /* secondaryMain from colours.ts */
   padding-left: 10px;
@@ -90,10 +91,10 @@ label span {
 }
 
 .react-datepicker__input-container input:hover {
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8); /* muiHover from colours.ts */
 }
 
 .react-datepicker__input-container input:focus {
   height: 38px; /* reduce height to account for increase in border thickness */
-  border: 2px solid #1976d2; /* muiActive from colours.ts */
+  border: 2px solid #90caf9; /* muiFocus from colours.ts */
 }
