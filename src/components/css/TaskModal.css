@@ -81,6 +81,7 @@ label span {
 .react-datepicker__input-container input {
   width: 93%;
   height: 40px;
+  color: #ffffff; /* textMain from colours.ts */
   border: 1px solid rgba(255, 255, 255, 0.3); /* muiBlur from colours.ts */
   border-radius: 4px;
   background-color: #3f524c; /* secondaryMain from colours.ts */
