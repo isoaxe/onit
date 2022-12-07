@@ -4,7 +4,8 @@
   height: 22px;
   border-radius: 3px;
   font-size: 15px;
-  outline: 1px solid #31353d;
+  outline-style: solid;
+  outline-width: 1px;
   background-color: #3f4552; /* primaryLight from colours.ts */
 }
 
