@@ -90,7 +90,7 @@ label span {
 }
 
 .react-datepicker__input-container input:hover {
-  border: 1px solid rgba(0, 0, 0, 0.6);
+  border: 1px solid rgba(255, 255, 255, 0.8); /* muiHover from colours.ts */
 }
 
 .react-datepicker__input-container input:focus {
