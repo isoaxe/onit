@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
-import { muiBlur, muiError, muiFocus } from "../util/colours";
+import { muiBlur, muiError, muiFocus, muiHover } from "../util/colours";
 import { COUNTRY_CODE } from "../util/constants";
 import "react-phone-number-input/style.css";
 import "./css/PhoneNumber.css";
@@ -34,6 +34,10 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   function setFocusedOutline() {
     input.style.outlineColor = muiFocus;
     setInFocus(true);
+  }
+
+  function setHoveringOutline() {
+    input.style.outlineColor = muiHover;
   }
 
   function setBlurredOutline() {
@@ -71,6 +75,8 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
         onChange={onChange}
         style={phoneInputStyles}
         onFocus={setFocusedOutline}
+        onMouseEnter={setHoveringOutline}
+        onMouseLeave={setOutline}
         onBlur={setBlurredOutline}
       />
       <p style={phoneHelperTextStyle}>{helperText}</p>
