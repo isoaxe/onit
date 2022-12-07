@@ -10,6 +10,7 @@ const phoneInputStyles = { width: "79%", marginBottom: "15px" };
 type PhoneNumberProps = PhoneInputProps & { helperText: string };
 
 function PhoneNumber(props: PhoneNumberProps): JSX.Element {
+  const [isLoaded, setIsLoaded] = useState(false);
   const [inFocus, setInFocus] = useState(false);
 
   const { name, value, onChange, helperText } = props;
@@ -41,13 +42,16 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   }
 
   useEffect(() => {
-    if (helperText) {
+    if (!isLoaded) {
+      // If page is not loaded, the outline setters can't fetch input.
+    } else if (helperText) {
       setErrorOutline();
     } else if (inFocus) {
       setFocusedOutline();
     } else {
       setBlurredOutline();
     }
+    setIsLoaded(true);
   });
 
   return (
