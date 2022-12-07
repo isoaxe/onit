@@ -205,7 +205,7 @@ function CreateBusiness(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
-        <PrimaryButton label="submit" type="submit" disabled={loginDisabled} />
+        <PrimaryButton label="Submit" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>

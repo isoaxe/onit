@@ -32,12 +32,12 @@ function LoginSignup(): JSX.Element {
         <Login />
         <p style={styles.title}>Sign Up</p>
         <PrimaryButton
-          label="create user account"
+          label="Create User Account"
           type="button"
           onClick={userForm}
         />
         <PrimaryButton
-          label="create business account"
+          label="Create Business Account"
           type="button"
           onClick={businessForm}
         />

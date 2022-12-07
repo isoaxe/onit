@@ -133,7 +133,7 @@ function Homepage(): JSX.Element {
           <HeaderText text={headerRole} />
           {role !== "owner" && <HeaderText text={headerBusiness} />}
           {role === "owner" && <HeaderText text={headerBusinessId} />}
-          <PrimaryButton label="logout" type="button" onClick={signOut} />
+          <PrimaryButton label="Logout" type="button" onClick={signOut} />
         </header>
         <section style={styles.menuWrapper}>
           <div style={styles.menuItems}>

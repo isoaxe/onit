@@ -20,6 +20,7 @@ const theme = createTheme({
             backgroundColor: secondaryLight,
           },
           color: textMain,
+          textTransform: "none",
         },
       },
     },

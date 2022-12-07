@@ -90,7 +90,7 @@ function Login(): JSX.Element {
           helperText={passwordHelperText}
           sx={styles.inputField}
         />
-        <PrimaryButton label="login" type="submit" disabled={loginDisabled} />
+        <PrimaryButton label="Login" type="submit" disabled={loginDisabled} />
       </form>
       {user && <Redirect to="home" />}
     </div>
