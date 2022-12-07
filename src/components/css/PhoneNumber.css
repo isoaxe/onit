@@ -7,6 +7,7 @@
   font-size: 15px;
   outline-style: solid;
   outline-width: 1px;
+  outline-color: rgba(255, 255, 255, 0.3); /* muiBlur from colours.ts */
   background-color: #3f4552; /* primaryLight from colours.ts */
 }
 
