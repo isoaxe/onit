@@ -1,12 +1,7 @@
 import styled from "styled-components";
-import {
-  secondaryLight,
-  secondaryMain,
-  tertiaryLight,
-  textMain,
-  buttonShadow,
-} from "./../util/colours";
-import { GenericButtonProps } from "./../util/types";
+import { secondaryLight, secondaryMain, tertiaryLight } from "../util/colours";
+import { textMain, buttonShadow } from "../util/colours";
+import { GenericButtonProps } from "../util/types";
 
 const Item = styled.div<{ label: string; active: string }>`
 	background-color: ${secondaryMain};

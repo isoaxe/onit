@@ -1,11 +1,11 @@
+import { useState, useRef, useEffect, useCallback } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
 import firebase from "firebase/app";
-import { useState, useRef, useEffect, useCallback } from "react";
-import { tertiaryMain, textAlt } from "./../util/colours";
-import { getTasks, formatDate, isoLocalDate } from "./../util/helpers";
-import { API_URL } from "./../util/urls";
+import { getTasks, formatDate, isoLocalDate } from "../util/helpers";
+import { tertiaryMain, textAlt } from "../util/colours";
+import { API_URL } from "../util/urls";
 import "./css/Calendar.css";
 
 function Calendar(props) {

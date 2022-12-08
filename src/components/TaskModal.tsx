@@ -6,15 +6,11 @@ import { TextField } from "@mui/material";
 import DateSelect from "./DateSelect";
 import StaffSelect from "./StaffSelect";
 import PrimaryButton from "./PrimaryButton";
-import { useAuth } from "./../util/useAuth";
-import { API_URL } from "./../util/urls";
-import { StyleSheet } from "./../util/types";
-import {
-  postFormDataAsJson,
-  getId,
-  getTasks,
-  isoLocalDate,
-} from "./../util/helpers";
+import { useAuth } from "../util/useAuth";
+import { API_URL } from "../util/urls";
+import { StyleSheet } from "../util/types";
+import { postFormDataAsJson, isoLocalDate } from "../util/helpers";
+import { getId, getTasks } from "../util/helpers";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 

@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { TextField } from "@mui/material";
-import { StyleSheet } from "./../util/types";
+import { StyleSheet } from "../util/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 

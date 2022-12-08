@@ -1,21 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
-import {
-  primaryMain,
-  secondaryMain,
-  secondaryLight,
-  tertiaryMain,
-  textMain,
-  textAlt,
-} from "./../util/colours";
-import HeaderText from "./../components/HeaderText";
-import MenuItem from "./../components/MenuItem";
-import People from "./../components/People";
-import Calendar from "./../components/Calendar";
-import TaskModal from "./../components/TaskModal";
-import PrimaryButton from "./../components/PrimaryButton";
-import { useAuth } from "./../util/useAuth";
-import { getClaims, getBusinessData } from "./../util/helpers";
-import { StyleSheet } from "./../util/types";
+import HeaderText from "../components/HeaderText";
+import MenuItem from "../components/MenuItem";
+import People from "../components/People";
+import Calendar from "../components/Calendar";
+import TaskModal from "../components/TaskModal";
+import PrimaryButton from "../components/PrimaryButton";
+import { useAuth } from "../util/useAuth";
+import { getClaims, getBusinessData } from "../util/helpers";
+import { primaryMain, secondaryMain, secondaryLight } from "../util/colours";
+import { tertiaryMain, textMain, textAlt } from "../util/colours";
+import { StyleSheet } from "../util/types";
 
 function Homepage(): JSX.Element {
   const [role, setRole] = useState(null);

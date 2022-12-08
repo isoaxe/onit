@@ -2,9 +2,9 @@ import { useMemo, useCallback } from "react";
 import { useTable } from "react-table";
 import firebase from "firebase/app";
 import styled from "styled-components";
-import { tertiaryMain } from "./../util/colours";
-import { API_URL } from "./../util/urls";
-import { StyleSheet } from "./../util/types";
+import { tertiaryMain } from "../util/colours";
+import { API_URL } from "../util/urls";
+import { StyleSheet } from "../util/types";
 
 function UserTable(props) {
   const users = props.users;

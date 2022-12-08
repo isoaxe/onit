@@ -2,7 +2,6 @@ import * as functions from "firebase-functions";
 import * as admin from "firebase-admin";
 import * as express from "express";
 import * as cors from "cors";
-
 import { businessRoute } from "./business/businessRoute";
 import { userRoute } from "./user/userRoute";
 import { tasksRoute } from "./tasks/tasksRoute";

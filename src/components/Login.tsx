@@ -3,9 +3,9 @@ import { Redirect } from "react-router-dom";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
 import PrimaryButton from "./PrimaryButton";
-import { useAuth } from "./../util/useAuth";
-import { StyleSheet } from "./../util/types";
-import { secondaryMain } from "./../util/colours";
+import { useAuth } from "../util/useAuth";
+import { StyleSheet } from "../util/types";
+import { secondaryMain } from "../util/colours";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
