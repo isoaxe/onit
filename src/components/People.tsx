@@ -9,7 +9,8 @@ function People(props): JSX.Element {
   const [users, setUsers] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const businessId = props.businessId;
+
+  const { businessId, role } = props;
 
   async function getUsers() {
     try {
@@ -50,7 +51,7 @@ function People(props): JSX.Element {
         <UserTable
           users={users}
           businessId={businessId}
-          role={props.role}
+          role={role}
           refresh={forceRefresh}
         />
       )}

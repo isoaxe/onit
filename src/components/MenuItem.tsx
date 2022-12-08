@@ -25,9 +25,11 @@ const Item = styled.div<{ label: string; active: string }>`
 `;
 
 function MenuItem(props: GenericButtonProps): JSX.Element {
+  const { label, active, onClick } = props;
+
   return (
-    <Item onClick={props.onClick} label={props.label} active={props.active}>
-      {props.label}
+    <Item onClick={onClick} label={label} active={active}>
+      {label}
     </Item>
   );
 }

@@ -9,16 +9,9 @@ function DateSelect(props): JSX.Element {
   const [hoursHelperText, setHoursHelperText] = useState("");
   const [minsHelperText, setMinsHelperText] = useState("");
 
-  const {
-    startDate,
-    handleStartDate,
-    allDay,
-    durationHours,
-    durationMinutes,
-    setDurationHours,
-    setDurationMinutes,
-    setDurationValid,
-  } = props;
+  const { startDate, handleStartDate, allDay } = props;
+  const { durationHours, durationMinutes, setDurationHours } = props;
+  const { setDurationMinutes, setDurationValid } = props;
 
   function handleTime(event, setTimeHelperText, setTime) {
     const time = event.currentTarget.value;

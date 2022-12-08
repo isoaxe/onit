@@ -7,8 +7,7 @@ import { API_URL } from "../util/urls";
 import { StyleSheet } from "../util/types";
 
 function UserTable(props) {
-  const users = props.users;
-  const businessId = props.businessId;
+  const { users, businessId, role, refresh } = props;
 
   const changeRole = useCallback(
     async (userId: string) => {
@@ -64,7 +63,7 @@ function UserTable(props) {
         function callChangeRole() {
           const uid = row.original.uid;
           changeRole(uid);
-          props.refresh();
+          refresh();
         }
         if (row.values.role === "staff") {
           return <Button onClick={callChangeRole}>Upgrade</Button>;
@@ -75,11 +74,11 @@ function UserTable(props) {
         }
       },
     };
-    if (props.role === "owner") {
+    if (role === "owner") {
       columnArray.push(header);
     }
     return columnArray;
-  }, [props, changeRole]);
+  }, [role, changeRole]);
 
   const tableInstance = useTable({ columns, data });
 

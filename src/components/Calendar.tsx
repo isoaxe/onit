@@ -14,9 +14,8 @@ function Calendar(props) {
   const infoRowIndex = useRef(99);
   let taskId = useRef("");
 
-  const businessId = props.businessId;
-  const tasks = props.tasks;
-  const role = props.role;
+  const { businessId, tasks, role, userId, setTasks } = props;
+  const { setTaskModalVisible } = props;
 
   // Event handling for when task is clicked in any view.
   function taskClicked(info) {
@@ -121,7 +120,7 @@ function Calendar(props) {
 
   // Opens a modal so the user can input information and create task.
   function addTask() {
-    props.setTaskModalVisible(true);
+    setTaskModalVisible(true);
   }
 
   // Sends task completion timestamp to Firestore.
@@ -156,9 +155,9 @@ function Calendar(props) {
 
   // Get all tasks and save to state in parent.
   const fetchTasks = useCallback(async () => {
-    const newTasks = await getTasks(role, businessId, props.userId);
-    props.setTasks(newTasks);
-  }, [role, businessId, props]);
+    const newTasks = await getTasks(role, businessId, userId);
+    setTasks(newTasks);
+  }, [role, businessId, userId, setTasks]);
 
   // Set listeners for clicks on all buttons on initial render.
   useEffect(() => {
