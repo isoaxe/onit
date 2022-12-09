@@ -1,15 +1,11 @@
 import { useState } from "react";
-import Login from "./../components/Login";
-import PrimaryButton from "./../components/PrimaryButton";
-import CreateUser from "./../components/CreateUser";
-import CreateBusiness from "./../components/CreateBusiness";
-import {
-  primaryMain,
-  primaryLight,
-  secondaryMain,
-  textMain,
-} from "./../util/colours";
-import { StyleSheet } from "./../util/types";
+import Login from "../components/Login";
+import PrimaryButton from "../components/PrimaryButton";
+import CreateUser from "../components/CreateUser";
+import CreateBusiness from "../components/CreateBusiness";
+import { primaryMain, primaryLight, secondaryMain } from "../util/colours";
+import { textMain } from "../util/colours";
+import { StyleSheet } from "../util/types";
 
 function LoginSignup(): JSX.Element {
   const [userFormActive, setUserFormActive] = useState(false);
@@ -48,6 +44,8 @@ function LoginSignup(): JSX.Element {
   );
 }
 
+export default LoginSignup;
+
 const styles: StyleSheet = {
   root: {
     display: "flex",
@@ -76,5 +74,3 @@ const styles: StyleSheet = {
     fontFamily: "Lato-Black",
   },
 };
-
-export default LoginSignup;

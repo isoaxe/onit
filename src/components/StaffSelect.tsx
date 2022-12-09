@@ -6,17 +6,6 @@ import Select, { SelectChangeEvent } from "@mui/material/Select";
 import { FormattedStaff } from "../util/types";
 import { tertiaryLight } from "../util/colours";
 
-const ITEM_HEIGHT = 48;
-const ITEM_PADDING_TOP = 8;
-const MenuProps = {
-  PaperProps: {
-    style: {
-      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
-      width: 250,
-    },
-  },
-};
-
 function getStyles(name: FormattedStaff, names: FormattedStaff[]) {
   return {
     fontWeight: names.indexOf(name) === -1 ? 400 : 700,
@@ -62,3 +51,14 @@ function StaffSelect(props) {
 }
 
 export default StaffSelect;
+
+const ITEM_HEIGHT = 48;
+const ITEM_PADDING_TOP = 8;
+const MenuProps = {
+  PaperProps: {
+    style: {
+      maxHeight: ITEM_HEIGHT * 4.5 + ITEM_PADDING_TOP,
+      width: 250,
+    },
+  },
+};

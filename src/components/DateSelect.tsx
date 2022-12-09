@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import DatePicker from "react-datepicker";
 import { TextField } from "@mui/material";
-import { StyleSheet } from "./../util/types";
+import { StyleSheet } from "../util/types";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/DateSelect.css";
 
@@ -9,16 +9,9 @@ function DateSelect(props): JSX.Element {
   const [hoursHelperText, setHoursHelperText] = useState("");
   const [minsHelperText, setMinsHelperText] = useState("");
 
-  const {
-    startDate,
-    handleStartDate,
-    allDay,
-    durationHours,
-    durationMinutes,
-    setDurationHours,
-    setDurationMinutes,
-    setDurationValid,
-  } = props;
+  const { startDate, handleStartDate, allDay } = props;
+  const { durationHours, durationMinutes, setDurationHours } = props;
+  const { setDurationMinutes, setDurationValid } = props;
 
   function handleTime(event, setTimeHelperText, setTime) {
     const time = event.currentTarget.value;
@@ -106,11 +99,11 @@ function DateSelect(props): JSX.Element {
   }
 }
 
+export default DateSelect;
+
 const styles: StyleSheet = {
   durationField: {
     width: "35%",
     margin: "5px 0px 15px",
   },
 };
-
-export default DateSelect;

@@ -3,7 +3,7 @@
  */
 import firebase from "firebase/app";
 import generator from "generate-password";
-import { API_URL } from "./../util/urls";
+import { API_URL } from "../util/urls";
 
 // POST form data. Used for account and task creation.
 export async function postFormDataAsJson({ url, formData }) {

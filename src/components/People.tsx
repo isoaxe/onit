@@ -1,15 +1,16 @@
 import { useState, useEffect } from "react";
 import firebase from "firebase/app";
 import UserTable from "./UserTable";
-import { API_URL } from "./../util/urls";
-import { textMain } from "./../util/colours";
-import { StyleSheet } from "./../util/types";
+import { API_URL } from "../util/urls";
+import { textMain } from "../util/colours";
+import { StyleSheet } from "../util/types";
 
 function People(props): JSX.Element {
   const [users, setUsers] = useState(null);
   const [refresh, setRefresh] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-  const businessId = props.businessId;
+
+  const { businessId, role } = props;
 
   async function getUsers() {
     try {
@@ -50,7 +51,7 @@ function People(props): JSX.Element {
         <UserTable
           users={users}
           businessId={businessId}
-          role={props.role}
+          role={role}
           refresh={forceRefresh}
         />
       )}
@@ -58,6 +59,8 @@ function People(props): JSX.Element {
     </div>
   );
 }
+
+export default People;
 
 const styles: StyleSheet = {
   root: {
@@ -70,5 +73,3 @@ const styles: StyleSheet = {
     color: textMain,
   },
 };
-
-export default People;

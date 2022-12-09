@@ -4,12 +4,12 @@ import validator from "validator";
 import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import PrimaryButton from "./PrimaryButton";
-import { postFormDataAsJson } from "./../util/helpers";
-import { useAuth } from "./../util/useAuth";
-import { StyleSheet } from "./../util/types";
-import { API_URL } from "./../util/urls";
+import { postFormDataAsJson } from "../util/helpers";
+import { useAuth } from "../util/useAuth";
+import { StyleSheet } from "../util/types";
+import { API_URL } from "../util/urls";
 import { COUNTRY_CODE } from "../util/constants";
-import { primaryLight, secondaryMain, textMain } from "./../util/colours";
+import { primaryLight, secondaryMain, textMain } from "../util/colours";
 
 function CreateBusiness(): JSX.Element {
   const [businessName, setBusinessName] = useState("");
@@ -212,6 +212,8 @@ function CreateBusiness(): JSX.Element {
   );
 }
 
+export default CreateBusiness;
+
 const styles: StyleSheet = {
   form: {
     display: "flex",
@@ -236,5 +238,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default CreateBusiness;

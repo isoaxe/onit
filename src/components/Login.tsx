@@ -3,9 +3,9 @@ import { Redirect } from "react-router-dom";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
 import PrimaryButton from "./PrimaryButton";
-import { useAuth } from "./../util/useAuth";
-import { StyleSheet } from "./../util/types";
-import { secondaryMain } from "./../util/colours";
+import { useAuth } from "../util/useAuth";
+import { StyleSheet } from "../util/types";
+import { secondaryMain } from "../util/colours";
 
 function Login(): JSX.Element {
   const [email, setEmail] = useState("");
@@ -97,6 +97,8 @@ function Login(): JSX.Element {
   );
 }
 
+export default Login;
+
 const styles: StyleSheet = {
   wrapper: {
     width: "102%",
@@ -113,5 +115,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default Login;

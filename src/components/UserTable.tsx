@@ -2,13 +2,18 @@ import { useMemo, useCallback } from "react";
 import { useTable } from "react-table";
 import firebase from "firebase/app";
 import styled from "styled-components";
-import { tertiaryMain } from "./../util/colours";
-import { API_URL } from "./../util/urls";
-import { StyleSheet } from "./../util/types";
+import { tertiaryMain } from "../util/colours";
+import { API_URL } from "../util/urls";
+import { StyleSheet } from "../util/types";
+
+const Button = styled.button`
+  &:hover {
+    cursor: pointer;
+  }
+`;
 
 function UserTable(props) {
-  const users = props.users;
-  const businessId = props.businessId;
+  const { users, businessId, role, refresh } = props;
 
   const changeRole = useCallback(
     async (userId: string) => {
@@ -64,7 +69,7 @@ function UserTable(props) {
         function callChangeRole() {
           const uid = row.original.uid;
           changeRole(uid);
-          props.refresh();
+          refresh();
         }
         if (row.values.role === "staff") {
           return <Button onClick={callChangeRole}>Upgrade</Button>;
@@ -75,11 +80,11 @@ function UserTable(props) {
         }
       },
     };
-    if (props.role === "owner") {
+    if (role === "owner") {
       columnArray.push(header);
     }
     return columnArray;
-  }, [props, changeRole]);
+  }, [role, changeRole]);
 
   const tableInstance = useTable({ columns, data });
 
@@ -144,6 +149,8 @@ function UserTable(props) {
   );
 }
 
+export default UserTable;
+
 const styles: StyleSheet = {
   table: {
     padding: "3px",
@@ -157,11 +164,3 @@ const styles: StyleSheet = {
     borderBottom: `1px solid ${tertiaryMain}`,
   },
 };
-
-const Button = styled.button`
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export default UserTable;

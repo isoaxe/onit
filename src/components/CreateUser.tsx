@@ -4,11 +4,11 @@ import validator from "validator";
 import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import PrimaryButton from "./PrimaryButton";
-import { postFormDataAsJson } from "./../util/helpers";
-import { useAuth } from "./../util/useAuth";
-import { StyleSheet } from "./../util/types";
-import { API_URL } from "./../util/urls";
-import { primaryLight, secondaryMain, textMain } from "./../util/colours";
+import { postFormDataAsJson } from "../util/helpers";
+import { useAuth } from "../util/useAuth";
+import { StyleSheet } from "../util/types";
+import { API_URL } from "../util/urls";
+import { primaryLight, secondaryMain, textMain } from "../util/colours";
 import "./css/CreateUser.css";
 
 function CreateUser(): JSX.Element {
@@ -184,6 +184,8 @@ function CreateUser(): JSX.Element {
   );
 }
 
+export default CreateUser;
+
 const styles: StyleSheet = {
   form: {
     display: "flex",
@@ -208,5 +210,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default CreateUser;

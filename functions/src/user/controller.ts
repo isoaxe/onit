@@ -1,6 +1,6 @@
 import * as admin from "firebase-admin";
 import { Request, Response } from "express";
-import { UserData } from "./../util/types";
+import { UserData } from "../util/types";
 
 // Create new staff user.
 export async function create(

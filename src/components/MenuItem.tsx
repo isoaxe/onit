@@ -1,12 +1,7 @@
 import styled from "styled-components";
-import {
-  secondaryLight,
-  secondaryMain,
-  tertiaryLight,
-  textMain,
-  buttonShadow,
-} from "./../util/colours";
-import { GenericButtonProps } from "./../util/types";
+import { secondaryLight, secondaryMain, tertiaryLight } from "../util/colours";
+import { textMain, buttonShadow } from "../util/colours";
+import { GenericButtonProps } from "../util/types";
 
 const Item = styled.div<{ label: string; active: string }>`
 	background-color: ${secondaryMain};
@@ -30,9 +25,11 @@ const Item = styled.div<{ label: string; active: string }>`
 `;
 
 function MenuItem(props: GenericButtonProps): JSX.Element {
+  const { label, active, onClick } = props;
+
   return (
-    <Item onClick={props.onClick} label={props.label} active={props.active}>
-      {props.label}
+    <Item onClick={onClick} label={label} active={active}>
+      {label}
     </Item>
   );
 }

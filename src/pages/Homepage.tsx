@@ -1,21 +1,15 @@
 import { useState, useEffect, useCallback } from "react";
-import {
-  primaryMain,
-  secondaryMain,
-  secondaryLight,
-  tertiaryMain,
-  textMain,
-  textAlt,
-} from "./../util/colours";
-import HeaderText from "./../components/HeaderText";
-import MenuItem from "./../components/MenuItem";
-import People from "./../components/People";
-import Calendar from "./../components/Calendar";
-import TaskModal from "./../components/TaskModal";
-import PrimaryButton from "./../components/PrimaryButton";
-import { useAuth } from "./../util/useAuth";
-import { getClaims, getBusinessData } from "./../util/helpers";
-import { StyleSheet } from "./../util/types";
+import HeaderText from "../components/HeaderText";
+import MenuItem from "../components/MenuItem";
+import People from "../components/People";
+import Calendar from "../components/Calendar";
+import TaskModal from "../components/TaskModal";
+import PrimaryButton from "../components/PrimaryButton";
+import { useAuth } from "../util/useAuth";
+import { getClaims, getBusinessData } from "../util/helpers";
+import { primaryMain, secondaryMain, secondaryLight } from "../util/colours";
+import { tertiaryMain, textMain, textAlt } from "../util/colours";
+import { StyleSheet } from "../util/types";
 
 function Homepage(): JSX.Element {
   const [role, setRole] = useState(null);
@@ -31,6 +25,19 @@ function Homepage(): JSX.Element {
   const headerRole = `Access level: ${role}`;
   const headerBusiness = `Business: ${businessName}`;
   const headerBusinessId = `Business ID: ${businessId}`;
+
+  const contingentStyles: StyleSheet = {
+    menuContent: {
+      marginTop: "10px",
+      marginLeft: "10px",
+      padding: "10px",
+      background: menuItem === "calendar" ? secondaryLight : "inherit",
+      border: `2px ${tertiaryMain} solid`,
+      borderRadius: "10px",
+      width: menuItem === "calendar" ? "100%" : "auto",
+      color: textAlt,
+    },
+  };
 
   const fetchClaims = useCallback(async () => {
     const claims = await getClaims(user);
@@ -63,68 +70,6 @@ function Homepage(): JSX.Element {
     }
   }, [role]);
 
-  const styles: StyleSheet = {
-    root: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "center",
-      justifyContent: "center",
-      textAlign: "center",
-      backgroundColor: primaryMain,
-      minHeight: "calc(100vh - 44px)",
-      padding: "10px",
-      color: textMain,
-    },
-    wrapper: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
-      width: "95%",
-      maxWidth: "1200px",
-      minHeight: "inherit",
-      padding: "10px",
-      border: `2px ${secondaryMain} solid`,
-      borderRadius: "10px",
-    },
-    header: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "center",
-      justifyContent: "space-between",
-      width: "100%",
-    },
-    menuWrapper: {
-      display: "flex",
-      flexDirection: "row",
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
-      width: "100%",
-      maxWidth: "1100px",
-    },
-    menuItems: {
-      display: "flex",
-      flexDirection: "column",
-      alignItems: "flex-start",
-      justifyContent: "flex-start",
-    },
-    menuContent: {
-      marginTop: "10px",
-      marginLeft: "10px",
-      padding: "10px",
-      background: menuItem === "calendar" ? secondaryLight : "inherit",
-      border: `2px ${tertiaryMain} solid`,
-      borderRadius: "10px",
-      width: menuItem === "calendar" ? "100%" : "auto",
-      color: textAlt,
-    },
-    noMenuItemText: {
-      opacity: "40%",
-      fontWeight: "normal",
-      color: textMain,
-    },
-  };
-
   return (
     <div style={styles.root}>
       <div style={styles.wrapper}>
@@ -150,7 +95,7 @@ function Homepage(): JSX.Element {
               onClick={() => setMenuItem("calendar")}
             />
           </div>
-          <div style={styles.menuContent}>
+          <div style={contingentStyles.menuContent}>
             {!menuItem && (
               <h3 style={styles.noMenuItemText}>
                 Select an action from the menu items on the left
@@ -188,3 +133,55 @@ function Homepage(): JSX.Element {
 }
 
 export default Homepage;
+
+const styles: StyleSheet = {
+  root: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    justifyContent: "center",
+    textAlign: "center",
+    backgroundColor: primaryMain,
+    minHeight: "calc(100vh - 44px)",
+    padding: "10px",
+    color: textMain,
+  },
+  wrapper: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    width: "95%",
+    maxWidth: "1200px",
+    minHeight: "inherit",
+    padding: "10px",
+    border: `2px ${secondaryMain} solid`,
+    borderRadius: "10px",
+  },
+  header: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "center",
+    justifyContent: "space-between",
+    width: "100%",
+  },
+  menuWrapper: {
+    display: "flex",
+    flexDirection: "row",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+    width: "100%",
+    maxWidth: "1100px",
+  },
+  menuItems: {
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "flex-start",
+    justifyContent: "flex-start",
+  },
+  noMenuItemText: {
+    opacity: "40%",
+    fontWeight: "normal",
+    color: textMain,
+  },
+};
