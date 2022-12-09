@@ -162,6 +162,7 @@ function CreateUser(): JSX.Element {
         <TextField
           label="Password"
           value={password}
+          type="password"
           onChange={handlePassword}
           error={!!passwordHelperText}
           helperText={passwordHelperText}

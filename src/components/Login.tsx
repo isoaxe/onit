@@ -85,6 +85,7 @@ function Login(): JSX.Element {
         <TextField
           label="Password"
           value={password}
+          type="password"
           onChange={handlePassword}
           error={passwordHelperText ? true : false}
           helperText={passwordHelperText}
