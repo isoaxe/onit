@@ -4,6 +4,7 @@ import validator from "validator";
 import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import PrimaryButton from "./PrimaryButton";
+import PasswordField from "./PasswordField";
 import { postFormDataAsJson } from "../util/helpers";
 import { useAuth } from "../util/useAuth";
 import { StyleSheet } from "../util/types";
@@ -36,10 +37,6 @@ function CreateUser(): JSX.Element {
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
-  }
-
-  function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
-    setPassword(event.currentTarget.value);
   }
 
   function handleBusinessId(event: ChangeEvent<HTMLInputElement>): void {
@@ -88,15 +85,6 @@ function CreateUser(): JSX.Element {
       setEmailHelperText("");
     }
   }, [email]);
-
-  // Display password validation in DOM as user types.
-  useEffect(() => {
-    if (password && password.length < 8) {
-      setPasswordHelperText("Needs to be > 7 characters");
-    } else {
-      setPasswordHelperText("");
-    }
-  }, [password]);
 
   // Display business ID validation in DOM as user types.
   useEffect(() => {
@@ -159,14 +147,11 @@ function CreateUser(): JSX.Element {
           helperText={emailHelperText}
           sx={styles.inputField}
         />
-        <TextField
-          label="Password"
-          value={password}
-          type="password"
-          onChange={handlePassword}
-          error={!!passwordHelperText}
-          helperText={passwordHelperText}
-          sx={styles.inputField}
+        <PasswordField
+          password={password}
+          setPassword={setPassword}
+          passwordHelperText={passwordHelperText}
+          setPasswordHelperText={setPasswordHelperText}
         />
         <TextField
           label="Business ID"

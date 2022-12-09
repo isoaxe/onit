@@ -4,6 +4,7 @@ import validator from "validator";
 import { TextField } from "@mui/material";
 import PhoneNumber from "./PhoneNumber";
 import PrimaryButton from "./PrimaryButton";
+import PasswordField from "./PasswordField";
 import { postFormDataAsJson } from "../util/helpers";
 import { useAuth } from "../util/useAuth";
 import { StyleSheet } from "../util/types";
@@ -51,10 +52,6 @@ function CreateBusiness(): JSX.Element {
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
-  }
-
-  function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
-    setPassword(event.currentTarget.value);
   }
 
   async function createBusiness(
@@ -115,15 +112,6 @@ function CreateBusiness(): JSX.Element {
       setEmailHelperText("");
     }
   }, [email]);
-
-  // Display password validation in DOM as user types.
-  useEffect(() => {
-    if (password && password.length < 8) {
-      setPasswordHelperText("Needs to be > 7 characters");
-    } else {
-      setPasswordHelperText("");
-    }
-  }, [password]);
 
   // Decide if the Submit button should be disabled.
   useEffect(() => {
@@ -197,14 +185,11 @@ function CreateBusiness(): JSX.Element {
           helperText={emailHelperText}
           sx={styles.inputField}
         />
-        <TextField
-          label="Password"
-          value={password}
-          type="password"
-          onChange={handlePassword}
-          error={!!passwordHelperText}
-          helperText={passwordHelperText}
-          sx={styles.inputField}
+        <PasswordField
+          password={password}
+          setPassword={setPassword}
+          passwordHelperText={passwordHelperText}
+          setPasswordHelperText={setPasswordHelperText}
         />
         <PrimaryButton label="Submit" type="submit" disabled={loginDisabled} />
       </form>
