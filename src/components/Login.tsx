@@ -3,6 +3,7 @@ import { Redirect } from "react-router-dom";
 import validator from "validator";
 import TextField from "@mui/material/TextField";
 import PrimaryButton from "./PrimaryButton";
+import PasswordField from "./PasswordField";
 import { useAuth } from "../util/useAuth";
 import { StyleSheet } from "../util/types";
 import { secondaryMain } from "../util/colours";
@@ -18,10 +19,6 @@ function Login(): JSX.Element {
 
   function handleEmail(event: ChangeEvent<HTMLInputElement>): void {
     setEmail(event.currentTarget.value);
-  }
-
-  function handlePassword(event: ChangeEvent<HTMLInputElement>): void {
-    setPassword(event.currentTarget.value);
   }
 
   async function login(
@@ -53,15 +50,6 @@ function Login(): JSX.Element {
     }
   }, [email]);
 
-  // Display password validation in DOM as user types.
-  useEffect(() => {
-    if (password && password.length < 8) {
-      setPasswordHelperText("Needs to be > 7 characters");
-    } else {
-      setPasswordHelperText("");
-    }
-  }, [password]);
-
   // Decide if the Login button should be disabled
   useEffect(() => {
     if (!email || !password || emailHelperText || passwordHelperText) {
@@ -82,13 +70,11 @@ function Login(): JSX.Element {
           helperText={emailHelperText}
           sx={styles.inputField}
         />
-        <TextField
-          label="Password"
-          value={password}
-          onChange={handlePassword}
-          error={passwordHelperText ? true : false}
-          helperText={passwordHelperText}
-          sx={styles.inputField}
+        <PasswordField
+          password={password}
+          setPassword={setPassword}
+          passwordHelperText={passwordHelperText}
+          setPasswordHelperText={setPasswordHelperText}
         />
         <PrimaryButton label="Login" type="submit" disabled={loginDisabled} />
       </form>
