@@ -44,6 +44,8 @@ function LoginSignup(): JSX.Element {
   );
 }
 
+export default LoginSignup;
+
 const styles: StyleSheet = {
   root: {
     display: "flex",
@@ -72,5 +74,3 @@ const styles: StyleSheet = {
     fontFamily: "Lato-Black",
   },
 };
-
-export default LoginSignup;

@@ -6,6 +6,12 @@ import { tertiaryMain } from "../util/colours";
 import { API_URL } from "../util/urls";
 import { StyleSheet } from "../util/types";
 
+const Button = styled.button`
+  &:hover {
+    cursor: pointer;
+  }
+`;
+
 function UserTable(props) {
   const { users, businessId, role, refresh } = props;
 
@@ -143,6 +149,8 @@ function UserTable(props) {
   );
 }
 
+export default UserTable;
+
 const styles: StyleSheet = {
   table: {
     padding: "3px",
@@ -156,11 +164,3 @@ const styles: StyleSheet = {
     borderBottom: `1px solid ${tertiaryMain}`,
   },
 };
-
-const Button = styled.button`
-  &:hover {
-    cursor: pointer;
-  }
-`;
-
-export default UserTable;

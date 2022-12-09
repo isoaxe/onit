@@ -184,6 +184,8 @@ function CreateUser(): JSX.Element {
   );
 }
 
+export default CreateUser;
+
 const styles: StyleSheet = {
   form: {
     display: "flex",
@@ -208,5 +210,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default CreateUser;

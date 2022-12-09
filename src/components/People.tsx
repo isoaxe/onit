@@ -60,6 +60,8 @@ function People(props): JSX.Element {
   );
 }
 
+export default People;
+
 const styles: StyleSheet = {
   root: {
     display: "flex",
@@ -71,5 +73,3 @@ const styles: StyleSheet = {
     color: textMain,
   },
 };
-
-export default People;

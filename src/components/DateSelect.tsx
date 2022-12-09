@@ -99,11 +99,11 @@ function DateSelect(props): JSX.Element {
   }
 }
 
+export default DateSelect;
+
 const styles: StyleSheet = {
   durationField: {
     width: "35%",
     margin: "5px 0px 15px",
   },
 };
-
-export default DateSelect;

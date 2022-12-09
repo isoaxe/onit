@@ -7,26 +7,6 @@ import LoginSignup from "../pages/LoginSignup";
 import { ProvideAuth } from "../util/useAuth";
 import { secondaryMain, secondaryLight, textMain } from "../util/colours";
 
-const theme = createTheme({
-  palette: {
-    mode: "dark",
-  },
-  components: {
-    MuiButton: {
-      styleOverrides: {
-        root: {
-          backgroundColor: secondaryMain,
-          "&:hover": {
-            backgroundColor: secondaryLight,
-          },
-          color: textMain,
-          textTransform: "none",
-        },
-      },
-    },
-  },
-});
-
 function App(): JSX.Element {
   useEffect(() => {
     document.title = "Onit";
@@ -51,3 +31,23 @@ function App(): JSX.Element {
 }
 
 export default App;
+
+const theme = createTheme({
+  palette: {
+    mode: "dark",
+  },
+  components: {
+    MuiButton: {
+      styleOverrides: {
+        root: {
+          backgroundColor: secondaryMain,
+          "&:hover": {
+            backgroundColor: secondaryLight,
+          },
+          color: textMain,
+          textTransform: "none",
+        },
+      },
+    },
+  },
+});

@@ -97,6 +97,8 @@ function Login(): JSX.Element {
   );
 }
 
+export default Login;
+
 const styles: StyleSheet = {
   wrapper: {
     width: "102%",
@@ -113,5 +115,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default Login;

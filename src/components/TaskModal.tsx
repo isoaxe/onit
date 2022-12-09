@@ -245,6 +245,8 @@ function TaskModal(props): JSX.Element {
   );
 }
 
+export default TaskModal;
+
 const styles: StyleSheet = {
   title: {
     marginBottom: "15px",
@@ -255,5 +257,3 @@ const styles: StyleSheet = {
     width: "100%",
   },
 };
-
-export default TaskModal;

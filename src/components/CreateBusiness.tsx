@@ -212,6 +212,8 @@ function CreateBusiness(): JSX.Element {
   );
 }
 
+export default CreateBusiness;
+
 const styles: StyleSheet = {
   form: {
     display: "flex",
@@ -236,5 +238,3 @@ const styles: StyleSheet = {
     marginBottom: "15px",
   },
 };
-
-export default CreateBusiness;
