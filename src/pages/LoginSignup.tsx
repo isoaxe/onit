@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { Snackbar, Alert } from "@mui/material";
 import Login from "../components/Login";
 import PrimaryButton from "../components/PrimaryButton";
 import CreateUser from "../components/CreateUser";
@@ -7,9 +8,11 @@ import { primaryMain, primaryLight, secondaryMain } from "../util/colours";
 import { textMain } from "../util/colours";
 import { StyleSheet } from "../util/types";
 
-function LoginSignup(): JSX.Element {
+function LoginSignup(props): JSX.Element {
   const [userFormActive, setUserFormActive] = useState(false);
   const [businessFormActive, setBusinessFormActive] = useState(false);
+
+  const { showAlert } = props;
 
   function userForm() {
     setUserFormActive(true);
@@ -37,6 +40,11 @@ function LoginSignup(): JSX.Element {
           type="button"
           onClick={businessForm}
         />
+        <Snackbar open={showAlert} autoHideDuration={3000}>
+          <Alert severity="info" variant="outlined">
+            You have been logged out
+          </Alert>
+        </Snackbar>
       </header>
       {userFormActive && <CreateUser />}
       {businessFormActive && <CreateBusiness />}
