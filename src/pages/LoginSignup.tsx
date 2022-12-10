@@ -12,7 +12,7 @@ function LoginSignup(props): JSX.Element {
   const [userFormActive, setUserFormActive] = useState(false);
   const [businessFormActive, setBusinessFormActive] = useState(false);
 
-  const { showAlert } = props;
+  const { showAlert, setShowAlert } = props;
 
   const vertical = "top";
   const horizontal = "center";
@@ -45,6 +45,7 @@ function LoginSignup(props): JSX.Element {
         />
         <Snackbar
           open={showAlert}
+          onClose={() => setShowAlert(false)}
           autoHideDuration={3000}
           anchorOrigin={{ vertical, horizontal }}
         >
