@@ -14,6 +14,9 @@ function LoginSignup(props): JSX.Element {
 
   const { showAlert } = props;
 
+  const vertical = "top";
+  const horizontal = "center";
+
   function userForm() {
     setUserFormActive(true);
     setBusinessFormActive(false);
@@ -40,7 +43,11 @@ function LoginSignup(props): JSX.Element {
           type="button"
           onClick={businessForm}
         />
-        <Snackbar open={showAlert} autoHideDuration={3000}>
+        <Snackbar
+          open={showAlert}
+          autoHideDuration={3000}
+          anchorOrigin={{ vertical, horizontal }}
+        >
           <Alert severity="info" variant="outlined">
             You have been logged out
           </Alert>
