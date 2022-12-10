@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useState, useEffect } from "react";
 import { Route, Switch } from "react-router-dom";
 import { createTheme, ThemeProvider } from "@mui/material";
 import RestrictedRoute from "../routes/RestrictedRoute";
@@ -8,6 +8,8 @@ import { ProvideAuth } from "../util/useAuth";
 import { secondaryMain, secondaryLight, textMain } from "../util/colours";
 
 function App(): JSX.Element {
+  const [showAlert, setShowAlert] = useState(false);
+
   useEffect(() => {
     document.title = "Onit";
   }, []);
@@ -17,11 +19,11 @@ function App(): JSX.Element {
       <ProvideAuth>
         <ThemeProvider theme={theme}>
           <Switch>
-            <RestrictedRoute path="/home">
+            <RestrictedRoute path="/home" setShowAlert={setShowAlert}>
               <Homepage />
             </RestrictedRoute>
             <Route path="/">
-              <LoginSignup />
+              <LoginSignup showAlert={showAlert} />
             </Route>
           </Switch>
         </ThemeProvider>
