@@ -23,7 +23,7 @@ function App(): JSX.Element {
               <Homepage />
             </RestrictedRoute>
             <Route path="/">
-              <LoginSignup showAlert={showAlert} />
+              <LoginSignup showAlert={showAlert} setShowAlert={setShowAlert} />
             </Route>
           </Switch>
         </ThemeProvider>
