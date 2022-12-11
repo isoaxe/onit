@@ -84,7 +84,7 @@ function UserTable(props) {
       columnArray.push(header);
     }
     return columnArray;
-  }, [role, changeRole]);
+  }, [role, changeRole, refresh]);
 
   const tableInstance = useTable({ columns, data });
 

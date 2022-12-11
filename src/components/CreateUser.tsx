@@ -115,7 +115,17 @@ function CreateUser(): JSX.Element {
     } else {
       setLoginDisabled(false);
     }
-  });
+  }, [
+    firstName,
+    lastName,
+    email,
+    password,
+    businessId,
+    phoneHelperText,
+    emailHelperText,
+    passwordHelperText,
+    businessIdHelperText,
+  ]);
 
   return (
     <div>

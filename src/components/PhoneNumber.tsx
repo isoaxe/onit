@@ -62,7 +62,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
       setOutline();
     }
     setIsLoaded(true);
-  });
+  }, [isLoaded, setOutline]);
 
   return (
     <div className="phone-wrapper">

@@ -164,7 +164,7 @@ function TaskModal(props): JSX.Element {
   const fetchTasks = useCallback(async () => {
     const newTasks = await getTasks(role, businessId, userId);
     setTasks(newTasks);
-  }, [role, businessId, userId]);
+  }, [role, businessId, userId, setTasks]);
 
   useEffect(() => {
     if (businessId) getUsers();
@@ -182,7 +182,7 @@ function TaskModal(props): JSX.Element {
     } else {
       setCreateTaskDisabled(false);
     }
-  });
+  }, [title, message, startDate, durationValid, assignees.length]);
 
   return (
     <Modal

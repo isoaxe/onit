@@ -25,7 +25,7 @@ function PasswordField(props) {
     } else {
       setPasswordHelperText("");
     }
-  }, [password]);
+  }, [password, setPasswordHelperText]);
 
   return (
     <FormControl sx={styles.inputField}>
