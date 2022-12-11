@@ -4,6 +4,9 @@ import { useAuth } from "../util/useAuth";
 // A wrapper for <Route> that redirects to the login screen if you're not yet authenticated.
 function RestrictedRoute({ children, ...rest }) {
   const auth = useAuth();
+
+  const { setShowAlert } = rest;
+
   return (
     <Route
       {...rest}
@@ -18,7 +21,7 @@ function RestrictedRoute({ children, ...rest }) {
                 state: { from: location },
               }}
             />
-            {alert("You have been logged out.")}
+            {setShowAlert(true)}
           </div>
         )
       }
