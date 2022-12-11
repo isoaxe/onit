@@ -78,6 +78,12 @@
         {
           "allowArgumentsExplicitlyTypedAsAny": true
         }
+      ],
+      "import/no-duplicates": [
+        "off",
+        {
+          "considerQueryString": true
+        }
       ]
     }
   },
