@@ -27,6 +27,10 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     margin: "-12px 10px 22px",
   };
 
+  function setHoveringOutline() {
+    input.style.outlineColor = muiHover;
+  }
+
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function setErrorOutline() {
     input.style.outlineColor = muiError;
@@ -36,10 +40,6 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
   function setFocusedOutline() {
     input.style.outlineColor = muiFocus;
     setInFocus(true);
-  }
-
-  function setHoveringOutline() {
-    input.style.outlineColor = muiHover;
   }
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
