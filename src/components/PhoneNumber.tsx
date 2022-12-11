@@ -27,23 +27,23 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     margin: "-12px 10px 22px",
   };
 
+  function setErrorOutline() {
+    input.style.outlineColor = muiError;
+  }
+
+  function setFocusedOutline() {
+    input.style.outlineColor = muiFocus;
+    setInFocus(true);
+  }
+
   function setHoveringOutline() {
     input.style.outlineColor = muiHover;
   }
 
-  const setErrorOutline = useCallback(() => {
-    input.style.outlineColor = muiError;
-  }, [input.style]);
-
-  const setFocusedOutline = useCallback(() => {
-    input.style.outlineColor = muiFocus;
-    setInFocus(true);
-  }, [input.style]);
-
-  const setBlurredOutline = useCallback(() => {
+  function setBlurredOutline() {
     input.style.outlineColor = muiBlur;
     setInFocus(false);
-  }, [input.style]);
+  }
 
   const setOutline = useCallback(() => {
     if (helperText) {
