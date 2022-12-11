@@ -53,9 +53,13 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     } else {
       setBlurredOutline();
     }
-    // We don't need setters in the dependency array, so disable eslint check.
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [helperText, inFocus]);
+  }, [
+    helperText,
+    inFocus,
+    setErrorOutline,
+    setFocusedOutline,
+    setBlurredOutline,
+  ]);
 
   useEffect(() => {
     if (!isLoaded) {
