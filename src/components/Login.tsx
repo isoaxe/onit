@@ -57,7 +57,7 @@ function Login(): JSX.Element {
     } else {
       setLoginDisabled(false);
     }
-  });
+  }, [email, password, emailHelperText, passwordHelperText]);
 
   return (
     <div style={styles.wrapper}>

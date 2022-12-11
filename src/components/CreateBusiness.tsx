@@ -93,7 +93,7 @@ function CreateBusiness(): JSX.Element {
     } else {
       setPostcodeHelperText("");
     }
-  }, [postcode]);
+  }, [postcode, locale]);
 
   // Display phone number validation in DOM as user types.
   useEffect(() => {
@@ -133,7 +133,20 @@ function CreateBusiness(): JSX.Element {
     } else {
       setLoginDisabled(false);
     }
-  });
+  }, [
+    businessName,
+    address1,
+    address2,
+    city,
+    postcode,
+    phone,
+    email,
+    password,
+    postcodeHelperText,
+    phoneHelperText,
+    emailHelperText,
+    passwordHelperText,
+  ]);
 
   return (
     <div>

@@ -46,7 +46,14 @@ function DateSelect(props): JSX.Element {
     } else {
       setDurationValid(false); // Default to invalid.
     }
-  }, [allDay, durationHours, durationMinutes, hoursHelperText, minsHelperText]);
+  }, [
+    allDay,
+    durationHours,
+    durationMinutes,
+    hoursHelperText,
+    minsHelperText,
+    setDurationValid,
+  ]);
 
   if (allDay) {
     return (

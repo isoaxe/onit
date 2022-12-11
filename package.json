@@ -72,38 +72,17 @@
       "/functions/lib/**/*"
     ],
     "rules": {
-      "semi": [
-        "warn",
-        "always"
-      ],
-      "indent": [
-        "warn",
-        "tab"
-      ],
-      "quotes": [
-        "warn",
-        "double"
-      ],
-      "object-curly-spacing": [
-        "warn",
-        "always"
-      ],
-      "space-before-function-paren": [
-        "warn",
-        "always"
-      ],
-      "no-multiple-empty-lines": [
-        "warn",
-        {
-          "max": 2,
-          "maxBOF": 0,
-          "maxEOF": 0
-        }
-      ],
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/explicit-module-boundary-types": [
         "off",
         {
           "allowArgumentsExplicitlyTypedAsAny": true
+        }
+      ],
+      "import/no-duplicates": [
+        "off",
+        {
+          "considerQueryString": true
         }
       ]
     }

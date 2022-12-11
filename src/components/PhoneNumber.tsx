@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useState, useEffect, useCallback } from "react";
 import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
 import { muiBlur, muiError, muiFocus, muiHover } from "../util/colours";
 import { COUNTRY_CODE } from "../util/constants";
@@ -45,7 +45,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     setInFocus(false);
   }
 
-  function setOutline() {
+  const setOutline = useCallback(() => {
     if (helperText) {
       setErrorOutline();
     } else if (inFocus) {
@@ -53,7 +53,9 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     } else {
       setBlurredOutline();
     }
-  }
+    // We don't need setters in the dependency array, so disable eslint check.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [helperText, inFocus]);
 
   useEffect(() => {
     if (!isLoaded) {
@@ -62,7 +64,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
       setOutline();
     }
     setIsLoaded(true);
-  });
+  }, [isLoaded, setOutline]);
 
   return (
     <div className="phone-wrapper">

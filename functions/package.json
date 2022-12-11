@@ -28,5 +28,10 @@
     "firebase-functions-test": "^0.2.0",
     "typescript": "^4.9.3"
   },
+  "eslintConfig": {
+    "rules": {
+      "@typescript-eslint/no-explicit-any": "off"
+    }
+  },
   "private": true
 }
