@@ -31,6 +31,7 @@ function PhoneNumber(props: PhoneNumberProps): JSX.Element {
     input.style.outlineColor = muiHover;
   }
 
+  // Attempting to memoise the 3 functions below as the linter requires will cause an error.
   // eslint-disable-next-line react-hooks/exhaustive-deps
   function setErrorOutline() {
     input.style.outlineColor = muiError;
