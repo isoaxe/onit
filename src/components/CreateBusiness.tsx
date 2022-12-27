@@ -206,7 +206,7 @@ function CreateBusiness(): JSX.Element {
         />
         <PrimaryButton label="Submit" type="submit" disabled={loginDisabled} />
       </form>
-      {user && <Redirect to="home" />}
+      {user ? <Redirect to="home" /> : null}
     </div>
   );
 }

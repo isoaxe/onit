@@ -54,8 +54,8 @@ function LoginSignup(props): JSX.Element {
           </Alert>
         </Snackbar>
       </header>
-      {userFormActive && <CreateUser />}
-      {businessFormActive && <CreateBusiness />}
+      {userFormActive ? <CreateUser /> : null}
+      {businessFormActive ? <CreateBusiness /> : null}
     </div>
   );
 }

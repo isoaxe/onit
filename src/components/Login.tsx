@@ -78,7 +78,7 @@ function Login(): JSX.Element {
         />
         <PrimaryButton label="Login" type="submit" disabled={loginDisabled} />
       </form>
-      {user && <Redirect to="home" />}
+      {user ? <Redirect to="home" /> : null}
     </div>
   );
 }

@@ -76,19 +76,22 @@ function Homepage(): JSX.Element {
         <header style={styles.header}>
           <HeaderText text={headerName} />
           <HeaderText text={headerRole} />
-          {role !== "owner" && <HeaderText text={headerBusiness} />}
-          {role === "owner" && <HeaderText text={headerBusinessId} />}
+          {role === "owner" ? (
+            <HeaderText text={headerBusinessId} />
+          ) : (
+            <HeaderText text={headerBusiness} />
+          )}
           <PrimaryButton label="Logout" type="button" onClick={signOut} />
         </header>
         <section style={styles.menuWrapper}>
           <div style={styles.menuItems}>
-            {(role === "owner" || role === "manager") && (
+            {role === "owner" || role === "manager" ? (
               <MenuItem
                 active={menuItem}
                 label="People"
                 onClick={() => setMenuItem("people")}
               />
-            )}
+            ) : null}
             <MenuItem
               active={menuItem}
               label="Calendar"
@@ -96,15 +99,15 @@ function Homepage(): JSX.Element {
             />
           </div>
           <div style={contingentStyles.menuContent}>
-            {!menuItem && (
+            {!menuItem ? (
               <h3 style={styles.noMenuItemText}>
                 Select an action from the menu items on the left
               </h3>
-            )}
-            {menuItem === "people" && (
+            ) : null}
+            {menuItem === "people" ? (
               <People businessId={businessId} role={role} />
-            )}
-            {menuItem === "calendar" && (
+            ) : null}
+            {menuItem === "calendar" ? (
               <Calendar
                 setTaskModalVisible={setTaskModalVisible}
                 userId={userId}
@@ -113,8 +116,8 @@ function Homepage(): JSX.Element {
                 setTasks={setTasks}
                 role={role}
               />
-            )}
-            {role !== "staff" && (
+            ) : null}
+            {role !== "staff" ? (
               <TaskModal
                 taskModalVisible={taskModalVisible}
                 setTaskModalVisible={setTaskModalVisible}
@@ -124,7 +127,7 @@ function Homepage(): JSX.Element {
                 tasks={tasks}
                 setTasks={setTasks}
               />
-            )}
+            ) : null}
           </div>
         </section>
       </div>

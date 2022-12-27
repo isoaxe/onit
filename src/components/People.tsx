@@ -47,15 +47,16 @@ function People(props): JSX.Element {
 
   return (
     <div style={styles.root}>
-      {users && (
+      {users ? (
         <UserTable
           users={users}
           businessId={businessId}
           role={role}
           refresh={forceRefresh}
         />
+      ) : (
+        <h3>{errorMessage}</h3>
       )}
-      {!users && <h3>{errorMessage}</h3>}
     </div>
   );
 }
