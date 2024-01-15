@@ -19,7 +19,7 @@
     "country-locale-map": "^1.7.2",
     "express": "^4.17.1",
     "firebase-admin": "^11.3.0",
-    "firebase-functions": "^4.1.0"
+    "firebase-functions": "^4.6.0"
   },
   "devDependencies": {
     "@types/cors": "^2.8.10",
