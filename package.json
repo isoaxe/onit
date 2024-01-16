@@ -44,7 +44,7 @@
     "typescript": "^4.9.3"
   },
   "scripts": {
-    "start": "react-scripts --openssl-legacy-provider start",
+    "start": "react-scripts start",
     "build": "react-scripts build",
     "build-all": "cd functions && npm run build && cd .. && npm run build",
     "dev": "concurrently 'npm start' 'cd functions && npm run watch' 'cd functions && npm run serve'",
