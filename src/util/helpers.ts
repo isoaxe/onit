@@ -2,7 +2,6 @@
  * Various helper functions used throughout the project.
  */
 import firebase from "firebase/app";
-import generator from "generate-password";
 import { API_URL } from "../util/urls";
 
 // POST form data. Used for account and task creation.
@@ -97,11 +96,15 @@ export async function getTasks(role, businessId, userId) {
 }
 
 // Generate an id for tasks.
-export function getId() {
-  return generator.generate({
-    length: 28,
-    numbers: true,
-  });
+export function getId(length: number) {
+  const chars =
+    "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+  let id = "";
+  for (let i = 0; i < length; i++) {
+    const randomIndex = Math.floor(Math.random() * chars.length);
+    id += chars[randomIndex];
+  }
+  return id;
 }
 
 // Get the supplied date as a ISO string with local time.
