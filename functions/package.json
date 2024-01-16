@@ -10,23 +10,23 @@
     "logs": "firebase functions:log"
   },
   "engines": {
-    "node": "16"
+    "node": "18"
   },
   "main": "lib/index.js",
   "dependencies": {
-    "body-parser": "^1.19.0",
+    "body-parser": "^1.20.2",
     "cors": "^2.8.5",
-    "country-locale-map": "^1.7.2",
-    "express": "^4.17.1",
-    "firebase-admin": "^11.3.0",
-    "firebase-functions": "^4.1.0"
+    "country-locale-map": "^1.9.0",
+    "express": "^4.18.2",
+    "firebase-admin": "^11.11.1",
+    "firebase-functions": "^4.6.0"
   },
   "devDependencies": {
-    "@types/cors": "^2.8.10",
-    "@types/express-serve-static-core": "^4.17.31",
-    "@types/node": "^18.11.10",
-    "firebase-functions-test": "^0.2.0",
-    "typescript": "^4.9.3"
+    "@types/cors": "^2.8.17",
+    "@types/express-serve-static-core": "^4.17.41",
+    "@types/node": "^18.19.7",
+    "firebase-functions-test": "^0.2.3",
+    "typescript": "^4.9.5"
   },
   "eslintConfig": {
     "rules": {

@@ -1,5 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
-import PhoneInput, { PhoneInputProps } from "react-phone-number-input";
+import PhoneInput from "react-phone-number-input";
 import { muiBlur, muiError, muiFocus, muiHover } from "../util/colours";
 import { COUNTRY_CODE } from "../util/constants";
 import "react-phone-number-input/style.css";
@@ -7,9 +7,7 @@ import "./css/PhoneNumber.css";
 
 const phoneInputStyles = { width: "79%", marginBottom: "15px" };
 
-type PhoneNumberProps = PhoneInputProps & { helperText: string };
-
-function PhoneNumber(props: PhoneNumberProps): JSX.Element {
+function PhoneNumber(props: any): JSX.Element {
   const [isLoaded, setIsLoaded] = useState(false);
   const [inFocus, setInFocus] = useState(false);
 

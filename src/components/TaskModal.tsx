@@ -106,7 +106,7 @@ function TaskModal(props): JSX.Element {
 
   async function createTask(event) {
     event.preventDefault();
-    const taskId = getId(); // Randomly generated id.
+    const taskId = getId(28); // Randomly generated id.
     const url = `${API_URL}/tasks/${taskId}/${businessId}`;
     const form = event.currentTarget;
 
