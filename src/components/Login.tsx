@@ -29,7 +29,7 @@ function Login(): JSX.Element {
     setPasswordHelperText("");
 
     try {
-      await auth.signIn(email, password);
+      await auth.login(email, password);
     } catch (err: any) {
       console.error(err);
       if (err.code === "auth/user-not-found") {

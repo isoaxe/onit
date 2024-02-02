@@ -1,4 +1,10 @@
 import { useState, useEffect, useContext, createContext } from "react";
+import {
+  signInWithEmailAndPassword,
+  signOut,
+  onAuthStateChanged,
+} from "firebase/auth";
+import { auth } from "../util/firebase";
 
 const authContext = createContext(undefined); //or null?
 
@@ -16,30 +22,18 @@ export const useAuth = () => {
 
 // Provider hook that creates auth object and handles state.
 function useProvideAuth() {
-  const [user, setUser] = useState<firebase.User | null>(null);
+  const [user, setUser] = useState(null);
 
   // Wrap any Firebase methods we want to use making sure to save the user to state.
-  async function signIn(email: string, password: string) {
-    const response = await firebase
-      .auth()
-      .signInWithEmailAndPassword(email, password);
+  async function login(email: string, password: string) {
+    const response = await signInWithEmailAndPassword(auth, email, password);
     setUser(response.user);
     return response.user;
   }
 
-  async function signOut() {
-    await firebase.auth().signOut();
+  async function logout() {
+    await signOut(auth);
     setUser(null);
-  }
-
-  async function sendPasswordResetEmail(email: string) {
-    await firebase.auth().sendPasswordResetEmail(email);
-    return true;
-  }
-
-  async function confirmPasswordReset(code: string, password: string) {
-    await firebase.auth().confirmPasswordReset(code, password);
-    return true;
   }
 
   // Subscribe to user on mount.
@@ -47,12 +41,9 @@ function useProvideAuth() {
   // utilizes this hook to re-render with the latest auth object.
   useEffect(() => {
     function unsubscribe() {
-      firebase.auth().onAuthStateChanged((user) => {
-        if (user) {
-          setUser(user);
-        } else {
-          setUser(null);
-        }
+      onAuthStateChanged(auth, (user) => {
+        if (user) setUser(user);
+        else setUser(null);
       });
     }
 
@@ -61,11 +52,5 @@ function useProvideAuth() {
   }, []);
 
   // Return the user object and auth methods.
-  return {
-    user,
-    signIn,
-    signOut,
-    sendPasswordResetEmail,
-    confirmPasswordReset,
-  };
+  return { user, login, logout };
 }
