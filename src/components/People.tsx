@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
-import firebase from "firebase/app";
 import UserTable from "./UserTable";
 import { API_URL } from "../util/urls";
 import { textMain } from "../util/colours";
+import { auth } from "../util/firebase";
 import { StyleSheet } from "../util/types";
 
 function People(props): JSX.Element {
@@ -14,7 +14,7 @@ function People(props): JSX.Element {
 
   async function getUsers() {
     try {
-      const token = await firebase.auth().currentUser.getIdToken(true);
+      const token = await auth.currentUser.getIdToken(true);
       const requestOptions = {
         method: "GET",
         headers: { authorization: `Bearer ${token}` },

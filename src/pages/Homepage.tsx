@@ -20,7 +20,7 @@ function Homepage(): JSX.Element {
   const [taskModalVisible, setTaskModalVisible] = useState(false);
   const [tasks, setTasks] = useState([]);
 
-  const { user, signOut } = useAuth();
+  const { user, logout } = useAuth();
   const headerName = `Welcome, ${user.displayName}`;
   const headerRole = `Access level: ${role}`;
   const headerBusiness = `Business: ${businessName}`;
@@ -81,7 +81,7 @@ function Homepage(): JSX.Element {
           ) : (
             <HeaderText text={headerBusiness} />
           )}
-          <PrimaryButton label="Logout" type="button" onClick={signOut} />
+          <PrimaryButton label="Logout" type="button" onClick={logout} />
         </header>
         <section style={styles.menuWrapper}>
           <div style={styles.menuItems}>

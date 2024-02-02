@@ -1,8 +1,8 @@
 /*
  * Various helper functions used throughout the project.
  */
-import firebase from "firebase/app";
 import { API_URL } from "../util/urls";
+import { auth } from "./firebase";
 
 // POST form data. Used for account and task creation.
 export async function postFormDataAsJson({ url, formData }) {
@@ -10,7 +10,7 @@ export async function postFormDataAsJson({ url, formData }) {
   const formDataJsonString = JSON.stringify(plainFormData);
   let token: string;
   try {
-    token = await firebase.auth().currentUser.getIdToken(true);
+    token = await auth.currentUser.getIdToken(true);
   } catch {
     token = "no_token_found";
   }
@@ -34,7 +34,7 @@ export async function postFormDataAsJson({ url, formData }) {
 }
 
 // GET custom claims for the user.
-export async function getClaims(user: firebase.User) {
+export async function getClaims(user) {
   try {
     const token = await user.getIdToken(true);
     const requestOptions = {
@@ -53,7 +53,7 @@ export async function getClaims(user: firebase.User) {
 }
 
 // Get business data from the Firestore.
-export async function getBusinessData(user: firebase.User, businessId: string) {
+export async function getBusinessData(user, businessId: string) {
   try {
     const token = await user.getIdToken(true);
     const requestOptions = {
@@ -74,7 +74,7 @@ export async function getBusinessData(user: firebase.User, businessId: string) {
 // GET only assigned tasks for staff users and all tasks for other users.
 export async function getTasks(role, businessId, userId) {
   try {
-    const token = await firebase.auth().currentUser.getIdToken(true);
+    const token = await auth.currentUser.getIdToken(true);
     const requestOptions = {
       method: "GET",
       headers: { authorization: `Bearer ${token}` },

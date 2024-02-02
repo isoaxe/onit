@@ -1,6 +1,6 @@
 {
   "name": "onit",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.11.3",
@@ -11,7 +11,7 @@
     "@mui/icons-material": "^5.15.4",
     "@mui/material": "^5.15.4",
     "@mui/styled-engine-sc": "^5.14.12",
-    "firebase": "^8.10.1",
+    "firebase": "^10.7.2",
     "firebaseui": "^4.8.1",
     "react": "^18.2.0",
     "react-datepicker": "^4.25.0",
