@@ -2,9 +2,9 @@ import { useState, useRef, useEffect, useCallback } from "react";
 import FullCalendar from "@fullcalendar/react";
 import dayGridPlugin from "@fullcalendar/daygrid";
 import listPlugin from "@fullcalendar/list";
-import firebase from "firebase/app";
 import { getTasks, formatDate, isoLocalDate } from "../util/helpers";
 import { tertiaryMain, textAlt } from "../util/colours";
+import { auth } from "../util/firebase";
 import { API_URL } from "../util/urls";
 import "./css/Calendar.css";
 
@@ -128,7 +128,7 @@ function Calendar(props) {
     const completionTime = isoLocalDate(new Date());
     try {
       // PUT request to tasks endpoint.
-      const token = await firebase.auth().currentUser.getIdToken(true);
+      const token = await auth.currentUser.getIdToken(true);
       const requestOptions = {
         method: "PUT",
         headers: { authorization: `Bearer ${token}` },

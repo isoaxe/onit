@@ -1,5 +1,4 @@
 import { useState, useEffect, useCallback, ChangeEvent } from "react";
-import firebase from "firebase/app";
 import Modal from "react-modal";
 import Switch from "react-switch";
 import { TextField } from "@mui/material";
@@ -11,6 +10,7 @@ import { API_URL } from "../util/urls";
 import { StyleSheet } from "../util/types";
 import { postFormDataAsJson, isoLocalDate } from "../util/helpers";
 import { getId, getTasks } from "../util/helpers";
+import { auth } from "../util/firebase";
 import "react-datepicker/dist/react-datepicker.css";
 import "./css/TaskModal.css";
 
@@ -134,7 +134,7 @@ function TaskModal(props): JSX.Element {
 
   const getUsers = useCallback(async () => {
     try {
-      const token = await firebase.auth().currentUser.getIdToken(true);
+      const token = await auth.currentUser.getIdToken(true);
       const requestOptions = {
         method: "GET",
         headers: { authorization: `Bearer ${token}` },
